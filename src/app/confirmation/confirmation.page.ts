@@ -7,20 +7,18 @@ import { firestore } from 'firebase/app';
 import { Router } from '@angular/router'
 
 @Component({
-  selector: 'app-estimateprice',
-  templateUrl: './estimateprice.page.html',
-  styleUrls: ['./estimateprice.page.scss'],
+  selector: 'app-confirmation',
+  templateUrl: './confirmation.page.html',
+  styleUrls: ['./confirmation.page.scss'],
 })
-export class EstimatepricePage implements OnInit {
+export class ConfirmationPage implements OnInit {
 
-  constructor(public route: Router,
-    ) { }
+  constructor(public route: Router) { }
 
     ngOnInit() {
     }
 
-    placeBooking() {
-        this.route.navigate(['/booking'])
+    completeOrder() {
+        this.route.navigate(['/tabs/feed'])
     }
-
 }

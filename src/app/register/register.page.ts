@@ -14,9 +14,9 @@ import { UserService } from '../user.service';
 })
 export class RegisterPage implements OnInit {
 
-  username: string = ""
-	password: string = ""
-  cpassword: string = ""
+    username: string = ""
+    password: string = ""
+    cpassword: string = ""
   
   constructor(
     public afAuth: AngularFireAuth,

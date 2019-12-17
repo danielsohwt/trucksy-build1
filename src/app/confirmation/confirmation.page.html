@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>confirmation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+Order confirmed!
+
+<ion-button shape="round" color="primary" (click)="completeOrder()" *ngIf="!imageURL" fill="outline"> Back to Feed</ion-button>
+</ion-content>

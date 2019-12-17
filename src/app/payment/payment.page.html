@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+Enter your credit card details below
+<ion-button shape="round" color="primary" (click)="completePayment()" *ngIf="!imageURL" fill="outline">Pay</ion-button>
+
+</ion-content>

@@ -1,9 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>booking</ion-title>
+    <ion-title>Booking</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+Place Your Booking Now<br>
+Here are the available dates:
 
+<br>
+<ion-button shape="round" color="primary" (click)="placePayment()" *ngIf="!imageURL" fill="outline"> Confirm Booking and Pay</ion-button>
 </ion-content>

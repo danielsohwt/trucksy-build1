@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from '../user.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-uploader',
@@ -20,7 +21,8 @@ export class UploaderPage implements OnInit {
     constructor(
         public http: HttpClient,
         public afstore: AngularFirestore,
-        public user:UserService
+        public user:UserService,
+        public route: Router,
         ) { }
 
     ngOnInit() {
@@ -37,6 +39,7 @@ export class UploaderPage implements OnInit {
             })
         })
 
+        this.route.navigate(['/estimateprice'])
     }
 
     uploadFile() {

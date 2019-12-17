@@ -14,6 +14,14 @@ const routes: Routes = [
     path: 'booking',
     loadChildren: () => import('./booking/booking.module').then( m => m.BookingPageModule)
   },
+  {
+    path: 'payment',
+    loadChildren: () => import('./payment/payment.module').then( m => m.PaymentPageModule)
+  },
+  {
+    path: 'confirmation',
+    loadChildren: () => import('./confirmation/confirmation.module').then( m => m.ConfirmationPageModule)
+  },
 //   {
 //     path: 'dashboard',
 //     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)

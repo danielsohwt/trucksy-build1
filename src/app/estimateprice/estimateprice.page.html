@@ -1,9 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>estimateprice</ion-title>
+    <ion-title>Price Estimate</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+This is your price estimate
+<br>
+<ion-button shape="round" color="primary" (click)="placeBooking()" *ngIf="!imageURL" fill="outline"> Place Booking Now</ion-button>
 
 </ion-content>

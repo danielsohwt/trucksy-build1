@@ -5,7 +5,11 @@ const routes: Routes = [
   { path: '', redirectTo: 'register', pathMatch: 'full' },
   { path: 'login', loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)},
   { path: 'register',loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)},
-  { path: 'tabs',loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)}
+  { path: 'tabs',loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)},
+//   {
+//     path: 'dashboard',
+//     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+//   }
 ];
 
 @NgModule({

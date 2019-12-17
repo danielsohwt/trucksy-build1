@@ -6,6 +6,14 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)},
   { path: 'register',loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)},
   { path: 'tabs',loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)},
+  {
+    path: 'estimateprice',
+    loadChildren: () => import('./estimateprice/estimateprice.module').then( m => m.EstimatepricePageModule)
+  },
+  {
+    path: 'booking',
+    loadChildren: () => import('./booking/booking.module').then( m => m.BookingPageModule)
+  },
 //   {
 //     path: 'dashboard',
 //     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)

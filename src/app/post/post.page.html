@@ -1,9 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>post</ion-title>
+    <ion-title>Post</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="padding">
+    <ion-card *ngIf="post | async as postData">
+        <ion-img src="https://ucarecdn.com/{{ postID }}/"></ion-img>
+        <ion-card-content>
+            <p>{{ postData.desc }}</p>
+        </ion-card-content>
+    </ion-card>
 
 </ion-content>

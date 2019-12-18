@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-post',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostPage implements OnInit {
 
-  constructor() { }
+    postID: string
+    post
 
-  ngOnInit() {
-  }
+    constructor(
+        private route: ActivatedRoute, 
+        private afs: AngularFirestore
+    ) { 
+
+    }
+
+    ngOnInit() {
+		this.postID = this.route.snapshot.paramMap.get('id')
+        this.post = this.afs.doc(`posts/${this.postID}`).valueChanges()
+    }
 
 }

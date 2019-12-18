@@ -69,6 +69,7 @@ export class UploaderPage implements OnInit {
         .subscribe(event => {
             console.log(event)
             this.imageURL = event.file
+            console.log(this.imageURL)
         })
 }
 

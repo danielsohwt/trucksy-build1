@@ -10,7 +10,8 @@ const routes: Routes = [
 			{ path: 'feed', loadChildren: '../feed/feed.module#FeedPageModule' },
             { path: 'uploader', loadChildren: '../uploader/uploader.module#UploaderPageModule' },
             { path: 'dashboard', loadChildren: '../dashboard/dashboard.module#DashboardPageModule' },
-			{ path: 'profile', loadChildren: '../profile/profile.module#ProfilePageModule' }
+            { path: 'profile', loadChildren: '../profile/profile.module#ProfilePageModule' },
+            { path: 'post/:id', loadChildren: '../post/post.module#PostPageModule' }
 		]
 	}	
 ];

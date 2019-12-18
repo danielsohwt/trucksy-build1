@@ -15,6 +15,7 @@ export class UploaderPage implements OnInit {
     
     imageURL; string
     desc: string
+    busy: boolean = false
 
     @ViewChild('fileButton') fileButton
 
@@ -29,6 +30,7 @@ export class UploaderPage implements OnInit {
     }
 
     createPost() {
+        this.busy = true
         const image = this.imageURL
         const desc = this.desc
 
@@ -49,7 +51,9 @@ export class UploaderPage implements OnInit {
             likes: []  
         })
 
-
+        this.busy = false
+        this.imageURL = ""
+        this.desc = ""
         this.route.navigate(['/estimateprice'])
     }
 
@@ -58,6 +62,7 @@ export class UploaderPage implements OnInit {
     }
 
     fileChanged(event) {
+        this.busy = true
         const files = event.target.files
 
         const data = new FormData()
@@ -70,6 +75,7 @@ export class UploaderPage implements OnInit {
             console.log(event)
             this.imageURL = event.file
             console.log(this.imageURL)
+            this.busy = false
         })
 }
 

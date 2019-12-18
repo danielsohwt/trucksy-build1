@@ -20,7 +20,46 @@ export class UserService {
         this.user = user
     }
 
-    getUID() {
+    getUsername(): string {
+        return this.user.username
+    }
+
+    getUID(): string {
+        // username or uid?
         return this.user.uid
     }
+
+    async isAuthenticated() {
+        if(this.user) return true
+
+        const user = await this.afAuth.authState.pipe(first()).toPromise()
+
+        if(user) {
+            this.setUser({
+                username: user.email.split('@')[0],
+                uid: user.uid
+            })
+            return true
+        }
+        return false
+    }
+
+    // getUID() {
+    //     if(!this.user){
+    //         if(this.afAuth.auth.currentUser){
+    //             const user = this.afAuth.auth.currentUser
+    //             this.setUser({
+    //                 username: user.email.split('@')[0],
+    //                 uid: user.uid
+    //             })
+    //             return user.uid
+    //         } else {
+    //             throw new Error("User not logged in")
+    //         }
+    //     }else {
+    //         return this.user.uid
+    //     }
+
+        
+    // }
 }

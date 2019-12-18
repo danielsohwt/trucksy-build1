@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { UserService } from '../user.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { firestore } from 'firebase/app';
+import { Router } from '@angular/router'
+
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +14,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+    userPosts
+
+  constructor(
+    public http: HttpClient,
+    private afs: AngularFirestore,
+    private user:UserService,
+    public route: Router,
+  ) { 
+      const posts = afs.doc(`users/${this.user.getUID()}`)
+      this.userPosts = posts.valueChanges()
+  }
 
   ngOnInit() {
   }

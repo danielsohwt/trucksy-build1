@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthService } from './auth.service'
 
 const routes: Routes = [
   { path: '', redirectTo: 'register', pathMatch: 'full' },
   { path: 'login', loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)},
   { path: 'register',loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)},
-  { path: 'tabs',loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)},
+  { path: 'tabs',loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule), canActivate: [AuthService]},
   {
     path: 'estimateprice',
     loadChildren: () => import('./estimateprice/estimateprice.module').then( m => m.EstimatepricePageModule)
@@ -21,6 +22,14 @@ const routes: Routes = [
   {
     path: 'confirmation',
     loadChildren: () => import('./confirmation/confirmation.module').then( m => m.ConfirmationPageModule)
+  },
+  {
+    path: 'post',
+    loadChildren: () => import('./post/post.module').then( m => m.PostPageModule)
+  },
+  {
+    path: 'splashpage',
+    loadChildren: () => import('./splashpage/splashpage.module').then( m => m.SplashpagePageModule)
   },
 //   {
 //     path: 'dashboard',

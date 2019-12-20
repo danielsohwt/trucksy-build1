@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
     const { username, password } = this
     try {
         //to do fix email 
-        const res = await this.afAuth.auth.signInWithEmailAndPassword(username + '@trucksy.com', password)
+        const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password)
         if(res.user){
             this.user.setUser({
                 username,

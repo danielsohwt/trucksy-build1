@@ -8,13 +8,20 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+
+//Firebase
 import firebaseConfig from './firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
 import {HttpClientModule} from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+
+
+//Internal app services
 import { UserService } from './user.service';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 import { ShareModule } from './share.module';
 
@@ -26,6 +33,7 @@ import { ShareModule } from './share.module';
             AppRoutingModule,
             AngularFireModule.initializeApp(firebaseConfig),
             AngularFireAuthModule,
+            AngularFireDatabaseModule,
             AngularFirestoreModule,
             HttpClientModule,
             ShareModule

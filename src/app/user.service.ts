@@ -36,7 +36,7 @@ export class UserService {
 
         if(user) {
             this.setUser({
-                username: user.email.split('@')[0],
+                username: user.email,
                 uid: user.uid
             })
             return true

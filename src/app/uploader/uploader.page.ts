@@ -48,6 +48,7 @@ export class UploaderPage implements OnInit {
         // Todo set this order to auto increment
         this.afstore.doc(`order/${image}`).set({
             desc,
+            dateOfOrder: "",
             user: this.user.getUsername(),
             likes: []  
         })

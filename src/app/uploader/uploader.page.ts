@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Directive, OnInit, ViewChild } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../user.service';
@@ -17,7 +17,8 @@ export class UploaderPage implements OnInit {
     desc: string
     busy: boolean = false
 
-    @ViewChild('fileButton') fileButton
+    @ViewChild('fileButton', { static: false }) fileButton;
+    // @ViewChild('fileButton') fileButton
 
     constructor(
         public http: HttpClient,

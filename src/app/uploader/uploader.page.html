@@ -10,7 +10,7 @@
 
     <div class="center" *ngIf="!busy">
         <div class="camera"></div>
-        <input type="file" *ngIf="!imageURL" (change)="fileChanged($event)" class="filebtn" #fileButton/>
+        <input type="file" *ngIf="!imageURL" (change)="fileChanged($event)" class="filebtn" #fileButton />
     
         <ion-button shape="round" color="primary" (click)="uploadFile()" *ngIf="!imageURL" fill="outline"> Upload Image to Get a Quote</ion-button>
         

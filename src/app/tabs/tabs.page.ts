@@ -10,6 +10,7 @@ export class TabsPage implements OnInit {
 
     // @ViewChild('tabs') tabs: IonTabs
     @ViewChild('tabs', { static: true }) IonTabs;
+    tabs: any;
     
     constructor() { }
 

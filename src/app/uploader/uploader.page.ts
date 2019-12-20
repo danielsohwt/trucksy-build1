@@ -47,10 +47,30 @@ export class UploaderPage implements OnInit {
 
         // Todo set this order to auto increment
         this.afstore.doc(`order/${image}`).set({
-            desc,
-            dateOfOrder: "",
+            image: image,
             user: this.user.getUsername(),
-            likes: []  
+            desc,
+            paymentStatus: "",
+            //Payment Status: 1: Paid 2: Cash on delivery 3:Payment failed
+            fufilmentStatus: "",
+            //Fufilment Status: 1: Delivery Done 2: Pick Up Done 3:Enroute Pickup 4: Order placed
+            orderItemsPredicted: {
+                        chairs: 2,
+                        tables: 3,
+                        washer: 1
+                        },
+            orderItemsActual: {
+                            chairs: 2,
+                            tables: 3,
+                            washer: 1
+                            },
+            orderPrice: 100.12,
+            pickUpAddress: "",
+            dropOffAddress: "",
+            dateTimeOfOrder: "",
+            dateTimeOfPickup: "",
+            dateTimeOfDropoff: "",
+            driverID: "",
         })
 
         this.busy = false

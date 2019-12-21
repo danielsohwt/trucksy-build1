@@ -1,5 +1,7 @@
 {
   "name": "trucksy",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 
 import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
@@ -12,6 +13,11 @@ import * as d3Axis from 'd3-axis';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+
+    customYearValues = [2020, 2016, 2008, 2004, 2000, 1996];
+    customDayShortNames = ['s\u00f8n', 'man', 'tir', 'ons', 'tor', 'fre', 'l\u00f8r'];
+    customPickerOptions: any;
+
     barData = [
         { season: 'W1', viewers: 1200 },
         { season: 'W2', viewers: 1020 },
@@ -32,7 +38,24 @@ export class DashboardPage implements OnInit {
       svg: any;
       g: any;    
 
-  constructor(private _platform: Platform) {
+  constructor(
+        private _platform: Platform,
+        private datePicker: DatePicker,) {
+
+        
+    this.customPickerOptions = {
+        buttons: [{
+          text: 'Save',
+          handler: () => console.log('Clicked Save!')
+        }, {
+          text: 'Log',
+          handler: () => {
+            console.log('Clicked Log. Do not Dismiss.');
+            return false;
+          }
+        }]
+      }
+
     this.width = 900 - this.margin.left - this.margin.right;
     this.height = 500 - this.margin.top - this.margin.bottom;
    }

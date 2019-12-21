@@ -11,6 +11,7 @@ export class PostPage implements OnInit {
 
     postID: string
     post
+    heartType: string = "heart-empty";
 
     constructor(
         private route: ActivatedRoute, 
@@ -24,4 +25,7 @@ export class PostPage implements OnInit {
         this.post = this.afs.doc(`posts/${this.postID}`).valueChanges()
     }
 
+    toggleHeart() {
+        this.heartType = this.heartType == "heart" ? "heart-empty" : "heart"
+    }
 }

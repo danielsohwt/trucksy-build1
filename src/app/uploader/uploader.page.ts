@@ -95,7 +95,7 @@ export class UploaderPage implements OnInit {
         this.http.post('https://upload.uploadcare.com/base/', data)
         .subscribe(event => {
             console.log(event)
-            this.imageURL = event.file
+            // this.imageURL = event.file
             console.log(this.imageURL)
             this.busy = false
         })

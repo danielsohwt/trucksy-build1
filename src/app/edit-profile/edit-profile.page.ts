@@ -22,12 +22,11 @@ export class EditProfilePage implements OnInit, OnDestroy {
     newpassword: string
 
     @ViewChild('fileBtn', { static: false }) fileBtn;
-    private user: UserService;
 
     constructor(
         public http: HttpClient,
         private afs: AngularFirestore,
-        private user:UserService,
+        private user: UserService,
         public route: Router,
         private alertController: AlertController,
     ) {

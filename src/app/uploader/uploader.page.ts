@@ -13,9 +13,9 @@ import { Router } from '@angular/router'
 })
 export class UploaderPage implements OnInit {
     
-    imageURL; string
-    desc: string
-    busy: boolean = false
+    imageURL; string;
+    desc: string;
+    busy: boolean = false;
 
     @ViewChild('fileButton', { static: false }) fileButton;
     // @ViewChild('fileButton') fileButton
@@ -52,8 +52,8 @@ export class UploaderPage implements OnInit {
             desc,
             paymentStatus: "",
             //Payment Status: 1: Paid 2: Cash on delivery 3:Payment failed
-            fufilmentStatus: "",
-            //Fufilment Status: 1: Delivery Done 2: Pick Up Done 3:Enroute Pickup 4: Order placed
+            fulfilmentStatus: "",
+            //fulfilment Status: 1: Delivery Done 2: Pick Up Done 3:Enroute Pickup 4: Order placed
             orderItemsPredicted: {
                         chairs: 2,
                         tables: 3,
@@ -73,9 +73,9 @@ export class UploaderPage implements OnInit {
             driverID: "",
         })
 
-        this.busy = false
-        this.imageURL = ""
-        this.desc = ""
+        this.busy = false;
+        this.imageURL = "";
+        this.desc = "";
         this.route.navigate(['/estimateprice'])
     }
 

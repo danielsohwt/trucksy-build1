@@ -29,6 +29,18 @@ export class UserService {
         return this.user.uid
     }
 
+    reAuth(username: string, password: string) {
+        return this.afAuth.auth.currentUser.reauthenticateWithCredential(auth.EmailAuthProvider.credential(username, password))
+    }
+
+    updatePassword(newpassword: string) {
+        return this.afAuth.auth.currentUser.updatePassword(newpassword)
+    }
+
+    updateEmail(newemail: string) {
+        return this.afAuth.auth.currentUser.updateEmail(newemail)
+    }
+
     async isAuthenticated() {
         if(this.user) return true
 

@@ -4,7 +4,6 @@ import { UserService } from '../user.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { Router } from '@angular/router'
-import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-uploader',

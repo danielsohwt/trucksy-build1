@@ -28,7 +28,7 @@ export class ProfilePage implements OnInit {
   }
 
   goTo(postID: string) {
-        this.route.navigate(['/tabs/post/' + postID])
+        this.route.navigate(['/tabs/post/' + postID.split('/')[0]])
   }
 
   ngOnInit() {

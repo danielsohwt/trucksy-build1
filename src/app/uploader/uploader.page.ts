@@ -1,10 +1,10 @@
 import { Component, Directive, OnInit, ViewChild } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../user.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { Router } from '@angular/router'
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-uploader',
@@ -16,6 +16,22 @@ export class UploaderPage implements OnInit {
     imageURL; string;
     desc: string;
     busy: boolean = false;
+    noFace: boolean = false;
+
+
+    scaleCrop: string = '-/scale_crop/200x200';
+
+    effects = {
+        effect1: '',
+        effect2: '-/exposure/50/-/saturation/50/-/warmth/-30/',
+        effect3: '-/filter/vevera/150/',
+        effect4: '-/filter/carris/150/',
+        effect5: '-/filter/misiara/150/'
+    }
+
+    activeEffect: string = this.effects.effect1
+    faces
+    event
 
     @ViewChild('fileButton', { static: false }) fileButton;
     // @ViewChild('fileButton') fileButton
@@ -33,16 +49,19 @@ export class UploaderPage implements OnInit {
     createPost() {
         this.busy = true
         const image = this.imageURL
+        const activeEffect = this.activeEffect
         const desc = this.desc
 
         this.afstore.doc(`users/${this.user.getUID()}`).update({
-            posts: firestore.FieldValue.arrayUnion(image)
+            // posts: firestore.FieldValue.arrayUnion(image)
+            posts: firestore.FieldValue.arrayUnion(`${image}/${activeEffect}`)
         })
 
         this.afstore.doc(`posts/${image}`).set({
             desc,
             author: this.user.getUsername(),
-            likes: []
+            likes: [],
+            effect: activeEffect
         })
 
         // Todo set this order to auto increment
@@ -83,6 +102,11 @@ export class UploaderPage implements OnInit {
         this.fileButton.nativeElement.click()
     }
 
+    setSelected(effect: string) {
+        this.activeEffect = this.effects[effect]
+    }
+
+
     fileChanged(event) {
         this.busy = true
         const files = event.target.files
@@ -92,12 +116,17 @@ export class UploaderPage implements OnInit {
         data.append('UPLOADCARE_STORE', '1')
         data.append('UPLOADCARE_PUB_KEY', 'b9cc3f94e77d60a02f90')
 
+        // post method
         this.http.post('https://upload.uploadcare.com/base/', data)
         .subscribe(event => {
             console.log(event)
-            // this.imageURL = event.json().file
+            this.imageURL = event['file']
             console.log(this.imageURL)
             this.busy = false
+            this.http.get(`https://ucarecdn.com/${this.imageURL}/detect_faces/`)
+                .subscribe(event => {
+                    this.noFace = event['faces'] == 0
+                })
         })
 }
 

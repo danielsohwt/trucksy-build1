@@ -9,7 +9,18 @@
 
   <ion-grid class="padding">
     < Orders
-    <span><h1>#{{ orderID }}</h1> Paid Fufilled</span>
+    <span><h1>Order ID #{{ orderID }}</h1>
+
+
+        <ion-chip color="success">
+          <ion-label>Paid</ion-label>
+        </ion-chip>
+
+        <ion-chip color="success">
+          <ion-label>Fulfilled</ion-label>
+        </ion-chip>
+
+      </span>
 
     <ion-row>
 
@@ -19,15 +30,71 @@
 
           <ion-card>
             <ion-card-header>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-              <ion-card-title>Card Title</ion-card-title>
+              <ion-card-title>Fulfilled</ion-card-title>
             </ion-card-header>
 
             <ion-card-content>
-              Keep close to Nature's heart... and break clear away, once in awhile,
-              and climb a mountain or spend a week in the woods. Wash your spirit clean.
+
+              <ion-row>
+                <ion-col size="6">
+                  <ion-card-subtitle>Pick Up</ion-card-subtitle>
+                  Address: Blk 123 Road<br>
+                  Time: 22 Aug 19 1pm
+                </ion-col>
+                <ion-col size="6">
+                  <ion-card-subtitle>Drop Off</ion-card-subtitle>
+                  Address: Blk 123 Road<br>
+                  Time: 22 Aug 19 1pm
+                </ion-col>
+              </ion-row>
+
+              <br>
+              <br>
+
+              <ion-row>
+                <ion-col size="7">
+                  Tables
+                </ion-col>
+
+                <ion-col size="3">
+                  $70.00 x 2
+                </ion-col>
+
+                <ion-col size="2">
+                  $140
+                </ion-col>
+                <br>
+              </ion-row>
             </ion-card-content>
           </ion-card>
+
+
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Paid</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-row>
+                <ion-col size="7">
+                  Subtotal
+                </ion-col>
+
+                <ion-col size="3">
+                  1 item
+                </ion-col>
+
+                <ion-col size="2">
+                  $123.40
+                </ion-col>
+                <br>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+
+          <br>
+          Timeline
 
         </div>
       </ion-col>
@@ -38,13 +105,42 @@
 
           <ion-card>
             <ion-card-header>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-              <ion-card-title>Card Title</ion-card-title>
+              <ion-card-title>Notes</ion-card-title>
             </ion-card-header>
 
             <ion-card-content>
-              Keep close to Nature's heart... and break clear away, once in awhile,
-              and climb a mountain or spend a week in the woods. Wash your spirit clean.
+              Write notes on customer here
+              <br>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Customer</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              1 Order
+              <hr>
+              <ion-card-subtitle>Contact Infomation</ion-card-subtitle>
+              <br>
+              Jon Doh<br>
+              jon@gmail.com<br>
+              +65 9123 1234<br>
+              <br>
+
+              <ion-card-subtitle>Address</ion-card-subtitle>
+              <br>
+              Blk 123 Victoria Street
+              Singapore 123412
+              <br>
+              <br>
+
+              <ion-card-subtitle>Billing Address</ion-card-subtitle>
+              <br>
+              Blk 123 Victoria Street
+              Singapore 123412
+
             </ion-card-content>
           </ion-card>
 

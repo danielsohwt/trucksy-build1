@@ -1,0 +1,36 @@
+ <!--<ion-header>
+  <ion-toolbar>
+   <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content class= "home-background" padding>
+	<ion-grid style="height: 100%">
+		<ion-row justify-content-center align-items-center style="height: 100%">
+	<!--<div id="container">-->
+			<ion-col 
+			class="ion-align-self-center" 
+			size-xs="12"
+			size-sm="8"
+			size-md="6" 
+			size-lg="4"
+			>
+				<ion-list>
+					<ion-img id="testing" src="../../assets/img/logo/Rentalorry.png"></ion-img>
+	
+					<ion-item id="rounded">
+						<ion-input placeholder="Username" type="text" [(ngModel)]="username"></ion-input>
+					</ion-item>
+				
+					<ion-item id="rounded">
+						<ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
+					</ion-item>
+					
+					<ion-row justify-content-around>
+						<ion-button fill="solid" color="primary" (click)="login()">Login</ion-button>
+					</ion-row>
+				</ion-list>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

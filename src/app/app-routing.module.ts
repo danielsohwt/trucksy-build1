@@ -33,7 +33,7 @@ const routes: Routes = [
     loadChildren: () => import('./admin-orders/admin-orders.module').then( m => m.AdminOrdersPageModule)
   },
   {
-    path: 'admin-order-detail',
+    path: 'admin-order-detail/:id',
     loadChildren: () => import('./admin-order-detail/admin-order-detail.module').then( m => m.AdminOrderDetailPageModule)
   },
 //   {

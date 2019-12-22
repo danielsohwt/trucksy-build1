@@ -66,8 +66,8 @@ export class AdminOrdersPage implements OnInit {
     return result;
   }
 
-  // viewDetails(item){
-  //   this.router.navigate(['/details/'+ item.payload.doc.id]);
-  // }
+  viewOrder(item){
+    this.route.navigate(['/admin-order-detail/'+ item.payload.doc.id]);
+  }
 
 }

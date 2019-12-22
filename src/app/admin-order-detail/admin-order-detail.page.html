@@ -8,16 +8,16 @@
 
 
   <ion-grid class="padding">
-    < Orders
+    <br>
+    <ion-button shape="round" color="primary" routerLink="/admin-orders"> < Orders</ion-button> <br>
     <span><h1>Order ID #{{ orderID }}</h1>
 
-
         <ion-chip color="success">
-          <ion-label>Paid</ion-label>
+          <ion-label>{{ paymentStatus }}</ion-label>
         </ion-chip>
 
         <ion-chip color="success">
-          <ion-label>Fulfilled</ion-label>
+          <ion-label>{{ fulfillmentStatus }}</ion-label>
         </ion-chip>
 
       </span>
@@ -38,13 +38,13 @@
               <ion-row>
                 <ion-col size="6">
                   <ion-card-subtitle>Pick Up</ion-card-subtitle>
-                  Address: Blk 123 Road<br>
-                  Time: 22 Aug 19 1pm
+                  Address: {{ pickUpAddress }}<br>
+                  Time: {{ dateTimeOfPickup }}
                 </ion-col>
                 <ion-col size="6">
                   <ion-card-subtitle>Drop Off</ion-card-subtitle>
-                  Address: Blk 123 Road<br>
-                  Time: 22 Aug 19 1pm
+                  Address: {{ dropOffAddress }}<br>
+                  Time: {{ dateTimeOfDropoff }}
                 </ion-col>
               </ion-row>
 
@@ -54,6 +54,18 @@
               <ion-row>
                 <ion-col size="7">
                   Tables
+                  {{orderItemsActual}}
+
+<!--                  TODO: display object-->
+<!--                  <ion-row *ngFor="let orderItem of orderItemsActual">-->
+<!--                    <ion-col size="2">-->
+<!--                      <div>-->
+<!--                        <ion-row>-->
+<!--                          <p>{{orderItem }}</p>-->
+<!--                        </ion-row>-->
+<!--                      </div>-->
+<!--                    </ion-col>-->
+
                 </ion-col>
 
                 <ion-col size="3">
@@ -61,7 +73,7 @@
                 </ion-col>
 
                 <ion-col size="2">
-                  $140
+                  ${{orderPrice}}
                 </ion-col>
                 <br>
               </ion-row>
@@ -86,7 +98,7 @@
                 </ion-col>
 
                 <ion-col size="2">
-                  $123.40
+                  ${{orderPrice}}
                 </ion-col>
                 <br>
               </ion-row>
@@ -116,6 +128,31 @@
 
           <ion-card>
             <ion-card-header>
+              <ion-card-title>Driver</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              Completed: 1 Order
+              <hr>
+              <ion-card-subtitle>Contact Infomation</ion-card-subtitle>
+              <br>
+              Jon Doh<br>
+              Driver ID: {{ driverID }}<br>
+              +65 9123 1234<br>
+              <br>
+
+              <ion-card-subtitle>Address</ion-card-subtitle>
+              <br>
+              Blk 123 Victoria Street
+              Singapore 123412
+              <br>
+              <br>
+
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
               <ion-card-title>Customer</ion-card-title>
             </ion-card-header>
 
@@ -125,7 +162,7 @@
               <ion-card-subtitle>Contact Infomation</ion-card-subtitle>
               <br>
               Jon Doh<br>
-              jon@gmail.com<br>
+              {{ user }}<br>
               +65 9123 1234<br>
               <br>
 

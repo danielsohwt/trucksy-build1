@@ -68,9 +68,9 @@ export class UploaderPage implements OnInit {
             image: image,
             user: this.user.getUsername(),
             desc,
-            paymentStatus: "",
+            paymentStatus: "Paid",
             //Payment Status: 1: Paid 2: Cash on delivery 3:Payment failed
-            fulfillmentStatus: "",
+            fulfillmentStatus: "In Progress",
             //fulfillment Status: 1: Delivery Done 2: Pick Up Done 3:Enroute Pickup 4: Order placed
             orderItemsPredicted: {
                         chairs: 2,
@@ -83,12 +83,12 @@ export class UploaderPage implements OnInit {
                             washer: 1
                             },
             orderPrice: 100.12,
-            pickUpAddress: "",
-            dropOffAddress: "",
-            dateTimeOfOrder: "",
-            dateTimeOfPickup: "",
-            dateTimeOfDropoff: "",
-            driverID: "",
+            pickUpAddress: "Blk 123 Pick Up Road",
+            dropOffAddress: "Blk 123 Drop off Road",
+            dateTimeOfOrder: "22 Dec 19 12pm",
+            dateTimeOfPickup: "23 Dec 19 1pm",
+            dateTimeOfDropoff: "23 Dec 19 2pm",
+            driverID: "Driver1234",
         })
 
         this.busy = false;

@@ -13,8 +13,10 @@ export class AdminOrdersPage implements OnInit {
 
   items: Array<any>;
   searchValue: string = "";
-  age_filtered_items: Array<any>;
-  name_filtered_items: Array<any>;
+  searchEmail: string = "";
+  searchPaymentStatus: string = "";
+  email_filtered_items: Array<any>;
+  paymentStatus_filtered_items: Array<any>;
 
   constructor(
       public firebaseService: FirebaseService,
@@ -30,14 +32,42 @@ export class AdminOrdersPage implements OnInit {
   }
 
   searchByName(){
-    let value = this.searchValue.toLowerCase();
+    let value = this.searchEmail.toLowerCase();
     this.firebaseService.searchUsers(value)
         .subscribe(result => {
-          this.name_filtered_items = result;
-          // this.items = this.combineLists(result, this.age_filtered_items);
+          this.email_filtered_items = result;
+          this.items = this.combineLists(result, this.email_filtered_items);
           //temp over ride
-          this.items = this.name_filtered_items;
+          // this.items = this.name_filtered_items;
         })
   }
+
+  searchByPaymentStatus(){
+    let value = this.searchPaymentStatus.toLowerCase();
+    this.firebaseService.searchPaymentStatus(value)
+        .subscribe(result => {
+          this.paymentStatus_filtered_items = result;
+          this.items = this.combineLists(result, this.paymentStatus_filtered_items);
+          //temp over ride
+          // this.items = this.name_filtered_items;
+        })
+  }
+
+  combineLists(a, b){
+    let result = [];
+
+    a.filter(x => {
+      return b.filter(x2 =>{
+        if(x2.payload.doc.id == x.payload.doc.id){
+          result.push(x2);
+        }
+      });
+    });
+    return result;
+  }
+
+  // viewDetails(item){
+  //   this.router.navigate(['/details/'+ item.payload.doc.id]);
+  // }
 
 }

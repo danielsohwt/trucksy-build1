@@ -35,6 +35,12 @@ export class FirebaseService {
             .snapshotChanges()
     }
 
+    searchPaymentStatus(searchValue){
+        return this.db.collection('order',ref => ref.where('paymentStatus', '>=', searchValue)
+            .where('paymentStatus', '<=', searchValue + '\uf8ff'))
+            .snapshotChanges()
+    }
+
     //
     // searchUsersByAge(value){
     //     return this.db.collection('users',ref => ref.orderBy('age').startAt(value)).snapshotChanges();

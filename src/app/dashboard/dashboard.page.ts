@@ -32,5 +32,5 @@ export class DashboardPage implements OnInit {
 
     viewOrders(item){
         this.route.navigate(['/details/'+ item.payload.doc.id]);
-    }s
+    }
 }

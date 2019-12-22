@@ -7,10 +7,14 @@
 <ion-content>
 
   <div class="input-group">
-    <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
-    <div class="input-group-append">
-      <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
-    </div>
+    <input type="text" class="form-control" [(ngModel)]="searchEmail" [ngModelOptions]="{standalone: true}" placeholder="Search by email..." (keyup)="searchByName()">
+
+    <!--    TODO: Addition search field not working-->
+
+    <input type="text" class="form-control" [(ngModel)]="searchPaymentStatus" [ngModelOptions]="{standalone: true}" placeholder="Search by payment status..." (keyup)="searchByPaymentStatus()">
+<!--    <div class="input-group-append">-->
+<!--      <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>-->
+<!--    </div>-->
   </div>
 
 
@@ -49,7 +53,7 @@
       <ion-col size="2">
         <div>
           <ion-row>
-            <p>{{item.payload.doc.data().datetimeOfOrder}}</p>
+            <p>{{item.payload.doc.data().dateTimeOfOrder}}</p>
           </ion-row>
         </div>
       </ion-col>

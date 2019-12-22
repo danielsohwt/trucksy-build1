@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'splashpage',
     loadChildren: () => import('./splashpage/splashpage.module').then( m => m.SplashpagePageModule)
   },
+  {
+    path: 'admin-orders',
+    loadChildren: () => import('./admin-orders/admin-orders.module').then( m => m.AdminOrdersPageModule)
+  },
 //   {
 //     path: 'dashboard',
 //     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)

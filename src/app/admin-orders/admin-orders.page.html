@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Admin Order Listings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="input-group">
+    <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
+    <div class="input-group-append">
+      <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
+    </div>
+  </div>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <b>Order ID</b>
+      </ion-col>
+      <ion-col>
+        <b>Date</b>
+      </ion-col>
+      <ion-col>
+        <b>Customer</b>
+      </ion-col>
+      <ion-col>
+        <b>Payment <br>Status</b>
+      </ion-col>
+      <ion-col>
+        <b>Fulfillment <br>Status</b>
+      </ion-col>
+      <ion-col>
+        <b>Paid</b>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row *ngFor="let item of items">
+      <ion-col size="2">
+        <div>
+          <ion-row>
+            <p>{{item.payload.doc.data().orderID}}</p>
+          </ion-row>
+        </div>
+      </ion-col>
+
+      <ion-col size="2">
+        <div>
+          <ion-row>
+            <p>{{item.payload.doc.data().datetimeOfOrder}}</p>
+          </ion-row>
+        </div>
+      </ion-col>
+
+      <ion-col size="2">
+        <div>
+          <ion-row>
+            <p>{{item.payload.doc.data().user}}</p>
+          </ion-row>
+        </div>
+      </ion-col>
+
+      <ion-col size="2">
+        <div>
+          <ion-row>
+            <p>{{item.payload.doc.data().paymentStatus}}</p>
+          </ion-row>
+        </div>
+      </ion-col>
+
+      <ion-col size="2">
+        <div>
+          <ion-row>
+            <p>{{item.payload.doc.data().fulfillmentStatus}}</p>
+          </ion-row>
+        </div>
+      </ion-col>
+
+      <ion-col size="1">
+        <div>
+          <ion-row>
+            <p>{{item.payload.doc.data().orderPrice}}</p>
+          </ion-row>
+        </div>
+
+
+      </ion-col>
+
+      <ion-col size="1">
+
+        <!--TODO: Navigation button-->
+
+          <ion-button class="btn btn-outline-primary action" (click)="viewUser(item)" type="button">
+            <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
+          </ion-button>
+
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

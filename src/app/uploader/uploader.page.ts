@@ -70,8 +70,8 @@ export class UploaderPage implements OnInit {
             desc,
             paymentStatus: "",
             //Payment Status: 1: Paid 2: Cash on delivery 3:Payment failed
-            fulfilmentStatus: "",
-            //fulfilment Status: 1: Delivery Done 2: Pick Up Done 3:Enroute Pickup 4: Order placed
+            fulfillmentStatus: "",
+            //fulfillment Status: 1: Delivery Done 2: Pick Up Done 3:Enroute Pickup 4: Order placed
             orderItemsPredicted: {
                         chairs: 2,
                         tables: 3,

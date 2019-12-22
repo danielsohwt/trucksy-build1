@@ -16,20 +16,18 @@
 			size-lg="4"
 			>
 				<ion-list>
-
 					<ion-img id="testing" src="../../assets/img/logo/Rentalorry.png"></ion-img>
-				
+	
 					<ion-item id="rounded">
-					<ion-input placeholder="Username"></ion-input>
-					<ion-input type="text" [(ngModel)]="username"></ion-input>
+						<ion-input placeholder="Username" type="text" [(ngModel)]="username"></ion-input>
 					</ion-item>
 				
 					<ion-item id="rounded">
-					<ion-input placeholder="Password"></ion-input>
-					<ion-input type="password" [(ngModel)]="password"></ion-input>
+						<ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
 					</ion-item>
+					
 					<ion-row justify-content-around>
-							<ion-button fill="solid" color="primary" (click)="login()">Login</ion-button>
+						<ion-button fill="solid" color="primary" (click)="login()">Login</ion-button>
 					</ion-row>
 				</ion-list>
 			</ion-col>

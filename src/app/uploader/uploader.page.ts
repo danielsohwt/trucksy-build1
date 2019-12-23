@@ -6,6 +6,7 @@ import { firestore } from 'firebase/app';
 import { Router } from '@angular/router';
 import * as tf from '@tensorflow/tfjs';
 import { IMAGENET_CLASSES } from '../../assets/imagenet-classes';
+import * as moment from 'moment';
 
 
 const IMAGE_SIZE = 224;
@@ -142,6 +143,7 @@ export class UploaderPage implements OnInit {
     // End AI Stuff
 
     createPost() {
+        let now = moment(); // add this 2 of 4
         this.busy = true
         const image = this.imageURL
         const activeEffect = this.activeEffect
@@ -149,7 +151,7 @@ export class UploaderPage implements OnInit {
 
         this.afstore.doc(`users/${this.user.getUID()}`).update({
             // posts: firestore.FieldValue.arrayUnion(image)
-            posts: firestore.FieldValue.arrayUnion(`${image}/${activeEffect}`)
+            order: firestore.FieldValue.arrayUnion(`${image}/${activeEffect}`)
         })
 
         this.afstore.doc(`posts/${image}`).set({
@@ -181,7 +183,7 @@ export class UploaderPage implements OnInit {
             orderPrice: 100.12,
             pickUpAddress: "Blk 123 Pick Up Road",
             dropOffAddress: "Blk 123 Drop off Road",
-            dateTimeOfOrder: "22 Dec 19 12pm",
+            dateTimeOfOrder: now.format(),
             dateTimeOfPickup: "23 Dec 19 1pm",
             dateTimeOfDropoff: "23 Dec 19 2pm",
             driverID: "Driver1234",

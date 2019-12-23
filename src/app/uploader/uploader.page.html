@@ -7,11 +7,11 @@
 <ion-content class="padding">
 
     <app-loading *ngIf="busy"></app-loading>
-    test
+
     <div class="upload" [hidden]="!model">
         Upload an image: <input #fileUpload type="file" id="files" name="files[]" (change)="fileChangeEvent($event)" />
     </div>
-    test
+
     <div>
         <img #chosenImage width="224" height="224" class="sample-image" />
         <div class="predictions">

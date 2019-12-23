@@ -5,7 +5,15 @@
 </ion-header>
 
 <ion-content>
+  Order ID: {{ orderID }}
+
+  <ion-item>
+    <ion-label>D MMM YYYY H:mm</ion-label>
+    <ion-datetime (ionChange)="test()" [(ngModel)]="date" displayFormat="D MMM YYYY H:mm" min="1997" max="2010"></ion-datetime>
+  </ion-item>
+
 Place Your Booking Now<br>
+
 Here are the available dates:
 
 <br>

@@ -145,31 +145,62 @@ export class UploaderPage implements OnInit {
     createPost() {
         let now = moment(); // add this 2 of 4
         this.busy = true
-        const image = this.imageURL
+        const orderID = this.imageURL
         const activeEffect = this.activeEffect
         const desc = this.desc
 
         this.afstore.doc(`users/${this.user.getUID()}`).update({
             // posts: firestore.FieldValue.arrayUnion(image)
-            order: firestore.FieldValue.arrayUnion(`${image}/${activeEffect}`)
+            order: firestore.FieldValue.arrayUnion(`${orderID}`)
         })
 
-        this.afstore.doc(`posts/${image}`).set({
+        this.afstore.doc(`posts/${orderID}`).set({
             desc,
             author: this.user.getUsername(),
             likes: [],
             effect: activeEffect
         })
 
+        //TODO use server time
+        // require('firebase-admin').firestore.FieldValue;
+
         // Todo set this order to auto increment
-        this.afstore.doc(`order/${image}`).set({
-            image: image,
+        this.afstore.doc(`order/${orderID}`).set({
+            image: orderID,
             user: this.user.getUsername(),
             desc,
-            paymentStatus: "Paid",
-            //Payment Status: 1: "Paid" 2: "Cash on delivery' 3: "Payment failed"
-            fulfillmentStatus: "Order Placed",
-            //fulfillment Status: 1: "Delivery Done" 2: "Pick Up Done" 3: "Enroute Pickup" 4: "Order Placed"
+
+            // Order flow Upload Image -> Price Estimate -> Booking Date -> Payment -> Confirmation
+
+            //Order Status:
+            // 1: "Created Order"
+            // 2: "Created Price Estimate"
+            // 3: "Created Booking Date"
+            // 4: "Completed Payment"
+            // 5: "Order Confirmed"
+            orderStatus: "Created Order",
+
+            // // Server timestamp when user upload image
+            // createOrderServerTimestamp: FieldValue.serverTimestamp(),
+
+            //Payment Status:
+            // 0: "Booking Date Not Confirmed" Have not reached booking page
+            // 1: "Paid"
+            // 2: "Cash on delivery'
+            // 3: "Payment failed"
+            // ** Only after orderStatus == "Confirmed" fulfillmentStatus == "Order Placed"
+            paymentStatus: "Booking Date Not Confirmed",
+
+
+            //fulfillment Status:
+            // 0: "Order Not Confirmed" Order not confirmed
+            // 1: "Delivery Done"
+            // 2: "Pick Up Done"
+            // 3: "Enroute Pickup"
+            // 4: "Order Placed"
+            // ** Only after orderStatus == "Confirmed" fulfillmentStatus == "Order Placed"
+            fulfillmentStatus: "Order Not Confirmed",
+
             orderItemsPredicted: {
                         chairs: 2,
                         tables: 3,
@@ -192,7 +223,9 @@ export class UploaderPage implements OnInit {
         this.busy = false;
         this.imageURL = "";
         this.desc = "";
-        this.route.navigate(['/estimateprice'])
+        // this.route.navigate(['/admin-order-detail/'+ item.payload.doc.id]);
+        this.route.navigate(['/estimateprice/'+ orderID])
+        // this.route.navigate(['/estimateprice/'])
     }
 
     uploadFile() {

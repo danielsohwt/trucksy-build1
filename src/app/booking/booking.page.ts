@@ -17,6 +17,11 @@ export class BookingPage implements OnInit {
 
     orderID
     date
+    now: any;
+    currentDateTime
+    dateTimeOfPickup
+    pickUpAddress
+    dropOffAddress
 
     constructor(
         public firebaseService: FirebaseService,
@@ -28,11 +33,15 @@ export class BookingPage implements OnInit {
 
     ngOnInit() {
         this.orderID = this.route.snapshot.paramMap.get('id')
+        let now = moment(); // add this 2 of 4
+        this.currentDateTime = now.format()
+        console.log(now.format())
         console.log(this.orderID)
         console.log(this.date)
     }
-    test(){
-        console.log(this.date);
+    setDate(){
+        this.dateTimeOfPickup = this.date;
+        console.log(this.dateTimeOfPickup);
     }
 
     placePayment() {
@@ -44,9 +53,17 @@ export class BookingPage implements OnInit {
         // 4: "Completed Payment"
         // 5: "Order Confirmed"
         this.afs.collection('order').doc(this.orderID).update({
-
+            dateTimeOfPickup: this.dateTimeOfPickup,
+            pickUpAddress: this.pickUpAddress,
+            dropOffAddress: this.dropOffAddress,
             orderStatus: 'Created Booking Date',
+
         });
+
+        console.log('Pushed to DB: Updated dateTimeOfPickup to: ' + this.dateTimeOfPickup);
+        console.log('Pushed to DB: Updated pickupAddress to: ' + this.pickUpAddress);
+        console.log('Pushed to DB: Updated dropOffAddress to: ' + this.dropOffAddress);
+        console.log('Pushede to DB: Updated orderStatus to: ' + 'Created Booking Date');
 
         this.router.navigate(['/payment/'+ this.orderID])
     }

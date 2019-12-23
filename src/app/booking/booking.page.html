@@ -5,17 +5,25 @@
 </ion-header>
 
 <ion-content>
-  Order ID: {{ orderID }}
+  Order ID: {{ orderID }}<br>
+  Place Your Booking Now<br>
+
+  Here are the available dates:
 
   <ion-item>
-    <ion-label>D MMM YYYY H:mm</ion-label>
-    <ion-datetime (ionChange)="test()" [(ngModel)]="date" displayFormat="D MMM YYYY H:mm" min="1997" max="2010"></ion-datetime>
+    <ion-label>Booking Date and Time</ion-label>
+    <ion-datetime (ionChange)="setDate()" [(ngModel)]="date" displayFormat="DDD MMM YYYY h:mm:A" [min]="currentDateTime" max="3000" value="2005-06-17T11:06Z"></ion-datetime>
   </ion-item>
 
-Place Your Booking Now<br>
+  <ion-card-content>
+    <ion-textarea placeholder="Pick Up address" [(ngModel)]="pickUpAddress"></ion-textarea>
 
-Here are the available dates:
+  </ion-card-content>
+  <ion-card-content>
+    <ion-textarea placeholder="Drop Off address" [(ngModel)]="dropOffAddress"></ion-textarea>
+  </ion-card-content>
+
 
 <br>
-<ion-button shape="round" color="primary" (click)="placePayment()" *ngIf="!imageURL" fill="outline"> Confirm Booking and Pay</ion-button>
+<ion-button shape="round" color="primary" (click)="placePayment()" fill="outline" class="ion-align-items-center"> Confirm Booking and Pay</ion-button>
 </ion-content>

@@ -25,6 +25,9 @@ import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { ShareModule } from './share.module';
 
+import * as tf from '@tensorflow/tfjs';
+import { IMAGENET_CLASSES } from '../assets/imagenet-classes';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

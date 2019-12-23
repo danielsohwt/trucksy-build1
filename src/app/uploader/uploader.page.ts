@@ -69,9 +69,9 @@ export class UploaderPage implements OnInit {
             user: this.user.getUsername(),
             desc,
             paymentStatus: "Paid",
-            //Payment Status: 1: Paid 2: Cash on delivery 3:Payment failed
-            fulfillmentStatus: "In Progress",
-            //fulfillment Status: 1: Delivery Done 2: Pick Up Done 3:Enroute Pickup 4: Order placed
+            //Payment Status: 1: "Paid" 2: "Cash on delivery' 3: "Payment failed"
+            fulfillmentStatus: "Order Placed",
+            //fulfillment Status: 1: "Delivery Done" 2: "Pick Up Done" 3: "Enroute Pickup" 4: "Order Placed"
             orderItemsPredicted: {
                         chairs: 2,
                         tables: 3,

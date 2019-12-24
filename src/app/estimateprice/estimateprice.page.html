@@ -9,6 +9,74 @@ This is your price estimate
 <br>
 
   This is your OrderID: {{ orderID }}
+
+sofa price: {{ sofa }}
+<br>
+  Manually input qty
+  <br><br>
+
+  Pricing Table
+  <ion-grid>
+
+    <ion-row>
+      <ion-col size="3">
+        <b>Item</b>
+      </ion-col>
+
+      <ion-col size="3">
+        <b>Unit Price</b>
+      </ion-col>
+
+      <ion-col size="3">
+        <b>Qty</b>
+      </ion-col>
+
+      <ion-col size="3">
+        <b>Sub Total</b>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="3">
+        Sofa
+      </ion-col>
+
+      <ion-col size="3">
+        ${{ sofaUnitPrice | number:'1.2-2' }}
+      </ion-col>
+
+      <ion-col size="3">
+        <ion-input (ionChange)="updateQtySofa()" [(ngModel)]="sofaQty" type="number"></ion-input>
+      </ion-col>
+
+      <ion-col size="3">
+        ${{ sofaTotal | number:'1.2-2' }}
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="3">
+        Bed
+      </ion-col>
+
+      <ion-col size="3">
+        ${{ bedUnitPrice | number:'1.2-2' }}
+      </ion-col>
+
+      <ion-col size="3">
+        <ion-input (ionChange)="updateQtyBed()" [(ngModel)]="bedQty" type="number" value="333" placeholder="2"></ion-input>
+      </ion-col>
+
+      <ion-col size="3">
+        ${{ bedTotal | number:'1.2-2' }}
+      </ion-col>
+
+    </ion-row>
+
+    Total Price: ${{ totalPrice }}
+
+  </ion-grid>
 <ion-button shape="round" color="primary" (click)="placeBooking()" *ngIf="!imageURL" fill="outline"> Place Booking Now</ion-button>
 
 </ion-content>

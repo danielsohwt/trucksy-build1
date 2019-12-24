@@ -18,16 +18,63 @@ export class EstimatepricePage implements OnInit {
 
     orderID: string;
 
+    priceModel1
+
+    sofaQty
+    sofaUnitPrice: any = 2;
+    sofaTotal
+
+    bedQty
+    bedUnitPrice
+    bedTotal
+
+    totalPrice
+    sub
+
     constructor(
         public firebaseService: FirebaseService,
-        private afstore: AngularFirestore,
+        private afs: AngularFirestore,
         private route: ActivatedRoute,
         private router: Router,
         public user:UserService,
     ) { }
 
     ngOnInit() {
+
         this.orderID = this.route.snapshot.paramMap.get('id')
+
+        this.priceModel1 = this.afs.doc(`priceModel/1`)
+        this.priceModel1.valueChanges().subscribe(val => {
+            this.sofaUnitPrice = val.pricing['sofa'],
+            this.bedUnitPrice = val.pricing['bed']
+        })
+
+        this.sofaQty = 2;
+        console.log(this.sofaUnitPrice)
+        this.sofaTotal = this.sofaUnitPrice * this.sofaQty
+        console.log(this.sofaTotal)
+
+
+    }
+
+    updateQtySofa() {
+        this.sofaTotal = this.sofaUnitPrice * this.sofaQty
+        this.sofaTotal = Math.round(this.sofaTotal * 100 ) / 100
+        this.totalPrice = this.sofaTotal + this.bedTotal
+
+    }
+
+    updateQtyBed() {
+        this.bedTotal = this.bedUnitPrice * this.bedQty
+        this.bedTotal = Math.round(this.bedTotal * 100 ) / 100
+        this.totalPrice = this.sofaTotal + this.bedTotal
+
+    }
+
+    // TODO: implement
+
+    ngOnDestroy() {
+
     }
 
     placeBooking() {
@@ -38,10 +85,16 @@ export class EstimatepricePage implements OnInit {
         // 3: "Created Booking Date"
         // 4: "Completed Payment"
         // 5: "Order Confirmed"
-        this.afstore.collection('order').doc(this.orderID).update({
+        this.afs.collection('order').doc(this.orderID).update({
 
             orderStatus: 'Created Price Estimate',
+            orderPrice: this.totalPrice
+
+
         });
+
+        console.log('Pushed to DB: Updated orderPrice to: $' + this.totalPrice);
+        console.log('Pushede to DB: Updated orderStatus to: ' + 'Created Price Estimate');
 
         this.router.navigate(['/booking/'+ this.orderID ])
     }

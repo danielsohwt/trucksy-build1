@@ -8,6 +8,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Orders',
+    icon: 'shopping-bag-outline',
+    link: '/pages/AdminOrderListing',
+    home: true,
+  },
+  {
+    title: 'Users',
+    icon: 'people-outline',
+    link: '/pages/dashboard',
+    home: true,
+  },
+  {
+    title: 'Drivers',
+    icon: 'car-outline',
+    link: '/pages/dashboard',
+    home: true,
+  },
+  {
     title: 'FEATURES',
     group: true,
   },

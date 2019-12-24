@@ -39,6 +39,7 @@ import {
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {CoreModule} from "./@core/core.module";
+import {AdminOrderListingComponent} from "./dashboard/adminOrderListing/AdminOrderListing.component";
 
 @NgModule({
   declarations: [AppComponent],

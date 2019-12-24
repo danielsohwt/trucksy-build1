@@ -27,6 +27,18 @@ import { ShareModule } from './share.module';
 
 import * as tf from '@tensorflow/tfjs';
 import { IMAGENET_CLASSES } from '../assets/imagenet-classes';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+    NbThemeModule,
+    NbLayoutModule,
+    NbMenuModule,
+    NbSidebarModule,
+    NbDatepickerModule,
+    NbDialogModule,
+    NbWindowModule, NbToastrModule, NbChatModule
+} from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import {CoreModule} from "./@core/core.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,7 +51,21 @@ import { IMAGENET_CLASSES } from '../assets/imagenet-classes';
             AngularFireDatabaseModule,
             AngularFirestoreModule,
             HttpClientModule,
-            ShareModule
+            ShareModule,
+            BrowserAnimationsModule,
+            NbThemeModule.forRoot({ name: 'default' }),
+            NbLayoutModule,
+            NbEvaIconsModule,
+            NbSidebarModule.forRoot(),
+            NbMenuModule.forRoot(),
+            NbDatepickerModule.forRoot(),
+            NbDialogModule.forRoot(),
+            NbWindowModule.forRoot(),
+            NbToastrModule.forRoot(),
+              NbChatModule.forRoot({
+                  messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
+              }),
+              CoreModule.forRoot(),
           ],
   providers: [
     StatusBar,

@@ -36,6 +36,11 @@ const routes: Routes = [
     path: 'admin-order-detail/:id',
     loadChildren: () => import('./admin-order-detail/admin-order-detail.module').then( m => m.AdminOrderDetailPageModule)
   },
+  {
+    path: 'pages',
+    loadChildren: () => import('./dashboard/pages.module')
+        .then(m => m.PagesModule),
+  },
 //   {
 //     path: 'dashboard',
 //     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)

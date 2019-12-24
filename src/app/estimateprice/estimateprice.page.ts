@@ -21,7 +21,7 @@ export class EstimatepricePage implements OnInit {
     priceModel1
 
     sofaQty
-    sofaUnitPrice: any = 2;
+    sofaUnitPrice
     sofaTotal
 
     bedQty
@@ -40,22 +40,26 @@ export class EstimatepricePage implements OnInit {
     ) { }
 
     ngOnInit() {
-
         this.orderID = this.route.snapshot.paramMap.get('id')
+        //Manually set, once AI model implemented will use their values
+        this.sofaQty = 2;
+        this.bedQty = 3;
 
         this.priceModel1 = this.afs.doc(`priceModel/1`)
         this.priceModel1.valueChanges().subscribe(val => {
             this.sofaUnitPrice = val.pricing['sofa'],
-            this.bedUnitPrice = val.pricing['bed']
+            this.sofaTotal = this.sofaUnitPrice * this.sofaQty,
+            this.bedUnitPrice = val.pricing['bed'],
+            this.bedTotal = this.bedUnitPrice * this.bedQty,
+            this.totalPrice = this.sofaTotal + this.bedTotal
         })
 
-        this.sofaQty = 2;
-        console.log(this.sofaUnitPrice)
-        this.sofaTotal = this.sofaUnitPrice * this.sofaQty
-        console.log(this.sofaTotal)
+
 
 
     }
+
+
 
     updateQtySofa() {
         this.sofaTotal = this.sofaUnitPrice * this.sofaQty
@@ -68,6 +72,7 @@ export class EstimatepricePage implements OnInit {
         this.bedTotal = this.bedUnitPrice * this.bedQty
         this.bedTotal = Math.round(this.bedTotal * 100 ) / 100
         this.totalPrice = this.sofaTotal + this.bedTotal
+
 
     }
 
@@ -88,12 +93,12 @@ export class EstimatepricePage implements OnInit {
         this.afs.collection('order').doc(this.orderID).update({
 
             orderStatus: 'Created Price Estimate',
-            orderPrice: this.totalPrice
+            orderPrice: Math.round(this.totalPrice * 100 ) / 100
 
 
         });
 
-        console.log('Pushed to DB: Updated orderPrice to: $' + this.totalPrice);
+        console.log('Pushed to DB: Updated orderPrice to: $' + Math.round(this.totalPrice * 100 ) / 100 );
         console.log('Pushede to DB: Updated orderStatus to: ' + 'Created Price Estimate');
 
         this.router.navigate(['/booking/'+ this.orderID ])

@@ -85,7 +85,7 @@
       <ion-col size="1">
         <div>
           <ion-row>
-            <p>{{item.payload.doc.data().orderPrice}}</p>
+            <p>${{item.payload.doc.data().orderPrice | number:'1.2-2' }}</p>
           </ion-row>
         </div>
 

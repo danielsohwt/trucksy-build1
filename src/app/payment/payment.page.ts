@@ -63,8 +63,9 @@ export class PaymentPage implements OnInit {
         this.orderStatusCompletedPayment()
 
         this.afs.collection('order').doc(this.orderID).update({
-            paymentStatus: 'Paid123',
+            paymentStatus: 'Paid',
         });
+        console.log('Pushed to DB: Updated paymentStatus to: ' + 'Paid');
 
         this.router.navigate(['/confirmation/' + this.orderID])
     }
@@ -74,7 +75,7 @@ export class PaymentPage implements OnInit {
         this.afs.collection('order').doc(this.orderID).update({
             paymentStatus: 'Cash On Delivery',
         });
-
+        console.log('Pushed to DB: Updated paymentStatus to: ' + 'Cash On Delivery');
         this.router.navigate(['/confirmation/' + this.orderID])
     }
 
@@ -85,6 +86,7 @@ export class PaymentPage implements OnInit {
             paymentStatus: 'Failed Payment',
         });
 
+        console.log('Pushed to DB: Updated paymentStatus to: ' + 'Failed Payment');
         this.router.navigate(['/confirmation/' + this.orderID])
 
     }

@@ -4,18 +4,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  Order ID: {{ orderID }} <br><br>
 This is your price estimate
 <br>
 
-  This is your OrderID: {{ orderID }}
-
-sofa price: {{ sofa }}
 <br>
-  Manually input qty
+  You can manually change item quantity
   <br><br>
 
-  Pricing Table
+  <h2>Pricing Table</h2> <br>
   <ion-grid>
 
     <ion-row>
@@ -65,7 +63,7 @@ sofa price: {{ sofa }}
       </ion-col>
 
       <ion-col size="3">
-        <ion-input (ionChange)="updateQtyBed()" [(ngModel)]="bedQty" type="number" value="333" placeholder="2"></ion-input>
+        <ion-input (ionChange)="updateQtyBed()" [(ngModel)]="bedQty" type="number"></ion-input>
       </ion-col>
 
       <ion-col size="3">
@@ -74,8 +72,9 @@ sofa price: {{ sofa }}
 
     </ion-row>
 
-    Total Price: ${{ totalPrice }}
-
+    Total Price: ${{ totalPrice | number:'1.2-2'  }}
+    <br>
+    <br>
   </ion-grid>
 <ion-button shape="round" color="primary" (click)="placeBooking()" *ngIf="!imageURL" fill="outline"> Place Booking Now</ion-button>
 

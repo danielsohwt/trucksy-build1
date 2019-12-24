@@ -63,7 +63,7 @@ export class BookingPage implements OnInit {
         console.log('Pushed to DB: Updated dateTimeOfPickup to: ' + this.dateTimeOfPickup);
         console.log('Pushed to DB: Updated pickupAddress to: ' + this.pickUpAddress);
         console.log('Pushed to DB: Updated dropOffAddress to: ' + this.dropOffAddress);
-        console.log('Pushede to DB: Updated orderStatus to: ' + 'Created Booking Date');
+        console.log('Pushed to DB: Updated orderStatus to: ' + 'Created Booking Date');
 
         this.router.navigate(['/payment/'+ this.orderID])
     }

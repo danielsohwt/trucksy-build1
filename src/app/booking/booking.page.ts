@@ -33,7 +33,7 @@ export class BookingPage implements OnInit {
 
     ngOnInit() {
         this.orderID = this.route.snapshot.paramMap.get('id')
-        let now = moment(); // add this 2 of 4
+        let now = moment();
         this.currentDateTime = now.format()
         console.log(now.format())
         console.log(this.orderID)

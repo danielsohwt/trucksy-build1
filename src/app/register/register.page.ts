@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore'
 
 import { AlertController } from '@ionic/angular';
 import { UserService } from '../user.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,9 @@ export class RegisterPage implements OnInit {
     username: string = ""
     password: string = ""
     cpassword: string = ""
-  
+    value: any;
+    userType: any;
+
   constructor(
     public afAuth: AngularFireAuth,
     public alert: AlertController,
@@ -29,8 +32,12 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
+  selectUserType() {
+      console.log(this.userType)
+  }
+
   async presentAlert(title: string, content: string) {
-      
+
       const alert = await this.alertController.create({
           header: title,
           message: content,
@@ -41,7 +48,7 @@ export class RegisterPage implements OnInit {
   }
 
   async register() {
-    
+
     const { username, password, cpassword } = this
     if(password !== cpassword ) {
       this.showAlert("Error!", "Passwords don't match")
@@ -50,9 +57,11 @@ export class RegisterPage implements OnInit {
     try{
       const res = await this.afAuth.auth.createUserWithEmailAndPassword(username, password)
       console.log(res)
-
+      let now = moment();
       this.afstore.doc(`users/${res.user.uid}`).set({
-          username
+          username,
+          userType: this.userType,
+          userRegisteredDateTime: now.format()
       })
 
       this.user.setUser({
@@ -62,12 +71,12 @@ export class RegisterPage implements OnInit {
 
         this.presentAlert('Success','You are registered!')
         this.route.navigate(['/tabs'])
-      
+
     } catch(error) {
       console.dir(error)
       this.showAlert("Error", error.message)
     }
-    
+
   }
 
   async showAlert(header: string, message: string) {

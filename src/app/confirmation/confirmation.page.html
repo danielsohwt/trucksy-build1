@@ -5,7 +5,8 @@
 </ion-header>
 
 <ion-content>
-Order confirmed!
+Order confirmed for {{ orderID }}!
+  <br>
 
 <ion-button shape="round" color="primary" (click)="completeOrder()" *ngIf="!imageURL" fill="outline"> Back to Feed</ion-button>
 </ion-content>

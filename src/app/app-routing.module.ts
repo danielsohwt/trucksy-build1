@@ -9,19 +9,19 @@ const routes: Routes = [
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule', canActivate: [AuthService] },
   // { path: 'tabs',loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule), canActivate: [AuthService]},
   {
-    path: 'estimateprice',
+    path: 'estimateprice/:id',
     loadChildren: () => import('./estimateprice/estimateprice.module').then( m => m.EstimatepricePageModule)
   },
   {
-    path: 'booking',
+    path: 'booking/:id',
     loadChildren: () => import('./booking/booking.module').then( m => m.BookingPageModule)
   },
   {
-    path: 'payment',
+    path: 'payment/:id',
     loadChildren: () => import('./payment/payment.module').then( m => m.PaymentPageModule)
   },
   {
-    path: 'confirmation',
+    path: 'confirmation/:id',
     loadChildren: () => import('./confirmation/confirmation.module').then( m => m.ConfirmationPageModule)
   },
   {

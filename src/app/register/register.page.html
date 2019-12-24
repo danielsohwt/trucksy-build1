@@ -1,8 +1,3 @@
-<ion-header>
-	<ion-toolbar>
-	  <ion-title>Register</ion-title>
-	</ion-toolbar>
-  </ion-header>
 
   <ion-content class= "home-background" padding>
 	<ion-grid style="height: 100%">
@@ -28,10 +23,19 @@
 					<ion-item id="rounded">
 						<ion-input placeholder="Confirm Password" type="password" [(ngModel)]="cpassword"></ion-input>
 					</ion-item>
-					
+
+					<ion-item id="rounded">
+						<ion-label>Account Type</ion-label>
+						<ion-select (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select One">
+							<ion-select-option  userType="user">User</ion-select-option>
+							<ion-select-option userType="driver">Driver</ion-select-option>
+						</ion-select>
+					</ion-item>
+
 					<ion-row justify-content-around>
 						<ion-button fill="solid" color="primary" (click)="register()">Sign Up</ion-button>
 					</ion-row>
+					<br>
 				</ion-list>
 			</ion-col>
 		</ion-row>

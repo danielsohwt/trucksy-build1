@@ -137,7 +137,9 @@ export class UploaderPage implements OnInit {
                 probability: topkValues[i]
             });
         }
+
         return topClassesAndProbs;
+
     }
 
     // End AI Stuff
@@ -202,7 +204,7 @@ export class UploaderPage implements OnInit {
             fulfillmentStatus: "Order Not Confirmed",
 
             orderItemsPredicted: {
-                        chairs: 2,
+                        studioCouch: 1,
                         tables: 3,
                         washer: 1
                         },
@@ -211,7 +213,7 @@ export class UploaderPage implements OnInit {
                             tables: 3,
                             washer: 1
                             },
-            orderPrice: 100.12,
+            orderPrice: 0,
             pickUpAddress: "Blk 123 Pick Up Road",
             dropOffAddress: "Blk 123 Drop off Road",
             dateTimeOfOrder: now.format(),
@@ -253,11 +255,16 @@ export class UploaderPage implements OnInit {
             this.imageURL = event['file']
             console.log(this.imageURL)
             this.busy = false
+
+
             this.http.get(`https://ucarecdn.com/${this.imageURL}/detect_faces/`)
                 .subscribe(event => {
                     this.noFace = event['faces'] == 0
                 })
         })
+
+        //TODO:
+        // Write AI function here
 }
 
 }

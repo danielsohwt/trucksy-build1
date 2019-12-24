@@ -31,6 +31,7 @@
     "@nebular/eva-icons": "^4.6.0",
     "@nebular/security": "^4.6.0",
     "@nebular/theme": "^4.6.0",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "@tensorflow/tfjs": "^0.13.5",
     "bootstrap": "^4.4.1",
     "cordova-plugin-datepicker": "0.9.3",

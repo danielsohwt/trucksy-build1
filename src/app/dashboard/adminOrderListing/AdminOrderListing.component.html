@@ -1,5 +1,139 @@
 <div class="row">
   <nb-card>
-    <nb-card-body>Admin Order Listing</nb-card-body>
+    <nb-card-body>
+
+
+
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="searchEmail" [ngModelOptions]="{standalone: true}" placeholder="Search by email..." (keyup)="searchByName()">
+
+          <!--    TODO: Addition search field not working-->
+
+          <input type="text" class="form-control" [(ngModel)]="searchPaymentStatus" [ngModelOptions]="{standalone: true}" placeholder="Search by payment status..." (keyup)="searchByPaymentStatus()">
+          <!--    <div class="input-group-append">-->
+          <!--      <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>-->
+          <!--    </div>-->
+        </div>
+
+<!--      <div>-->
+<!--        <row *ngFor="let item of items">-->
+<!--          <p>{{item.payload.doc.data().orderID}}</p>-->
+<!--        </row>-->
+<!--      </div>-->
+
+      <p>Table is just a mapping of objects to table rows with <code>ngFor</code></p>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Country</th>
+          <th scope="col">Area</th>
+          <th scope="col">Population</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of items">
+          <th scope="row">1</th>
+          <td>
+            {{item.payload.doc.data().orderID}}
+          </td>
+          <td>{{item.payload.doc.data().orderID}}</td>
+          <td>{{item.payload.doc.data().orderID}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+<!--        <ion-grid>-->
+<!--          <ion-row>-->
+<!--            <ion-col>-->
+<!--              <b>Order ID</b>-->
+<!--            </ion-col>-->
+<!--            <ion-col>-->
+<!--              <b>Date</b>-->
+<!--            </ion-col>-->
+<!--            <ion-col>-->
+<!--              <b>Customer</b>-->
+<!--            </ion-col>-->
+<!--            <ion-col>-->
+<!--              <b>Payment <br>Status</b>-->
+<!--            </ion-col>-->
+<!--            <ion-col>-->
+<!--              <b>Fulfillment <br>Status</b>-->
+<!--            </ion-col>-->
+<!--            <ion-col>-->
+<!--              <b>Paid</b>-->
+<!--            </ion-col>-->
+
+<!--          </ion-row>-->
+
+<!--          <ion-row *ngFor="let item of items">-->
+<!--            <ion-col size="2">-->
+<!--              <div>-->
+<!--                <ion-row>-->
+<!--                  <p>{{item.payload.doc.data().orderID}}</p>-->
+<!--                </ion-row>-->
+<!--              </div>-->
+<!--            </ion-col>-->
+
+<!--            <ion-col size="2">-->
+<!--              <div>-->
+<!--                <ion-row>-->
+<!--                  <p>{{item.payload.doc.data().dateTimeOfOrder}}</p>-->
+<!--                </ion-row>-->
+<!--              </div>-->
+<!--            </ion-col>-->
+
+<!--            <ion-col size="2">-->
+<!--              <div>-->
+<!--                <ion-row>-->
+<!--                  <p>{{item.payload.doc.data().user}}</p>-->
+<!--                </ion-row>-->
+<!--              </div>-->
+<!--            </ion-col>-->
+
+<!--            <ion-col size="2">-->
+<!--              <div>-->
+<!--                <ion-row>-->
+<!--                  <p>{{item.payload.doc.data().paymentStatus}}</p>-->
+<!--                </ion-row>-->
+<!--              </div>-->
+<!--            </ion-col>-->
+
+<!--            <ion-col size="2">-->
+<!--              <div>-->
+<!--                <ion-row>-->
+<!--                  <p>{{item.payload.doc.data().fulfillmentStatus}}</p>-->
+<!--                </ion-row>-->
+<!--              </div>-->
+<!--            </ion-col>-->
+
+<!--            <ion-col size="1">-->
+<!--              <div>-->
+<!--                <ion-row>-->
+<!--                  <p>${{item.payload.doc.data().orderPrice | number:'1.2-2' }}</p>-->
+<!--                </ion-row>-->
+<!--              </div>-->
+
+
+<!--            </ion-col>-->
+
+<!--            <ion-col size="1">-->
+
+<!--              &lt;!&ndash;TODO: Navigation button&ndash;&gt;-->
+
+<!--              <ion-button class="btn btn-outline-primary action" (click)="viewOrder(item)" type="button">-->
+<!--                <ion-icon class="icon" name="arrow-round-forward"></ion-icon>-->
+<!--              </ion-button>-->
+
+
+<!--            </ion-col>-->
+
+<!--          </ion-row>-->
+<!--        </ion-grid>-->
+
+<!--      </ion-content>-->
+
+    </nb-card-body>
   </nb-card>
 </div>

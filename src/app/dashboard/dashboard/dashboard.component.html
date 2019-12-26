@@ -1,5 +1,21 @@
 <div class="row">
   <nb-card>
-    <nb-card-body>Hello from ngx-admin sandbox project.</nb-card-body>
+    <nb-card-body><H1>Monthly Report</H1></nb-card-body>
+    <table class="table table-striped">
+      <tr>TOTAL SALES: SGD {{total | number:'1.2-2'}}</tr>
+      <h6>{{totalorder}} total orders</h6>
+      <h6>{{failed}} high risk orders to review</h6>
+    </table>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6">
+          <canvas #barCanvas width="500" height="500"></canvas>
+          <canvas #lineCanvas width="500" height="500"></canvas>
+          <canvas #pieCanvas width="500" height="500"></canvas>
+          <canvas #bar1Canvas width="500" height="500"></canvas>
+        </div>
+      </div>
+    </div>
   </nb-card>
 </div>
+

@@ -1,5 +1,64 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<nb-card >
+  <h1 style="padding: 20px">Monthly Report for December</h1>
+  <div id="monthly-container" class="row" style="padding: 20px;">
+    <div class="col-4">
+      <p style="font-size: 30px">SGD {{total | number:'1.2-2'}}</p>
+      <i>Total Sales</i>
+    </div>
+    <div class="col-4">
+      <p style="font-size: 30px">{{totalorder}}</p>
+      <i>Total Orders</i>
+    </div>
+    <div class="col-4">
+      <p style="font-size: 30px">{{failed}}</p>
+      <i>High Risk Orders</i>
+    </div>
+  </div>
+
+</nb-card>
+
+<div class="row" style="padding: 0px;">
+
+    <div class="col-6" style="height:250px;">
+      <nb-card>
+        <p class="text-center"style="text-center; padding: 20px; font-size: 20px">Payment Status</p>
+        <canvas class="my-4 w-100" #barCanvas width="500" height="500"></canvas>
+      </nb-card>
+    </div>
+
+  <div class="col-6">
+    <nb-card>
+      <p style="padding: 20px; font-size: 20px">Orders Per Day</p>
+      <canvas #lineCanvas width="500" height="500"></canvas>
+    </nb-card>
+  </div>
+
+</div>
+
+
 <div class="row">
   <nb-card>
-    <nb-card-body>Hello from ngx-admin sandbox project.</nb-card-body>
+    <nb-card-body><H1>Monthly Report</H1></nb-card-body>
+    <table class="table table-striped">
+      <tr>TOTAL SALES: SGD {{total | number:'1.2-2'}}</tr>
+      <h6>{{totalorder}} total orders</h6>
+      <h6>{{failed}} high risk orders to review</h6>
+    </table>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6">
+          <canvas class="my-4 w-100" #barCanvas width="500" height="500"></canvas>
+          <canvas #lineCanvas width="500" height="500"></canvas>
+          <canvas #pieCanvas width="500" height="500"></canvas>
+          <canvas #bar1Canvas width="500" height="500"></canvas>
+        </div>
+      </div>
+    </div>
   </nb-card>
 </div>
+

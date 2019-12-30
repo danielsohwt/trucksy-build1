@@ -213,12 +213,7 @@ export class UploaderPage implements OnInit {
                             tables: 3,
                             washer: 1
                             },
-            orderPrice: 0,
-            pickUpAddress: "Blk 123 Pick Up Road",
-            dropOffAddress: "Blk 123 Drop off Road",
             dateTimeOfOrder: now.format(),
-            dateTimeOfPickup: "23 Dec 19 1pm",
-            dateTimeOfDropoff: "23 Dec 19 2pm",
             driverID: "Driver1234",
         })
 

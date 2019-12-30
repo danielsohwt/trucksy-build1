@@ -7,6 +7,7 @@ import { any } from '@tensorflow/tfjs';
 @Component({
   selector: 'ngx-dashboard',
   templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardComponent implements OnInit {
   items: Array<any>;

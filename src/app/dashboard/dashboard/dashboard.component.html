@@ -5,7 +5,7 @@
 
 <nb-card >
   <h1 style="padding: 20px">Monthly Report for December</h1>
-  <div id="monthly-container" class="row" style="padding: 20px;">
+  <div id="monthly-container" class="row">
     <div class="col-4">
       <p style="font-size: 30px">SGD {{total | number:'1.2-2'}}</p>
       <i>Total Sales</i>
@@ -22,11 +22,17 @@
 
 </nb-card>
 
-<div class="row" style="padding: 0px;">
+<div class="row">
 
-    <div class="col-6" style="height:250px;">
-      <nb-card>
-        <p class="text-center"style="text-center; padding: 20px; font-size: 20px">Payment Status</p>
+    <div class="col-6">
+      <nb-card class="dashboard-card">
+        <div class="row">
+          <div class="col-md-6"><p class="dashboard-card-header">Total Sales</p></div>
+          <div class="col-md-6">View Report</div>
+        </div>
+        <div class="row">
+          <p class="">SGD1234</p>
+        </div>
         <canvas class="my-4 w-100" #barCanvas width="500" height="500"></canvas>
       </nb-card>
     </div>

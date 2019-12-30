@@ -209,7 +209,7 @@ export class UploaderPage implements OnInit {
                         washer: 1
                         },
             orderItemsActual: {
-                            chairs: 2,
+                            chair: 2,
                             tables: 3,
                             washer: 1
                             },

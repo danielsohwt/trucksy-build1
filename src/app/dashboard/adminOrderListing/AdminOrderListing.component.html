@@ -37,7 +37,7 @@
       <td class="align-middle">{{item.payload.doc.data().user}}</td>
       <td class="align-middle">{{item.payload.doc.data().paymentStatus}}</td>
       <td class="align-middle">{{item.payload.doc.data().fulfillmentStatus}}</td>
-      <td class="align-middle">{{item.payload.doc.data().orderPrice | number:'1.2-2'}}</td>
+      <td class="align-middle">SGD {{item.payload.doc.data().orderPrice | number:'1.2-2'}}</td>
       <td class="align-middle" style="text-align: center">
         <button class="btn btn-outline-primary action" (click)="viewOrder(item)" type="button">
           →

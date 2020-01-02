@@ -42,8 +42,8 @@
   <!--    Left Panel - (1) - Total Sales-->
     <div>
       <nb-card class="dashboard-card">
-        <app-loading *ngIf="!total"></app-loading>
-        <div *ngIf="total">
+        <!-- <app-loading *ngIf="!total"></app-loading> -->
+        <!-- <div *ngIf="total"> -->
           <div class="row">
             <div class="col-md-6"><p class="dashboard-card-header">Total Sales</p></div>
             <div class="col-md-6"><p class="dashboard-card-header text-right">View Report</p></div>
@@ -64,7 +64,7 @@
               <p class="dashboard-card-value">Paid</p>
             </div>
             <div class="col-md-5">
-              <p class="dashboard-card-value">SGD 1234.00</p>
+              <p class="dashboard-card-value">SGD {{paid | number:'1.2-2'}}</p>
             </div>
             <div class="col-md-3">
               <p class="dashboard-card-value text-right">↑76%</p>
@@ -76,7 +76,7 @@
               <p class="dashboard-card-value">COD</p>
             </div>
             <div class="col-md-5">
-              <p class="dashboard-card-value">SGD 1234.00</p>
+              <p class="dashboard-card-value">SGD {{cashOnDev | number:'1.2-2'}}</p>
             </div>
             <div class="col-md-3">
               <p class="dashboard-card-value text-right">↑76%</p>
@@ -87,9 +87,6 @@
           <div style="padding-top:-20px" >
             <canvas class="my-4 w-100 graph-layout" #barCanvas width="500" height="500"></canvas>
           </div>
-        </div>
-
-
       </nb-card>
     </div>
 
@@ -194,7 +191,7 @@
 
       <div class="row">
         <div class="col-md-6">
-          <p class="dashboard-card-header-key-value">SGD {{total | number:'1.2-2'}}</p>
+          <p class="dashboard-card-header-key-value">SGD {{avg_order | number:'1.2-2'}}</p>
         </div>
         <div class="col-md-6">
           <p class="dashboard-card-header-key-value trendup text-right">↑76%</p>
@@ -208,7 +205,7 @@
           <p class="dashboard-card-value">Paid</p>
         </div>
         <div class="col-md-5">
-          <p class="dashboard-card-value">SGD 1234.00</p>
+          <p class="dashboard-card-value">SGD {{avg_paid| number:'1.2-2'}}</p>
         </div>
         <div class="col-md-3">
           <p class="dashboard-card-value text-right">↑76%</p>
@@ -220,7 +217,7 @@
           <p class="dashboard-card-value">COD</p>
         </div>
         <div class="col-md-5">
-          <p class="dashboard-card-value">SGD 1234.00</p>
+          <p class="dashboard-card-value">SGD {{avg_cod| number:'1.2-2'}}</p>
         </div>
         <div class="col-md-3">
           <p class="dashboard-card-value text-right">↑76%</p>
@@ -229,7 +226,7 @@
       <p class="graph-header">AVERAGE ORDER VALUE OVER TIME</p>
       <div style="padding-top:-20px" >
 <!--        Insert AOV Graph-->
-        <canvas class="my-4 w-100 graph-layout" #barCanvas width="500" height="500"></canvas>
+        <canvas class="my-4 w-100 graph-layout" #line1Canvas width="500" height="500"></canvas>
       </div>
 
     </nb-card>
@@ -320,7 +317,7 @@
           <p class="dashboard-card-value">Paid</p>
         </div>
         <div class="col-md-5">
-          <p class="dashboard-card-value">{{totalorder}}</p>
+          <p class="dashboard-card-value">{{count_order[0]}}</p>
         </div>
         <div class="col-md-3">
           <p class="dashboard-card-value text-right">↑76%</p>
@@ -332,7 +329,7 @@
           <p class="dashboard-card-value">COD</p>
         </div>
         <div class="col-md-5">
-          <p class="dashboard-card-value">{{totalorder}}</p>
+          <p class="dashboard-card-value">{{count_order[2]}}</p>
         </div>
         <div class="col-md-3">
           <p class="dashboard-card-value text-right">↓76%</p>

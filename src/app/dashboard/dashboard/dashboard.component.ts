@@ -2,7 +2,6 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import {FirebaseService} from "../../firebase.service";
 import {Chart} from 'chart.js';
 import * as moment from 'moment';
-import { any } from '@tensorflow/tfjs';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -21,18 +20,28 @@ export class DashboardComponent implements OnInit {
   public failed: number;
   public total: number;
   public totalorder: number;
+  public avg_order: number;
+  public count_order: any[]=[];
+  public sales: number;
+  public avg_paid: number;
+  public avg_cod: number;
+  key;
+  value;
   @ViewChild('barCanvas', { static: true }) barCanvas;
   private barChart: any;
   @ViewChild('bar1Canvas', { static: true }) bar1Canvas;
   private bar1Chart: any;
   @ViewChild('lineCanvas', { static: true }) lineCanvas;
   private lineChart: any;
+  @ViewChild('line1Canvas', { static: true }) line1Canvas;
+  private line1Chart: any;
   @ViewChild('pieCanvas', { static: true }) pieCanvas;
   private pieChart: any;
   
   constructor (public firebaseService: FirebaseService,) {
     
     this.getall();
+    console.log(this.sales_over_time());
   }
 
   getall() {
@@ -59,6 +68,7 @@ export class DashboardComponent implements OnInit {
     var tempcount= [];
     var day_list=[];
     var day_occurrences = [];
+
     this.firebaseService.getOrders()
         .subscribe(result => {
           this.items = result;
@@ -87,29 +97,39 @@ export class DashboardComponent implements OnInit {
               failedToPaid += 1;
               count4+=1
               // console.log(sum4);
-            }
 
-          })
+            }
+            // console.log(order_date_array);
+          });
           this.paid = sum1;
           this.notconfirmed = sum2;
           this.cashOnDev = sum3;
           this.total = sum1 + sum3;
           this.totalorder = total_order;
           this.failed = failedToPaid;
-          // console.log(order_day_array);
+          this.avg_order= this.total / this.totalorder;
+          this.avg_paid = sum1 / count1;
+          this.avg_cod = sum3 / count3;
+          console.log(order_date_array);
           // Counting the occurrences / frequency of array elements
           occurrences = this.frequency(order_date_array);
           day_occurrences = this.frequency(day_list);
-          console.log(day_occurrences);
+          console.log(occurrences);
+
           // occurrences[0].forEach(element => {
-          //   console.log(element)
+          //   console.log(element);
+          //   console.log(this.sales_over_time(element));
           // });
+          // console.log(this.frequency(sales_per_order));
+          console.log(this.sales_over_time());
+
           // console.log(occurrences);
           temp_order_date = this.order_per_date(occurrences);
           Xdate = temp_order_date[1];
           Yorder = temp_order_date[0];
           this.basicChart(Xdate, Yorder);
           temp_order_day = this.order_per_day(day_occurrences);
+          // console.log(temp_order_date);
           Xday = temp_order_day[1];
           Yorder1 = temp_order_day[0];
           Xarray.push(sum1,sum2,sum3,sum4);
@@ -117,6 +137,7 @@ export class DashboardComponent implements OnInit {
           Yarray = ['Paid','Booking Date Not Confirmed','Cash On Delivery','Payment Failed']
           // console.log(Yarray)
           tempcount.push(count1,count2,count3,count4);
+          this.count_order=tempcount;
           this.basicChart1(Yarray, Xarray);
           this.basicChart2(Yarray,tempcount);
           this.basicChart3(Xday,Yorder1);
@@ -158,20 +179,84 @@ export class DashboardComponent implements OnInit {
     }
     return [c, d];
   }
-
-  order_per_day(arr){
-    var a = arr[0], b = arr[1], c = [], d=[], count =0;
-    for ( var i = 0; i < 7; i++ ) {
+  avg_order_value(arr,count){
+    this.key= Object.keys(arr);
+    this.value = Object.values(arr);
+    var a = arr[0], b = arr[1], c = [], d=[], count1 =0, e=count[1];
+    console.log(e)
+    for ( var i = 1; i < 32; i++ ) {
       d.push(i);
-      if (a.includes(i)) {
-        count += 1;
-        c.push(b[count - 1]);
+      if (this.key.includes(i.toString())) {
+        count1 += 1;
+        console.log((e[count1-1]));
+        c.push(Math.round(((this.value[count1 - 1])/(e[count1-1]))*100)/100);
       } else {
         c.push(0);
       }
     }
     return [c, d];
   }
+
+  order_per_day(arr){
+    var a = arr[0], b = arr[1], c = [], d=[],count1 =0;
+    for ( var i = 0; i < 7; i++ ) {
+      d.push(i);
+      if (a.includes(i)) {
+        count1 += 1;
+        c.push(b[count1 - 1]);
+      } else {
+        c.push(0);
+      }
+    }
+    return [c, d];
+  }
+
+  sales_over_time() {
+    var day = {};
+    var sum = 0;
+    var list1 = [];
+    var salelist = []
+    var dict = {};
+    var Xdate = [];
+    var Yorder = [];
+    var sales_list = [];
+    var order_date_array = [];
+    var occurrences = [];
+
+    this.firebaseService.getOrders()
+    .subscribe(result => {
+      this.items = result;
+      this.items.forEach(function(child){
+        if (child.payload.doc.data().paymentStatus == 'Paid' ||
+        child.payload.doc.data().paymentStatus == 'Cash On Delivery') {
+          order_date_array.push(moment(child.payload.doc.data().dateTimeOfOrder).date());
+          list1.push(moment(child.payload.doc.data().dateTimeOfOrder).date());
+          salelist.push(child.payload.doc.data().orderPrice);
+          if(dict[moment(child.payload.doc.data().dateTimeOfOrder).date()] == undefined){
+            dict[moment(child.payload.doc.data().dateTimeOfOrder).date()] = child.payload.doc.data().orderPrice;
+            // dict[moment(child.payload.doc.data().dateTimeOfOrder).date()].push(child.payload.doc.data().orderPrice);
+
+          }
+          dict[moment(child.payload.doc.data().dateTimeOfOrder).date()] = dict[moment(child.payload.doc.data().dateTimeOfOrder).date()]+
+          (child.payload.doc.data().orderPrice);
+
+        }
+      });
+      // return dict;
+      console.log(order_date_array);
+      console.log(dict);
+      occurrences = this.frequency(order_date_array);
+      console.log(occurrences);
+
+      this.key = Object.keys(dict);
+      sales_list=this.avg_order_value(dict,occurrences);
+      Xdate = sales_list[1];
+      Yorder = sales_list[0];
+      console.log(Xdate);
+      console.log(Yorder);
+      this.basicChart4(Xdate,Yorder);
+      });
+    }
 
 
   basicChart1(key, value) {
@@ -213,7 +298,7 @@ export class DashboardComponent implements OnInit {
   }
 
   basicChart3(key, value) {
-    this.barChart = new Chart(this.bar1Canvas.nativeElement, {
+    this.bar1Chart = new Chart(this.bar1Canvas.nativeElement, {
       type: 'bar',
       data: {
         labels: ['Sun','Mon','Tues','Wedn','Thurs','Fri','Sat'],
@@ -256,7 +341,49 @@ export class DashboardComponent implements OnInit {
       data: {
         labels: key,
         datasets: [{
-                label: 'Number of Order on a particular date',
+                label: 'Number of Order per day',
+                fill: false,
+                pointRadius:0,
+                data: value,
+                borderColor: '#0074D9',
+                backgroundColor: '#0074D9',
+                lineTension: 0,
+        }]
+      },
+      options : {
+        responsive: true,
+        scales: {
+          xAxes: [{
+              display: true,
+              scaleLabel: {
+                  display: true,
+                  labelString: "Date",
+              }
+          }],
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true,
+              },
+              display: true,
+              scaleLabel: {
+                  display: true,
+                  labelString: "Count",
+              }
+          }]
+      }
+      }
+    });
+  }
+
+  basicChart4(key, value) {
+    this.line1Chart = new Chart(this.line1Canvas.nativeElement, {
+      type: 'line',
+      data: {
+        labels: key,
+        datasets: [{
+                label: 'Number of Order per day',
+                fill: false,
+                pointRadius:0,
                 data: value,
                 borderColor: '#fe8b36',
                 backgroundColor: '#fe8b36',
@@ -280,7 +407,7 @@ export class DashboardComponent implements OnInit {
               display: true,
               scaleLabel: {
                   display: true,
-                  labelString: "Count",
+                  labelString: "Avg Order Value",
               }
           }]
       }

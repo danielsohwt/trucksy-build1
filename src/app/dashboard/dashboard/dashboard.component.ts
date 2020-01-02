@@ -134,7 +134,7 @@ export class DashboardComponent implements OnInit {
           Yorder1 = temp_order_day[0];
           Xarray.push(sum1,sum2,sum3,sum4);
           // console.log(Xarray)
-          Yarray = ['Paid','Booking Date Not Confirmed','Cash On Delivery','Payment Failed']
+          Yarray = ['Paid','Booking Not Confirmed','COD','Payment Failed']
           // console.log(Yarray)
           tempcount.push(count1,count2,count3,count4);
           this.count_order=tempcount;

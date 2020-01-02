@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Order No: {{ orderID }}</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
 
@@ -55,7 +51,7 @@
                 <ion-col size="7">
                   {{orderItemsActual}}
                   <ion-row *ngFor="let orderItem of key">
-                    <p>{{orderItem}}</p>
+                    <p>{{orderItem | titlecase }}</p>
                   </ion-row>
 
 <!--                  TODO: display object-->
@@ -73,12 +69,15 @@
                 <ion-col size="3">
                   <!-- $70.00 x 2 -->
                   <ion-row *ngFor="let ordervalue of value">
-                    <p>{{ordervalue}}</p>
+                    <p>{{ ordervalue }}</p>
                   </ion-row>
                 </ion-col>
 
                 <ion-col size="2">
-                  ${{orderPrice}}
+                  <ion-row>$120.00</ion-row>
+                  <ion-row>$13.00</ion-row>
+                  <ion-row>$123.00</ion-row>
+<!--                  ${{orderPrice}}-->
                 </ion-col>
                 <br>
               </ion-row>

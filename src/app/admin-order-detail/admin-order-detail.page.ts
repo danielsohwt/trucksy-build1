@@ -34,18 +34,26 @@ export class AdminOrderDetailPage implements OnInit {
   orderItemsActual
   orderItemsPredicted
   orderPrice
+  items
+  key
+  value
+  priceModel1
 
   constructor(
       public firebaseService: FirebaseService,
       private afs: AngularFirestore,
       private route: ActivatedRoute,
       public user:UserService,
-  ) { }
+  ) { 
+   }
 
   ngOnInit() {
     this.orderID = this.route.snapshot.paramMap.get('id')
     this.orderReference = this.order = this.afs.doc(`order/${this.orderID}`)
     this.sub = this.orderReference.valueChanges().subscribe(val => {
+      // for(let i in val.orderItemsActual){
+      //   console.log(val.orderItemsActual.keys());
+
       this.order = val
       this.user = val.user
       this.dateTimeOfOrder = val.dateTimeOfOrder
@@ -65,8 +73,16 @@ export class AdminOrderDetailPage implements OnInit {
       this.desc = val.desc
       this.image = val.image
 
-      this.orderItemsActual = val.orderItemsActual
-      console.log(this.orderItemsActual)
+      // this.orderItemsActual = val.orderItemsActual
+      this.value=Object.values(val.orderItemsActual);
+      console.log(this.value);
+      this.key = Object.keys(val.orderItemsActual);
+      console.log(this.key);
+      this.key.forEach(element => {
+        console.log(element);
+        console.log(this.unitPrice(element));
+      });
+      // this.orderItemsActual = val.child('orderItemsActual');
       this.orderItemsPredicted = val.orderItemsPredicted
       this.orderPrice = val.orderPrice
 
@@ -78,5 +94,17 @@ export class AdminOrderDetailPage implements OnInit {
   ngOnDestroy():void {
     this.sub.unsubscribe()
   }
+
+  unitPrice(item) {
+    var item_price = {};
+    var count = 0;
+    this.priceModel1 = this.afs.doc(`priceModel/1`);
+    this.priceModel1.valueChanges().subscribe(val => {
+      // console.log(val.pricing[item]);
+        return val.pricing[item];
+      // return val.pricing[item];
+      });
+  }
+
 
 }

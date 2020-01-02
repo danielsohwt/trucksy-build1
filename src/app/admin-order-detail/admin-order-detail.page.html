@@ -53,8 +53,10 @@
 
               <ion-row>
                 <ion-col size="7">
-                  Tables
                   {{orderItemsActual}}
+                  <ion-row *ngFor="let orderItem of key">
+                    <p>{{orderItem}}</p>
+                  </ion-row>
 
 <!--                  TODO: display object-->
 <!--                  <ion-row *ngFor="let orderItem of orderItemsActual">-->
@@ -69,7 +71,10 @@
                 </ion-col>
 
                 <ion-col size="3">
-                  $70.00 x 2
+                  <!-- $70.00 x 2 -->
+                  <ion-row *ngFor="let ordervalue of value">
+                    <p>{{ordervalue}}</p>
+                  </ion-row>
                 </ion-col>
 
                 <ion-col size="2">

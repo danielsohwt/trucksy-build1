@@ -1,0 +1,257 @@
+.mediaViewInfo {
+	--web-view-name: Registration;
+	--web-view-id: Registration;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+:root {
+	--web-view-ids: Registration;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+}
+#Registration {
+	position: absolute;
+	width: 1920px;
+	height: 1080px;
+	background-color: rgba(255,255,255,1);
+	overflow: hidden;
+	--web-view-name: Registration;
+	--web-view-id: Registration;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+#person_hand_on_steering_wheel_ {
+	position: absolute;
+	width: 1920px;
+	height: 1080px;
+	left: 0px;
+	top: 1px;
+	overflow: visible;
+}
+#BG_filter {
+	opacity: 0.27;
+}
+.BG_filter {
+	filter: drop-shadow(30px 30px 50px rgba(0, 0, 0, 0.161));
+	overflow: visible;
+	position: absolute;
+	width: 2086px;
+	height: 1230px;
+	left: -8px;
+	top: 0px;
+	transform: matrix(1,0,0,1,0,0);
+}
+#Path_10 {
+	opacity: 0.57;
+}
+.Path_10 {
+	filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 1));
+	overflow: visible;
+	position: absolute;
+	width: 894px;
+	height: 860px;
+	left: 536px;
+	top: 169px;
+	transform: matrix(1,0,0,1,0,0);
+}
+#Rentalorry_logo {
+	position: absolute;
+	width: 299px;
+	height: 150px;
+	left: 778px;
+	top: 185px;
+	overflow: visible;
+}
+#Password {
+	position: absolute;
+	width: 723px;
+	height: 74px;
+	left: 597px;
+	top: 466px;
+	overflow: visible;
+}
+.Rectangle_21 {
+	position: absolute;
+	overflow: visible;
+	width: 723px;
+	height: 74px;
+	left: 0px;
+	top: 0px;
+}
+#Mobile_Number {
+	position: absolute;
+	left: 32px;
+	top: 27px;
+	overflow: visible;
+	width: 123px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(43,51,57,1);
+}
+#Password_ {
+	position: absolute;
+	width: 723px;
+	height: 74px;
+	left: 597px;
+	top: 570px;
+	overflow: visible;
+}
+.Rectangle_21_ba {
+	position: absolute;
+	overflow: visible;
+	width: 723px;
+	height: 74px;
+	left: 0px;
+	top: 0px;
+}
+#Email {
+	position: absolute;
+	left: 32px;
+	top: 27px;
+	overflow: visible;
+	width: 46px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(43,51,57,1);
+}
+#Password_bc {
+	position: absolute;
+	width: 723px;
+	height: 74px;
+	left: 597px;
+	top: 674px;
+	overflow: visible;
+}
+.Rectangle_21_bd {
+	position: absolute;
+	overflow: visible;
+	width: 723px;
+	height: 74px;
+	left: 0px;
+	top: 0px;
+}
+#Password_be {
+	position: absolute;
+	left: 32px;
+	top: 27px;
+	overflow: visible;
+	width: 79px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(43,51,57,1);
+}
+#Group_36 {
+	position: absolute;
+	width: 351px;
+	height: 74px;
+	left: 597px;
+	top: 362px;
+	overflow: visible;
+}
+.Rectangle_21_bg {
+	position: absolute;
+	overflow: visible;
+	width: 351px;
+	height: 74px;
+	left: 0px;
+	top: 0px;
+}
+#First_Name {
+	position: absolute;
+	left: 32px;
+	top: 27px;
+	overflow: visible;
+	width: 89px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(43,51,57,1);
+}
+#Group_37 {
+	position: absolute;
+	width: 352px;
+	height: 74px;
+	left: 968px;
+	top: 362px;
+	overflow: visible;
+}
+.Rectangle_21_bj {
+	position: absolute;
+	overflow: visible;
+	width: 352px;
+	height: 74px;
+	left: 0px;
+	top: 0px;
+}
+#Last_Name {
+	position: absolute;
+	left: 32px;
+	top: 27px;
+	overflow: visible;
+	width: 88px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(43,51,57,1);
+}
+.Rectangle_23 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 139px;
+	height: 68px;
+	left: 898px;
+	top: 778px;
+}
+#Login {
+	position: absolute;
+	left: 934px;
+	top: 791px;
+	overflow: visible;
+	width: 50px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	color: rgba(242,242,242,1);
+}
+#By_signing_up__you_agree_to_ou {
+	position: absolute;
+	left: 610px;
+	top: 858px;
+	overflow: visible;
+	width: 616px;
+	white-space: nowrap;
+	line-height: 30px;
+	margin-top: -6px;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(43,51,57,1);
+}

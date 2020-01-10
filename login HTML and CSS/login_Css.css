@@ -1,0 +1,211 @@
+.mediaViewInfo {
+	--web-view-name: Login;
+	--web-view-id: Login;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+:root {
+	--web-view-ids: Login;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+}
+#Login {
+	position: absolute;
+	width: 1920px;
+	height: 1080px;
+	background-color: rgba(255,255,255,1);
+	overflow: hidden;
+	--web-view-name: Login;
+	--web-view-id: Login;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+#person_hand_on_steering_wheel_ {
+	position: absolute;
+	width: 1920px;
+	height: 1080px;
+	left: 0px;
+	top: 1px;
+	overflow: visible;
+}
+#BG_filter {
+	opacity: 0.27;
+}
+.BG_filter {
+	filter: drop-shadow(30px 30px 50px rgba(0, 0, 0, 0.161));
+	overflow: visible;
+	position: absolute;
+	width: 2086px;
+	height: 1230px;
+	left: -8px;
+	top: 0px;
+	transform: matrix(1,0,0,1,0,0);
+}
+#Path_10 {
+	opacity: 0.57;
+}
+.Path_10 {
+	filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 1));
+	overflow: visible;
+	position: absolute;
+	width: 894px;
+	height: 624px;
+	left: 536px;
+	top: 169px;
+	transform: matrix(1,0,0,1,0,0);
+}
+#Rentalorry_logo {
+	position: absolute;
+	width: 299px;
+	height: 150px;
+	left: 778px;
+	top: 185px;
+	overflow: visible;
+}
+#Password {
+	position: absolute;
+	width: 698px;
+	height: 30px;
+	left: 597px;
+	top: 569px;
+	overflow: visible;
+}
+#Keep_me_sign_in {
+	position: absolute;
+	width: 168px;
+	height: 25px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#Keep_me_sign_in_ {
+	position: absolute;
+	left: 40px;
+	top: 4px;
+	overflow: visible;
+	width: 129px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(43,51,57,1);
+}
+.Rectangle_1 {
+	position: absolute;
+	overflow: visible;
+	width: 25px;
+	height: 25px;
+	left: 0px;
+	top: 0px;
+}
+#Forget_Password {
+	position: absolute;
+	left: 564px;
+	top: 9px;
+	overflow: visible;
+	width: 135px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(43,51,57,1);
+}
+#Repeat_Grid_4 {
+	position: absolute;
+	width: 723px;
+	height: 195px;
+	left: 597px;
+	top: 362px;
+	overflow: hidden;
+}
+#Repeat_Grid_4_0 {
+	position: absolute;
+	width: 723px;
+	height: 74px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+.Rectangle_21 {
+	position: absolute;
+	overflow: visible;
+	width: 723px;
+	height: 74px;
+	left: 0px;
+	top: 0px;
+}
+#Repeat_Grid_4_1 {
+	position: absolute;
+	width: 723px;
+	height: 74px;
+	left: 0px;
+	top: 104px;
+	overflow: visible;
+}
+.Rectangle_21_bf {
+	position: absolute;
+	overflow: visible;
+	width: 723px;
+	height: 74px;
+	left: 0px;
+	top: 0px;
+}
+#Password_bg {
+	position: absolute;
+	left: 629px;
+	top: 493px;
+	overflow: visible;
+	width: 79px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(43,51,57,1);
+}
+#Username {
+	position: absolute;
+	left: 629px;
+	top: 389px;
+	overflow: visible;
+	width: 84px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(43,51,57,1);
+}
+.Rectangle_23 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 139px;
+	height: 68px;
+	left: 898px;
+	top: 623px;
+}
+#Login_bj {
+	position: absolute;
+	left: 934px;
+	top: 636px;
+	overflow: visible;
+	width: 50px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	color: rgba(242,242,242,1);
+}

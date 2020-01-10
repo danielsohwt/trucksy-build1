@@ -58,14 +58,6 @@
 	top: 169px;
 	transform: matrix(1,0,0,1,0,0);
 }
-#Rentalorry_logo {
-	position: absolute;
-	width: 299px;
-	height: 150px;
-	left: 778px;
-	top: 185px;
-	overflow: visible;
-}
 #Password {
 	position: absolute;
 	width: 698px;
@@ -150,7 +142,7 @@
 	top: 104px;
 	overflow: visible;
 }
-.Rectangle_21_bf {
+.Rectangle_21_be {
 	position: absolute;
 	overflow: visible;
 	width: 723px;
@@ -158,7 +150,7 @@
 	left: 0px;
 	top: 0px;
 }
-#Password_bg {
+#Password_bf {
 	position: absolute;
 	left: 629px;
 	top: 493px;
@@ -195,7 +187,7 @@
 	left: 898px;
 	top: 623px;
 }
-#Login_bj {
+#Login_bi {
 	position: absolute;
 	left: 934px;
 	top: 636px;
@@ -208,4 +200,167 @@
 	font-weight: normal;
 	font-size: 20px;
 	color: rgba(242,242,242,1);
+}
+#Trucksy {
+	position: absolute;
+	left: 947px;
+	top: 236px;
+	overflow: visible;
+	width: 176px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 40px;
+	color: rgba(60,58,57,1);
+}
+#Trucksy_Logo {
+	position: absolute;
+	width: 148.123px;
+	height: 69px;
+	left: 770px;
+	top: 231px;
+	overflow: visible;
+}
+.Union_2_bm {
+	overflow: visible;
+	position: absolute;
+	width: 103.954px;
+	height: 58.983px;
+	left: 44.169px;
+	top: 1.932px;
+	transform: matrix(1,0,0,1,0,0);
+}
+.Ellipse_13 {
+	position: absolute;
+	overflow: visible;
+	width: 21.133px;
+	height: 22.453px;
+	left: 122.499px;
+	top: 46.547px;
+}
+.Ellipse_14 {
+	position: absolute;
+	overflow: visible;
+	width: 13.208px;
+	height: 14.529px;
+	left: 126.461px;
+	top: 50.509px;
+}
+.Ellipse_11 {
+	position: absolute;
+	overflow: visible;
+	width: 21.133px;
+	height: 22.453px;
+	left: 67.026px;
+	top: 46.547px;
+}
+.Ellipse_12 {
+	position: absolute;
+	overflow: visible;
+	width: 13.208px;
+	height: 14.529px;
+	left: 70.988px;
+	top: 50.509px;
+}
+.Polygon_1 {
+	overflow: hidden;
+	position: absolute;
+	width: 3.769px;
+	height: 39.789px;
+	transform: translate(0px, 0px) matrix(1,0,0,1,33.4206,6.6963) rotate(-88deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+.Polygon_1_bs {
+	overflow: hidden;
+	position: absolute;
+	width: 3.769px;
+	height: 39.789px;
+	transform: translate(0px, 0px) matrix(1,0,0,1,32.4838,13.8879) rotate(-88deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+.Polygon_1_bt {
+	overflow: hidden;
+	position: absolute;
+	width: 3.769px;
+	height: 39.789px;
+	transform: translate(0px, 0px) matrix(1,0,0,1,31.6865,21.0791) rotate(-88deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+.Polygon_1_bu {
+	overflow: hidden;
+	position: absolute;
+	width: 3.769px;
+	height: 39.789px;
+	transform: translate(0px, 0px) matrix(1,0,0,1,30.8902,28.234) rotate(-88deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+.Polygon_1_bv {
+	overflow: hidden;
+	position: absolute;
+	width: 3.769px;
+	height: 39.789px;
+	transform: translate(0px, 0px) matrix(1,0,0,1,30.2329,35.271) rotate(-88deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+.Polygon_2 {
+	overflow: hidden;
+	position: absolute;
+	width: 3.769px;
+	height: 39.789px;
+	transform: translate(0px, 0px) matrix(1,0,0,1,38.0277,-17.3166) rotate(-88deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+.Polygon_2_bx {
+	overflow: hidden;
+	position: absolute;
+	width: 3.769px;
+	height: 39.789px;
+	transform: translate(0px, 0px) matrix(1,0,0,1,29.0927,-11.4531) rotate(-88deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+.Polygon_2_by {
+	overflow: hidden;
+	position: absolute;
+	width: 3.769px;
+	height: 39.789px;
+	transform: translate(0px, 0px) matrix(1,0,0,1,24.2063,-5.5895) rotate(-88deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+.Polygon_2_bz {
+	overflow: hidden;
+	position: absolute;
+	width: 3.769px;
+	height: 39.789px;
+	transform: translate(0px, 0px) matrix(1,0,0,1,18.0634,0.5535) rotate(-88deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+.Path_14 {
+	overflow: visible;
+	position: absolute;
+	width: 13.989px;
+	height: 12.062px;
+	transform: translate(0px, 0px) matrix(1,0,0,1,129.8235,28.6546) rotate(7deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
 }

@@ -16,6 +16,8 @@ import * as moment from 'moment';
 })
 export class RegisterPage implements OnInit {
 
+    firstName: string = ""
+    lastName: string = ""
     username: string = ""
     password: string = ""
     cpassword: string = ""
@@ -113,7 +115,10 @@ export class RegisterPage implements OnInit {
                     console.log(res)
                     let now = moment();
                     this.afstore.doc(`users/${res.user.uid}`).set({
+                        firstName: this.firstName,
+                        lastName: this.lastName,
                         username,
+                        hpNumber: this.phoneNumber.e164,
                         userType: this.userType,
                         userRegisteredDateTime: now.format()
                     })

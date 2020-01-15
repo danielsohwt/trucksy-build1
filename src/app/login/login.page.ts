@@ -4,6 +4,7 @@ import { auth } from 'firebase/app';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { NgForm, FormGroup } from '@angular/forms';
+import {AlertController} from "@ionic/angular";
 
 @Component({
     selector: 'app-login',
@@ -19,9 +20,34 @@ export class LoginPage implements OnInit {
 
     constructor(public afAuth: AngularFireAuth,
                 public user: UserService,
+                public alert: AlertController,
+                public alertController: AlertController,
                 public router: Router,) { }
 
     ngOnInit() {
+    }
+
+    async presentAlert(title: string, content: string) {
+
+        const alert = await this.alertController.create({
+            header: title,
+            message: content,
+            buttons: ['OK']
+        })
+
+        await alert.present()
+    }
+
+
+    async showAlert(header: string, message: string) {
+        const alert = await this.alert.create({
+            header,
+            message,
+            buttons: ["Ok"]
+        })
+
+        await alert.present()
+
     }
 
     async login() {
@@ -40,9 +66,10 @@ export class LoginPage implements OnInit {
 
         } catch (err) {
             console.dir(err)
-            if(err.code === "auth/user-not-found") {
-                console.log("User not found")
-            }
+            this.showAlert("Error", err.code)
+            // if(err.code === "auth/user-not-found") {
+            //     console.log("User not found")
+            // }
         }
     }
 

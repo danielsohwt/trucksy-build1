@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AdminOrderListingComponent} from "./adminOrderListing/AdminOrderListing.component";
-
+import {UsersListingComponent} from "./usersListing/usersListing.component";
+import {DriversListingComponent} from "./driversListing/driversListing.component";
 
 const routes: Routes = [{
   path: '',
@@ -22,6 +23,14 @@ const routes: Routes = [{
     {
       path: 'AdminOrderListing',
       component: AdminOrderListingComponent,
+    },
+    {
+      path: 'UsersListing',
+      component: UsersListingComponent,
+    },
+    {
+      path: 'DriversListing',
+      component: DriversListingComponent,
     },
   ],
 }];

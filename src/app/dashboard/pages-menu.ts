@@ -16,13 +16,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Users',
     icon: 'people-outline',
-    link: '/pages/dashboard',
+    link: '/pages/UsersListing',
     home: true,
   },
   {
     title: 'Drivers',
     icon: 'car-outline',
-    link: '/pages/dashboard',
+    link: '/pages/DriversListing',
     home: true,
   },
   {

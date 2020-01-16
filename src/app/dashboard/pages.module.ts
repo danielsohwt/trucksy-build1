@@ -6,6 +6,8 @@ import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { AdminOrderListingModule } from "./adminOrderListing/AdminOrderListing.module";
+import { UsersListingModule } from "./usersListing/usersListing.module";
+import {DriversListingModule} from "./driversListing/driversListing.module";
 
 @NgModule({
   imports: [
@@ -14,6 +16,8 @@ import { AdminOrderListingModule } from "./adminOrderListing/AdminOrderListing.m
     NbMenuModule,
     DashboardModule,
     AdminOrderListingModule,
+    UsersListingModule,
+    DriversListingModule,
   ],
   declarations: [
     PagesComponent,

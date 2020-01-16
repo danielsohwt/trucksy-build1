@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { NgForm, FormGroup } from '@angular/forms';
 import {AlertController} from "@ionic/angular";
 
+import { AuthService } from "../auth.service";
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.page.html',
@@ -17,12 +19,14 @@ export class LoginPage implements OnInit {
     password: string = "";
     isSubmitted = false;
     form: FormGroup;
+    forgotPassword: boolean = false;
 
     constructor(public afAuth: AngularFireAuth,
                 public user: UserService,
                 public alert: AlertController,
                 public alertController: AlertController,
-                public router: Router,) { }
+                public router: Router,
+                private auth: AuthService,) { }
 
     ngOnInit() {
     }
@@ -67,9 +71,6 @@ export class LoginPage implements OnInit {
         } catch (err) {
             console.dir(err)
             this.showAlert("Error", err.code)
-            // if(err.code === "auth/user-not-found") {
-            //     console.log("User not found")
-            // }
         }
     }
 
@@ -79,4 +80,15 @@ export class LoginPage implements OnInit {
         console.log(myForm);
     }
 
+    forgotPasswordButton() {
+        this.forgotPassword = true;
+    }
+
+    resetPassword() {
+        this.auth.resetPasswordInit(this.username)
+            .then(
+                () => alert('A password reset link has been sent to your email address'),
+                (rejectionReason) => alert(rejectionReason))
+            .catch(e => alert('An error occurred while attempting to reset your password'));
+    }
 }

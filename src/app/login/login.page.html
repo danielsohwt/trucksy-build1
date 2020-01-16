@@ -18,34 +18,56 @@
 					<ion-list>
 						<ion-img id="testing" src="../../assets/img/logo/Rentalorry.png"></ion-img>
 
-						<ion-row justify-content-around>
-							<ion-item *ngIf="!usernameCtrl.valid && usernameCtrl.touched">
-								<ion-text color="danger">Please enter a valid e-mail address</ion-text>
+						<div [hidden]="forgotPassword">
+							<ion-row justify-content-around>
+								<ion-item *ngIf="!usernameCtrl.valid && usernameCtrl.touched">
+									<ion-text color="danger">Please enter a valid e-mail address</ion-text>
+								</ion-item>
+							</ion-row>
+
+							<ion-item id="rounded">
+								<ion-label position="floating">Username</ion-label>
+								<ion-input type="email" [(ngModel)]="username"
+										   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+										   required #usernameCtrl="ngModel" name="username"></ion-input>
 							</ion-item>
-						</ion-row>
 
-						<ion-item id="rounded">
-							<ion-label position="floating">Username</ion-label>
-							<ion-input type="email" [(ngModel)]="username"
-									   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-									   required #usernameCtrl="ngModel" name="username"></ion-input>
-						</ion-item>
+							<ion-row justify-content-around>
+								<ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched">
+									<ion-text color="danger">Please enter a password</ion-text>
+								</ion-item>
+							</ion-row>
 
-						<ion-row justify-content-around>
-							<ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched">
-								<ion-text color="danger">Please enter a password</ion-text>
+							<ion-item id="rounded">
+								<ion-label position="floating">Password</ion-label>
+								<ion-input type="password" [(ngModel)]="password"
+										   required #passwordCtrl="ngModel" name="password"></ion-input>
 							</ion-item>
-						</ion-row>
 
-						<ion-item id="rounded">
-							<ion-label position="floating">Password</ion-label>
-							<ion-input type="password" [(ngModel)]="password"
-									   required #passwordCtrl="ngModel" name="password"></ion-input>
-						</ion-item>
+							<ion-row justify-content-around>
+								<ion-button type="submit" fill="solid" color="primary" (click)="login()">Login</ion-button>
+							</ion-row>
 
-						<ion-row justify-content-around>
-							<ion-button type="submit" fill="solid" color="primary" (click)="login()">Login</ion-button>
-						</ion-row>
+							<ion-row justify-content-around>
+								<a (click)="forgotPasswordButton()">Forgot your password?</a>
+							</ion-row>
+						</div>
+
+						<div *ngIf="forgotPassword">
+							<strong>Enter your email you signed up with for password recovery:</strong><hr>
+							<ion-item id="rounded">
+								<ion-label position="floating">Email</ion-label>
+								<ion-input type="email"
+										   value = {{this.username}}
+										   [(ngModel)]="username"
+										   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+										   required #usernameCtrl="ngModel" name="username"></ion-input>
+							</ion-item>
+
+							<ion-row justify-content-around>
+								<ion-button type="submit" fill="solid" color="primary" (click)="resetPassword()">Send Reset Link</ion-button>
+							</ion-row>
+						</div>
 					</ion-list>
 				</form>
 			</ion-col>

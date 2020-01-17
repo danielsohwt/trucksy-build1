@@ -32,6 +32,7 @@ export class AdminOrderDetailPage implements OnInit {
   image
 
   orderItemsActual
+  orderItemsActualTotal = 0;
   orderItemsPredicted
   orderPrice
   items
@@ -75,7 +76,13 @@ export class AdminOrderDetailPage implements OnInit {
 
       // this.orderItemsActual = val.orderItemsActual
       this.value=Object.values(val.orderItemsActual);
-      console.log(this.value);
+
+      // Sum up all items
+      for (let item of this.value) {
+        this.orderItemsActualTotal += item;
+      }
+      console.log(this.orderItemsActualTotal);
+
       this.key = Object.keys(val.orderItemsActual);
       console.log(this.key);
       this.key.forEach(element => {

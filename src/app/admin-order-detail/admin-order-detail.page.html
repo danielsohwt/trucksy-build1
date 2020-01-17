@@ -8,13 +8,22 @@
     <ion-button shape="round" color="primary" routerLink="/pages/AdminOrderListing"> < Orders</ion-button> <br>
     <span><h1>Order ID #{{ orderID }}</h1>
 
-        <ion-chip color="success">
-          <ion-label>{{ paymentStatus }}</ion-label>
-        </ion-chip>
 
-        <ion-chip color="success">
+      <ion-chip *ngIf="paymentStatus ==='Paid'|| paymentStatus ==='Cash On Delivery'" color="success">
+          <ion-label>{{ paymentStatus }}</ion-label>
+      </ion-chip>
+
+      <ion-chip *ngIf="paymentStatus ==='Booking Date Not Confirmed'" color="warning">
+          <ion-label>{{ paymentStatus }}</ion-label>
+      </ion-chip>
+
+      <ion-chip *ngIf="fulfillmentStatus ==='Order Placed'" color="success">
           <ion-label>{{ fulfillmentStatus }}</ion-label>
-        </ion-chip>
+      </ion-chip>
+
+      <ion-chip *ngIf="fulfillmentStatus ==='Order Not Confirmed'" color="warning">
+          <ion-label>{{ fulfillmentStatus }}</ion-label>
+      </ion-chip>
 
       </span>
 
@@ -35,12 +44,12 @@
                 <ion-col size="6">
                   <ion-card-subtitle>Pick Up</ion-card-subtitle>
                   Address: {{ pickUpAddress }}<br>
-                  Time: {{ dateTimeOfPickup }}
+                  Time: {{ dateTimeOfPickup | date:"medium" }}
                 </ion-col>
                 <ion-col size="6">
                   <ion-card-subtitle>Drop Off</ion-card-subtitle>
                   Address: {{ dropOffAddress }}<br>
-                  Time: {{ dateTimeOfDropoff }}
+                  Time: {{ dateTimeOfDropoff | date:"medium" }}
                 </ion-col>
               </ion-row>
 
@@ -94,12 +103,14 @@
             <ion-card-content>
               <ion-row>
                 <ion-col size="7">
-                  Subtotal
+                  Total
                 </ion-col>
 
                 <ion-col size="3">
-                  1 item
+                  <span *ngIf="orderItemsActualTotal == 1">{{ orderItemsActualTotal }} item</span>
+                  <span *ngIf="orderItemsActualTotal > 1">{{ orderItemsActualTotal }} items</span>
                 </ion-col>
+
 
                 <ion-col size="2">
                   ${{orderPrice}}
@@ -110,7 +121,7 @@
           </ion-card>
 
           <br>
-          Timeline
+<!--          Timeline-->
 
         </div>
       </ion-col>

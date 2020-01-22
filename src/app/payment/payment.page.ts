@@ -1,13 +1,13 @@
 import { Component, Directive, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { UserService } from '../user.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { firestore } from 'firebase/app';
 import {ActivatedRoute, Router} from '@angular/router';
-import * as tf from '@tensorflow/tfjs';
-import { IMAGENET_CLASSES } from '../../assets/imagenet-classes';
-import * as moment from 'moment';
-import {FirebaseService} from "../firebase.service";
+
+import { AngularFirestore } from '@angular/fire/firestore';
+
+import { UserService } from '../user.service';
+import { FirebaseService } from "../firebase.service";
+import { PaymentService } from "./payment.service";
+
+import { environment } from "../../environments/environment";
 
 @Component({
     selector: 'app-payment',
@@ -15,7 +15,8 @@ import {FirebaseService} from "../firebase.service";
     styleUrls: ['./payment.page.scss'],
 })
 export class PaymentPage implements OnInit {
-
+    handler: any;
+    amount: any;
     orderID
 
     constructor(
@@ -24,10 +25,24 @@ export class PaymentPage implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         public user:UserService,
+        private paymentSvc: PaymentService,
     ) { }
 
     ngOnInit() {
+        this.loadStripe();
+        this.amount = 5; //hardcode for now
         this.orderID = this.route.snapshot.paramMap.get('id')
+    }
+
+    loadStripe() {
+
+        if (!window.document.getElementById('stripe-script')) {
+            let s = window.document.createElement('script');
+            s.id = 'stripe-script';
+            s.type = 'text/javascript';
+            s.src = 'https://checkout.stripe.com/checkout.js';
+            window.document.body.appendChild(s);
+        }
     }
 
     orderStatusCompletedPayment() {
@@ -58,6 +73,28 @@ export class PaymentPage implements OnInit {
         });
     }
 
+    pay(amount) {
+
+        let handler;
+        handler = (window as any).StripeCheckout.configure({
+            key: environment.stripeKey,
+            locale: 'auto',
+            token: token => {
+                try {
+                    this.paymentSvc.processPayment(token, this.amount*100, this.orderID);
+                    this.completePayment()
+                } catch(err) {
+                    console.log(err);
+                }
+            }
+        });
+
+        handler.open({
+            name: 'Demo Site',
+            description: '2 widgets',
+            amount: amount * 100
+        });
+    }
 
     completePayment() {
         this.orderStatusCompletedPayment()

@@ -15,11 +15,35 @@
   </ion-item>
 
   <ion-card-content>
-    <ion-textarea placeholder="Pick Up address" [(ngModel)]="pickUpAddress"></ion-textarea>
-
+    <h1>Pick Up Address</h1>
+    <ion-row>
+      <ion-col col-1>
+        <ion-item>
+          <ion-input placeholder="Enter postal code" [(ngModel)]="pickUpPostalCode"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <ion-button color="primary" (click)="searchPickUp()" fill="outline" class="ion-align-items-center">Search Address</ion-button>
+      </ion-col>
+      <ion-col col-12></ion-col>
+    </ion-row>
+    <ion-textarea placeholder="Pick Up address" [value]='this.pickUpAddress' [(ngModel)]="pickUpAddress"></ion-textarea>
   </ion-card-content>
+
   <ion-card-content>
-    <ion-textarea placeholder="Drop Off address" [(ngModel)]="dropOffAddress"></ion-textarea>
+    <h1>Drop Off Address</h1>
+    <ion-row>
+      <ion-col col-1>
+        <ion-item>
+          <ion-input placeholder="Enter postal code" [(ngModel)]="dropOffPostalCode"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <ion-button color="primary" (click)="searchDropOff()" fill="outline" class="ion-align-items-center">Search Address</ion-button>
+      </ion-col>
+      <ion-col col-12></ion-col>
+    </ion-row>
+    <ion-textarea placeholder="Drop Off address" [value]='dropOffAddress' [(ngModel)]="dropOffAddress"></ion-textarea>
   </ion-card-content>
 
 

@@ -8,3 +8,4 @@ node_modules
 /.idea/workspace.xml
 plugins/
 www/
+payment-backend/.idea

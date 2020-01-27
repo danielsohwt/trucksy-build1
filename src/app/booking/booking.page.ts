@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import * as moment from 'moment';
 
+// TODO: add unit numbers
+// TODO: add error handling for unfound/invalid postal codes
 
 @Component({
     selector: 'app-booking',
@@ -50,6 +52,7 @@ export class BookingPage implements OnInit {
         console.log(this.dateTimeOfPickup);
     }
 
+    // TODO: remove redundant code (2 searches)
     searchPickUp() {
         this.postalSearch(this.pickUpPostalCode)
             .then(data => {

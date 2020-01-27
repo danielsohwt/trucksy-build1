@@ -21,7 +21,7 @@ export class PaymentService {
     });
   }
 
-  processPayment(token: any, amount, orderId) {
+  processPayment(token: any, amount, orderId, dateTimeOfPickup, pickUpAddress, dropOffAddress) {
     const payment = {token, amount};
     const paymentId = this.db.list(`payments/${this.userId}/${orderId}`).push(payment).key;
     console.log('amount=', amount);
@@ -31,12 +31,11 @@ export class PaymentService {
     const idempotencyKey = paymentId;
     const source = token.id;
     const currency = 'sgd';
-    const charge = {amount, currency, source, idempotencyKey};
+    const charge = {amount, currency, source, idempotencyKey, dateTimeOfPickup, pickUpAddress, dropOffAddress};
 
-    //to change host
+    //TODO: change host
     this.http.post('http://localhost:4000/charge',
-        {
-          amount, currency, source, idempotencyKey
+        {amount, currency, source, idempotencyKey, dateTimeOfPickup, pickUpAddress, dropOffAddress
         }).subscribe(
         (res) => {
           console.log('Server response: ', res);

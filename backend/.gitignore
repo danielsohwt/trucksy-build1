@@ -1,0 +1,12 @@
+node_modules
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.vscode/settings.json
+/.idea/trucksy.iml
+/.idea/vcs.xml
+/.idea/workspace.xml
+plugins/
+www/
+backend/.idea
+/.history

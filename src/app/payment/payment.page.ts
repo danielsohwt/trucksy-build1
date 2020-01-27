@@ -18,6 +18,9 @@ export class PaymentPage implements OnInit {
     handler: any;
     amount: any;
     orderID
+    dateTimeOfPickup;
+    pickUpAddress: any;
+    dropOffAddress: any;
 
     constructor(
         public firebaseService: FirebaseService,
@@ -30,9 +33,11 @@ export class PaymentPage implements OnInit {
 
     ngOnInit() {
         this.loadStripe();
-        this.amount = 5; //hardcode for now
+        this.amount = 5; // TODO: REMOVE hardcode
         this.orderID = this.route.snapshot.paramMap.get('id')
+        this.getOrderInfo();
     }
+
 
     loadStripe() {
 
@@ -43,6 +48,22 @@ export class PaymentPage implements OnInit {
             s.src = 'https://checkout.stripe.com/checkout.js';
             window.document.body.appendChild(s);
         }
+    }
+
+    getOrderInfo() {
+        this.afs.collection('order').doc(this.orderID).ref.get()
+            .then (doc => {
+                if (!doc.exists) {
+                    console.log('No such order!');
+                } else {
+                    this.dateTimeOfPickup = doc.data().dateTimeOfPickup;
+                    this.pickUpAddress = doc.data().pickUpAddress;
+                    this.dropOffAddress = doc.data().dropOffAddress;
+                }
+            })
+            .catch (err => {
+                console.log('Error getting document', err);
+            })
     }
 
     orderStatusCompletedPayment() {
@@ -81,7 +102,13 @@ export class PaymentPage implements OnInit {
             locale: 'auto',
             token: token => {
                 try {
-                    this.paymentSvc.processPayment(token, this.amount*100, this.orderID);
+                    this.paymentSvc.processPayment(
+                        token,
+                        this.amount*100,
+                        this.orderID,
+                        this.dateTimeOfPickup,
+                        this.pickUpAddress,
+                        this.dropOffAddress);
                     this.completePayment()
                 } catch(err) {
                     console.log(err);

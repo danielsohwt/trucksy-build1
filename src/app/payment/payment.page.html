@@ -9,7 +9,7 @@
   {{ orderID }}
 Enter your credit card details below
   <br>
-  <ion-button shape="round" color="primary" (click)="completePayment()" *ngIf="!imageURL" fill="outline">Complete Payment</ion-button>
+  <ion-button shape="round" color="primary" (click)="pay()" *ngIf="!imageURL" fill="outline">Complete Payment</ion-button>
   <br>
   <ion-button shape="round" color="primary" (click)="codPayment()" *ngIf="!imageURL" fill="outline">Cash On Delivery</ion-button>
   <br>

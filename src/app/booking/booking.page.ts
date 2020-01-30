@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Platform } from '@ionic/angular';
 import {FirebaseService} from "../firebase.service";
 import { Router } from '@angular/router'
@@ -7,6 +8,9 @@ import { UserService } from "../user.service";
 import { ActivatedRoute } from '@angular/router';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import * as moment from 'moment';
+
+// TODO: add unit numbers
+// TODO: add error handling for unfound/invalid postal codes
 
 @Component({
     selector: 'app-booking',
@@ -20,8 +24,11 @@ export class BookingPage implements OnInit {
     now: any;
     currentDateTime
     dateTimeOfPickup
-    pickUpAddress
-    dropOffAddress
+    stAddr
+    pickUpAddress: any;
+    dropOffAddress: any;
+    pickUpPostalCode: any;
+    dropOffPostalCode: any;
 
     constructor(
         public firebaseService: FirebaseService,
@@ -29,6 +36,7 @@ export class BookingPage implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         public user:UserService,
+        private httpClient: HttpClient,
     ) { }
 
     ngOnInit() {
@@ -43,6 +51,39 @@ export class BookingPage implements OnInit {
         this.dateTimeOfPickup = this.date;
         console.log(this.dateTimeOfPickup);
     }
+
+    // TODO: remove redundant code (2 searches)
+    searchPickUp() {
+        this.postalSearch(this.pickUpPostalCode)
+            .then(data => {
+                console.log(data);
+                this.pickUpAddress = data;
+            })
+    }
+
+    searchDropOff() {
+        this.postalSearch(this.dropOffPostalCode)
+            .then(data => {
+                console.log(data);
+                this.dropOffAddress = data;
+            })
+    }
+
+    postalSearch(postalCode: any) {
+        // @ts-ignore
+        return new Promise((resolve, reject) => {
+            this.httpClient.get(`https://geocode.xyz/${postalCode}+SG?json=1`)
+                .subscribe((data: Response) => {
+                    console.log(data);
+                    // @ts-ignore
+                    this.stAddr = data.standard.addresst + ' ' + data.standard.city + ' ' + data.standard.postal;
+                    resolve(this.stAddr)
+                },
+                error => {
+                    reject(error);
+                });
+        })
+    };
 
     placePayment() {
 

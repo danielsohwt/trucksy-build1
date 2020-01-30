@@ -1,0 +1,32 @@
+.home-background {
+  --background: url('../../assets/img/background/login.jpg') no-repeat center center fixed;;
+  --background-size: cover;
+}
+
+#testing{
+  width: 200px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// .login-box{
+//     max-width: 500px;
+//     max-height: 300px;
+//     //width:100%;
+//     //margin: center;
+//     text-align: center;
+//     //height: 100%;
+//     display: block;
+//     //vertical-align: middle;
+// }
+
+#rounded {
+  margin-left:auto;
+  margin-right: auto;
+  border: solid 1px orange;
+  width: 300px;
+  height: 50px;
+  margin-bottom: 30px;
+}
+

@@ -9,33 +9,68 @@
 			size-md="6" 
 			size-lg="4"
 			>
+				<div [hidden]="buttonClicked">
+					<ion-list>
+						<ion-img id="testing" src="../../assets/img/logo/Rentalorry.png"></ion-img>
+
+						<ion-item id="rounded">
+							<ion-input placeholder="First Name" type="text" [(ngModel)]="firstName"></ion-input>
+						</ion-item>
+
+						<ion-item id="rounded">
+							<ion-input placeholder="Last Name" type="text" [(ngModel)]="lastName"></ion-input>
+						</ion-item>
+
+						<ion-item id="rounded">
+							<ion-input placeholder="Username" type="text" [(ngModel)]="username"></ion-input>
+						</ion-item>
+
+						<ion-item id="rounded">
+							<ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
+						</ion-item>
+
+						<ion-item id="rounded">
+							<ion-input placeholder="Confirm Password" type="password" [(ngModel)]="cpassword"></ion-input>
+						</ion-item>
+
+						<ion-item id="rounded">
+							<ion-input placeholder="Mobile Number" type="text" [(ngModel)]="hpnumber"></ion-input>
+						</ion-item>
+
+						<ion-item id="rounded">
+							<ion-label>Account Type</ion-label>
+							<ion-select (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select One">
+								<ion-select-option  userType="user">User</ion-select-option>
+								<ion-select-option userType="driver">Driver</ion-select-option>
+							</ion-select>
+						</ion-item>
+
+						<ion-row justify-content-around>
+							<ion-button fill="solid" color="primary" (click)="register()">Sign Up</ion-button>
+						</ion-row>
+						<br>
+					</ion-list>
+				</div>
+
+
 				<ion-list>
-					<ion-img id="testing" src="../../assets/img/logo/Rentalorry.png"></ion-img>
-	
-					<ion-item id="rounded">
-						<ion-input placeholder="Username" type="text" [(ngModel)]="username"></ion-input>
-					</ion-item>
-				
-					<ion-item id="rounded">
-						<ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
-					</ion-item>
+					<div *ngIf="buttonClicked">
+						<h3>A one-time password (OTP) will be sent to the following mobile number for verification:</h3>
+						<ion-list>{{hpnumber}}</ion-list>
+					</div>
+					<div id="recaptcha-container"></div>
+					<div *ngIf="buttonClicked">
+						<ion-row justify-content-around>
+							<ion-button fill="solid" color="primary" (click)="sendLoginCode()">Send Code</ion-button>
+						</ion-row>
+					</div>
 
-					<ion-item id="rounded">
-						<ion-input placeholder="Confirm Password" type="password" [(ngModel)]="cpassword"></ion-input>
-					</ion-item>
+					<div *ngIf="this.windowRef.confirmationResult">
+						<ion-label>Enter your Verification Code Here</ion-label>
+						<ion-input type="text" name="code" [(ngModel)]="verificationCode"></ion-input>
 
-					<ion-item id="rounded">
-						<ion-label>Account Type</ion-label>
-						<ion-select (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select One">
-							<ion-select-option  userType="user">User</ion-select-option>
-							<ion-select-option userType="driver">Driver</ion-select-option>
-						</ion-select>
-					</ion-item>
-
-					<ion-row justify-content-around>
-						<ion-button fill="solid" color="primary" (click)="register()">Sign Up</ion-button>
-					</ion-row>
-					<br>
+						<button (click)="verifyLoginCode()">Verify</button>
+					</div>
 				</ion-list>
 			</ion-col>
 		</ion-row>

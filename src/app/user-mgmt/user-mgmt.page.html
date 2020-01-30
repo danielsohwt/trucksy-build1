@@ -1,0 +1,58 @@
+<ion-content class="home-background" padding>
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <ion-col
+              class="ion-align-self-center"
+              size-xs="12"
+              size-sm="8"
+              size-md="6"
+              size-lg="4"
+      >
+        <ion-list>
+          <ion-img id="testing" src="../../assets/img/logo/Rentalorry.png"></ion-img>
+
+          <ng-container *ngIf="actionCodeChecked" [ngSwitch]="mode">
+            <!-- Reset Password -->
+            <ng-container *ngSwitchCase="'resetPassword'">
+              <ion-row justify-content-around>
+                <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched">
+                  <ion-text color="danger">Please enter your new password</ion-text>
+                </ion-item>
+              </ion-row>
+
+              <ion-item id="rounded">
+                <ion-label position="floating">New Password</ion-label>
+                <ion-input type="password" [(ngModel)]="newPassword"
+                           required #passwordCtrl="ngModel" name="newPassword"></ion-input>
+              </ion-item>
+
+              <ion-row justify-content-around>
+                <ion-item *ngIf="!cpasswordCtrl.valid && cpasswordCtrl.touched">
+                  <ion-text color="danger">Please confirm your new password</ion-text>
+                </ion-item>
+              </ion-row>
+
+              <ion-item id="rounded">
+                <ion-label position="floating">Confirm New Password</ion-label>
+                <ion-input type="password" [(ngModel)]="confirmPassword"
+                           required #cpasswordCtrl="ngModel" name="confirmPassword"></ion-input>
+              </ion-item>
+
+              <ion-row justify-content-around>
+                <ion-button type="submit" fill="solid" color="primary" (click)="handleResetPassword()">Reset Password</ion-button>
+              </ion-row>
+            </ng-container>
+
+            <!-- Recover Email(for future) -->
+            <ng-container *ngSwitchCase="'recoverEmail'">
+            </ng-container>
+
+            <!-- Verify Email(for future) -->
+            <ng-container *ngSwitchCase="'verifyEmail'">
+            </ng-container>
+          </ng-container>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

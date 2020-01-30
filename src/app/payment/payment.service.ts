@@ -32,9 +32,9 @@ export class PaymentService {
     const idempotencyKey = paymentId;
     const source = token.id;
     const currency = 'sgd';
-    const charge = { userId, amount, currency, source, idempotencyKey, dateTimeOfPickup, pickUpAddress, dropOffAddress};
+    const charge = { userId, amount, currency, source, idempotencyKey, orderId, dateTimeOfPickup, pickUpAddress, dropOffAddress};
 
-    //TODO: change host
+    // TODO: change host
     this.http.post('http://localhost:4000/charge', charge)
         .subscribe(
         (res) => {

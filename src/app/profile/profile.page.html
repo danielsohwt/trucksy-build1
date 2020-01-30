@@ -6,31 +6,91 @@
 
 <ion-content class="padding">
 
-    <app-loading *ngIf="!posts"></app-loading>
+    <app-loading *ngIf="!firstname"></app-loading>
 
-    <div id="profile-info" *ngIf="username">
-        <ion-grid>
-            <ion-row>
-                <ion-col size="4" class="user-image">
-                    <ion-img src="https://ucarecdn.com/{{ profilePic }}/-/scale_crop/200x200/center/"></ion-img>
-                </ion-col>
-                <ion-col size="8">
-                    {{ username }}
-                    <ion-button shape="round" color="primary" routerLink="/tabs/edit-profile">Edit Profile</ion-button>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div>
+    <ion-grid class="container">
 
-    <div id="images" *ngIf="posts">
-        <div class="image" *ngFor="let post of posts">
-            <ion-card (click)="goTo(post)">
-                <ion-img src="https://ucarecdn.com/{{ post }}/-/scale_crop/200x200/center/"></ion-img>
-            </ion-card>
-            <ion-content>
-                <!-- <p>{{ post.desc }}</p> -->
-            </ion-content>
-        </div>
-    </div>
+        <ion-card>
+
+            <ion-card-content>
+
+                <div id="profile-picture-parent">
+                    <div id="profile-picture">
+                        <ion-img src="https://ucarecdn.com/{{ profilePic }}/-/scale_crop/200x200/center/"></ion-img>
+                    </div>
+                </div>
+
+
+                <h1 class="firstname">{{ firstname }}</h1>
+                <ion-button shape="round" color="primary" routerLink="/tabs/edit-profile">Edit Profile</ion-button>
+            </ion-card-content>
+            <ion-button expand="full" color="primary">Full Button</ion-button>
+            <ion-button expand="full" color="primary">Full Button</ion-button>
+            <ion-button expand="full" color="primary">Full Button</ion-button>
+        </ion-card>
+    </ion-grid>
+
+
+    <ion-grid *ngIf="orders" class="container">
+        <ion-card >
+
+            <div>
+                <div class="order-card-parent" *ngFor="let order of orders">
+                    <ion-card class="order-card-child" (click)="goTo(order)">
+                        <ion-grid>
+
+                            <ion-row>
+                                <ion-col class="orderID" size="6">
+                                    Order ID: 1234
+                                </ion-col>
+                                <ion-col class="date" size="6">
+                                    16 Jan 2020, 7:20pm
+                                </ion-col>
+                            </ion-row>
+
+                            <ion-row>
+                                <ion-col class="orderID" size="12">
+                                    Driver: Micheal Tan
+                                </ion-col>
+                            </ion-row>
+
+                            <ion-row>
+                                <ion-col class="orderID" size="12">
+<!--                                    <fa-icon [icon]="faCoffee"></fa-icon> Blk 123 Ang Mo Kio Street 22 #07-143 Singapore 049022-->
+                                </ion-col>
+                            </ion-row>
+
+                            <ion-row>
+                                <ion-col class="orderID" size="12">
+<!--                                    <fa-icon [icon]="faCoffee"></fa-icon> Blk 932 Woodlands Avenue 1 #06-432 Singapore 483354-->
+                                </ion-col>
+                            </ion-row>
+
+                        </ion-grid>
+
+                        <ion-card-header>
+                            <ion-card-title>{{ lorryType }}</ion-card-title>
+                        </ion-card-header>
+                        Order Id: {{ order }} <br>
+                        <span ng-init="getOrderDetails(order)">Desc: {{desc}}</span>
+                        Driver: {{driver}} <br>
+                        Date Time of Pickup: {{dateTimeOfPickup | date:'medium' }} <br>
+                        Start Location: {{ pickUpAddress }}<br>
+                        End Location: {{ dropOffAddress }} <br>
+                        End Location: {{ orderPrice }} <br>
+                        End Location: {{ orderItemsActual | json }} <br>
+
+
+                    </ion-card>
+                    <ion-content>
+
+                    </ion-content>
+                </div>
+            </div>
+
+        </ion-card>
+    </ion-grid>
+
+
 
 </ion-content>

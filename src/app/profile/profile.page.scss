@@ -6,12 +6,55 @@
 	width: 606px;
 }
 
-.image {
-	margin-left: 1px;
-	margin-right: 1px;
+.order-card {
+	width: 100%;
+	text-align: center;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .main-image, .user-image {
 	width: 200px;
 	height: 200px;
+}
+
+#profile-picture {
+	width: 100px;
+	height: 100px;
+	border-radius: 50% !important;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.profile-picture-parent {
+	padding-top: 30px !important;
+	text-align: center;
+}
+
+.order-card-parent {
+	text-align: center;
+}
+
+.order-card-child {
+	padding: 20px;
+	display: inline-block;
+	width: 100%;
+}
+
+.container {
+	max-width: 800px;
+	padding: 20px !important;
+	text-align: center;
+}
+
+.firstname {
+	color: black;
+}
+
+.date {
+	text-align: right;
+}
+
+.orderID {
+	text-align: left;
 }

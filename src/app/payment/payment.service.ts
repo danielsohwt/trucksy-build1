@@ -28,15 +28,15 @@ export class PaymentService {
     console.log('paymentId', paymentId);
     console.log('source=', token.id);
 
+    const userId = this.userId
     const idempotencyKey = paymentId;
     const source = token.id;
     const currency = 'sgd';
-    const charge = {amount, currency, source, idempotencyKey, dateTimeOfPickup, pickUpAddress, dropOffAddress};
+    const charge = { userId, amount, currency, source, idempotencyKey, dateTimeOfPickup, pickUpAddress, dropOffAddress};
 
     //TODO: change host
-    this.http.post('http://localhost:4000/charge',
-        {amount, currency, source, idempotencyKey, dateTimeOfPickup, pickUpAddress, dropOffAddress
-        }).subscribe(
+    this.http.post('http://localhost:4000/charge', charge)
+        .subscribe(
         (res) => {
           console.log('Server response: ', res);
           this.db.list(`/payments/${this.userId}/${orderId}/${paymentId}`).set('payment', res);

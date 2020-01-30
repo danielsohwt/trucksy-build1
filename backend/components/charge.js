@@ -18,9 +18,6 @@ module.exports = async (req, res) => {
 			.then(charge => {
 					res.json({
 						success: true,
-						dateTimeOfPickup: dateTimeOfPickup,
-						pickUpAddress: pickUpAddress,
-						dropOffAddress: dropOffAddress,
 						charge
 					});
 					const sms = require('./send_sms')

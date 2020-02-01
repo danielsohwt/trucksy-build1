@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  stripeKey: 'pk_test_w6jToOfq5LFI2DmbOdfu2CFv003OEOTjl8'
+  stripeKey: 'pk_test_w6jToOfq5LFI2DmbOdfu2CFv003OEOTjl8',
+  backendURL: 'https://pacific-crag-85181.herokuapp.com/'
 };
 
 /*

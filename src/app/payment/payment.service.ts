@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
 import { HttpClient } from '@angular/common/http';
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +35,7 @@ export class PaymentService {
     const currency = 'sgd';
     const charge = { userId, amount, currency, source, idempotencyKey, orderId, dateTimeOfPickup, pickUpAddress, dropOffAddress};
 
-    // TODO: change host
-    this.http.post('http://localhost:4000/charge', charge)
+    this.http.post(environment.backendURL, charge)
         .subscribe(
         (res) => {
           console.log('Server response: ', res);

@@ -35,7 +35,7 @@ export class PaymentService {
     const currency = 'sgd';
     const charge = { userId, amount, currency, source, idempotencyKey, orderId, dateTimeOfPickup, pickUpAddress, dropOffAddress};
 
-    this.http.post(environment.backendURL, charge)
+    this.http.post(environment.backendURL + 'charge', charge)
         .subscribe(
         (res) => {
           console.log('Server response: ', res);

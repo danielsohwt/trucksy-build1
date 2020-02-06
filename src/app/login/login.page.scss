@@ -1,6 +1,8 @@
 .home-background {
-    --background: url('../../assets/img/background/login.jpg') no-repeat center center fixed;;
+    --background: url('../../assets/img/background/login.jpg') no-repeat center center fixed;
     --background-size: cover;
+    overflow: hidden;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 #testing{
@@ -37,4 +39,119 @@
     margin-left:auto; 
     margin-right: auto; 
     margin: center; 
+}
+
+
+/* Login container */
+.transparentbox {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 834px;
+    height: 564px;
+    background-color: rgba(253, 253, 253, 0.51);
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.51);
+}
+
+/* Login form container */
+#contents {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 0.75fr 1.75fr;
+    //grid-template-columns: 2fr;
+    grid-template-areas:
+            "header"
+            "form"
+}
+
+#form {
+    grid-area: form;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 0.5fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+            "username username"
+            "password password"
+            "footer footer"
+            "login login"
+}
+
+.logo {
+    height: auto;
+    width: 45%;
+    grid-area: header;
+    justify-self: center;
+    align-self: center;
+}
+
+#username {
+    grid-area: username;
+    height: 60%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid rgb(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255);
+}
+#password {
+    grid-area: password;
+    height: 60%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid rgb(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255);
+}
+
+#footer {
+    grid-area: footer;
+    margin: 10px 10%;
+    justify-content: space-between
+}
+
+#forgot {
+    cursor: pointer;
+}
+
+.orangeButton {
+    box-shadow: 0px 1px 5px 0px rgb(0, 0, 0, 0.4);
+    background-color:#F2561D;
+    border-radius:14px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:18px;
+    text-decoration:none;
+    border: 0px;
+}
+
+#login {
+    grid-area: login;
+    padding: 15px 36px;
+    justify-self: center;
+    align-self: start;
+}
+
+.orangeButton:hover {
+    background-color:#d96725;
+}
+.orangeButton:active {
+    top:1px;
+}
+
+
+strong {
+    display: block;
+    text-align: center;
 }

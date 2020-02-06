@@ -62,8 +62,10 @@ export class ProfilePage implements OnInit, OnDestroy {
           this.pickUpAddress = event.pickupAddress,
           this.dropOffAddress = event.dropOffAddress,
           this.orderItemsActual = event.orderItemsActual,
-          this.orderPrice = event.orderPrice
+          this.orderPrice = event.orderPrice,
           this.lorryType = "10ft Lorry"
+
+
       })
   }
 

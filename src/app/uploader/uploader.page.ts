@@ -203,6 +203,11 @@ export class UploaderPage implements OnInit {
             // ** Only after orderStatus == "Confirmed" fulfillmentStatus == "Order Placed"
             fulfillmentStatus: "Order Not Confirmed",
 
+
+            //upload counter
+            // if upload counter > 2, send to customer
+            uploadCounter: 1,
+
             orderItemsPredicted: {
                         studioCouch: 1,
                         tables: 3,

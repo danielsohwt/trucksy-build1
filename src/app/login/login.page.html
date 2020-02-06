@@ -1,5 +1,14 @@
 <ion-content class="home-background">
-	<div class="transparentbox">
+	<ion-grid style="height: 100%">
+		<ion-row justify-content-center align-items-center style="height: 100%">
+			<ion-col
+					class="ion-align-self-center"
+					size-xs="12"
+					size-sm="8"
+					size-md="6"
+					size-lg="6"
+			>
+			<div class="transparentbox">
 				<form #f="ngForm" novalidate (ngSubmit)="onSubmit(f)" style="height: 100%">
 				<div id="contents">
 					<img class="logo" src="../../assets/img/logo/trucksy_logo.png">
@@ -19,13 +28,13 @@
 									   required #passwordCtrl="ngModel" name="password" placeholder="Password">
 
 
-							<div id="footer" style="display: flex">
-								<div>
+							<div id="footer">
+								<div style="justify-content: left">
 									<input type="checkbox" id="remember-checkbox" class="checkbox" checked="checked"/>
 									<span id="remember">Keep me signed in</span>
 								</div>
 								<div>
-									<span id="forgot" (click)="forgotPasswordButton()">Forgot your password?&emsp;</span>
+									<span style="justify-self: right" id="forgot" (click)="forgotPasswordButton()">Forgot your password?&emsp;</span>
 								</div>
 							</div>
 <!--						<ion-row justify-content-around>-->
@@ -50,6 +59,9 @@
 					</div>
 				</div>
 				</form>
-	</div>
+			</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-content>
 

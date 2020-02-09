@@ -28,6 +28,10 @@ export class UploaderPage implements OnInit {
     desc: string;
     busy: boolean = false;
     noFace: boolean = false;
+    simulateResponse;
+    private test123: string;
+    uploadFail;
+    lowAccuracyCounter = 0;
 
 
 
@@ -52,8 +56,12 @@ export class UploaderPage implements OnInit {
     faces
     event
 
+
     @ViewChild('fileButton', { static: false }) fileButton;
     // @ViewChild('fileButton') fileButton
+    private image1Classification: string;
+    private image1Confidence: string;
+    private image1Probabilty: string;
 
     constructor(
         public http: HttpClient,
@@ -144,7 +152,112 @@ export class UploaderPage implements OnInit {
 
     // End AI Stuff
 
-    createPost() {
+
+
+
+    uploadFile() {
+        this.fileButton.nativeElement.click()
+    }
+
+    setSelected(effect: string) {
+        this.activeEffect = this.effects[effect]
+    }
+
+
+    fileChanged(event) {
+        this.busy = true
+        const files = event.target.files
+
+        // Call classification API to determine class and confidence level
+
+        // Simulate Response from AI API
+        let simulateResponse1;
+
+        simulateResponse1 = {
+            "Classification": "sofa 2-seater",
+            "Confidence": "Low Confidence",
+            "Probabilty": "97.26%"
+        }
+
+        this.image1Classification = simulateResponse1.Classification
+        this.image1Confidence = simulateResponse1.Confidence
+        this.image1Probabilty = simulateResponse1.Probabilty
+
+
+        if (this.image1Confidence === "High Confidence")
+        {
+            //prepare data
+            const data = new FormData()
+            data.append('file', files[0])
+            data.append('UPLOADCARE_STORE', '1')
+            data.append('UPLOADCARE_PUB_KEY', 'b9cc3f94e77d60a02f90')
+
+            // post to uploadcare
+            this.http.post('https://upload.uploadcare.com/base/', data)
+                .subscribe(event => {
+                    console.log(event)
+                    this.imageURL = event['file']
+                    console.log(this.imageURL)
+                    this.busy = false
+                })
+
+
+        }
+        else
+
+        {
+            this.uploadFail = true;
+
+            //user uploaded twice with low accuracy
+            if (this.lowAccuracyCounter === 1 ) {
+                //post to firebase, and continue flow without quotation.
+                this.uploadFail = null;
+
+                //prepare data
+                const data = new FormData()
+                data.append('file', files[0])
+                data.append('UPLOADCARE_STORE', '1')
+                data.append('UPLOADCARE_PUB_KEY', 'b9cc3f94e77d60a02f90')
+
+                // post to uploadcare
+                this.http.post('https://upload.uploadcare.com/base/', data)
+                    .subscribe(event => {
+                        console.log(event)
+                        this.imageURL = event['file']
+                        console.log(this.imageURL)
+                        this.busy = false
+                    })
+
+                    //TODO: send info to skip price estimate page
+
+            } else {
+
+                this.lowAccuracyCounter += 1;
+                console.log(this.lowAccuracyCounter);
+                this.busy = false;
+            }
+
+
+        }
+
+
+
+        // // post method for image classification
+        // this.http.post('https://8080-dot-10558302-dot-devshell.appspot.com/predict/', data)
+        //     .subscribe(event => {
+        //         console.log(event)
+        //         // this.imageURL = event['file']
+        //         // console.log(this.imageURL)
+        //         // this.busy = false
+        //
+        //     })
+
+
+        //TODO:
+        // Write AI function here
+}
+
+    createOrder() {
         let now = moment(); // add this 2 of 4
         this.busy = true
         const orderID = this.imageURL
@@ -209,15 +322,15 @@ export class UploaderPage implements OnInit {
             uploadCounter: 1,
 
             orderItemsPredicted: {
-                        studioCouch: 1,
-                        tables: 3,
-                        washer: 1
-                        },
+                studioCouch: 1,
+                tables: 3,
+                washer: 1
+            },
             orderItemsActual: {
-                            chair: 2,
-                            tables: 3,
-                            washer: 1
-                            },
+                chair: 2,
+                tables: 3,
+                washer: 1
+            },
             dateTimeOfOrder: now.format(),
             driverID: "Driver1234",
         })
@@ -226,45 +339,10 @@ export class UploaderPage implements OnInit {
         this.imageURL = "";
         this.desc = "";
         // this.route.navigate(['/admin-order-detail/'+ item.payload.doc.id]);
+
+        //TODO: Route twice failed upload to skip price esitmate page
         this.route.navigate(['/estimateprice/'+ orderID])
         // this.route.navigate(['/estimateprice/'])
     }
-
-    uploadFile() {
-        this.fileButton.nativeElement.click()
-    }
-
-    setSelected(effect: string) {
-        this.activeEffect = this.effects[effect]
-    }
-
-
-    fileChanged(event) {
-        this.busy = true
-        const files = event.target.files
-
-        const data = new FormData()
-        data.append('file', files[0])
-        data.append('UPLOADCARE_STORE', '1')
-        data.append('UPLOADCARE_PUB_KEY', 'b9cc3f94e77d60a02f90')
-
-        // post method
-        this.http.post('https://upload.uploadcare.com/base/', data)
-        .subscribe(event => {
-            console.log(event)
-            this.imageURL = event['file']
-            console.log(this.imageURL)
-            this.busy = false
-
-
-            this.http.get(`https://ucarecdn.com/${this.imageURL}/detect_faces/`)
-                .subscribe(event => {
-                    this.noFace = event['faces'] == 0
-                })
-        })
-
-        //TODO:
-        // Write AI function here
-}
 
 }

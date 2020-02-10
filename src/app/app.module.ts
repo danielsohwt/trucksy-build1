@@ -31,6 +31,9 @@ import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { ShareModule } from './share.module';
 
+//stripe
+import { Stripe } from '@ionic-native/stripe/ngx';
+
 import * as tf from '@tensorflow/tfjs';
 import { IMAGENET_CLASSES } from '../assets/imagenet-classes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -81,7 +84,8 @@ import {AdminOrderListingComponent} from "./dashboard/adminOrderListing/AdminOrd
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     UserService,
-    AuthService
+    AuthService,
+    Stripe,
   ],
   bootstrap: [AppComponent]
 })

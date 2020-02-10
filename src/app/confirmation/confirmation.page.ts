@@ -14,7 +14,7 @@ import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestor
 })
 export class ConfirmationPage implements OnInit {
 
-    orderID
+    orderID;
 
     constructor(
         public firebaseService: FirebaseService,
@@ -40,6 +40,7 @@ export class ConfirmationPage implements OnInit {
 
             orderStatus: 'Order Confirmed',
         });
+
 
         this.router.navigate(['/tabs/feed'])
     }

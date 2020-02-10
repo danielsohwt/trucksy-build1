@@ -33,6 +33,9 @@ export class UploaderPage implements OnInit {
     uploadFail;
     lowAccuracyCounter = 0;
 
+    orderStatus;
+    orderItemsPredicted;
+
 
 
     @ViewChild('chosenImage', { static: false }) img: ElementRef;
@@ -171,6 +174,8 @@ export class UploaderPage implements OnInit {
         // Call classification API to determine class and confidence level
 
         // Simulate Response from AI API
+        //Write post request to AI classifier here and map response to simulateResponse1
+
         let simulateResponse1;
 
         simulateResponse1 = {
@@ -182,6 +187,10 @@ export class UploaderPage implements OnInit {
         this.image1Classification = simulateResponse1.Classification
         this.image1Confidence = simulateResponse1.Confidence
         this.image1Probabilty = simulateResponse1.Probabilty
+
+        if (this.image1Confidence === "Low Confidence") {
+            this.image1Classification = null;
+        }
 
 
         if (this.image1Confidence === "High Confidence")
@@ -279,7 +288,18 @@ export class UploaderPage implements OnInit {
         //TODO use server time
         // require('firebase-admin').firestore.FieldValue;
 
-        // Todo set this order to auto increment
+        //Pre-configure variables before pushing to firestore
+
+        if (this.lowAccuracyCounter === 1) {
+            this.orderStatus = "Require Manual Verification";
+        } else {
+            this.orderStatus = "Created Order";
+        }
+
+        this.orderItemsPredicted = {image1Classification:1}
+
+
+        // Push to firestore
         this.afstore.doc(`order/${orderID}`).set({
             image: orderID,
             user: this.user.getUsername(),
@@ -288,15 +308,15 @@ export class UploaderPage implements OnInit {
             // Order flow Upload Image -> Price Estimate -> Booking Date -> Payment -> Confirmation
 
             //Order Status:
-            // 1: "Created Order"
-            // 2: "Created Price Estimate"
-            // 3: "Created Booking Date"
-            // 4: "Completed Payment"
-            // 5: "Order Confirmed"
-            orderStatus: "Created Order",
+            // 1: "Require Manual Verification"
+            // 2: "Created Order"
+            // 3: "Created Price Estimate"
+            // 4: "Created Booking Date"
+            // 5: "Completed Payment"
+            // 6: "Order Confirmed"
 
-            // // Server timestamp when user upload image
-            // createOrderServerTimestamp: FieldValue.serverTimestamp(),
+            orderStatus: this.orderStatus,
+
 
             //Payment Status:
             // 0: "Booking Date Not Confirmed" Have not reached booking page
@@ -317,20 +337,6 @@ export class UploaderPage implements OnInit {
             fulfillmentStatus: "Order Not Confirmed",
 
 
-            //upload counter
-            // if upload counter > 2, send to customer
-            uploadCounter: 1,
-
-            orderItemsPredicted: {
-                studioCouch: 1,
-                tables: 3,
-                washer: 1
-            },
-            orderItemsActual: {
-                chair: 2,
-                tables: 3,
-                washer: 1
-            },
             dateTimeOfOrder: now.format(),
             driverID: "Driver1234",
         })
@@ -338,11 +344,13 @@ export class UploaderPage implements OnInit {
         this.busy = false;
         this.imageURL = "";
         this.desc = "";
-        // this.route.navigate(['/admin-order-detail/'+ item.payload.doc.id]);
 
-        //TODO: Route twice failed upload to skip price esitmate page
-        this.route.navigate(['/estimateprice/'+ orderID])
-        // this.route.navigate(['/estimateprice/'])
+        if (this.lowAccuracyCounter === 1) {
+            //skip estimate price, go to booking page directly
+            this.route.navigate(['/booking/'+ orderID])
+        } else {
+            this.route.navigate(['/estimateprice/'+ orderID])
+        }
     }
 
 }

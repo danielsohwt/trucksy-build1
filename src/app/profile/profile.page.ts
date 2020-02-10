@@ -41,6 +41,8 @@ export class ProfilePage implements OnInit, OnDestroy {
     desc
     post
 
+    userOrders
+
 
   constructor(
     public http: HttpClient,
@@ -68,6 +70,15 @@ export class ProfilePage implements OnInit, OnDestroy {
 
       })
   }
+  ngOnInit() {
+
+      this.userOrders = this.afs.collection('order',ref => ref.where('user', '==', 'test@test.com'));
+
+      console.log(this.userOrders)
+
+
+  }
+
 
   getOrderDetails(orderID: string) {
       this.postID = orderID;
@@ -87,7 +98,6 @@ export class ProfilePage implements OnInit, OnDestroy {
         this.route.navigate(['/tabs/post/' + postID.split('/')[0]])
   }
 
-  ngOnInit() {
-  }
+
 
 }

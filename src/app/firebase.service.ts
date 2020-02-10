@@ -33,6 +33,10 @@ export class FirebaseService {
         return this.db.collection('users').snapshotChanges();
     }
 
+    getUserOrders(userID) {
+        return this.db.collection('users').snapshotChanges();
+    }
+
     searchUsers(searchValue){
         return this.db.collection('order',ref => ref.where('user', '>=', searchValue)
             .where('user', '<=', searchValue + '\uf8ff'))

@@ -36,11 +36,8 @@
             <div *ngIf="uploadFail" >
                 Unable to accurately classify, please upload again <br>
                 Here are some samples of good angles to try <br>
-                <ion-button shape="round" color="primary" (click)="uploadFile()" *ngIf="!imageURL" fill="outline"> Please Try Again</ion-button>
+                <ion-button shape="round" color="primary" (click)="uploadFile()" *ngIf="!imageURL" fill="outline"> Please Upload Again</ion-button>
             </div>
-
-
-
 
             <div *ngIf="imageURL" >
                 <ion-grid>
@@ -48,12 +45,10 @@
                         <ion-col size="12">
                             <ion-img src="https://ucarecdn.com/{{ imageURL }}/-/preview/{{ activeEffect }}"></ion-img>
                             <ion-card-content>
-                                Item: {{ image1Classification }}
+                                <div *ngIf="image1Classification" >Item: {{ image1Classification }}</div>
                                 <ion-textarea placeholder="Enter additional shifting insturctions" [(ngModel)]="desc"></ion-textarea>
                                 <ion-button shape="round" color="primary" (click)="createOrder()">Continue</ion-button>
 
-<!--                                {{ image1Confidence }}-->
-<!--                                {{ image1Probabilty }}-->
                             </ion-card-content>
                         </ion-col>
                     </ion-row>

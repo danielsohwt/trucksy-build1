@@ -33,12 +33,28 @@
 									<input type="checkbox" id="remember-checkbox" class="checkbox" checked="checked"/>
 									<span id="remember">Keep me signed in</span>
 								</div>
-								<div>
-									<span style="text-align: right" id="forgot" (click)="forgotPasswordButton()">Forgot your password?&emsp;</span>
-								</div>
+								<br>
+
 							</div>
-<!--						<ion-row justify-content-around>-->
-							<button class="orangeButton" id="login" type="submit" fill="solid" color="primary" (click)="login()">Login</button>
+
+						<div class="login">
+
+							<ion-button shape="round" color="primary" (click)="login()" >Login</ion-button>
+							<ion-button shape="round" color="primary" (click)="register()" fill="outline">Register</ion-button>
+							<br><br>
+							<span style="color:grey" id="forgot" (click)="forgotPasswordButton()">Forgot your password?&emsp;</span>
+							<br>
+						</div>
+						<br>
+
+						<div>
+
+						</div>
+
+
+
+
+
 <!--						</ion-row>-->
 
 					</div>

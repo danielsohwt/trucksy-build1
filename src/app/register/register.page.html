@@ -47,13 +47,15 @@
 
 						<ion-row justify-content-around>
 							<ion-button fill="solid" color="primary" (click)="register()">Sign Up</ion-button>
+							<ion-button fill="solid" color="primary" (click)="login()" fill="outline">Existing User: Login</ion-button>
 						</ion-row>
 						<br>
 					</ion-list>
 				</div>
 
 
-				<ion-list>
+				<ion-list padding>
+
 					<div *ngIf="buttonClicked">
 						<h3>A one-time password (OTP) will be sent to the following mobile number for verification:</h3>
 						<ion-list>{{hpnumber}}</ion-list>

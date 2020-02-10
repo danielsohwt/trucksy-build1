@@ -91,4 +91,9 @@ export class LoginPage implements OnInit {
                 (rejectionReason) => alert(rejectionReason))
             .catch(e => alert('An error occurred while attempting to reset your password'));
     }
+
+    register(){
+        this.router.navigate(['/register/']);
+    }
+
 }

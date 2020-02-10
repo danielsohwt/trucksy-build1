@@ -1,10 +1,4 @@
-<!--<ion-header>-->
-<!--	<ion-toolbar>-->
-<!--	 	<ion-title>Login</ion-title>-->
-<!--	</ion-toolbar>-->
-<!--</ion-header>-->
-
-<ion-content class="home-background" padding>
+<ion-content class="home-background">
 	<ion-grid style="height: 100%">
 		<ion-row justify-content-center align-items-center style="height: 100%">
 			<ion-col
@@ -12,64 +6,60 @@
 					size-xs="12"
 					size-sm="8"
 					size-md="6"
-					size-lg="4"
+					size-lg="6"
 			>
-				<form #f="ngForm" novalidate (ngSubmit)="onSubmit(f)">
-					<ion-list>
-						<ion-img id="testing" src="../../assets/img/logo/Rentalorry.png"></ion-img>
+			<div class="transparentbox">
+				<form #f="ngForm" novalidate (ngSubmit)="onSubmit(f)" style="height: 100%">
+				<div id="contents">
+					<img class="logo" src="../../assets/img/logo/trucksy_logo.png">
 
-						<div [hidden]="forgotPassword">
-							<ion-row justify-content-around>
-								<ion-item *ngIf="!usernameCtrl.valid && usernameCtrl.touched">
-									<ion-text color="danger">Please enter a valid e-mail address</ion-text>
-								</ion-item>
-							</ion-row>
+					<div id="form" [hidden]="forgotPassword">
+<!--						<ion-row justify-content-around>-->
+<!--							<ion-item *ngIf="!usernameCtrl.valid && usernameCtrl.touched">-->
+<!--								<ion-text color="danger">Please enter a valid e-mail address</ion-text>-->
+<!--							</ion-item>-->
+<!--						</ion-row>-->
 
-							<ion-item id="rounded">
-								<ion-label position="floating">Username</ion-label>
-								<ion-input type="email" [(ngModel)]="username"
-										   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-										   required #usernameCtrl="ngModel" name="username"></ion-input>
-							</ion-item>
+							<input id="username" type="email" [(ngModel)]="username"
+									   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+									   required #usernameCtrl="ngModel" name="username" placeholder="Username">
 
-							<ion-row justify-content-around>
-								<ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched">
-									<ion-text color="danger">Please enter a password</ion-text>
-								</ion-item>
-							</ion-row>
+							<input id="password" type="password" [(ngModel)]="password"
+									   required #passwordCtrl="ngModel" name="password" placeholder="Password">
 
-							<ion-item id="rounded">
-								<ion-label position="floating">Password</ion-label>
-								<ion-input type="password" [(ngModel)]="password"
-										   required #passwordCtrl="ngModel" name="password"></ion-input>
-							</ion-item>
 
-							<ion-row justify-content-around>
-								<ion-button type="submit" fill="solid" color="primary" (click)="login()">Login</ion-button>
-							</ion-row>
+							<div id="footer">
+								<div style="justify-content: left">
+									<input type="checkbox" id="remember-checkbox" class="checkbox" checked="checked"/>
+									<span id="remember">Keep me signed in</span>
+								</div>
+								<div>
+									<span style="text-align: right" id="forgot" (click)="forgotPasswordButton()">Forgot your password?&emsp;</span>
+								</div>
+							</div>
+<!--						<ion-row justify-content-around>-->
+							<button class="orangeButton" id="login" type="submit" fill="solid" color="primary" (click)="login()">Login</button>
+<!--						</ion-row>-->
 
-							<ion-row justify-content-around>
-								<a (click)="forgotPasswordButton()">Forgot your password?</a>
-							</ion-row>
-						</div>
+					</div>
 
-						<div *ngIf="forgotPassword">
-							<strong>Enter your email you signed up with for password recovery:</strong><hr>
-							<ion-item id="rounded">
-								<ion-label position="floating">Email</ion-label>
-								<ion-input type="email"
-										   value = {{this.username}}
-										   [(ngModel)]="username"
-										   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-										   required #usernameCtrl="ngModel" name="username"></ion-input>
-							</ion-item>
+					<div *ngIf="forgotPassword">
+						<strong>Enter your email you signed up with for password recovery:</strong><hr>
+						<ion-item id="rounded">
+							<ion-input type="email"
+									   value = {{this.username}}
+									   [(ngModel)]="username"
+									   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+									   required #usernameCtrl="ngModel" name="username"></ion-input>
+						</ion-item>
 
-							<ion-row justify-content-around>
-								<ion-button type="submit" fill="solid" color="primary" (click)="resetPassword()">Send Reset Link</ion-button>
-							</ion-row>
-						</div>
-					</ion-list>
+						<ion-row justify-content-around>
+							<ion-button type="submit" fill="solid" color="primary" (click)="resetPassword()">Send Reset Link</ion-button>
+						</ion-row>
+					</div>
+				</div>
 				</form>
+			</div>
 			</ion-col>
 		</ion-row>
 	</ion-grid>

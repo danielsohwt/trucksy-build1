@@ -1,15 +1,20 @@
-const stripe = require('stripe')('sk_test_KHQxfcD6UzYpsJP9H9ykZRIb00wsKXWSM9');
+const { stripeKey } = require('../config');
+const stripe = require('stripe')(stripeKey);
+
+const notifyService = require ('../services/notifyService')
 
 module.exports = async (req, res) => {
 	try {
-		// return 'payment reached charge function'
-
 		const amount = req.body.amount;
 		const currency = 'sgd';
 		const source = req.body.source;
 		const idempotencyKey = req.body.idempotencyKey;
 
-		const dateTimeOfPickup = req.body.dateTimeOfPickup;
+		const userId = req.body.userId;
+		const orderId = req.body.orderId;
+		const dateTimeOfPickup = req.body.dateTimeOfPickup
+			.replace(/T/, ' ')      // replace T with a space
+			.replace(/\..+/, ''); // delete the dot and everything after
 		const pickUpAddress = req.body.pickUpAddress;
 		const dropOffAddress = req.body.dropOffAddress
 
@@ -20,8 +25,7 @@ module.exports = async (req, res) => {
 						success: true,
 						charge
 					});
-					const sms = require('./send_sms')
-					sms.sendSMS(dateTimeOfPickup, pickUpAddress, dropOffAddress)
+					notifyService.notifyUser(userId, orderId, dateTimeOfPickup, pickUpAddress, dropOffAddress)
 				}
 			);
 	} catch (err) {

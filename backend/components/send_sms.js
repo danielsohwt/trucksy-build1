@@ -1,17 +1,15 @@
-// TODO: put in environment variable file instead
-const accountSid = 'ACc20f5b4f839c8d297275067aabf16cb1';
-const authToken = '96c96eabfa668ce8ff90c271cfc5dc19';
+const { twilioAccountSID, twilioAuthToken } = require('../config');
 
-const client = require('twilio')(accountSid, authToken);
+const client = require('twilio')(twilioAccountSID, twilioAuthToken);
 
 // TODO: format datetime to human-readable format
 module.exports = {
-    sendSMS: function (dateTimeOfPickup, pickUpAddress, dropOffAddress) {
+    sendSMS: function (hpNumber, dateTimeOfPickup, pickUpAddress, dropOffAddress) {
         client.messages
             .create({
                 body: `Your delivery from ${pickUpAddress} to ${dropOffAddress} at pickup ${dateTimeOfPickup} has been confirmed.`,
                 from: '+12019926725',
-                to: '+6597594818'
+                to: `${hpNumber}`
             })
             .then(message => console.log(message.sid));
     }

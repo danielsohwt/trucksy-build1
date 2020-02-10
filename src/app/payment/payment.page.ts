@@ -15,12 +15,11 @@ import { environment } from "../../environments/environment";
     styleUrls: ['./payment.page.scss'],
 })
 export class PaymentPage implements OnInit {
-    handler: any;
-    amount: any;
     orderID
     dateTimeOfPickup;
     pickUpAddress: any;
     dropOffAddress: any;
+    orderPrice: number;
 
     constructor(
         public firebaseService: FirebaseService,
@@ -33,7 +32,6 @@ export class PaymentPage implements OnInit {
 
     ngOnInit() {
         this.loadStripe();
-        this.amount = 5; // TODO: REMOVE hardcode
         this.orderID = this.route.snapshot.paramMap.get('id')
         this.getOrderInfo();
     }
@@ -59,6 +57,7 @@ export class PaymentPage implements OnInit {
                     this.dateTimeOfPickup = doc.data().dateTimeOfPickup;
                     this.pickUpAddress = doc.data().pickUpAddress;
                     this.dropOffAddress = doc.data().dropOffAddress;
+                    this.orderPrice = doc.data().orderPrice;
                 }
             })
             .catch (err => {
@@ -94,8 +93,7 @@ export class PaymentPage implements OnInit {
         });
     }
 
-    pay(amount) {
-
+    pay(orderPrice) {
         let handler;
         handler = (window as any).StripeCheckout.configure({
             key: environment.stripeKey,
@@ -104,7 +102,7 @@ export class PaymentPage implements OnInit {
                 try {
                     this.paymentSvc.processPayment(
                         token,
-                        this.amount*100,
+                        orderPrice*100,
                         this.orderID,
                         this.dateTimeOfPickup,
                         this.pickUpAddress,
@@ -118,8 +116,8 @@ export class PaymentPage implements OnInit {
 
         handler.open({
             name: 'Demo Site',
-            description: '2 widgets',
-            amount: amount * 100
+            description: `SGD ${orderPrice}`,
+            amount: orderPrice * 100
         });
     }
 

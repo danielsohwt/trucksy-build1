@@ -46,9 +46,9 @@ export class FirebaseService {
     }
 
     //
-    // searchUsersByAge(value){
-    //     return this.db.collection('users',ref => ref.orderBy('age').startAt(value)).snapshotChanges();
-    // }
+    searchOrdersByDate(start,end){
+        return this.db.collection('order',ref => ref.orderBy('dateTimeOfOrder').startAt(start).endAt(end)).snapshotChanges();
+    }
     //
     //
     // createUser(value, avatar){

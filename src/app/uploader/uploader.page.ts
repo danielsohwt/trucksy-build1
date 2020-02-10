@@ -176,6 +176,22 @@ export class UploaderPage implements OnInit {
         // Simulate Response from AI API
         //Write post request to AI classifier here and map response to simulateResponse1
 
+        //prepare data
+                const data = new FormData()
+
+
+                this.http.post('https://8080-dot-10558302-dot-devshell.appspot.com/predict/', data)
+                    .subscribe(event => {
+                        console.log(event)
+                        // this.imageURL = event['file']
+                        // console.log(this.imageURL)
+                        this.busy = false
+                    })
+
+
+
+
+
         let simulateResponse1;
 
         simulateResponse1 = {

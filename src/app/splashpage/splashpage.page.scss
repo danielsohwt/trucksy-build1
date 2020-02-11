@@ -2,7 +2,8 @@
 	--background: url('../../assets/img/background/Group 49.png') no-repeat center center fixed;
 	--background-size: cover;
 	overflow: hidden;
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: "Helvetica Neue Light", HelveticaNeue-Light, Arial, sans-serif;
+	font-size: 30pt;
 }
 
 .logo{
@@ -39,4 +40,35 @@
 	margin-top:60px;
 	//justify-content: center;
 	//align-items: left;
+}
+
+#login{
+	padding-right: 60px;
+	padding-left:60px;
+}
+
+#register{
+	margin-left: 250px;
+}
+
+.orangeButton {
+	padding:18px;
+	padding-left:50px;
+	padding-right:50px;
+	box-shadow: 0px 1px 5px 0px rgb(0, 0, 0, 0.4);
+	background-color:#F2561D;
+	border-radius:15px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:18pt;
+	text-decoration:none;
+	border: 0px;
+}
+
+.orangeButton:hover {
+	background-color:#d96725;
+}
+.orangeButton:active {
+	top:1px;
 }

@@ -10,6 +10,7 @@ import { environment } from "../../environments/environment";
 export class PaymentService {
   userId: string;
   stripe: any;
+  backendURL;
 
   constructor(private db: AngularFireDatabase,
               private afAuth: AngularFireAuth,

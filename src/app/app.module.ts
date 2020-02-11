@@ -16,6 +16,7 @@ import {
 } from 'ng-pick-datetime';
 
 //Firebase
+import { environment } from '../environments/environment';
 import firebaseConfig from './firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -56,7 +57,7 @@ import {AdminOrderListingComponent} from "./dashboard/adminOrderListing/AdminOrd
   imports: [BrowserModule,
             IonicModule.forRoot(),
             AppRoutingModule,
-            AngularFireModule.initializeApp(firebaseConfig),
+            AngularFireModule.initializeApp(environment.firebase),
             AngularFireAuthModule,
             AngularFireDatabaseModule,
             AngularFirestoreModule,

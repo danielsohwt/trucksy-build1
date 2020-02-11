@@ -31,6 +31,8 @@ export class EstimatepricePage implements OnInit {
     totalPrice
     sub
 
+    imageURL;
+
     constructor(
         public firebaseService: FirebaseService,
         private afs: AngularFirestore,

@@ -27,6 +27,9 @@ export class PaymentPage implements OnInit {
     dropOffAddress: any;
     orderPrice: number;
 
+    imageURL
+
+
     stripe = Stripe('pk_test_w6jToOfq5LFI2DmbOdfu2CFv003OEOTjl8');
     card: any;
 

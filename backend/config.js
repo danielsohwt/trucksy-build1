@@ -6,7 +6,7 @@ module.exports = {
     twilioAccountSID: process.env.TWILIO_ACC_SID,
     twilioAuthToken: process.env.TWILIO_AUTHTOKEN,
     test: process.env.FIREBASE_API_KEY,
-    firebaseConfig: {
+    firebase: {
         apiKey: process.env.FIREBASE_API_KEY,
         authDomain: process.env.FIREBASE__DOMAIN,
         databaseURL: process.env.FIREBASE_DATABASE_URL,

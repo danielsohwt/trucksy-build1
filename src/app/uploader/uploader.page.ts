@@ -36,6 +36,8 @@ export class UploaderPage implements OnInit {
     orderStatus;
     orderItemsPredicted;
 
+    image1Classification: any;
+
 
 
     @ViewChild('chosenImage', { static: false }) img: ElementRef;
@@ -62,7 +64,6 @@ export class UploaderPage implements OnInit {
 
     @ViewChild('fileButton', { static: false }) fileButton;
     // @ViewChild('fileButton') fileButton
-    private image1Classification: string;
     private image1Confidence: string;
     private image1Probabilty: string;
 

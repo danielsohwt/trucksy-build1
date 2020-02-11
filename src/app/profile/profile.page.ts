@@ -21,20 +21,20 @@ export class ProfilePage implements OnInit, OnDestroy {
     username: any;
     private mainuser: AngularFirestoreDocument;
     sub
-    private profilePic: any;
-    private posts: any;
-    private firstname: any;
-    private orderID: any;
-    private driver: string;
-    private pickpDate: any;
-    private pickUpAddress: any;
-    private dropOffAddress: any;
-    private orderItemsActual: any;
-    private orderPrice: any;
-    private dateTimeOfPickup: any;
-    private orderStatus: any;
-    private paymentStatus: any;
-    private lorryType: string;
+    profilePic: any;
+    posts: any;
+    firstname: any;
+    orderID: any;
+    driver: string;
+    pickpDate: any;
+    pickUpAddress: any;
+    dropOffAddress: any;
+    orderItemsActual: any;
+    orderPrice: any;
+    dateTimeOfPickup: any;
+    orderStatus: any;
+    paymentStatus: any;
+    lorryType: string;
 
     postReference: AngularFirestoreDocument
     order
@@ -52,20 +52,20 @@ export class ProfilePage implements OnInit, OnDestroy {
   ) { 
       this.mainuser = afs.doc(`users/${this.user.getUID()}`)
       this.sub = this.userOrder = this.mainuser.valueChanges().subscribe(event => {
-          this.orders = event.order,
-          this.orderID = event.orderID,
-          this.orderStatus = event.orderStatus,
-          this.paymentStatus = event.paymentStatus,
-          this.firstname = event.firstName,
-          this.username = event.username,
-          this.profilePic = event.profilePic,
-          this.driver = "Micheal Tan",
-          this.dateTimeOfPickup = event.dateTimeOfPickup,
-          this.pickUpAddress = event.pickupAddress,
-          this.dropOffAddress = event.dropOffAddress,
-          this.orderItemsActual = event.orderItemsActual,
-          this.orderPrice = event.orderPrice,
-          this.lorryType = "10ft Lorry"
+          // this.orders = event.order,
+          // this.orderID = event.orderID,
+          // this.orderStatus = event.orderStatus,
+          // this.paymentStatus = event.paymentStatus,
+          // this.firstname = event.firstName,
+          // this.username = event.username,
+          // this.profilePic = event.profilePic,
+          // this.driver = "Micheal Tan",
+          // this.dateTimeOfPickup = event.dateTimeOfPickup,
+          // this.pickUpAddress = event.pickupAddress,
+          // this.dropOffAddress = event.dropOffAddress,
+          // this.orderItemsActual = event.orderItemsActual,
+          // this.orderPrice = event.orderPrice,
+          // this.lorryType = "10ft Lorry"
 
 
       })

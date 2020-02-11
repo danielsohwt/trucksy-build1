@@ -37,8 +37,7 @@
 //     margin-top:250px; 
 //     margin-bottom: auto; 
     margin-left:auto; 
-    margin-right: auto; 
-    margin: center; 
+    margin-right: auto;
 }
 
 
@@ -117,16 +116,18 @@
 #footer {
     grid-area: footer;
     margin: 10px 10%;
-    justify-content: center
+    justify-content: space-between;
+    display: flex;
 }
 
 #remember {
-    justify-content: flex-start;
+    text-align: left;
 }
 
 #forgot {
     cursor: pointer;
-    justify-content: flex-end;
+    text-align: right;
+    width: 40%;
 }
 
 .orangeButton {

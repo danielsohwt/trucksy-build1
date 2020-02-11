@@ -75,13 +75,79 @@ ion-card {
   background-color: rgba(242, 242, 242, 0.2);
 }
 
-ion-datetime {
+.field-input {
+  border-radius: 6px;
+  border: 1px solid rgb(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255);
+}
+
+.postal-input {
+  border-bottom: 1px solid rgb(0, 0, 0, 0.4);
+}
+
+.postButton-container {
+  margin-right: 2px;
+}
+
+.postal-container {
+  width: 50%;
+  margin-bottom: 5px;
+}
+
+.row-container {
+  width: 98%;
+  margin: 10px auto 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.unit-number {
+  width: 20%;
+}
+
+.st-addr {
+  width: 70%;
+}
+
+.field-input-withIcon {
+  border-radius: 6px;
+  border: 1px solid rgb(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255);
+}
+
+.field-input-withIcon ion-input, ion-datetime {
+  padding-left: 45px;
+  --padding-start: 45px;
+}
+
+.field-input-withIcon ion-textarea {
+  padding-left: 33px;
+  height: 100px;
+}
+
+.field-input-withIcon i {
   position: absolute;
-  top: -140px;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  left: 16px;
+  top: 9px;
+  padding: 9px 8px;
+  color: #F2561D;
+  transition: 0.3s;
+}
+
+#mobile-icon {
+  font-size: 1.5em;
+  left: 18px;
+  top: 6px;
+}
+
+#nextButtonContainer {
+  width: 100%;
+  text-align: center;
+}
+
+#nextButton {
+  width: 30%;
   margin: auto;
-  border: solid gray 1px;
 }
 

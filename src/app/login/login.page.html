@@ -3,7 +3,7 @@
 		<ion-row justify-content-center align-items-center style="height: 100%">
 			<ion-col
 					class="ion-align-self-center"
-					size-xs="12"
+					size-xs="10"
 					size-sm="8"
 					size-md="6"
 					size-lg="6"
@@ -29,12 +29,13 @@
 
 
 							<div id="footer">
-								<div style="justify-content: left">
+								<div id="remember">
 									<input type="checkbox" id="remember-checkbox" class="checkbox" checked="checked"/>
-									<span id="remember">Keep me signed in</span>
+									<span>Keep me signed in</span>
 								</div>
-								<div>
-									<span style="text-align: right" id="forgot" (click)="forgotPasswordButton()">Forgot your password?&emsp;</span>
+								<br>
+								<div id="forgot">
+									<span (click)="forgotPasswordButton()">Forgot your password?&emsp;</span>
 								</div>
 							</div>
 <!--						<ion-row justify-content-around>-->

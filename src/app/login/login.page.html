@@ -19,14 +19,12 @@
 <!--								<ion-text color="danger">Please enter a valid e-mail address</ion-text>-->
 <!--							</ion-item>-->
 <!--						</ion-row>-->
-
 							<input id="username" type="email" [(ngModel)]="username"
 									   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
 									   required #usernameCtrl="ngModel" name="username" placeholder="Username">
 
 							<input id="password" type="password" [(ngModel)]="password"
 									   required #passwordCtrl="ngModel" name="password" placeholder="Password">
-
 
 							<div id="footer">
 								<div style="justify-content: left">

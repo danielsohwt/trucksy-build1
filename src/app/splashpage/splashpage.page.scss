@@ -1,6 +1,42 @@
-.center {
+.splash-background {
+	--background: url('../../assets/img/background/Group 49.png') no-repeat center center fixed;
+	--background-size: cover;
+	overflow: hidden;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.logo{
+	height: 30%;
+	margin-left: 115px;
+	width: auto;
+	grid-area: header;
+	justify-self: center;
+	align-self: center;
+}
+#description{
+	margin-left: 115px;
+	margin-right: 115px;
+	font-family: HelveticaNeue, Arial, sans-serif;
+	font-size: 30px;
+}
+.transparentbox {
+	position: absolute;
+	margin-top: 250px;
+	margin-left: 200px;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 834px;
+	height: 564px;
+	background-color: rgba(253, 253, 253, 0.51);
+}
+
+.spalsh-buttons {
+	margin-left: 115px;
+	margin-right: 115px;
 	display: flex;
-	height: 100%;
-	justify-content: center;
-	align-items: center;
+	margin-top:60px;
+	//justify-content: center;
+	//align-items: left;
 }

@@ -43,9 +43,9 @@ export class LoginPage implements OnInit {
     }
 
 
-    async showAlert(header: string, message: string) {
+    async showAlert(message: string) {
         const alert = await this.alert.create({
-            header,
+            // header,
             message,
             buttons: ["Ok"]
         })
@@ -69,8 +69,12 @@ export class LoginPage implements OnInit {
 
 
         } catch (err) {
-            console.dir(err)
-            this.showAlert("Error", err.code)
+            if (username =='' || password =='') {
+                this.showAlert("Please fill in your Username or Password")
+            }
+            // console.log(username)
+            // console.dir(err)
+            // this.showAlert("Error", err.code)
         }
     }
 

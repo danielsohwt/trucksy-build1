@@ -5,13 +5,24 @@
 </ion-header> -->
 
 <ion-content class="splash-background">
-    <div class="transparentbox">
-        <img class="logo" src="../../assets/img/logo/trucksy_logo.png">
-        <div id="description">Smart moving company makes delivery easy and convenient </div>
-        <div class="spalsh-buttons">
-            <ion-button shape="round" color="primary" (click)="toLogin()" >Login</ion-button>
-            <ion-button shape="round" color="primary" (click)="toRegister()">Register</ion-button>
-        </div>
-    </div>
-
+    <ion-grid style="height: 100%">
+        <ion-row justify-content-center align-items-center style="height: 100%">
+            <ion-col
+                    class="ion-align-self-center"
+                    size-xs="12"
+                    size-sm="8"
+                    size-md="6"
+                    size-lg="6"
+            >
+                <div class="transparentbox">
+                    <img class="logo" src="../../assets/img/logo/trucksy_logo.png">
+                    <div id="description">Smart moving company makes delivery easy and convenient </div>
+                    <div class="spalsh-buttons">
+                        <button id= login class="orangeButton" type="submit" fill="solid" color="primary"  (click)="toLogin()" >Login</button>
+                        <button id= register class="orangeButton" type="submit" fill="solid" color="primary"  (click)="toRegister()">Register</button>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

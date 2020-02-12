@@ -1,8 +1,13 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
 <ion-header>
   <ion-toolbar>
     <ion-title><img src="../../assets/img/logo/trucksy_logo.png"></ion-title>
   </ion-toolbar>
 </ion-header>
+
+
 
 <ion-content class="ion-padding">
   <ion-grid style="height: 100%">
@@ -11,8 +16,8 @@
               class="ion-align-self-center"
               style="height:100%"
               size-xs="12"
-              size-sm="8"
-              size-md="6"
+              size-sm="10"
+              size-md="10"
               size-lg="6"
       >
 <div class="progbar_container">
@@ -26,50 +31,110 @@
 <div class="ion_card">
   <ion-card>
     <ion-card-content>
+
+      <h5>Pick Up Address</h5>
       <ion-row>
-        <ion-col col-1>
-          <ion-item>
-            <ion-label>Booking Date and Time</ion-label>
-            <ion-datetime (ionChange)="setDate()" [(ngModel)]="date" displayFormat="DDD MMM YYYY h:mm:A" [min]="currentDateTime" max="3000" value="2005-06-17T11:06Z"></ion-datetime>
-          </ion-item>
-        </ion-col>
+        <div class="row-container">
+          <div class="postal-container">
+            <ion-input class="postal-input" placeholder="Enter postal code" [(ngModel)]="pickUpPostalCode"></ion-input>
+          </div>
+
+          <div class="postButton-container">
+            <ion-button class="postal-button" color="primary" (click)="searchPickUp()" fill="outline" class="ion-align-items-center">Search Address</ion-button>
+          </div>
+        </div>
       </ion-row>
-      <h1>Pick Up Address</h1>
+
       <ion-row>
-        <ion-col col-1>
-          <ion-item>
-            <ion-input placeholder="Enter postal code" [(ngModel)]="pickUpPostalCode"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col col-1>
-          <ion-button color="primary" (click)="searchPickUp()" fill="outline" class="ion-align-items-center">Search Address</ion-button>
-        </ion-col>
-        <ion-col col-12></ion-col>
+          <div class="row-container">
+            <div class="unit-number">
+              <ion-input class="field-input" placeholder="Unit #" [(ngModel)]="pickUpUnitNo"></ion-input>
+            </div>
+            <div class="st-addr">
+              <ion-input class="field-input" placeholder="Street Address" [value]='this.pickUpAddress' [(ngModel)]="pickUpAddress"></ion-input>
+            </div>
+          </div>
       </ion-row>
-      <ion-textarea placeholder="Pick Up address" [value]='this.pickUpAddress' [(ngModel)]="pickUpAddress"></ion-textarea>
     </ion-card-content>
 
     <ion-card-content>
-      <h1>Drop Off Address</h1>
+      <h5>Drop Off Address</h5>
+      <ion-row>
+        <div class="row-container">
+          <div class="postal-container">
+            <ion-input class="postal-input" placeholder="Enter postal code" [(ngModel)]="dropOffPostalCode"></ion-input>
+          </div>
+
+          <div class="postButton-container">
+            <ion-button class="postal-button" color="primary" (click)="searchDropOff()" fill="outline" class="ion-align-items-center">Search Address</ion-button>
+          </div>
+        </div>
+      </ion-row>
+
+      <ion-row>
+          <div class="row-container">
+            <div class="unit-number">
+              <ion-input class="field-input" placeholder="Unit #" [(ngModel)]="dropOffUnitNo"></ion-input>
+            </div>
+            <div class="st-addr">
+              <ion-input class="field-input" placeholder="Street Address" [value]='dropOffAddress' [(ngModel)]="dropOffAddress"></ion-input>
+            </div>
+          </div>
+      </ion-row>
+    </ion-card-content>
+
+    <ion-card-content>
       <ion-row>
         <ion-col col-1>
-          <ion-item>
-            <ion-input placeholder="Enter postal code" [(ngModel)]="dropOffPostalCode"></ion-input>
-          </ion-item>
+          <div class="field-input-withIcon">
+            <ion-datetime placeholder="Booking Date and Time" (ionChange)="setDate()" [(ngModel)]="date" displayFormat="DDD MMM YYYY h:mm:A" [min]="currentDateTime" max="3000" value="2005-06-17T11:06Z"></ion-datetime>
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+          </div>
         </ion-col>
-        <ion-col col-1>
-          <ion-button color="primary" (click)="searchDropOff()" fill="outline" class="ion-align-items-center">Search Address</ion-button>
-        </ion-col>
-        <ion-col col-12></ion-col>
       </ion-row>
-      <ion-textarea placeholder="Drop Off address" [value]='dropOffAddress' [(ngModel)]="dropOffAddress"></ion-textarea>
     </ion-card-content>
+
+      <ion-card-content>
+          <ion-row>
+              <ion-col col-1>
+                  <div class="field-input-withIcon">
+                      <ion-input type="text" placeholder="Recipient Name" [(ngModel)]="recName"></ion-input>
+                      <i class="fa fa-id-card" aria-hidden="true"></i>
+                  </div>
+              </ion-col>
+          </ion-row>
+      </ion-card-content>
+
+      <ion-card-content>
+          <ion-row>
+              <ion-col col-1>
+                  <div class="field-input-withIcon">
+                      <ion-input type="text" placeholder="Recipient Number" [(ngModel)]="recNumber"></ion-input>
+                      <i id="mobile-icon" class="fa fa-mobile" aria-hidden="true"></i>
+                  </div>
+              </ion-col>
+          </ion-row>
+      </ion-card-content>
+
+      <ion-card-content>
+          <ion-row>
+              <ion-col col-1>
+                  <div class="field-input-withIcon">
+                      <ion-textarea type="text" placeholder="Special Note Max. 2000 Characters" [(ngModel)]="note"></ion-textarea>
+                  </div>
+              </ion-col>
+          </ion-row>
+      </ion-card-content>
   </ion-card>
 </div>
 
 <br>
-<ion-button shape="round" color="primary" (click)="placePayment()" fill="outline" class="ion-align-items-center"> Confirm Booking and Pay</ion-button>
+<div id="nextButtonContainer">
+    <ion-button id="nextButton" shape="block" color="primary" (click)="placePayment()" class="ion-align-items-center">To Payment</ion-button>
+</div>
       </ion-col>
     </ion-row>
   </ion-grid>
+<br><br><br>
 </ion-content>
+

@@ -2,12 +2,13 @@
 	--background: url('../../assets/img/background/Group 49.png') no-repeat center center fixed;
 	--background-size: cover;
 	overflow: hidden;
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: "Helvetica Neue Light", HelveticaNeue-Light, Arial, sans-serif;
+	font-size: 30pt;
 }
 
 .logo{
-	height: 30%;
-	margin-left: 115px;
+	height: 50%;
+	margin-left: 5px;
 	width: auto;
 	grid-area: header;
 	justify-self: center;
@@ -18,17 +19,23 @@
 	margin-right: 115px;
 	font-family: HelveticaNeue, Arial, sans-serif;
 	font-size: 30px;
+	font-weight: lighter;
+	word-spacing: 10px;
+	letter-spacing: 0.6px;
+	line-height: 45px;   /* within paragraph */
+	margin-bottom: 30px;
 }
 .transparentbox {
-	position: absolute;
-	margin-top: 250px;
-	margin-left: 200px;
+	margin-left: 10px;
+	padding-top: 70px ;
+	padding-bottom: 70px ;
+	margin-top: 50px;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	width: 834px;
-	height: 564px;
+	width: 819px;
+	height: 581px;
 	background-color: rgba(253, 253, 253, 0.51);
 }
 
@@ -39,4 +46,35 @@
 	margin-top:60px;
 	//justify-content: center;
 	//align-items: left;
+}
+
+#login{
+	padding-right: 60px;
+	padding-left:60px;
+}
+
+#register{
+	margin-left: 250px;
+}
+
+.orangeButton {
+	padding:18px;
+	padding-left:50px;
+	padding-right:50px;
+	box-shadow: 0px 1px 5px 0px rgb(0, 0, 0, 0.4);
+	background-color:#F2561D;
+	border-radius:15px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:18pt;
+	text-decoration:none;
+	border: 0px;
+}
+
+.orangeButton:hover {
+	background-color:#d96725;
+}
+.orangeButton:active {
+	top:1px;
 }

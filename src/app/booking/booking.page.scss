@@ -1,3 +1,22 @@
+.ion-padding {
+  overflow: hidden;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-color:#2B3339;
+}
+
+h5 {
+  display: block;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #2B3339;
+}
+
+ion-input{
+  --placeholder-color:red;
+}
+
 ion-title img{
   display: flex;
   max-height: 50px;
@@ -5,7 +24,7 @@ ion-title img{
 }
 
 ion-content {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 /* Progress Bar */
@@ -71,18 +90,25 @@ ion-content {
 
 /* End of Progress Bar */
 
+//the "container"
 ion-card {
-  background-color: rgba(242, 242, 242, 0.2);
+  margin-left:160px;
+  border-radius: 15px;
+  background-color: #FCFCFC;
+  box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.51);
+  padding: 60px;
+  max-height: 1028px;
+  max-width:782px;
 }
 
 .field-input {
-  border-radius: 6px;
-  border: 1px solid rgb(0, 0, 0, 0.4);
+  border-radius: 15px;
+  border: 1px solid #2B3339;
   background: rgba(255, 255, 255);
 }
 
 .postal-input {
-  border-bottom: 1px solid rgb(0, 0, 0, 0.4);
+  border-bottom: 1px solid #2B3339;
 }
 
 .postButton-container {
@@ -111,19 +137,21 @@ ion-card {
 }
 
 .field-input-withIcon {
-  border-radius: 6px;
-  border: 1px solid rgb(0, 0, 0, 0.4);
+  border-radius: 15px;
+  border: 1px solid #2B3339;
   background: rgba(255, 255, 255);
 }
 
 .field-input-withIcon ion-input, ion-datetime {
   padding-left: 45px;
   --padding-start: 45px;
+  --placeholder-color: green;
 }
 
 .field-input-withIcon ion-textarea {
   padding-left: 33px;
   height: 100px;
+  --placeholder-color: pink;
 }
 
 .field-input-withIcon i {

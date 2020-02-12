@@ -1,20 +1,28 @@
 .home-background {
     --background: url('../../assets/img/background/login.jpg') no-repeat center center fixed;;
+    --background: url('../../assets/img/background/Group 48.png') no-repeat center center fixed;
     --background-size: cover;
+    overflow: hidden;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 #testing{
-    width: 200px; 
-    height: 100px; 
+    width: 200px;
+    height: 100px;
+    width: 200px;
+    height: 100px;
     margin-left: auto;
     margin-right: auto;
 }
 
 // .login-box{
-//     max-width: 500px; 
+//     max-width: 500px;
+//     max-width: 500px;
 //     max-height: 300px;
-//     //width:100%; 
-//     //margin: center; 
+//     //width:100%;
+//     //margin: center;
+//     //width:100%;
+//     //margin: center;
 //     text-align: center;
 //     //height: 100%;
 //     display: block;
@@ -22,19 +30,197 @@
 // }
 
 #rounded {
-    margin-left:auto; 
-    margin-right: auto; 
+    margin-left:auto;
+    margin-right: auto;
+    margin-left:auto;
+    margin-right: auto;
     border: solid 1px orange;
     width: 300px;
     height: 50px;
     margin-bottom: 30px;
 }
 
+/* Login container */
+.transparentbox {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    //width: 834px;
+    height: 600px;
+    background-color: rgba(253, 253, 253, 0.51);
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.51);
+}
+/* Login form container */
+#contents {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 0.75fr 1.75fr;
+    //grid-template-columns: 2fr;
+    grid-template-areas:
+            "header"
+            "form"
+}
+
+#form {
+    grid-area: form;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 0.5fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+            "firstName firstName"
+            "lastName lastName"
+            "username username"
+            "password password"
+            "cpassword cpassword"
+            "hpnumber hpnumber"
+            "userType userType"
+            "login login"
+}
+
+.logo {
+    height: 50%;
+    width: auto;
+    grid-area: header;
+    justify-self: center;
+    align-self: center;
+}
+
+#firstName {
+    grid-area: firstName;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid rgb(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255);
+}
+#lastName {
+    grid-area: lastName;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid rgb(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255);
+}
+
+#username {
+    grid-area: username;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid rgb(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255);
+}
+#password {
+    grid-area: password;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid rgb(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255);
+}
+
+#cpassword {
+    grid-area: cpassword;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid rgb(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255);
+}
+
+#hpnumber {
+    grid-area: hpnumber;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid rgb(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255);
+}
+
+#userType {
+    grid-area: dropbox;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid rgb(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255);
+}
+
+#remember {
+    justify-content: flex-start;
+}
+
+#forgot {
+    cursor: pointer;
+    justify-content: flex-end;
+}
+
+.orangeButton {
+    box-shadow: 0px 1px 5px 0px rgb(0, 0, 0, 0.4);
+    background-color:#F2561D;
+    border-radius:14px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:18px;
+    text-decoration:none;
+    border: 0px;
+}
+
 #login {
-//     width: 500px; 
-//     margin-top:250px; 
-//     margin-bottom: auto; 
-    margin-left:auto; 
-    margin-right: auto; 
-    margin: center; 
+    //     width: 500px;
+    //     margin-top:250px;
+    //     margin-bottom: auto;
+    margin-left:auto;
+    margin-right: auto;
+    margin: center;
+    grid-area: login;
+    padding: 15px 36px;
+    justify-self: center;
+    align-self: start;
+}
+
+.orangeButton:hover {
+    background-color:#d96725;
+}
+.orangeButton:active {
+    top:1px;
+}
+
+strong {
+    display: block;
+    text-align: center;
 }

@@ -3,14 +3,20 @@
     --background-size: cover;
     overflow: hidden;
     font-family: Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-color:#2B3339;
 }
 
-#testing{
-    width: 200px; 
-    height: 100px; 
-    margin-left: auto;
-    margin-right: auto;
+::placeholder {
+    color: #2B3339;
 }
+
+//#testing{
+//    width: 200px;
+//    height: 100px;
+//    margin-left: auto;
+//    margin-right: auto;
+//}
 
 // .login-box{
 //     max-width: 500px; 
@@ -23,14 +29,14 @@
 //     //vertical-align: middle;
 // }
 
-#rounded {
-    margin-left:auto; 
-    margin-right: auto; 
-    border: solid 1px orange;
-    width: 300px;
-    height: 50px;
-    margin-bottom: 30px;
-}
+//#rounded {
+//    margin-left:auto;
+//    margin-right: auto;
+//    border: solid 1px orange;
+//    width: 300px;
+//    height: 50px;
+//    margin-bottom: 30px;
+//}
 
 #login {
 //     width: 500px; 
@@ -49,8 +55,8 @@
     right: 0;
     bottom: 0;
     left: 0;
-    //width: 834px;
-    height: 464px;
+    max-width: 834px;
+    height: 564px;
     background-color: rgba(253, 253, 253, 0.51);
     border-radius: 15px;
     box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.51);
@@ -93,11 +99,11 @@
     height: 60%;
     margin: 10px 10%;
     display: block;
-    font-size: 17px;
-    color: rgb(0, 0, 0);
+    font-size: 18px;
+    --font-color: #2B3339;
     padding: 8px;
-    border-radius: 6px;
-    border: 1px solid rgb(0, 0, 0, 0.4);
+    border-radius: 18px;
+    border: 1px solid #2B3339;
     background: rgba(255, 255, 255);
 }
 #password {
@@ -105,11 +111,11 @@
     height: 60%;
     margin: 10px 10%;
     display: block;
-    font-size: 17px;
+    font-size: 18px;
     color: rgb(0, 0, 0);
     padding: 8px;
-    border-radius: 6px;
-    border: 1px solid rgb(0, 0, 0, 0.4);
+    border-radius: 15px;
+    border: 1px solid #2B3339;
     background: rgba(255, 255, 255);
 }
 
@@ -131,9 +137,12 @@
 }
 
 .orangeButton {
+    padding:18px;
+    padding-left:50px;
+    padding-right:50px;
     box-shadow: 0px 1px 5px 0px rgb(0, 0, 0, 0.4);
     background-color:#F2561D;
-    border-radius:14px;
+    border-radius:20px;
     display:inline-block;
     cursor:pointer;
     color:#ffffff;

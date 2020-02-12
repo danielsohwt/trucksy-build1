@@ -4,6 +4,7 @@
 	overflow: hidden;
 	font-family: "Helvetica Neue Light", HelveticaNeue-Light, Arial, sans-serif;
 	font-size: 30pt;
+	font-color:#2B3339;
 }
 
 .logo{
@@ -34,7 +35,7 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	width: 819px;
+	max-width: 819px;
 	height: 581px;
 	background-color: rgba(253, 253, 253, 0.51);
 }
@@ -63,11 +64,11 @@
 	padding-right:50px;
 	box-shadow: 0px 1px 5px 0px rgb(0, 0, 0, 0.4);
 	background-color:#F2561D;
-	border-radius:15px;
+	border-radius:20px;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-size:18pt;
+	font-size:18px;
 	text-decoration:none;
 	border: 0px;
 }

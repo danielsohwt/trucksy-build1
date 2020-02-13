@@ -10,6 +10,7 @@ import { environment } from "../../environments/environment";
 export class PaymentService {
   userId: string;
   stripe: any;
+  backendURL;
 
   constructor(private db: AngularFireDatabase,
               private afAuth: AngularFireAuth,
@@ -34,8 +35,9 @@ export class PaymentService {
     const source = token.id;
     const currency = 'sgd';
     const charge = { userId, amount, currency, source, idempotencyKey, orderId, dateTimeOfPickup, pickUpAddress, dropOffAddress};
-
-    this.http.post(environment.backendURL + 'charge', charge)
+    console.log(charge);
+    // this.http.post(environment.backendURL + 'charge', charge)
+    this.http.post('http://localhost:4000/charge', charge)
         .subscribe(
         (res) => {
           console.log('Server response: ', res);

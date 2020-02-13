@@ -68,6 +68,10 @@ export class RegisterPage implements OnInit {
       this.showAlert("Error!", "Passwords don't match")
       return console.error("Password don't match")
     }
+    // if (username=="" || password=="" || cpassword== ""){
+    //     this.showAlert("Error!", "Required Field")
+    //     return console.error("Required Field")
+    // }
 
     this.buttonClicked = true;
 

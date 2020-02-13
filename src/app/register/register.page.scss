@@ -44,7 +44,6 @@
     grid-template-rows: 1fr 1fr 0.5fr 1fr;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-            //"firstName lastName"
             "firstName firstName"
             "lastName lastName"
             "username username"
@@ -53,6 +52,8 @@
             "hpnumber hpnumber"
             "userType userType"
             "login login"
+            "testing testing"
+            "recaptcha-container recaptcha-container"
 }
 
 .logo {
@@ -159,15 +160,6 @@
     border-radius: 15px;
     border: 1px solid #2B3339;
     background: rgba(255, 255, 255);
-}
-
-#remember {
-    justify-content: flex-start;
-}
-
-#forgot {
-    cursor: pointer;
-    justify-content: flex-end;
 }
 
 .orangeButton {

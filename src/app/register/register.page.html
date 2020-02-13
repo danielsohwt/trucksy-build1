@@ -9,27 +9,29 @@
 					size-lg="6"
 			>
 				<div class="transparentbox">
-					<form #f="ngForm" novalidate (ngSubmit)="onSubmit(f)" style="height: 100%">
+					<form #f="ngForm" validate (ngSubmit)="onSubmit(f)" style="height: 100%">
 						<div id="contents">
 							<img class="logo" src="../../assets/img/logo/trucksy_logo.png">
-							<div id="form">
+							<div id="form" [hidden]="buttonClicked">
 								<input id="firstName" type="text" [(ngModel)]="firstName"
-									   required #firstNameCtrl="ngModel" name="firstName" placeholder="First Name">
+									   #firstNameCtrl="ngModel"
+									   name="firstName" placeholder="First Name" required
+									   />
 
 								<input id="lastName" type="text" [(ngModel)]="lastName"
-									   required #lastNameCtrl="ngModel" name="lastName" placeholder="Last Name">
+									   required #lastNameCtrl="ngModel" name="lastName" placeholder="Last Name"/>
 
 								<input id="username" type="text" [(ngModel)]="username"
-									   required #usernameCtrl="ngModel" name="username" placeholder="Email">
+									   required #usernameCtrl="ngModel" name="username" placeholder="Email"/>
 
 								<input id="password" type="password" [(ngModel)]="password"
-									   required #passwordCtrl="ngModel" name="password" placeholder="Password">
+									   required #passwordCtrl="ngModel" name="password" placeholder="Password"/>
 
 								<input id="cpassword" type="password" [(ngModel)]="cpassword"
-									   required #cPasswordCtrl="ngModel" name="cPassword" placeholder="Confirm Password">
+									   required #cPasswordCtrl="ngModel" name="cPassword" placeholder="Confirm Password"/>
 
 								<input id="hpnumber" type="text" [(ngModel)]="hpnumber"
-									   required #mobileNumberCtrl="ngModel" name="mobileNumber" placeholder="Mobile Number">
+									   required #mobileNumberCtrl="ngModel" name="mobileNumber" placeholder="Mobile Number"/>
 
 <!--								<ion-select id="userType" [(ngModel)]="userType" name="userType" placeholder="Select One">-->
 <!--&lt;!&ndash;									<select id="userType" name="userType">&ndash;&gt;-->
@@ -44,25 +46,23 @@
 								</ion-select>
 
 								<button class="orangeButton" id="login" type="submit" fill="solid" color="primary" (click)="register()">Sign Up</button>
-									<div *ngIf="buttonClicked">
-										<h3>A one-time password (OTP) will be sent to the following mobile number for verification:</h3>
+							</div>
+								<div *ngIf="buttonClicked">
+										<p>A one-time password (OTP) will be sent to the following mobile number for verification:</p>
 										<ion-list>{{hpnumber}}</ion-list>
 									</div>
-
 								<div id="recaptcha-container"></div>
 								<div *ngIf="buttonClicked">
 									<ion-row justify-content-around>
 										<ion-button fill="solid" color="primary" (click)="sendLoginCode()">Send Code</ion-button>
 									</ion-row>
 								</div>
-
 									<div *ngIf="this.windowRef.confirmationResult">
 										<ion-label>Enter your Verification Code Here</ion-label>
 										<ion-input type="text" name="code" [(ngModel)]="verificationCode"></ion-input>
 
 										<button (click)="verifyLoginCode()">Verify</button>
 									</div>
-							</div>
 						</div>
 					</form>
 				</div>

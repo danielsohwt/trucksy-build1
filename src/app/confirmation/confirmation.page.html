@@ -4,8 +4,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <ion-col
+              class="ion-align-self-center"
+              style="height:100%"
+              size-xs="12"
+              size-sm="10"
+              size-md="10"
+              size-lg="6"
+      >
   <div class="progbar_container">
     <ul class="progressbar">
       <li>Delivery Details</li>
@@ -14,7 +23,14 @@
     </ul>
   </div>
 
+  <div class="ion_card">
+    <ion-card>
+      <ion-card-content>
 
+
+      </ion-card-content>
+    </ion-card>
+  </div>
 Order confirmed for {{ orderID }}!
   <br>
 

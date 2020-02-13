@@ -14,7 +14,7 @@ h5 {
 }
 
 ion-input{
-  --placeholder-color:red;
+  --placeholder-color:#2B3339;
 }
 
 ion-title img{
@@ -101,6 +101,12 @@ ion-card {
   max-width:782px;
 }
 
+@media (max-width: 450px) {
+  ion-card {
+    padding: 8px;
+  }
+}
+
 .field-input {
   border-radius: 15px;
   border: 1px solid #2B3339;
@@ -145,13 +151,17 @@ ion-card {
 .field-input-withIcon ion-input, ion-datetime {
   padding-left: 45px;
   --padding-start: 45px;
-  --placeholder-color: green;
+}
+
+.field-input-withIcon ion-datetime {
+  --placeholder-color: #b0b0b0;
+
 }
 
 .field-input-withIcon ion-textarea {
   padding-left: 33px;
   height: 100px;
-  --placeholder-color: pink;
+  --placeholder-color: #2B3339;
 }
 
 .field-input-withIcon i {

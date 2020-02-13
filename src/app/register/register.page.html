@@ -1,180 +1,66 @@
-<ion-content class="home-background">
+
+  <ion-content class= "home-background" padding>
 	<ion-grid style="height: 100%">
 		<ion-row justify-content-center align-items-center style="height: 100%">
-			<ion-col
-					class="ion-align-self-center"
-					size-xs="12"
-					size-sm="8"
-					size-md="6"
-					size-lg="6"
+			<ion-col 
+			class="ion-align-self-center" 
+			size-xs="12"
+			size-sm="8"
+			size-md="6" 
+			size-lg="4"
 			>
-				<div class="transparentbox">
-					<form #f="ngForm" validate (ngSubmit)="onSubmit(f)" style="height: 100%">
-						<div id="contents">
-							<img class="logo" src="../../assets/img/logo/trucksy_logo.png">
-							<div id="form" [hidden]="buttonClicked">
-								<input id="firstName" type="text" [(ngModel)]="firstName"
-									   #firstNameCtrl="ngModel"
-									   name="firstName" placeholder="First Name" required
-									   />
+				<ion-list>
+					<ion-img id="testing" src="../../assets/img/logo/Rentalorry.png"></ion-img>
+	
+					<ion-item id="rounded">
+						<ion-input placeholder="Username" type="text" [(ngModel)]="username"></ion-input>
+					</ion-item>
+				
+					<ion-item id="rounded">
+						<ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
+					</ion-item>
 
-								<input id="lastName" type="text" [(ngModel)]="lastName"
-									   required #lastNameCtrl="ngModel" name="lastName" placeholder="Last Name"/>
+					<ion-item id="rounded">
+						<ion-input placeholder="Confirm Password" type="password" [(ngModel)]="cpassword"></ion-input>
+					</ion-item>
 
-								<input id="username" type="text" [(ngModel)]="username"
-									   required #usernameCtrl="ngModel" name="username" placeholder="Email"/>
+					<ion-item id="rounded">
+						<ion-label>Account Type</ion-label>
+						<ion-select (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select One">
+							<ion-select-option  userType="user">User</ion-select-option>
+							<ion-select-option userType="driver">Driver</ion-select-option>
+						</ion-select>
+					</ion-item>
 
-								<input id="password" type="password" [(ngModel)]="password"
-									   required #passwordCtrl="ngModel" name="password" placeholder="Password"/>
-
-								<input id="cpassword" type="password" [(ngModel)]="cpassword"
-									   required #cPasswordCtrl="ngModel" name="cPassword" placeholder="Confirm Password"/>
-
-								<input id="hpnumber" type="text" [(ngModel)]="hpnumber"
-									   required #mobileNumberCtrl="ngModel" name="mobileNumber" placeholder="Mobile Number"/>
-
-<!--								<ion-select id="userType" [(ngModel)]="userType" name="userType" placeholder="Select One">-->
-<!--&lt;!&ndash;									<select id="userType" name="userType">&ndash;&gt;-->
-<!--&lt;!&ndash;									<option value="" disabled hidden selected>Select One</option>&ndash;&gt;-->
-<!--									<ion-select-option value="user">User</ion-select-option>-->
-<!--									<ion-select-option value="driver">Driver</ion-select-option>-->
-<!--								</ion-select>-->
-
-								<ion-select id="userType" (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select One" name="userType">
-									<ion-select-option  userType="user">User</ion-select-option>
-									<ion-select-option userType="driver">Driver</ion-select-option>
-								</ion-select>
-
-								<button class="orangeButton" id="login" type="submit" fill="solid" color="primary" (click)="register()">Sign Up</button>
-							</div>
-								<div *ngIf="buttonClicked">
-										<p>A one-time password (OTP) will be sent to the following mobile number for verification:</p>
-										<ion-list>{{hpnumber}}</ion-list>
-									</div>
-								<div id="recaptcha-container"></div>
-								<div *ngIf="buttonClicked">
-									<ion-row justify-content-around>
-										<ion-button fill="solid" color="primary" (click)="sendLoginCode()">Send Code</ion-button>
-									</ion-row>
-								</div>
-									<div *ngIf="this.windowRef.confirmationResult">
-										<ion-label>Enter your Verification Code Here</ion-label>
-										<ion-input type="text" name="code" [(ngModel)]="verificationCode"></ion-input>
-
-										<button (click)="verifyLoginCode()">Verify</button>
-									</div>
-						</div>
-					</form>
-				</div>
+					<ion-row justify-content-around>
+						<ion-button fill="solid" color="primary" (click)="register()">Sign Up</ion-button>
+					</ion-row>
+					<br>
+				</ion-list>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
 </ion-content>
+<!--   
+  <ion-content padding>
+	  <ion-list>
+  
+		  <ion-item>
+			<ion-label position="floating">Username</ion-label>
+			<ion-input type="text" [(ngModel)]="username"></ion-input>
+		  </ion-item>
+		
+		  <ion-item>
+			<ion-label position="floating">Password</ion-label>
+			<ion-input type="password" [(ngModel)]="password"></ion-input>
+		  </ion-item>
 
-<!--orginal code-->
-<!--  <ion-content class= "home-background" padding>-->
-<!--	<ion-grid style="height: 100%">-->
-<!--		<ion-row justify-content-center align-items-center style="height: 100%">-->
-<!--			<ion-col-->
-<!--			class="ion-align-self-center"-->
-<!--			size-xs="12"-->
-<!--			size-sm="8"-->
-<!--			size-sm="8"-->
-<!--			size-md="6"-->
-<!--			size-lg="4"-->
-<!--			>-->
-<!--				<div class="transparentbox">-->
-<!--					<div [hidden]="buttonClicked">-->
-<!--						<ion-list>-->
-<!--							&lt;!&ndash;<img class="logo" src="../../assets/img/logo/trucksy_logo.png">&ndash;&gt;-->
-<!--							&lt;!&ndash;							<input class="rounded" type="text" [(ngModel)]="firstName"&ndash;&gt;-->
-<!--							&lt;!&ndash;								   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"&ndash;&gt;-->
-<!--							&lt;!&ndash;								   required #nameCtrl="ngModel" name="First Name" placeholder="First Name">&ndash;&gt;-->
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="First Name" type="text" [(ngModel)]="firstName"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="Last Name" type="text" [(ngModel)]="lastName"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="Username" type="text" [(ngModel)]="username"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="Confirm Password" type="password" [(ngModel)]="cpassword"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="Mobile Number" type="text" [(ngModel)]="hpnumber"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-label>Account Type</ion-label>-->
-<!--								<ion-select (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select One">-->
-<!--									<ion-select-option  userType="user">User</ion-select-option>-->
-<!--									<ion-select-option userType="driver">Driver</ion-select-option>-->
-<!--								</ion-select>-->
-<!--							</ion-item>-->
-
-<!--							<ion-row justify-content-around>-->
-<!--								<ion-button fill="solid" color="primary" (click)="register()">Sign Up</ion-button>-->
-<!--							</ion-row>-->
-<!--							<br>-->
-<!--						</ion-list>-->
-<!--						<ion-list>-->
-<!--							<div *ngIf="buttonClicked">-->
-<!--								<h3>A one-time password (OTP) will be sent to the following mobile number for verification:</h3>-->
-<!--								<ion-list>{{hpnumber}}</ion-list>-->
-<!--							</div>-->
-
-
-<!--WTF is this?! Why if not there will fuck up the code??? -->
-<!--							<div id="recaptcha-container"></div>-->
-<!--							<div *ngIf="buttonClicked">-->
-<!--								<ion-row justify-content-around>-->
-<!--									<ion-button fill="solid" color="primary" (click)="sendLoginCode()">Send Code</ion-button>-->
-<!--								</ion-row>-->
-<!--							</div>-->
-
-<!--							<div *ngIf="this.windowRef.confirmationResult">-->
-<!--								<ion-label>Enter your Verification Code Here</ion-label>-->
-<!--								<ion-input type="text" name="code" [(ngModel)]="verificationCode"></ion-input>-->
-
-<!--								<button (click)="verifyLoginCode()">Verify</button>-->
-<!--							</div>-->
-<!--						</ion-list>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</ion-col>-->
-<!--		</ion-row>-->
-<!--	</ion-grid>-->
-<!--  </ion-content>-->
-
-<!--  <ion-content padding>-->
-<!--	  <ion-list>-->
-
-<!--		  <ion-item>-->
-<!--			<ion-label position="floating">Username</ion-label>-->
-<!--			<ion-input type="text" [(ngModel)]="username"></ion-input>-->
-<!--		  </ion-item>-->
-
-<!--		  <ion-item>-->
-<!--			<ion-label position="floating">Password</ion-label>-->
-<!--			<ion-input type="password" [(ngModel)]="password"></ion-input>-->
-<!--		  </ion-item>-->
-
-<!--		  <ion-item>-->
-<!--			<ion-label position="floating">Confirm Password</ion-label>-->
-<!--			<ion-input type="password" [(ngModel)]="cpassword"></ion-input>-->
-<!--		  </ion-item>-->
-
-<!--		</ion-list>-->
-
-<!--		<ion-button fill="solid" expand="block" color="dark" (click)="register()">Signup</ion-button>-->
-<!--  </ion-content>-->
+		  <ion-item>
+			<ion-label position="floating">Confirm Password</ion-label>
+			<ion-input type="password" [(ngModel)]="cpassword"></ion-input>
+		  </ion-item>
+		
+		</ion-list>
+  
+		<ion-button fill="solid" expand="block" color="dark" (click)="register()">Signup</ion-button>
+  </ion-content> -->

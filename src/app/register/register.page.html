@@ -31,24 +31,24 @@
 								<input id="hpnumber" type="text" [(ngModel)]="hpnumber"
 									   required #mobileNumberCtrl="ngModel" name="mobileNumber" placeholder="Mobile Number">
 
-								<select id="userType">
-									<option value="" selected disabled hidden>Select One</option>
-									<option value="user">User</option>
-									<option value="driver">Driver</option>
-								</select>
-
-<!--								<ion-select (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select One">-->
-<!--									<ion-select-option  userType="user">User</ion-select-option>-->
-<!--									<ion-select-option userType="driver">Driver</ion-select-option>-->
+<!--								<ion-select id="userType" [(ngModel)]="userType" name="userType" placeholder="Select One">-->
+<!--&lt;!&ndash;									<select id="userType" name="userType">&ndash;&gt;-->
+<!--&lt;!&ndash;									<option value="" disabled hidden selected>Select One</option>&ndash;&gt;-->
+<!--									<ion-select-option value="user">User</ion-select-option>-->
+<!--									<ion-select-option value="driver">Driver</ion-select-option>-->
 <!--								</ion-select>-->
 
-								<button class="orangeButton" id="login" type="submit" fill="solid" color="primary" (click)="register()">Sign Up</button>
-								<!--							<div *ngIf="buttonClicked">-->
-								<!--								<h3>A one-time password (OTP) will be sent to the following mobile number for verification:</h3>-->
-								<!--								<ion-list>{{hpnumber}}</ion-list>-->
-								<!--							</div>-->
+								<ion-select id="userType" (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select One" name="userType">
+									<ion-select-option  userType="user">User</ion-select-option>
+									<ion-select-option userType="driver">Driver</ion-select-option>
+								</ion-select>
 
-								<!--WTF is this?! Why if not there will fuck up the code??? -->
+								<button class="orangeButton" id="login" type="submit" fill="solid" color="primary" (click)="register()">Sign Up</button>
+									<div *ngIf="buttonClicked">
+										<h3>A one-time password (OTP) will be sent to the following mobile number for verification:</h3>
+										<ion-list>{{hpnumber}}</ion-list>
+									</div>
+
 								<div id="recaptcha-container"></div>
 								<div *ngIf="buttonClicked">
 									<ion-row justify-content-around>

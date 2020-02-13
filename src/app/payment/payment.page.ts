@@ -26,6 +26,7 @@ export class PaymentPage implements OnInit {
     pickUpAddress: any;
     dropOffAddress: any;
     orderPrice: number;
+    token: string;
 
     imageURL
 
@@ -44,7 +45,6 @@ export class PaymentPage implements OnInit {
     ) { }
 
     ngOnInit() {
-        // this.loadStripe();
         this.orderID = this.route.snapshot.paramMap.get('id');
         this.getOrderInfo();
 
@@ -99,8 +99,9 @@ export class PaymentPage implements OnInit {
                     console.log(result);
                     try {
                         console.log(result.source.id);
+                        this.token = result.source;
                         this.paymentSvc.processPayment(
-                            result.source.id,
+                            this.token,
                             this.orderPrice*100,
                             this.orderID,
                             this.dateTimeOfPickup,
@@ -116,29 +117,17 @@ export class PaymentPage implements OnInit {
         });
     }
 
-
-    makePayment(token) {
-        this.http
-            .post('http://localhost:4000/charge', {
-                amount: 1000,
-                currency: "SGD",
-                token: token.id
-            })
-            .subscribe(data => {
-                console.log(data);
-            });
-    }
-
     //
-    // loadStripe() {
-    //
-    //     if (!window.document.getElementById('stripe-script')) {
-    //         let s = window.document.createElement('script');
-    //         s.id = 'stripe-script';
-    //         s.type = 'text/javascript';
-    //         s.src = 'https://checkout.stripe.com/checkout.js';
-    //         window.document.body.appendChild(s);
-    //     }
+    // makePayment(token) {
+    //     this.http
+    //         .post('http://localhost:4000/charge', {
+    //             amount: 1000,
+    //             currency: "SGD",
+    //             token: token.id
+    //         })
+    //         .subscribe(data => {
+    //             console.log(data);
+    //         });
     // }
 
     getOrderInfo() {
@@ -183,34 +172,6 @@ export class PaymentPage implements OnInit {
         this.afs.collection('order').doc(this.orderID).update({
 
             orderStatus: 'Payment Failed',
-        });
-    }
-
-    pay(orderPrice) {
-        let handler;
-        handler = (window as any).StripeCheckout.configure({
-            key: environment.stripeKey,
-            locale: 'auto',
-            token: token => {
-                try {
-                    this.paymentSvc.processPayment(
-                        token,
-                        orderPrice*100,
-                        this.orderID,
-                        this.dateTimeOfPickup,
-                        this.pickUpAddress,
-                        this.dropOffAddress);
-                    this.completePayment()
-                } catch(err) {
-                    console.log(err);
-                }
-            }
-        });
-
-        handler.open({
-            name: 'Demo Site',
-            description: `SGD ${orderPrice}`,
-            amount: orderPrice * 100
         });
     }
 

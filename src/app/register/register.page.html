@@ -41,14 +41,14 @@
 <!--								</ion-select>-->
 
 								<ion-select id="userType" (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select One" name="userType">
-									<ion-select-option  userType="user">User</ion-select-option>
+									<ion-select-option userType="user">User</ion-select-option>
 									<ion-select-option userType="driver">Driver</ion-select-option>
 								</ion-select>
 
 								<button class="orangeButton" id="login" type="submit" fill="solid" color="primary" (click)="register()">Sign Up</button>
 							</div>
-								<div *ngIf="buttonClicked">
-										<p>A one-time password (OTP) will be sent to the following mobile number for verification:</p>
+								<div *ngIf="buttonClicked" id="otp">
+										<p>A one-time password (OTP) will be sent to the following <br> mobile number for verification:</p>
 										<ion-list>{{hpnumber}}</ion-list>
 									</div>
 								<div id="recaptcha-container"></div>
@@ -57,10 +57,9 @@
 										<ion-button fill="solid" color="primary" (click)="sendLoginCode()">Send Code</ion-button>
 									</ion-row>
 								</div>
-									<div *ngIf="this.windowRef.confirmationResult">
+									<div *ngIf="this.windowRef.confirmationResult" id="code">
 										<ion-label>Enter your Verification Code Here</ion-label>
 										<ion-input type="text" name="code" [(ngModel)]="verificationCode"></ion-input>
-
 										<button (click)="verifyLoginCode()">Verify</button>
 									</div>
 						</div>

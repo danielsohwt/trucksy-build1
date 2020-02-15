@@ -33,6 +33,7 @@ export class UploaderPage implements OnInit {
     private test123: string;
     uploadFail;
     lowAccuracyCounter = 0;
+    fileUploadCounter = 1;
 
     orderStatus;
     orderItemsPredicted;
@@ -91,23 +92,33 @@ export class UploaderPage implements OnInit {
     }
 
     fileChangeEvent(event: any) {
-        const file = event.target.files[0];
-        console.log(file)
-        // if (!file || !file.type.match("image.*")) {
-        //     return;
-        // }
+        this.busy = true
+        //TODO: Fix async issue. need to load twice
+        for(this.fileUploadCounter = 1; this.fileUploadCounter<3; this.fileUploadCounter++){
 
-        this.classes = [];
+            const file = event.target.files[0];
+            console.log(file)
+            if (!file || !file.type.match("image.*")) {
+                return;
+            }
 
-        const reader = new FileReader();
-        reader.onload = e => {
-            console.log('e:',e)
-            this.img.nativeElement.src = e.target["result"];
-            console.log('Img.nativeElement: ',this.img.nativeElement)
-            this.predict(this.img.nativeElement,file);
-            console.log('Predict: ',this.predict(this.img.nativeElement,file))
-        };
-        reader.readAsDataURL(file);
+            this.classes = [];
+
+            const reader = new FileReader();
+            reader.onload = e => {
+                // console.log('e:',e)
+                this.img.nativeElement.src = e.target["result"];
+                // console.log('Img.nativeElement: ',this.img.nativeElement)
+                this.predict(this.img.nativeElement,file);
+                // console.log('Predict: ',this.predict(this.img.nativeElement,file))
+                this.busy = false;
+            };
+            reader.readAsDataURL(file);
+            console.log("No of times file was uploaded: " + this.fileUploadCounter)
+        }
+
+
+
     }
 
     async predict(imageData: ImageData,file): Promise<any> {
@@ -130,13 +141,13 @@ export class UploaderPage implements OnInit {
 
         // Convert logits to probabilities and class names.
         this.classes = await this.getTopKClasses(logits, 1,file);
-        console.log(this.classes)
+        // console.log(this.classes)
         const totalTime = performance.now() - startTime;
-        console.log(`Done in ${Math.floor(totalTime)}ms`);
+        // console.log(`Done in ${Math.floor(totalTime)}ms`);
     }
 
     async getTopKClasses(logits, topK,file): Promise<any[]> {
-        console.log(topK);
+        console.log('Top K: ',topK);
         const values = await logits.data();
 
         const valuesAndIndices = [];
@@ -155,9 +166,23 @@ export class UploaderPage implements OnInit {
 
         const topClassesAndProbs = [];
         for (let i = 0; i < topkIndices.length; i++) {
-            console.log(topkValues[i])
+            console.log('Top K values: ',topkValues[i])
             var confidence = '';
             if (topkValues[i] < 0.7) {
+                console.log('Low accuracy counter: ',this.lowAccuracyCounter);
+                //Low accuracy and first upload, ask user to upload again
+                this.lowAccuracyCounter ++;
+                console.log('Low accuracy counter: ',this.lowAccuracyCounter);
+                //user uploaded twice with low accuracy
+                if (this.lowAccuracyCounter === 2 ) {
+                    //display message to indicate upload failed and ask for reupload
+                    this.uploadFail = true;
+                } else if (this.lowAccuracyCounter > 2 ) {
+                    // cancel workflow?
+                    console.log('End flow, either redirect or show error msg')
+                    // this.route.navigate(['/tabs/']);
+                }
+
                 confidence= 'Low Confidence';
             }
             else {
@@ -403,10 +428,11 @@ export class UploaderPage implements OnInit {
         this.desc = "";
 
         if (this.lowAccuracyCounter === 1) {
+            this.route.navigate(['/estimateprice/'+ orderID])
+        } else if (this.lowAccuracyCounter > 1) {
             //skip estimate price, go to booking page directly
             this.route.navigate(['/booking/'+ orderID])
-        } else {
-            this.route.navigate(['/estimateprice/'+ orderID])
+
         }
     }
 

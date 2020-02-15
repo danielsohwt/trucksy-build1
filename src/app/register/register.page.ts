@@ -109,10 +109,6 @@ export class RegisterPage implements OnInit {
 
     }
 
-    login() {
-        this.route.navigate(['/login'])
-    }
-
     verifyLoginCode() {
         this.windowRef.confirmationResult
             .confirm(this.verificationCode)

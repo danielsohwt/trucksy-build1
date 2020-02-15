@@ -8,12 +8,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-// import {NgDatepickerModule} from 'ng2-datepicker';
+import {NgDatepickerModule} from 'ng2-datepicker';
 
-// import {
-//   OwlDateTimeModule,
-//   OwlNativeDateTimeModule
-// } from 'ng-pick-datetime';
+import { 
+  OwlDateTimeModule, 
+  OwlNativeDateTimeModule 
+} from 'ng-pick-datetime';
 
 //Firebase
 import { environment } from '../environments/environment';
@@ -77,8 +77,8 @@ import {AdminOrderListingComponent} from "./dashboard/adminOrderListing/AdminOrd
                   messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
               }),
               CoreModule.forRoot(),
-            // OwlDateTimeModule,
-            // OwlNativeDateTimeModule,
+            OwlDateTimeModule,
+            OwlNativeDateTimeModule,
           ],
   providers: [
     StatusBar,

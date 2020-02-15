@@ -36,6 +36,8 @@ export class UploaderPage implements OnInit {
     orderStatus;
     orderItemsPredicted;
 
+    image1Classification: any;
+
 
 
     @ViewChild('chosenImage', { static: false }) img: ElementRef;
@@ -62,7 +64,6 @@ export class UploaderPage implements OnInit {
 
     @ViewChild('fileButton', { static: false }) fileButton;
     // @ViewChild('fileButton') fileButton
-    private image1Classification: string;
     private image1Confidence: string;
     private image1Probabilty: string;
 
@@ -176,6 +177,22 @@ export class UploaderPage implements OnInit {
         // Simulate Response from AI API
         //Write post request to AI classifier here and map response to simulateResponse1
 
+        //prepare data
+                const data = new FormData()
+
+
+                this.http.post('https://8080-dot-10558302-dot-devshell.appspot.com/predict/', data)
+                    .subscribe(event => {
+                        console.log(event)
+                        // this.imageURL = event['file']
+                        // console.log(this.imageURL)
+                        this.busy = false
+                    })
+
+
+
+
+
         let simulateResponse1;
 
         simulateResponse1 = {
@@ -199,7 +216,7 @@ export class UploaderPage implements OnInit {
             const data = new FormData()
             data.append('file', files[0])
             data.append('UPLOADCARE_STORE', '1')
-            data.append('UPLOADCARE_PUB_KEY', '3f6ba0e51f55fa947944')
+            data.append('UPLOADCARE_PUB_KEY', 'b9cc3f94e77d60a02f90')
 
             // post to uploadcare
             this.http.post('https://upload.uploadcare.com/base/', data)
@@ -226,7 +243,7 @@ export class UploaderPage implements OnInit {
                 const data = new FormData()
                 data.append('file', files[0])
                 data.append('UPLOADCARE_STORE', '1')
-                data.append('UPLOADCARE_PUB_KEY', '3f6ba0e51f55fa947944')
+                data.append('UPLOADCARE_PUB_KEY', 'b9cc3f94e77d60a02f90')
 
                 // post to uploadcare
                 this.http.post('https://upload.uploadcare.com/base/', data)

@@ -1,0 +1,167 @@
+[debug] [2020-02-10T09:31:47.222Z] ----------------------------------------------------------------------
+[debug] [2020-02-10T09:31:47.223Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2020-02-10T09:31:47.223Z] CLI Version:   7.12.1
+[debug] [2020-02-10T09:31:47.223Z] Platform:      darwin
+[debug] [2020-02-10T09:31:47.223Z] Node Version:  v13.3.0
+[debug] [2020-02-10T09:31:47.225Z] Time:          Mon Feb 10 2020 17:31:47 GMT+0800 (Singapore Standard Time)
+[debug] [2020-02-10T09:31:47.225Z] ----------------------------------------------------------------------
+[debug] [2020-02-10T09:31:47.225Z] 
+[debug] [2020-02-10T09:31:47.234Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-10T09:31:47.234Z] > authorizing via signed-in user
+[debug] [2020-02-10T09:31:47.234Z] [iam] checking project trucksy2020-54017 for permissions ["firebase.projects.get"]
+[debug] [2020-02-10T09:31:47.235Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/trucksy2020-54017:testIamPermissions  
+
+[debug] [2020-02-10T09:31:48.418Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-10T09:31:48.420Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/trucksy2020-54017  
+ 
+[debug] [2020-02-10T09:31:48.722Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/daniel/Desktop/repo/trucksy/trucksy'...
+[info] 
+[warn] ⚠  Your requested "node" version "8" doesn't match your global version "13"
+[info] ✔  functions: Emulator started at http://localhost:5000
+[info] i  functions: Watching "/Users/daniel/Desktop/repo/trucksy/trucksy/functions" for Cloud Functions...
+[debug] [2020-02-10T09:31:49.008Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-10T09:31:49.008Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-10T09:31:49.008Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-10T09:31:49.008Z] [worker-~diagnostic~-f6231c28-45fb-48ae-84a9-2a6b05f19667]: Assigning socketPath: /var/folders/bj/0chjw4592470t8xs528p1lzm0000gn/T/fire_emu_62021.sock
+[debug] [2020-02-10T09:31:49.008Z] [worker-~diagnostic~-f6231c28-45fb-48ae-84a9-2a6b05f19667]: BUSY
+[debug] [2020-02-10T09:31:49.246Z] [runtime-status] [62021] Functions runtime initialized. {"cwd":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions","node_version":"13.3.0"}
+[debug] [2020-02-10T09:31:49.246Z] [runtime-status] [62021] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-02-10T09:31:49.249Z] [runtime-status] [62021] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-10T09:31:49.251Z] [runtime-status] [62021] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-10T09:31:49.252Z] [runtime-status] [62021] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  Error: Cannot find module 'stripe'
+Require stack:
+- /Users/daniel/Desktop/repo/trucksy/trucksy/functions/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:961:17)
+    at Function.Module._load (internal/modules/cjs/loader.js:854:27)
+    at Module.require (internal/modules/cjs/loader.js:1023:19)
+    at require (internal/modules/cjs/helpers.js:72:18)
+    at Object.<anonymous> (/Users/daniel/Desktop/repo/trucksy/trucksy/functions/index.js:3:16)
+    at Module._compile (internal/modules/cjs/loader.js:1128:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1167:10)
+    at Module.load (internal/modules/cjs/loader.js:983:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:891:14)
+    at Module.require (internal/modules/cjs/loader.js:1023:19)
+[warn] ⚠  We were unable to load your functions code. (see above)
+[debug] [2020-02-10T09:31:49.356Z] [worker-~diagnostic~-f6231c28-45fb-48ae-84a9-2a6b05f19667]: exited
+[debug] [2020-02-10T09:31:49.356Z] [worker-~diagnostic~-f6231c28-45fb-48ae-84a9-2a6b05f19667]: FINISHED
+[debug] [2020-02-10T09:35:43.282Z] ----------------------------------------------------------------------
+[debug] [2020-02-10T09:35:43.285Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2020-02-10T09:35:43.285Z] CLI Version:   7.12.1
+[debug] [2020-02-10T09:35:43.285Z] Platform:      darwin
+[debug] [2020-02-10T09:35:43.285Z] Node Version:  v13.3.0
+[debug] [2020-02-10T09:35:43.286Z] Time:          Mon Feb 10 2020 17:35:43 GMT+0800 (Singapore Standard Time)
+[debug] [2020-02-10T09:35:43.286Z] ----------------------------------------------------------------------
+[debug] [2020-02-10T09:35:43.286Z] 
+[debug] [2020-02-10T09:35:43.300Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-10T09:35:43.301Z] > authorizing via signed-in user
+[debug] [2020-02-10T09:35:43.301Z] [iam] checking project trucksy2020-54017 for permissions ["firebase.projects.get"]
+[debug] [2020-02-10T09:35:43.303Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/trucksy2020-54017:testIamPermissions  
+
+[debug] [2020-02-10T09:35:43.634Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-10T09:35:43.636Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/trucksy2020-54017  
+ 
+[debug] [2020-02-10T09:35:43.903Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/daniel/Desktop/repo/trucksy/trucksy'...
+[info] 
+[warn] ⚠  Your requested "node" version "8" doesn't match your global version "13"
+[info] ✔  functions: Emulator started at http://localhost:5000
+[info] i  functions: Watching "/Users/daniel/Desktop/repo/trucksy/trucksy/functions" for Cloud Functions...
+[debug] [2020-02-10T09:35:44.187Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-10T09:35:44.187Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-10T09:35:44.187Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-10T09:35:44.188Z] [worker-~diagnostic~-48abf8c1-8f35-42fc-b224-5502ee3f02a1]: Assigning socketPath: /var/folders/bj/0chjw4592470t8xs528p1lzm0000gn/T/fire_emu_62114.sock
+[debug] [2020-02-10T09:35:44.188Z] [worker-~diagnostic~-48abf8c1-8f35-42fc-b224-5502ee3f02a1]: BUSY
+[debug] [2020-02-10T09:35:44.406Z] [runtime-status] [62114] Functions runtime initialized. {"cwd":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions","node_version":"13.3.0"}
+[debug] [2020-02-10T09:35:44.408Z] [runtime-status] [62114] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-02-10T09:35:44.411Z] [runtime-status] [62114] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-10T09:35:44.411Z] [runtime-status] [62114] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-10T09:35:44.411Z] [runtime-status] [62114] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions/node_modules/firebase-functions/lib/index.js"}
+[info] ✔  functions[payWithStripe]: http function initialized (http://localhost:5000/trucksy2020-54017/us-central1/payWithStripe).
+[debug] [2020-02-10T09:35:44.489Z] [worker-~diagnostic~-48abf8c1-8f35-42fc-b224-5502ee3f02a1]: IDLE
+[debug] [2020-02-10T09:35:50.519Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-02-10T09:35:50.519Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-10T09:35:50.519Z] Accepted request GET /trucksy2020-54017/us-central1/payWithStripe --> payWithStripe
+[debug] [2020-02-10T09:35:50.525Z] [worker-pool] addWorker(payWithStripe)
+[debug] [2020-02-10T09:35:50.525Z] [worker-pool] Adding worker with key payWithStripe, total=1
+[debug] [2020-02-10T09:35:50.525Z] [worker-pool] submitWork(triggerId=payWithStripe)
+[debug] [2020-02-10T09:35:50.525Z] [worker-payWithStripe-e33a1ea5-ea6b-4199-8782-241afbbde70b]: Assigning socketPath: /var/folders/bj/0chjw4592470t8xs528p1lzm0000gn/T/fire_emu_62116.sock
+[debug] [2020-02-10T09:35:50.526Z] [worker-payWithStripe-e33a1ea5-ea6b-4199-8782-241afbbde70b]: BUSY
+[debug] [2020-02-10T09:35:50.946Z] [runtime-status] [62116] Functions runtime initialized. {"cwd":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions","node_version":"13.3.0"}
+[debug] [2020-02-10T09:35:50.952Z] [runtime-status] [62116] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-02-10T09:35:50.965Z] [runtime-status] [62116] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-10T09:35:50.966Z] [runtime-status] [62116] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-10T09:35:50.990Z] [runtime-status] [62116] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/daniel/Desktop/repo/trucksy/trucksy/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-10T09:35:51.462Z] [runtime-status] [62116] Trigger "payWithStripe" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "payWithStripe"
+[debug] [2020-02-10T09:35:51.464Z] [runtime-status] [62116] triggerDefinition {"httpsTrigger":{},"name":"payWithStripe","entryPoint":"payWithStripe"}
+[debug] [2020-02-10T09:35:51.464Z] [runtime-status] [62116] Running payWithStripe in mode HTTPS
+[debug] [2020-02-10T09:35:51.467Z] [runtime-status] [62116] Attempting to listen to socketPath: /var/folders/bj/0chjw4592470t8xs528p1lzm0000gn/T/fire_emu_62116.sock
+[debug] [2020-02-10T09:35:51.489Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-10T09:35:51.535Z] [runtime-status] [62116] Ephemeral server handling GET request
+[debug] [2020-02-10T09:35:51.553Z] [runtime-status] [62116] Ephemeral server survived.
+[info] >  StripeInvalidRequestError: Must provide source or customer.
+[info] >      at Function.generate (/Users/daniel/Desktop/repo/trucksy/trucksy/functions/node_modules/stripe/lib/Error.js:38:16)
+[info] >      at IncomingMessage.<anonymous> (/Users/daniel/Desktop/repo/trucksy/trucksy/functions/node_modules/stripe/lib/StripeResource.js:175:33)
+[info] >      at Object.onceWrapper (events.js:308:28)
+[info] >      at IncomingMessage.emit (events.js:224:7)
+[info] >      at endReadableNT (_stream_readable.js:1206:12)
+[info] >      at processTicksAndRejections (internal/process/task_queues.js:84:21) {
+[info] >    type: 'StripeInvalidRequestError',
+[info] >    raw: {
+[info] >      code: 'parameter_missing',
+[info] >      doc_url: 'https://stripe.com/docs/error-codes/parameter-missing',
+[info] >      message: 'Must provide source or customer.',
+[info] >      type: 'invalid_request_error',
+[info] >      headers: {
+[info] >        server: 'nginx',
+[info] >        date: 'Mon, 10 Feb 2020 09:35:52 GMT',
+[info] >        'content-type': 'application/json',
+[info] >        'content-length': '213',
+[info] >        connection: 'keep-alive',
+[info] >        'access-control-allow-credentials': 'true',
+[info] >        'access-control-allow-methods': 'GET, POST, HEAD, OPTIONS, DELETE',
+[info] >        'access-control-allow-origin': '*',
+[info] >        'access-control-expose-headers': 'Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required',
+[info] >        'access-control-max-age': '300',
+[info] >        'cache-control': 'no-cache, no-store',
+[info] >        'request-id': 'req_lMI60bP5vDJOdS',
+[info] >        'stripe-version': '2019-12-03',
+[info] >        'strict-transport-security': 'max-age=31556926; includeSubDomains; preload'
+[info] >      },
+[info] >      statusCode: 400,
+[info] >      requestId: 'req_lMI60bP5vDJOdS'
+[info] >    },
+[info] >    rawType: 'invalid_request_error',
+[info] >    code: 'parameter_missing',
+[info] >    param: undefined,
+[info] >    detail: undefined,
+[info] >    headers: {
+[info] >      server: 'nginx',
+[info] >      date: 'Mon, 10 Feb 2020 09:35:52 GMT',
+[info] >      'content-type': 'application/json',
+[info] >      'content-length': '213',
+[info] >      connection: 'keep-alive',
+[info] >      'access-control-allow-credentials': 'true',
+[info] >      'access-control-allow-methods': 'GET, POST, HEAD, OPTIONS, DELETE',
+[info] >      'access-control-allow-origin': '*',
+[info] >      'access-control-expose-headers': 'Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required',
+[info] >      'access-control-max-age': '300',
+[info] >      'cache-control': 'no-cache, no-store',
+[info] >      'request-id': 'req_lMI60bP5vDJOdS',
+[info] >      'stripe-version': '2019-12-03',
+[info] >      'strict-transport-security': 'max-age=31556926; includeSubDomains; preload'
+[info] >    },
+[info] >    requestId: 'req_lMI60bP5vDJOdS',
+[info] >    statusCode: 400,
+[info] >    charge: undefined,
+[info] >    decline_code: undefined,
+[info] >    payment_intent: undefined,
+[info] >    payment_method: undefined,
+[info] >    setup_intent: undefined,
+[info] >    source: undefined
+[info] >  }

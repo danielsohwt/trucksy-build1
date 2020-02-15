@@ -73,6 +73,7 @@ export class PaymentPage implements OnInit {
 
         this.card = elements.create('card', {
             iconStyle: 'solid',
+            hidePostalCode: true,
             style: style });
         console.log(this.card);
         this.card.mount('#card-element');

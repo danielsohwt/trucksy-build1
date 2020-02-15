@@ -1,6 +1,5 @@
 .home-background {
-    --background: url('../../assets/img/background/login.jpg') no-repeat center center fixed;;
-    --background: url('../../assets/img/background/Group 48.png') no-repeat center center fixed;
+    --background: url('../../assets/img/background/group 48.png') no-repeat center center fixed;;
     --background-size: cover;
     overflow: hidden;
     font-family: Helvetica, Arial, sans-serif;
@@ -20,7 +19,7 @@
     bottom: 0;
     left: 0;
     max-width: 834px;
-    height: 600px;
+    height: 750px;
     background-color: rgba(253, 253, 253, 0.51);
     border-radius: 15px;
     box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.51);
@@ -52,8 +51,6 @@
             "hpnumber hpnumber"
             "userType userType"
             "login login"
-            "testing testing"
-            "recaptcha-container recaptcha-container"
 }
 
 .logo {
@@ -152,14 +149,23 @@
 #userType {
     grid-area: userType;
     height: 80%;
+    //margin-top: 30px;
     margin: 10px 10%;
-    display: block;
+    //display: block;
     font-size: 18px;
-    color: rgb(0, 0, 0);
+    color: #2B3339;
     padding: 8px;
     border-radius: 15px;
     border: 1px solid #2B3339;
     background: rgba(255, 255, 255);
+}
+
+#otp{
+    margin-left: 220px;
+}
+
+#code{
+    margin-left: 220px;
 }
 
 .orangeButton {
@@ -179,7 +185,7 @@
 
 #login {
     //     width: 500px;
-    //     margin-top:250px;
+    margin-top:30px;
     //     margin-bottom: auto;
     margin-left:auto;
     margin-right: auto;

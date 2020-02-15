@@ -17,7 +17,8 @@ import { firestore } from 'firebase/app'
 export class EstimatepricePage implements OnInit {
 
     orderID: string;
-
+    items: Array<any>;
+    public product
     priceModel1
 
     sofaQty
@@ -31,8 +32,6 @@ export class EstimatepricePage implements OnInit {
     totalPrice
     sub
 
-    imageURL;
-
     constructor(
         public firebaseService: FirebaseService,
         private afs: AngularFirestore,
@@ -42,41 +41,50 @@ export class EstimatepricePage implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.orderID = this.route.snapshot.paramMap.get('id')
+        this.retrieveItem();
         //Manually set, once AI model implemented will use their values
-        this.sofaQty = 2;
-        this.bedQty = 3;
-
-        this.priceModel1 = this.afs.doc(`priceModel/1`)
-        this.priceModel1.valueChanges().subscribe(val => {
-            this.sofaUnitPrice = val.pricing['sofa'],
-            this.sofaTotal = this.sofaUnitPrice * this.sofaQty,
-            this.bedUnitPrice = val.pricing['bed'],
-            this.bedTotal = this.bedUnitPrice * this.bedQty,
-            this.totalPrice = this.sofaTotal + this.bedTotal
-        })
-
-
-
-
+        this.sofaQty = 1;
     }
+    retrieveItem() {
+        var products = '';
+        this.orderID = this.route.snapshot.paramMap.get('id');
+        this.firebaseService.searchOrdersByID(this.orderID).subscribe(result => {
+            this.items = result;
+            this.items.forEach(function(child){
+                products = child.payload.doc.data().orderItemsPredicted;
+                console.log(products)
+            });
+            this.product=products;
+            console.log(this.product);
+            this.priceModel1 = this.afs.doc(`priceModel/1`)
+            this.priceModel1.valueChanges().subscribe(val => {
+            this.sofaUnitPrice = val.pricing[this.product],
+            this.sofaTotal = this.sofaUnitPrice * this.sofaQty,
+            console.log(this.sofaUnitPrice)
+            this.totalPrice = this.sofaTotal;
+            })
+
+
+        });
+    }
+
 
 
 
     updateQtySofa() {
         this.sofaTotal = this.sofaUnitPrice * this.sofaQty
         this.sofaTotal = Math.round(this.sofaTotal * 100 ) / 100
-        this.totalPrice = this.sofaTotal + this.bedTotal
+        this.totalPrice = this.sofaTotal
 
     }
 
-    updateQtyBed() {
-        this.bedTotal = this.bedUnitPrice * this.bedQty
-        this.bedTotal = Math.round(this.bedTotal * 100 ) / 100
-        this.totalPrice = this.sofaTotal + this.bedTotal
+    // updateQtyBed() {
+    //     this.bedTotal = this.bedUnitPrice * this.bedQty
+    //     this.bedTotal = Math.round(this.bedTotal * 100 ) / 100
+    //     this.totalPrice = this.sofaTotal + this.bedTotal
 
 
-    }
+    // }
 
     // TODO: implement
 

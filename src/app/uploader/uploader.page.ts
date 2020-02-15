@@ -64,9 +64,11 @@ export class UploaderPage implements OnInit {
 
 
     @ViewChild('fileButton', { static: false }) fileButton;
+    @ViewChild('mobileNetUploadBtn', { static: false }) mobileNetUploadBtn;
     // @ViewChild('fileButton') fileButton
     private image1Confidence: string;
     private image1Probabilty: string;
+
 
     constructor(
         public http: HttpClient,
@@ -83,25 +85,27 @@ export class UploaderPage implements OnInit {
     // AI Stuff
 
     async loadModel() {
+        console.log('Loading model..')
         this.model = await tf.loadModel("../../assets/model.json");
+        console.log('Model Loaded!')
     }
 
     fileChangeEvent(event: any) {
         const file = event.target.files[0];
         console.log(file)
-        if (!file || !file.type.match("image.*")) {
-            return;
-        }
+        // if (!file || !file.type.match("image.*")) {
+        //     return;
+        // }
 
         this.classes = [];
 
         const reader = new FileReader();
         reader.onload = e => {
-            console.log(e)
+            console.log('e:',e)
             this.img.nativeElement.src = e.target["result"];
-            console.log(this.img.nativeElement)
+            console.log('Img.nativeElement: ',this.img.nativeElement)
             this.predict(this.img.nativeElement,file);
-            console.log(this.predict(this.img.nativeElement,file))
+            console.log('Predict: ',this.predict(this.img.nativeElement,file))
         };
         reader.readAsDataURL(file);
     }
@@ -187,7 +191,9 @@ export class UploaderPage implements OnInit {
 
     // End AI Stuff
 
-
+    uploadFileMNet() {
+        this.mobileNetUploadBtn.nativeElement.click()
+    }
 
 
     uploadFile() {

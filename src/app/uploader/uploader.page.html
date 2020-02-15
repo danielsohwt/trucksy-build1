@@ -3,13 +3,20 @@
 
         <app-loading class="center" *ngIf="busy"></app-loading>
 
+<!--        <input type="file" id="files" name="files[]" class="mobileNetUploadBtn" (change)="fileChangeEvent($event)" #mobileNetUploadBtn />-->
 
+<!--        <div>-->
+<!--            <ion-button shape="round" color="primary" (click)="uploadFileMNet()" fill="outline"> Upload Image to Get a Quote</ion-button>-->
+<!--        </div>-->
 
-       <div class="upload" [hidden]="!model">
-           Upload an image: <input #fileUpload type="file" id="files" name="files[]" (change)="fileChangeEvent($event)" />
-       </div>
+<!--        This div is hidden-->
+       <div *ngIf="!imageURL" class="center">
 
-       <div>
+           <div class="upload" [hidden]="!model">
+               Upload an image:
+               <input #fileUpload type="file" id="files" name="files[]" (change)="fileChangeEvent($event)" />
+           </div>
+
            <img #chosenImage width="224" height="224" class="sample-image" />
            <div class="predictions">
                <div *ngFor="let class of classes" class="row">
@@ -33,7 +40,7 @@
 
             <input type="file" *ngIf="!imageURL" (change)="fileChanged($event)" class="filebtn" #fileButton />
 
-            <div *ngIf="!uploadFail" >
+            <div class="hide-div" *ngIf="!uploadFail" >
                 <ion-button shape="round" color="primary" (click)="uploadFile()" *ngIf="!imageURL" fill="outline"> Upload Image to Get a Quote</ion-button>
             </div>
 

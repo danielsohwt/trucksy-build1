@@ -26,6 +26,7 @@ export class PaymentPage implements OnInit {
     pickUpAddress: any;
     dropOffAddress: any;
     orderPrice: number;
+    token: string;
 
     imageURL
 
@@ -44,8 +45,7 @@ export class PaymentPage implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.loadStripe();
-        this.orderID = this.route.snapshot.paramMap.get('id')
+        this.orderID = this.route.snapshot.paramMap.get('id');
         this.getOrderInfo();
 
         this.setupStripe();
@@ -55,13 +55,14 @@ export class PaymentPage implements OnInit {
         let elements = this.stripe.elements();
         var style = {
             base: {
-                color: '#32325d',
+                iconColor: '#F2561D',
+                color: '#2B3339',
                 lineHeight: '24px',
-                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                fontSmoothing: 'antialiased',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                // fontSmoothing: 'antialiased',
                 fontSize: '16px',
                 '::placeholder': {
-                    color: '#aab7c4'
+                    color: '#c6c6c6'
                 }
             },
             invalid: {
@@ -70,7 +71,10 @@ export class PaymentPage implements OnInit {
             }
         };
 
-        this.card = elements.create('card', { style: style });
+        this.card = elements.create('card', {
+            iconStyle: 'solid',
+            hidePostalCode: true,
+            style: style });
         console.log(this.card);
         this.card.mount('#card-element');
 
@@ -94,36 +98,38 @@ export class PaymentPage implements OnInit {
                     errorElement.textContent = result.error.message;
                 } else {
                     console.log(result);
-                    this.makePayment(result.id);
+                    try {
+                        console.log(result.source.id);
+                        this.token = result.source;
+                        this.paymentSvc.processPayment(
+                            this.token,
+                            this.orderPrice*100,
+                            this.orderID,
+                            this.dateTimeOfPickup,
+                            this.pickUpAddress,
+                            this.dropOffAddress);
+                        this.completePayment()
+                    }
+                    catch(err) {
+                        console.log(err);
+                    }
                 }
             });
         });
     }
 
-
-    makePayment(token) {
-        this.http
-            .post('http://localhost:5000/trucksy2020-54017/us-central1/payWithStripe', {
-                amount: 1000,
-                currency: "SGD",
-                token: token.id
-            })
-            .subscribe(data => {
-                console.log(data);
-            });
-    }
-
-
-    loadStripe() {
-
-        if (!window.document.getElementById('stripe-script')) {
-            let s = window.document.createElement('script');
-            s.id = 'stripe-script';
-            s.type = 'text/javascript';
-            s.src = 'https://checkout.stripe.com/checkout.js';
-            window.document.body.appendChild(s);
-        }
-    }
+    //
+    // makePayment(token) {
+    //     this.http
+    //         .post('http://localhost:4000/charge', {
+    //             amount: 1000,
+    //             currency: "SGD",
+    //             token: token.id
+    //         })
+    //         .subscribe(data => {
+    //             console.log(data);
+    //         });
+    // }
 
     getOrderInfo() {
         this.afs.collection('order').doc(this.orderID).ref.get()
@@ -167,34 +173,6 @@ export class PaymentPage implements OnInit {
         this.afs.collection('order').doc(this.orderID).update({
 
             orderStatus: 'Payment Failed',
-        });
-    }
-
-    pay(orderPrice) {
-        let handler;
-        handler = (window as any).StripeCheckout.configure({
-            key: environment.stripeKey,
-            locale: 'auto',
-            token: token => {
-                try {
-                    this.paymentSvc.processPayment(
-                        token,
-                        orderPrice*100,
-                        this.orderID,
-                        this.dateTimeOfPickup,
-                        this.pickUpAddress,
-                        this.dropOffAddress);
-                    this.completePayment()
-                } catch(err) {
-                    console.log(err);
-                }
-            }
-        });
-
-        handler.open({
-            name: 'Demo Site',
-            description: `SGD ${orderPrice}`,
-            amount: orderPrice * 100
         });
     }
 

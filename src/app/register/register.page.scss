@@ -1,44 +1,208 @@
 .home-background {
-    --background: url('../../assets/img/background/login.jpg') no-repeat center center fixed;;
+    --background: url('../../assets/img/background/group 48.png') no-repeat center center fixed;;
     --background-size: cover;
+    overflow: hidden;
+    font-family: Helvetica, Arial, sans-serif;
+    font-color:#2B3339;
 }
 
-#testing{
-    width: 200px; 
-    height: 100px; 
-    margin-left: auto;
-    margin-right: auto;
+::placeholder {
+    color: #2B3339;
 }
 
-// .login-box{
-//     max-width: 500px; 
-//     max-height: 300px;
-//     //width:100%; 
-//     //margin: center; 
-//     text-align: center;
-//     //height: 100%;
-//     display: block;
-//     //vertical-align: middle;
-// }
+/* Login container */
+.transparentbox {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: 834px;
+    height: 750px;
+    background-color: rgba(253, 253, 253, 0.51);
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.51);
+}
+/* Login form container */
+#contents {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 0.75fr 1.75fr;
+    //grid-template-columns: 2fr;
+    grid-template-areas:
+            "header"
+            "form"
+}
 
-#rounded {
-    margin-left:auto; 
-    margin-right: auto; 
-    border: solid 1px orange;
-    width: 300px;
-    height: 50px;
-    margin-bottom: 30px;
+#form {
+    grid-area: form;
+    //padding: 60px;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 0.5fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+            "firstName firstName"
+            "lastName lastName"
+            "username username"
+            "password password"
+            "cpassword cpassword"
+            "hpnumber hpnumber"
+            "userType userType"
+            "login login"
+}
+
+.logo {
+    height: 50%;
+    width: auto;
+    grid-area: header;
+    justify-self: center;
+    align-self: center;
+}
+
+//#firstName, #lastName {
+//    display: block;
+//    float: left;
+//    margin: 10px 10%;
+//    padding: 8px;
+//    margin-right: 100px;
+//
+//}
+#firstName {
+    grid-area: firstName;
+    float: left;
+    height: 80%;
+    margin: 10px 10%;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 15px;
+    border: 1px solid #2B3339;
+    background: rgba(255, 255, 255);
+}
+#lastName {
+    grid-area: lastName;
+    float: left;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 15px;
+    border: 1px solid #2B3339;
+    background: rgba(255, 255, 255);
+}
+
+#username {
+    grid-area: username;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 15px;
+    border: 1px solid #2B3339;
+    background: rgba(255, 255, 255);
+}
+#password {
+    grid-area: password;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 15px;
+    border: 1px solid #2B3339;
+    background: rgba(255, 255, 255);
+}
+
+#cpassword {
+    grid-area: cpassword;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 15px;
+    border: 1px solid #2B3339;
+    background: rgba(255, 255, 255);
+}
+
+#hpnumber {
+    grid-area: hpnumber;
+    height: 80%;
+    margin: 10px 10%;
+    display: block;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 15px;
+    border: 1px solid #2B3339;
+    background: rgba(255, 255, 255);
+}
+
+#userType {
+    grid-area: userType;
+    height: 80%;
+    //margin-top: 30px;
+    margin: 10px 10%;
+    //display: block;
+    font-size: 18px;
+    color: #2B3339;
+    padding: 8px;
+    border-radius: 15px;
+    border: 1px solid #2B3339;
+    background: rgba(255, 255, 255);
+}
+
+#otp{
+    margin-left: 220px;
+}
+
+#code{
+    margin-left: 220px;
+}
+
+.orangeButton {
+    padding:18px;
+    padding-left:50px;
+    padding-right:50px;
+    box-shadow: 0px 1px 5px 0px rgb(0, 0, 0, 0.4);
+    background-color:#F2561D;
+    border-radius:20px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:18px;
+    text-decoration:none;
+    border: 0px;
 }
 
 #login {
-//     width: 500px; 
-//     margin-top:250px; 
-//     margin-bottom: auto; 
-    margin-left:auto; 
-    margin-right: auto; 
-    margin: center; 
+    //     width: 500px;
+    margin-top:30px;
+    //     margin-bottom: auto;
+    margin-left:auto;
+    margin-right: auto;
+    grid-area: login;
+    padding: 15px 36px;
+    justify-self: center;
+    align-self: start;
 }
 
-.otp {
-    padding: 10px;
+.orangeButton:hover {
+    background-color:#d96725;
+}
+.orangeButton:active {
+    top:1px;
+}
+
+strong {
+    display: block;
+    text-align: center;
 }

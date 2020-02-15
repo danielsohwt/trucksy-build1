@@ -23,6 +23,7 @@ export class UploaderPage implements OnInit {
     model: tf.Model;
     classes: any[];
     imageData: ImageData;
+    data = new FormData();
 
     imageURL; string;
     desc: string;
@@ -87,6 +88,7 @@ export class UploaderPage implements OnInit {
 
     fileChangeEvent(event: any) {
         const file = event.target.files[0];
+        console.log(file)
         if (!file || !file.type.match("image.*")) {
             return;
         }
@@ -95,13 +97,16 @@ export class UploaderPage implements OnInit {
 
         const reader = new FileReader();
         reader.onload = e => {
+            console.log(e)
             this.img.nativeElement.src = e.target["result"];
-            this.predict(this.img.nativeElement);
+            console.log(this.img.nativeElement)
+            this.predict(this.img.nativeElement,file);
+            console.log(this.predict(this.img.nativeElement,file))
         };
         reader.readAsDataURL(file);
     }
 
-    async predict(imageData: ImageData): Promise<any> {
+    async predict(imageData: ImageData,file): Promise<any> {
         this.fileUpload.nativeElement.value = "";
         const startTime = performance.now();
         const logits = tf.tidy(() => {
@@ -120,12 +125,14 @@ export class UploaderPage implements OnInit {
         });
 
         // Convert logits to probabilities and class names.
-        this.classes = await this.getTopKClasses(logits, TOPK_PREDICTIONS);
+        this.classes = await this.getTopKClasses(logits, 1,file);
+        console.log(this.classes)
         const totalTime = performance.now() - startTime;
         console.log(`Done in ${Math.floor(totalTime)}ms`);
     }
 
-    async getTopKClasses(logits, topK): Promise<any[]> {
+    async getTopKClasses(logits, topK,file): Promise<any[]> {
+        console.log(topK);
         const values = await logits.data();
 
         const valuesAndIndices = [];
@@ -144,9 +151,33 @@ export class UploaderPage implements OnInit {
 
         const topClassesAndProbs = [];
         for (let i = 0; i < topkIndices.length; i++) {
+            console.log(topkValues[i])
+            var confidence = '';
+            if (topkValues[i] < 0.7) {
+                confidence= 'Low Confidence';
+            }
+            else {
+                confidence= 'High Confidence';
+                            //prepare data
+
+                this.data.append('file', file)
+                this.data.append('UPLOADCARE_STORE', '1')
+                this.data.append('UPLOADCARE_PUB_KEY', '3f6ba0e51f55fa947944')
+                console.log(this.data)
+
+                // post to uploadcare
+                this.http.post('https://upload.uploadcare.com/base/', this.data)
+                    .subscribe(event => {
+                        console.log(event)
+                        this.imageURL = event['file']
+                        console.log(this.imageURL)
+                        this.busy = false
+                    })
+            }
             topClassesAndProbs.push({
                 className: IMAGENET_CLASSES[topkIndices[i]],
-                probability: topkValues[i]
+                probability: topkValues[i],
+                confidence: confidence
             });
         }
 
@@ -168,9 +199,10 @@ export class UploaderPage implements OnInit {
     }
 
 
-    fileChanged(event) {
+    fileChanged(event: any) {
         this.busy = true
         const files = event.target.files
+        console.log(files)
 
         // Call classification API to determine class and confidence level
 
@@ -216,7 +248,7 @@ export class UploaderPage implements OnInit {
             const data = new FormData()
             data.append('file', files[0])
             data.append('UPLOADCARE_STORE', '1')
-            data.append('UPLOADCARE_PUB_KEY', 'b9cc3f94e77d60a02f90')
+            data.append('UPLOADCARE_PUB_KEY', '3f6ba0e51f55fa947944')
 
             // post to uploadcare
             this.http.post('https://upload.uploadcare.com/base/', data)
@@ -243,7 +275,7 @@ export class UploaderPage implements OnInit {
                 const data = new FormData()
                 data.append('file', files[0])
                 data.append('UPLOADCARE_STORE', '1')
-                data.append('UPLOADCARE_PUB_KEY', 'b9cc3f94e77d60a02f90')
+                data.append('UPLOADCARE_PUB_KEY', '3f6ba0e51f55fa947944')
 
                 // post to uploadcare
                 this.http.post('https://upload.uploadcare.com/base/', data)
@@ -352,6 +384,8 @@ export class UploaderPage implements OnInit {
             // 4: "Order Placed"
             // ** Only after orderStatus == "Confirmed" fulfillmentStatus == "Order Placed"
             fulfillmentStatus: "Order Not Confirmed",
+            orderItemsPredicted:this.classes[0]['className'],
+
 
 
             dateTimeOfOrder: now.format(),

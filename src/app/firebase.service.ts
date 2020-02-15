@@ -49,6 +49,11 @@ export class FirebaseService {
     searchOrdersByDate(start,end){
         return this.db.collection('order',ref => ref.orderBy('dateTimeOfOrder').startAt(start).endAt(end)).snapshotChanges();
     }
+
+
+    searchOrdersByID(id){
+        return this.db.collection('order',ref => ref.where('image', '==', id)).snapshotChanges();
+    }
     //
     //
     // createUser(value, avatar){

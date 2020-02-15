@@ -29,6 +29,12 @@ export class BookingPage implements OnInit {
     dropOffAddress: any;
     pickUpPostalCode: any;
     dropOffPostalCode: any;
+    pickUpUnitNo: any;
+    dropOffUnitNo: any;
+
+    recName: any;
+    recNumber: any;
+    note: string;
 
     constructor(
         public firebaseService: FirebaseService,
@@ -52,7 +58,6 @@ export class BookingPage implements OnInit {
         console.log(this.dateTimeOfPickup);
     }
 
-    // TODO: remove redundant code (2 searches)
     searchPickUp() {
         this.postalSearch(this.pickUpPostalCode)
             .then(data => {
@@ -87,6 +92,14 @@ export class BookingPage implements OnInit {
 
     placePayment() {
 
+        if (this.pickUpUnitNo) {
+            this.pickUpAddress = '#' + this.pickUpUnitNo + ', ' + this.pickUpAddress;
+        }
+
+        if (this.dropOffUnitNo) {
+            this.dropOffAddress = '#' + this.dropOffUnitNo + ', ' + this.dropOffAddress
+        }
+
         //Order Status:
         // 1: "Created Order"
         // 2: "Created Price Estimate"
@@ -97,7 +110,10 @@ export class BookingPage implements OnInit {
             dateTimeOfPickup: this.dateTimeOfPickup,
             pickUpAddress: this.pickUpAddress,
             dropOffAddress: this.dropOffAddress,
+            recipientName: this.recName,
+            recipientNumber: this.recNumber,
             orderStatus: 'Created Booking Date',
+            note: this.note.slice(0,2000)
 
         });
 

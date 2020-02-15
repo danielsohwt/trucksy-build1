@@ -3,7 +3,7 @@
 		<ion-row justify-content-center align-items-center style="height: 100%">
 			<ion-col
 					class="ion-align-self-center"
-					size-xs="12"
+					size-xs="10"
 					size-sm="8"
 					size-md="6"
 					size-lg="6"
@@ -19,7 +19,6 @@
 <!--								<ion-text color="danger">Please enter a valid e-mail address</ion-text>-->
 <!--							</ion-item>-->
 <!--						</ion-row>-->
-
 							<input id="username" type="email" [(ngModel)]="username"
 									   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
 									   required #usernameCtrl="ngModel" name="username" placeholder="Username">
@@ -27,34 +26,18 @@
 							<input id="password" type="password" [(ngModel)]="password"
 									   required #passwordCtrl="ngModel" name="password" placeholder="Password">
 
-
 							<div id="footer">
-								<div style="justify-content: left">
+								<div id="remember">
 									<input type="checkbox" id="remember-checkbox" class="checkbox" checked="checked"/>
-									<span id="remember">Keep me signed in</span>
+									<span>Keep me signed in</span>
 								</div>
 								<br>
-
+								<div id="forgot">
+									<span (click)="forgotPasswordButton()">Forgot your password?&emsp;</span>
+								</div>
 							</div>
-
-						<div class="login">
-
-							<ion-button shape="round" color="primary" (click)="login()" >Login</ion-button>
-							<ion-button shape="round" color="primary" (click)="register()" fill="outline">Register</ion-button>
-							<br><br>
-							<span style="color:grey" id="forgot" (click)="forgotPasswordButton()">Forgot your password?&emsp;</span>
-							<br>
-						</div>
-						<br>
-
-						<div>
-
-						</div>
-
-
-
-
-
+<!--						<ion-row justify-content-around>-->
+							<button class="orangeButton" id="login" type="submit" fill="solid" color="primary" (click)="login()">Login</button>
 <!--						</ion-row>-->
 
 					</div>

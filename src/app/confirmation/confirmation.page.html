@@ -4,8 +4,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <ion-col
+              class="ion-align-self-center"
+              style="height:100%"
+              size-xs="12"
+              size-sm="10"
+              size-md="10"
+              size-lg="6"
+      >
   <div class="progbar_container">
     <ul class="progressbar">
       <li>Delivery Details</li>
@@ -14,11 +23,22 @@
     </ul>
   </div>
 
+  <div class="ion_card">
+    <ion-card>
+      <ion-card-content>
+        <h4>Order confirmed for {{ orderID }}!</h4>
+        <p>Thank you for using Trucksy, a confirmation email and SMS has been sent to you.</p>
+        <p>Do contact us at sales@rentalorrysingapore.com or 6589 8964 for any enquiries. Have a great day!</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
-Order confirmed for {{ orderID }}!
   <br>
 
 
 
 <ion-button shape="round" color="primary" (click)="completeOrder()" *ngIf="!imageURL" fill="outline"> Back to Feed</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

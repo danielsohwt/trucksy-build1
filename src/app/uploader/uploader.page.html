@@ -3,27 +3,45 @@
 
         <app-loading class="center" *ngIf="busy"></app-loading>
 
+<!--        <input type="file" id="files" name="files[]" class="mobileNetUploadBtn" (change)="fileChangeEvent($event)" #mobileNetUploadBtn />-->
 
+<!--        <div>-->
+<!--            <ion-button shape="round" color="primary" (click)="uploadFileMNet()" fill="outline"> Upload Image to Get a Quote</ion-button>-->
+<!--        </div>-->
 
-       <div class="upload" [hidden]="!model">
-           Upload an image: <input #fileUpload type="file" id="files" name="files[]" (change)="fileChangeEvent($event)" />
-       </div>
+       <div *ngIf="!imageURL" class="center">
 
-       <div>
-           <img #chosenImage width="224" height="224" class="sample-image" />
-           <div class="predictions">
-               <div *ngFor="let class of classes" class="row">
-                   <div class="col-sm-6">
-                       {{class.className}}
-                   </div>
-                   <div class="col-sm-6">
-                       {{class.probability.toFixed(3)}}
-                   </div>
-                   <div class="col-sm-6">
-                    {{class.confidence}}
-                </div>
+           <div class="upload" [hidden]="!model">
+               <div *ngIf="!uploadFail" >
+               Upload an image:<br>
+               <input #fileUpload type="file" id="files" name="files[]" (change)="fileChangeEvent($event)" />
+               </div>
+
+               <div *ngIf="uploadFail" >
+                   Unable to accurately classify, please upload again <br>
+                   Here are some samples of good angles to try: <br>
+                   Show images<br><br>
+                   <input #fileUpload type="file" id="files" name="files[]" (change)="fileChangeEvent($event)" />
                </div>
            </div>
+
+           <div class="hide-div">
+               <img #chosenImage width="224" height="224" class="sample-image" />
+               <div class="predictions">
+                   <div *ngFor="let class of classes" class="row">
+                       <div class="col-sm-6">
+                           {{class.className}}
+                       </div>
+                       <div class="col-sm-6">
+                           {{class.probability.toFixed(3)}}
+                       </div>
+                       <div class="col-sm-6">
+                           {{class.confidence}}
+                       </div>
+                   </div>
+               </div>
+           </div>
+
            
         </div>
 
@@ -33,15 +51,15 @@
 
             <input type="file" *ngIf="!imageURL" (change)="fileChanged($event)" class="filebtn" #fileButton />
 
-            <div *ngIf="!uploadFail" >
+            <div class="hide-div" *ngIf="!uploadFail" >
                 <ion-button shape="round" color="primary" (click)="uploadFile()" *ngIf="!imageURL" fill="outline"> Upload Image to Get a Quote</ion-button>
             </div>
 
-            <div *ngIf="uploadFail" >
-                Unable to accurately classify, please upload again <br>
-                Here are some samples of good angles to try <br>
-                <ion-button shape="round" color="primary" (click)="uploadFile()" *ngIf="!imageURL" fill="outline"> Please Upload Again</ion-button>
-            </div>
+<!--            <div *ngIf="uploadFail" >-->
+<!--                Unable to accurately classify, please upload again <br>-->
+<!--                Here are some samples of good angles to try <br>-->
+<!--                <ion-button shape="round" color="primary" (click)="uploadFile()" *ngIf="!imageURL" fill="outline"> Please Upload Again</ion-button>-->
+<!--            </div>-->
 
             <div *ngIf="imageURL" >
                 <ion-grid>

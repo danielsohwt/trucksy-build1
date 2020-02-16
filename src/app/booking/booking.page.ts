@@ -9,7 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import * as moment from 'moment';
 
-// TODO: add unit numbers
 // TODO: add error handling for unfound/invalid postal codes
 
 @Component({
@@ -34,7 +33,7 @@ export class BookingPage implements OnInit {
 
     recName: any;
     recNumber: any;
-    note: string = ' ';
+    note: string;
 
     constructor(
         public firebaseService: FirebaseService,
@@ -91,7 +90,7 @@ export class BookingPage implements OnInit {
     };
 
     placePayment() {
-
+        this.note += ' ';
         if (this.pickUpUnitNo) {
             this.pickUpAddress = '#' + this.pickUpUnitNo + ', ' + this.pickUpAddress;
         }

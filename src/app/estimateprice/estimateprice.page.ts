@@ -18,19 +18,18 @@ export class EstimatepricePage implements OnInit {
 
     orderID: string;
     items: Array<any>;
-    public product
     priceModel1
 
-    sofaQty
-    sofaUnitPrice
-    sofaTotal
+    products: any;
+    productsArray: Array<string>;
+    quantitiesArray: Array<number>;
+    priceList: any;
+    subtotal: number;
+    svc: number;
+    gst: number;
+    totalPrice: number;
 
-    bedQty
-    bedUnitPrice
-    bedTotal
-
-    totalPrice
-    sub
+    actualProducts: any;
 
     imageURL;
 
@@ -44,49 +43,55 @@ export class EstimatepricePage implements OnInit {
 
     ngOnInit() {
         this.retrieveItem();
-        //Manually set, once AI model implemented will use their values
-        this.sofaQty = 1;
     }
     retrieveItem() {
-        var products = '';
+        let products;
+        let productsArray = [];
+        let quantitiesArray = [];
+        let priceList;
+        let subtotal = 0;
+
+
         this.orderID = this.route.snapshot.paramMap.get('id');
         this.firebaseService.searchOrdersByID(this.orderID).subscribe(result => {
             this.items = result;
             this.items.forEach(function(child){
                 products = child.payload.doc.data().orderItemsPredicted;
-                console.log(products)
             });
-            this.product=products;
-            console.log(this.product);
+
+            this.products=products;
+
             this.priceModel1 = this.afs.doc(`priceModel/1`)
             this.priceModel1.valueChanges().subscribe(val => {
-            this.sofaUnitPrice = val.pricing[this.product],
-            this.sofaTotal = this.sofaUnitPrice * this.sofaQty,
-            console.log(this.sofaUnitPrice)
-            this.totalPrice = this.sofaTotal;
+                priceList = val.pricing;
+                this.priceList = priceList;
+
+                Object.keys(products).forEach(function(key) {
+                    productsArray.push(key);
+                    quantitiesArray.push(products[key]);
+                    subtotal += priceList[key] * products[key]
+                });
+
+                this.productsArray = productsArray;
+                this.quantitiesArray = quantitiesArray;
+                this.subtotal = subtotal;
+                this.svc = Math.round(subtotal*0.10*100 ) / 100;
+                this.gst = Math.round((this.subtotal + this.svc)*0.07*100 ) / 100;
+                this.totalPrice = this.subtotal + this.svc + this.gst;
             })
-
-
         });
     }
 
-
-
-
-    updateQtySofa() {
-        this.sofaTotal = this.sofaUnitPrice * this.sofaQty
-        this.sofaTotal = Math.round(this.sofaTotal * 100 ) / 100
-        this.totalPrice = this.sofaTotal
-
+    updateTotals() {
+        let subtotal = 0;
+        for (let i=0; i<this.productsArray.length; i++) {
+           subtotal += this.priceList[this.productsArray[i]] * this.quantitiesArray[i]
+        }
+        this.subtotal=subtotal;
+        this.svc = Math.round(subtotal*0.10*100 ) / 100;
+        this.gst = Math.round((this.subtotal + this.svc)*0.07*100 ) / 100;
+        this.totalPrice = Math.round((this.subtotal + this.svc + this.gst)*100 ) / 100;
     }
-
-    // updateQtyBed() {
-    //     this.bedTotal = this.bedUnitPrice * this.bedQty
-    //     this.bedTotal = Math.round(this.bedTotal * 100 ) / 100
-    //     this.totalPrice = this.sofaTotal + this.bedTotal
-
-
-    // }
 
     // TODO: implement
 
@@ -95,7 +100,7 @@ export class EstimatepricePage implements OnInit {
     }
 
     placeBooking() {
-
+        this.actualProducts = this.createProductsObject();
         //Order Status:
         // 1: "Created Order"
         // 2: "Created Price Estimate"
@@ -105,15 +110,31 @@ export class EstimatepricePage implements OnInit {
         this.afs.collection('order').doc(this.orderID).update({
 
             orderStatus: 'Created Price Estimate',
-            orderPrice: Math.round(this.totalPrice * 100 ) / 100
-
-
+            orderPrice: Math.round(this.totalPrice * 100) / 100,
+            orderItemsActual: this.actualProducts,
         });
 
         console.log('Pushed to DB: Updated orderPrice to: $' + Math.round(this.totalPrice * 100 ) / 100 );
-        console.log('Pushede to DB: Updated orderStatus to: ' + 'Created Price Estimate');
+        console.log('Pushed to DB: Updated orderStatus to: ' + 'Created Price Estimate');
+
+        // Quickfix to stop the endless updating of arrays everytime Firestore document is updated.
+        this.productsArray = null;
+        this.quantitiesArray = null;
 
         this.router.navigate(['/booking/'+ this.orderID ])
+
     }
 
+    createProductsObject() {
+        let actualProducts = {};
+        for (let i=0; i<this.productsArray.length; i++) {
+            actualProducts[this.productsArray[i]] = this.quantitiesArray[i];
+        }
+        return actualProducts;
+    }
+
+    cancelOrder() {
+        this.afs.collection('order').doc(this.orderID).delete();
+        this.router.navigate(['/tabs/feed']);
+    }
 }

@@ -34,7 +34,7 @@ export class BookingPage implements OnInit {
 
     recName: any;
     recNumber: any;
-    note: string;
+    note: string = ' ';
 
     constructor(
         public firebaseService: FirebaseService,

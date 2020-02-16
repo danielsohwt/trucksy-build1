@@ -72,6 +72,7 @@ export class EstimatepricePage implements OnInit {
                     subtotal += priceList[key] * products[key]
                 });
 
+                // TODO: find a way to stop the endless updating of these arrays everytime Document is updated in Firestore
                 this.productsArray = productsArray;
                 this.quantitiesArray = quantitiesArray;
                 this.subtotal = subtotal;
@@ -117,12 +118,7 @@ export class EstimatepricePage implements OnInit {
         console.log('Pushed to DB: Updated orderPrice to: $' + Math.round(this.totalPrice * 100 ) / 100 );
         console.log('Pushed to DB: Updated orderStatus to: ' + 'Created Price Estimate');
 
-        // Quickfix to stop the endless updating of arrays everytime Firestore document is updated.
-        this.productsArray = null;
-        this.quantitiesArray = null;
-
         this.router.navigate(['/booking/'+ this.orderID ])
-
     }
 
     createProductsObject() {

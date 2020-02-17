@@ -20,10 +20,14 @@
                <input #fileUpload type="file" id="files" name="files[]" (change)="fileChangeEvent($event)" />
                </div>
 
-               <div *ngIf="uploadFail" >
+               <div *ngIf="uploadFail" id="content">
                    Unable to accurately classify, please upload again <br>
-                   Here are some samples of good angles to try: <br>
-                   Show images<br><br>
+                   Here is a set of good and bad example: <br>
+                  <div id="image">
+                      <img class="logo" src="../../assets/img/Correct.png">
+                      <img class="logo" src="../../assets/img/Wrong.png">
+                  </div>
+
                    <input #fileUpload type="file" id="files" name="files[]" (change)="fileChangeEvent($event)" />
                </div>
            </div>
@@ -71,7 +75,7 @@
                             <ion-img src="https://ucarecdn.com/{{ imageURL }}/-/preview/{{ activeEffect }}"></ion-img>
                             <ion-card-content>
                                 <div *ngIf="image1Classification" >Item: {{ image1Classification }}</div>
-                                <ion-textarea placeholder="Enter additional shifting insturctions" [(ngModel)]="desc"></ion-textarea>
+                                <ion-textarea placeholder="Enter shifting instructions, if not key in 'NA'" [(ngModel)]="desc"></ion-textarea>
                                 <ion-button shape="round" color="primary" (click)="createOrder()">Continue</ion-button>
 
                             </ion-card-content>

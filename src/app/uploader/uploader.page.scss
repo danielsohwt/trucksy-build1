@@ -61,3 +61,21 @@ input[type=file],  {
 	margin: 4px 2px;
 	cursor: pointer;
 }
+
+#content{
+	//position: center;
+	text-align: center;
+	//justify-content: center;
+}
+
+#image{
+	width: auto;
+	margin: auto;
+	display: block;
+	padding:10px;
+}
+#correct {
+	width: auto;
+	margin: auto;
+	display: block;
+}

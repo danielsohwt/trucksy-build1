@@ -45,15 +45,16 @@ export class EstimatepricePage implements OnInit {
         this.retrieveItem();
     }
     retrieveItem() {
-        let products;
-        let productsArray = [];
-        let quantitiesArray = [];
-        let priceList;
-        let subtotal = 0;
-
 
         this.orderID = this.route.snapshot.paramMap.get('id');
+
         this.firebaseService.searchOrdersByID(this.orderID).subscribe(result => {
+            let products;
+            let productsArray = [];
+            let quantitiesArray = [];
+            let priceList;
+            let subtotal = 0;
+
             this.items = result;
             this.items.forEach(function(child){
                 products = child.payload.doc.data().orderItemsPredicted;

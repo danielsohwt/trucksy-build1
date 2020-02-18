@@ -3,6 +3,10 @@ import { IonicModule } from '@ionic/angular';
 
 import { BookingPage } from './booking.page';
 
+export class yourComponent {
+  today = Date.now();
+}
+
 describe('BookingPage', () => {
   let component: BookingPage;
   let fixture: ComponentFixture<BookingPage>;

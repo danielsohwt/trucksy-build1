@@ -68,9 +68,11 @@ export class EstimatepricePage implements OnInit {
                 this.priceList = priceList;
 
                 Object.keys(products).forEach(function(key) {
-                    productsArray.push(key);
-                    quantitiesArray.push(products[key]);
-                    subtotal += priceList[key] * products[key]
+                    let quantity = products[key]
+                    if (!(key in priceList)) {key='others'}
+                    productsArray.push(key)
+                    quantitiesArray.push(quantity);
+                    subtotal += priceList[key] * quantity
                 });
 
                 // TODO: find a way to stop the endless updating of these arrays everytime Document is updated in Firestore
@@ -80,6 +82,9 @@ export class EstimatepricePage implements OnInit {
                 this.svc = Math.round(subtotal*0.10*100 ) / 100;
                 this.gst = Math.round((this.subtotal + this.svc)*0.07*100 ) / 100;
                 this.totalPrice = this.subtotal + this.svc + this.gst;
+
+                console.log(products);
+                console.log()
             })
         });
     }

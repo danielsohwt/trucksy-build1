@@ -43,7 +43,7 @@
   </div>
 
   <div class="singlebutton-container">
-    <button class="orangeButton" id="paymentButton" type="submit" fill="solid">Pay</button>
+    <button class="orangeButton" id="paymentButton" type="submit" *ngIf="!imageURL" fill="solid">Pay</button>
   </div>
 </form>
 

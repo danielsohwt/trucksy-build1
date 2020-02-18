@@ -83,8 +83,6 @@ export class EstimatepricePage implements OnInit {
                 this.gst = Math.round((this.subtotal + this.svc)*0.07*100 ) / 100;
                 this.totalPrice = this.subtotal + this.svc + this.gst;
 
-                console.log(products);
-                console.log()
             })
         });
     }

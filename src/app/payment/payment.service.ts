@@ -10,7 +10,6 @@ import { environment } from "../../environments/environment";
 export class PaymentService {
   userId: string;
   stripe: any;
-  backendURL;
 
   constructor(private db: AngularFireDatabase,
               private afAuth: AngularFireAuth,
@@ -36,16 +35,29 @@ export class PaymentService {
     const currency = 'sgd';
     const charge = { userId, amount, currency, source, idempotencyKey, orderId, dateTimeOfPickup, pickUpAddress, dropOffAddress};
     console.log(charge);
-    this.http.post(environment.backendURL + 'charge', charge)
-        .subscribe(
-        (res) => {
-          console.log('Server response: ', res);
-          this.db.list(`/payments/${this.userId}/${orderId}/${paymentId}`).set('payment', res);
-          this.db.list(`/payments/${this.userId}/${orderId}/${paymentId}/token`).set('used', true);
-        },
-        (err) => {
-          console.log(err);
-        });
 
+    return new Promise((resolve, reject) => {
+          this.http.post(environment.backendURL + 'charge', charge)
+          .toPromise()
+          .then( res => {
+            console.log('Server response: ', res);
+            this.db.list(`/payments/${this.userId}/${orderId}/${paymentId}`).set('payment', res);
+            this.db.list(`/payments/${this.userId}/${orderId}/${paymentId}/token`).set('used', true);
+            // @ts-ignore
+            if (res.success) {
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          })
+          .catch( err => {
+            console.log(err)
+            reject(err)
+          }),
+          msg => { // Error
+            console.log(msg)
+            reject(msg);
+          }
+    })
   }
 }

@@ -107,11 +107,23 @@ export class PaymentPage implements OnInit {
                             this.orderID,
                             this.dateTimeOfPickup,
                             this.pickUpAddress,
-                            this.dropOffAddress);
-                        this.completePayment()
+                            this.dropOffAddress)
+                            .then (res=> {
+                                if (res) {
+                                    this.completePayment();
+                                } else {
+                                    this.failedPayment();
+                                }
+                            })
+                            .catch (err => {
+                                console.log(err);
+                                this.failedPayment();
+                            })
+
                     }
                     catch(err) {
                         console.log(err);
+                        this.failedPayment();
                     }
                 }
             });

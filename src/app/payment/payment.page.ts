@@ -1,6 +1,7 @@
 import { Component, Directive, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-
+import { LoadingController } from '@ionic/angular';
+import {HttpClient} from "@angular/common/http";
 
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -9,7 +10,7 @@ import { FirebaseService } from "../firebase.service";
 import { PaymentService } from "./payment.service";
 
 import { environment } from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+
 declare var Stripe;
 
 
@@ -27,14 +28,16 @@ export class PaymentPage implements OnInit {
     dropOffAddress: any;
     orderPrice: number;
     token: string;
+    loading: any;
 
     imageURL
 
 
-    stripe = Stripe('pk_test_w6jToOfq5LFI2DmbOdfu2CFv003OEOTjl8');
+    stripe = Stripe(environment.stripeTestKey);
     card: any;
 
     constructor(
+        public loadingController: LoadingController,
         public firebaseService: FirebaseService,
         private afs: AngularFirestore,
         private route: ActivatedRoute,
@@ -89,6 +92,8 @@ export class PaymentPage implements OnInit {
 
         var form = document.getElementById('payment-form');
         form.addEventListener('submit', event => {
+            this.presentLoading();
+
             event.preventDefault();
             console.log(event)
 
@@ -130,19 +135,6 @@ export class PaymentPage implements OnInit {
         });
     }
 
-    //
-    // makePayment(token) {
-    //     this.http
-    //         .post('http://localhost:4000/charge', {
-    //             amount: 1000,
-    //             currency: "SGD",
-    //             token: token.id
-    //         })
-    //         .subscribe(data => {
-    //             console.log(data);
-    //         });
-    // }
-
     getOrderInfo() {
         this.afs.collection('order').doc(this.orderID).ref.get()
             .then (doc => {
@@ -158,6 +150,17 @@ export class PaymentPage implements OnInit {
             .catch (err => {
                 console.log('Error getting document', err);
             })
+    }
+
+    async presentLoading() {
+        this.loading = await this.loadingController.create({
+            message: 'Please wait...',
+        });
+        await this.loading.present();
+    }
+
+    removeLoading() {
+        this.loading.dismiss();
     }
 
     orderStatusCompletedPayment() {
@@ -189,6 +192,7 @@ export class PaymentPage implements OnInit {
     }
 
     completePayment() {
+        this.removeLoading();
         this.orderStatusCompletedPayment()
 
         this.afs.collection('order').doc(this.orderID).update({
@@ -209,6 +213,7 @@ export class PaymentPage implements OnInit {
     }
 
     failedPayment() {
+        this.removeLoading();
         this.orderStatusPaymentFailed()
 
         this.afs.collection('order').doc(this.orderID).update({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Platform } from '@ionic/angular';
+import { AlertController } from "@ionic/angular";
 import {FirebaseService} from "../firebase.service";
 import { Router } from '@angular/router'
 import { UserService } from "../user.service";
@@ -40,6 +40,7 @@ export class BookingPage implements OnInit {
         private afs: AngularFirestore,
         private route: ActivatedRoute,
         private router: Router,
+        private alert: AlertController,
         public user:UserService,
         private httpClient: HttpClient,
     ) { }
@@ -81,13 +82,29 @@ export class BookingPage implements OnInit {
                     console.log(data);
                     // @ts-ignore
                     this.stAddr = data.standard.addresst + ' ' + data.standard.city + ' ' + data.standard.postal;
-                    resolve(this.stAddr)
+                    // @ts-ignore
+                    if(data.error) {
+                        this.showAlert('AddressNotFound');
+                        resolve('');
+                    } else {
+                        resolve(this.stAddr);
+                    }
                 },
                 error => {
+                    this.showAlert(error);
                     reject(error);
                 });
         })
     };
+
+    async showAlert(message: string) {
+        const alert = await this.alert.create({
+            header: "Address Not Found",
+            message: "Try again or input manually.",
+            buttons: ["Ok"]
+        })
+        await alert.present()
+    }
 
     placePayment() {
         this.note += ' ';

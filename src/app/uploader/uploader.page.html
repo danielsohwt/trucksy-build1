@@ -75,8 +75,11 @@
 
             <div *ngIf="showSecondUploadPage && !busy">
 
-                <ion-col class="upload-image" size="12">
-                    <ion-img src="https://ucarecdn.com/{{ imageURL }}/-/preview/{{ activeEffect }}"></ion-img>
+                <ion-col size="12">
+                    <div class="upload-image">
+                        <ion-img src="https://ucarecdn.com/{{ imageURL }}/-/preview/{{ activeEffect }}"></ion-img>
+                    </div>
+
                     <ion-card-content>
                         <div *ngIf="image1Classification" >Item: {{ image1Classification }}</div>
 <!--                        <ion-textarea placeholder="Enter shifting instructions, if not key in 'NA'" [(ngModel)]="desc"></ion-textarea>-->

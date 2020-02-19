@@ -92,6 +92,6 @@ input[type=file],  {
 }
 
 .upload-image {
-	width: 50%;
-	height: 50%;
+	width:100%;
+	max-width:300px;
 }

@@ -1,3 +1,15 @@
+h3{
+	text-align: center;
+	color: #D96725;
+	font-weight: bold;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+p{
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
 .camera {
 	width: 200px;
 	height: 200px;
@@ -59,4 +71,22 @@ input[type=file],  {
 
 .error-msg {
 	padding: 20px;
+}
+
+#content{
+	//position: center;
+	text-align: center;
+	//justify-content: center;
+}
+
+#image{
+	width: auto;
+	margin: auto;
+	display: block;
+	padding:10px;
+}
+#correct {
+	width: auto;
+	margin: auto;
+	display: block;
 }

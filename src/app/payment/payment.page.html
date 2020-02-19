@@ -3,7 +3,7 @@
     <ion-title><img src="../../assets/img/logo/trucksy_logo.png"></ion-title>
   </ion-toolbar>
 </ion-header>
-
+<h3>Payment</h3>
 <ion-content class="ion-padding">
   <ion-grid style="height: 100%">
     <ion-row justify-content-center align-items-center style="height: 100%">
@@ -42,9 +42,8 @@
     </ion-card>
   </div>
 
-  <br>
-  <div id="paymentButton-container">
-    <ion-button class="ion-align-items-center" id="paymentButton" type="submit" shape="block">Make Payment</ion-button>
+  <div class="singlebutton-container">
+    <button class="orangeButton" id="paymentButton" type="submit" *ngIf="!imageURL" fill="solid">Pay</button>
   </div>
 </form>
 
@@ -62,45 +61,4 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-
-
-<!-- ORIGINAL -->
-
-<!--<ion-header>-->
-<!--  <ion-toolbar>-->
-<!--    <ion-title><img src="../../assets/img/logo/trucksy_logo.png"></ion-title>-->
-<!--  </ion-toolbar>-->
-<!--</ion-header>-->
-
-<!--<ion-content>-->
-
-<!--  <div class="progbar_container">-->
-<!--    <ul class="progressbar">-->
-<!--      <li>Delivery Details</li>-->
-<!--      <li class="active">Payment</li>-->
-<!--      <li>Confirmation</li>-->
-<!--    </ul>-->
-<!--  </div>-->
-
-<!--  {{ orderID }}-->
-<!--  Enter your credit card details below<br>-->
-
-<!--  <form action="/" method="post" id="payment-form">-->
-<!--    <div class="form-row">-->
-<!--      <div id="card-element"> &lt;!&ndash; a Stripe Element will be inserted here. &ndash;&gt; </div>-->
-<!--      &lt;!&ndash; Used to display Element errors &ndash;&gt;-->
-<!--      <div id="card-errors" role="alert"></div>-->
-<!--    </div>-->
-<!--    <ion-button type="submit" color="success" expand="full">Make Payment</ion-button>-->
-<!--  </form>-->
-
-
-<!--  <br>-->
-<!--  <ion-button shape="round" color="primary" (click)="pay(this.orderPrice)" *ngIf="!imageURL" fill="outline">Complete Payment</ion-button>-->
-<!--  <br>-->
-<!--  <ion-button shape="round" color="primary" (click)="codPayment()" *ngIf="!imageURL" fill="outline">Cash On Delivery</ion-button>-->
-<!--  <br>-->
-<!--  <ion-button shape="round" color="primary" (click)="failedPayment()" *ngIf="!imageURL" fill="outline">Simulate Payment Failed</ion-button>-->
-
-<!--</ion-content>-->
 

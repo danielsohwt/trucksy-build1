@@ -1,18 +1,30 @@
-<!--<ion-header>-->
-<!--  <ion-toolbar>-->
-<!--    <ion-title>Price Estimate</ion-title>-->
-<!--  </ion-toolbar>-->
-<!--</ion-header>-->
+<ion-header>
+  <ion-toolbar>
+    <ion-title><img src="../../assets/img/logo/trucksy_logo.png"></ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content class="ion-padding">
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <ion-col
+              class="ion-align-self-center"
+              style="height:100%"
+              size-xs="12"
+              size-sm="10"
+              size-md="10"
+              size-lg="6"
+      >
+
+  <div class="page-title">
+    <h2><b>Quotation</b></h2>
+    <p>The following is the price quoted for your furniture</p>
+  </div>
 
   <ion-card>
     <ion-card-header>
-
-      <ion-card-title>Price Quote</ion-card-title>
       <ion-card-subtitle>Order ID: {{ orderID }}</ion-card-subtitle>
       <ion-card-subtitle>You can manually change item quantity</ion-card-subtitle>
-
     </ion-card-header>
 
     <ion-card-content>
@@ -27,11 +39,11 @@
       </ion-col>
 
       <ion-col size="3">
-        <b>Unit Price</b>
+        <b>Qty</b>
       </ion-col>
 
       <ion-col size="3">
-        <b>Qty</b>
+        <b>Unit Price</b>
       </ion-col>
 
       <ion-col size="3">
@@ -39,53 +51,70 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row *ngFor="let item of productsArray, let i = index">
       <ion-col size="3">
         <div class="justify-content-center">
-          {{product}}
+          {{item}}
         </div>
-
-      </ion-col>
-
-      <ion-col size="3">
-        ${{ sofaUnitPrice | number:'1.2-2' }}
       </ion-col>
 
       <ion-col size="3" class="justify-content-center">
-        <ion-input (ionChange)="updateQtySofa()" [(ngModel)]="sofaQty" type="number"></ion-input>
+          <div class="quantity-container">
+            <ion-input class="quantity-input" (ionChange)="updateTotals()" [(ngModel)]="quantitiesArray[i]" type="number"></ion-input>
+          </div>
       </ion-col>
 
       <ion-col size="3">
-        ${{ sofaTotal | number:'1.2-2' }}
+        ${{ priceList[item] | number:'1.2-2' }}
       </ion-col>
 
+      <ion-col size="3">
+        <div>${{ quantitiesArray[i] * priceList[item] | number:'1.2-2' }}</div>
+      </ion-col>
     </ion-row>
 
-<!--    <ion-row>-->
-<!--      <ion-col size="3">-->
-<!--        Bed-->
-<!--      </ion-col>-->
+  </ion-grid>
+  </ion-card-content>
 
-<!--      <ion-col size="3">-->
-<!--        ${{ bedUnitPrice | number:'1.2-2' }}-->
-<!--      </ion-col>-->
+  <ion-card-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="5" size-md="6"></ion-col>
+      <ion-col size="4" size-md="3"><b>Subtotal:</b></ion-col>
+      <ion-col size="3">${{ subtotal | number:'1.2-2'  }}</ion-col>
+    </ion-row>
 
-<!--      <ion-col size="3">-->
-<!--        <ion-input (ionChange)="updateQtyBed()" [(ngModel)]="bedQty" type="number"></ion-input>-->
-<!--      </ion-col>-->
+    <ion-row>
+      <ion-col size="5" size-md="6"></ion-col>
+      <ion-col size="4" size-md="3"><b>SVC (10%):</b></ion-col>
+      <ion-col size="3">${{ svc | number:'1.2-2'  }}</ion-col>
+    </ion-row>
 
-<!--      <ion-col size="3">-->
-<!--        ${{ bedTotal | number:'1.2-2' }}-->
-<!--      </ion-col>-->
+    <ion-row>
+      <ion-col size="5" size-md="6"></ion-col>
+      <ion-col size="4" size-md="3"><b>GST (7%):</b></ion-col>
+      <ion-col size="3">${{ gst | number:'1.2-2'  }}</ion-col>
+    </ion-row>
 
-<!--    </ion-row>-->
-
-    Total Price: ${{ totalPrice | number:'1.2-2'  }}
+    <ion-row>
+      <ion-col size="5" size-md="6"></ion-col>
+      <ion-col size="4" size-md="3"><b>Total:</b></ion-col>
+      <ion-col size="3">${{ totalPrice | number:'1.2-2'  }}</ion-col>
+    </ion-row>
     <br>
     <br>
   </ion-grid>
-<ion-button shape="round" color="primary" (click)="placeBooking()" *ngIf="!imageURL" fill="outline"> Place Booking Now</ion-button>
+
+<!--<ion-button shape="round" color="primary" (click)="placeBooking()" *ngIf="!imageURL" fill="outline"> Place Booking Now</ion-button>-->
     </ion-card-content>
   </ion-card>
 
+  <div class="twobutton-container">
+      <button class="greyButton" id="cancelButton" type="submit" fill="solid" (click)="cancelOrder()">Cancel</button>
+      <button class="orangeButton" id="bookingButton" type="submit" fill="solid" *ngIf="!imageURL" (click)="placeBooking()">Accept</button>
+  </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

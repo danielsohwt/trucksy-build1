@@ -4,6 +4,13 @@
   vertical-align: middle;
 }
 
+h3{
+  text-align: center;
+  color: #D96725;
+  font-weight: bold;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
 .logobutton {
   text-align:center;
 }
@@ -11,4 +18,10 @@
 .container {
   max-width: 800px;
   padding: 20px !important;
+}
+
+ion-title img{
+  display: flex;
+  max-height: 50px;
+  width: auto;
 }

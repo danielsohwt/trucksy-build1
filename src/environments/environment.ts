@@ -14,7 +14,7 @@ export const environment = {
     appId: "1:544190166206:web:f07d772e4a069b16a31aef",
     measurementId: "G-JFPWVV6WJ1"
   },
-  stripeKey: 'pk_test_w6jToOfq5LFI2DmbOdfu2CFv003OEOTjl8',
+  stripeTestKey: 'pk_test_w6jToOfq5LFI2DmbOdfu2CFv003OEOTjl8',
   backendURL: 'https://pacific-crag-85181.herokuapp.com/',
 };
 

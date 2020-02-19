@@ -6,6 +6,8 @@
   </ion-toolbar>
 </ion-header>
 
+<h3>Booking</h3>
+
 <ion-content class="ion-padding">
   <ion-grid style="height: 100%">
     <ion-row justify-content-center align-items-center style="height: 100%">
@@ -29,7 +31,7 @@
   <ion-card>
     <ion-card-content>
 
-      <h5>Pick Up Address</h5>
+      <h6>Pick Up Address</h6>
       <ion-row>
         <div class="row-container">
           <div class="postal-container">
@@ -55,7 +57,7 @@
     </ion-card-content>
 
     <ion-card-content>
-      <h5>Drop Off Address</h5>
+      <h6>Drop Off Address</h6>
       <ion-row>
         <div class="row-container">
           <div class="postal-container">
@@ -84,7 +86,7 @@
       <ion-row>
         <ion-col col-1>
           <div class="field-input-withIcon">
-            <ion-datetime placeholder="Date and Time" (ionChange)="setDate()" [(ngModel)]="date" displayFormat="DDD MMM YYYY h:mm:A" [min]="currentDateTime" max="3000" value="2005-06-17T11:06Z"></ion-datetime>
+            <ion-datetime placeholder="Date and Time" (ionChange)="setDate()" [(ngModel)]="date" displayFormat="DDD MMM YYYY h:mm:A" [min]="today" max="3000" value="2005-06-17T11:06Z"></ion-datetime>
               <i class="fa fa-calendar" aria-hidden="true"></i>
           </div>
         </ion-col>
@@ -125,9 +127,8 @@
   </ion-card>
 </div>
 
-<br>
-<div id="nextButtonContainer">
-    <ion-button id="nextButton" shape="block" color="primary" (click)="placePayment()" class="ion-align-items-center">Payment</ion-button>
+<div class="singlebutton-container">
+  <button class="orangeButton" id="nextButton" type="submit" (click)="placePayment()" fill="solid">Payment</button>
 </div>
       </ion-col>
     </ion-row>

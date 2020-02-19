@@ -388,6 +388,11 @@ export class UploaderPage implements OnInit {
         const activeEffect = this.activeEffect
         const desc = this.desc
 
+        // TODO: Upload multiple items
+        // temporary single item
+        let predictedItems = {};
+        predictedItems[this.classes[0]['className']] = 1;
+
         this.afstore.doc(`users/${this.user.getUID()}`).update({
             // posts: firestore.FieldValue.arrayUnion(image)
             order: firestore.FieldValue.arrayUnion(`${orderID}`)
@@ -450,8 +455,8 @@ export class UploaderPage implements OnInit {
             // 4: "Order Placed"
             // ** Only after orderStatus == "Confirmed" fulfillmentStatus == "Order Placed"
             fulfillmentStatus: "Order Not Confirmed",
-            orderItemsPredicted:this.classes[0]['className'],
-
+            // orderItemsPredicted: this.classes[0]['className'],
+            orderItemsPredicted: predictedItems,
 
 
             dateTimeOfOrder: now.format(),

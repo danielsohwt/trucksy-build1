@@ -34,6 +34,10 @@ export class UploaderPage implements OnInit {
     uploadFail;
     lowAccuracyCounter = 0;
     fileUploadCounter = 1;
+    showUploadModule = true;
+    showErrorMsg = false;
+    showFirstUploadPage = true;
+    showSecondUploadPage = false;
 
     orderStatus;
     orderItemsPredicted;
@@ -175,19 +179,38 @@ export class UploaderPage implements OnInit {
                 console.log('Low accuracy counter: ',this.lowAccuracyCounter);
                 //user uploaded twice with low accuracy
                 if (this.lowAccuracyCounter === 2 ) {
-                    //display message to indicate upload failed and ask for reupload
+                    //display message to indicate upload failed and ask for re-upload
                     this.uploadFail = true;
                 } else if (this.lowAccuracyCounter > 2 ) {
-                    // cancel workflow?
-                    console.log('End flow, either redirect or show error msg')
-                    // this.route.navigate(['/tabs/']);
+                    //show error msg and inform admin
+                    this.showUploadModule = false;
+                    this.showErrorMsg = true;
+
+
+                    //post to upload care so admin can see image
+                    this.data.append('file', file)
+                    this.data.append('UPLOADCARE_STORE', '1')
+                    this.data.append('UPLOADCARE_PUB_KEY', '3f6ba0e51f55fa947944')
+                    console.log(this.data)
+
+                    // post to uploadcare
+                    this.http.post('https://upload.uploadcare.com/base/', this.data)
+                        .subscribe(event => {
+                            console.log(event);
+                            this.imageURL = event['file'];
+                            console.log(this.imageURL);
+
+                        })
+
+                    // inform admin with the details
+
                 }
 
                 confidence= 'Low Confidence';
             }
             else {
+                //confidence is high -> upload to imagecare and show second upload page view
                 confidence= 'High Confidence';
-                            //prepare data
 
                 this.data.append('file', file)
                 this.data.append('UPLOADCARE_STORE', '1')
@@ -202,6 +225,9 @@ export class UploaderPage implements OnInit {
                         console.log(this.imageURL)
                         this.busy = false
                     })
+                this.showErrorMsg = false;
+                this.showFirstUploadPage = false;
+                this.showSecondUploadPage = true;
             }
             topClassesAndProbs.push({
                 className: IMAGENET_CLASSES[topkIndices[i]],
@@ -229,7 +255,7 @@ export class UploaderPage implements OnInit {
         this.activeEffect = this.effects[effect]
     }
 
-
+    //old function - do not use
     fileChanged(event: any) {
         this.busy = true
         const files = event.target.files
@@ -344,7 +370,16 @@ export class UploaderPage implements OnInit {
 
         //TODO:
         // Write AI function here
-}
+    }
+
+    backToHome() {
+        this.showUploadModule = true;
+        this.showErrorMsg = false;
+        this.showFirstUploadPage = true;
+        this.showSecondUploadPage = false;
+        this.uploadFail = false;
+        this.route.navigate(['/tabs/feed/'])
+    }
 
     createOrder() {
         let now = moment(); // add this 2 of 4

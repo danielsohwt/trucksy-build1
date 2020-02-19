@@ -9,9 +9,9 @@
 <!--            <ion-button shape="round" color="primary" (click)="uploadFileMNet()" fill="outline"> Upload Image to Get a Quote</ion-button>-->
 <!--        </div>-->
 
-       <div *ngIf="!imageURL" class="center">
+       <div *ngIf="showFirstUploadPage==true" class="center">
 
-           <div class="upload" [hidden]="!model">
+           <div *ngIf="showUploadModule==true" class="upload" [hidden]="!model">
                <div *ngIf="!uploadFail" >
                Upload an image:<br>
                <input #fileUpload type="file" id="files" name="files[]" (change)="fileChangeEvent($event)" />
@@ -42,6 +42,22 @@
                </div>
            </div>
 
+           <div *ngIf="showErrorMsg==true">
+               <ion-card class="error-msg">
+                   Unable to determine the furniture from image. We have sent our team<br><br>
+
+                   Sorry for any inconvenience caused, for immediate enquires please contact us at sales@rentalorry or 65898964.<br><br>
+
+                   Have a great day!<br><br><br>
+
+                   Error Code: 401<br><br>
+
+                   <span *ngIf="imageURL">Order ID: {{ imageURL }}<br><br></span>
+               </ion-card>
+
+               <ion-button class="center-left-right" shape="round" color="primary" (click)="backToHome()" fill="outline"> Home</ion-button>
+           </div>
+
            
         </div>
 
@@ -61,7 +77,7 @@
 <!--                <ion-button shape="round" color="primary" (click)="uploadFile()" *ngIf="!imageURL" fill="outline"> Please Upload Again</ion-button>-->
 <!--            </div>-->
 
-            <div *ngIf="imageURL" >
+            <div *ngIf="showSecondUploadPage==true" >
                 <ion-grid>
                     <ion-row>
                         <ion-col size="12">

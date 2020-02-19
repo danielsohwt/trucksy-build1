@@ -21,6 +21,13 @@
 	transform: translate(-50%, -50%);
 }
 
+.center-left-right {
+	margin: 0;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+}
+
 .active {
 	border: 2px solid black;
 }
@@ -48,4 +55,8 @@ input[type=file],  {
 	text-decoration: none;
 	margin: 4px 2px;
 	cursor: pointer;
+}
+
+.error-msg {
+	padding: 20px;
 }

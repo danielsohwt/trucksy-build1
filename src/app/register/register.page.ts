@@ -62,16 +62,22 @@ export class RegisterPage implements OnInit {
   }
 
   async register() {
-
-    const { username, password, cpassword } = this
-    if(password !== cpassword ) {
-      this.showAlert("Error!", "Passwords don't match")
-      return console.error("Password don't match")
-    }
-    // if (username=="" || password=="" || cpassword== ""){
-    //     this.showAlert("Error!", "Required Field")
-    //     return console.error("Required Field")
-    // }
+      var re=/^(8|9)\d{7}$/;
+      const { username, password, cpassword } = this
+      if(password !== cpassword ) {
+          this.showAlert("Error!", "Passwords don't match")
+          return console.error("Password don't match")
+      }
+      if (username=="" || password=="" || cpassword== ""
+          || this.firstName == "" || this.lastName == "" || this.userType=="" ||this.hpnumber==""){
+          this.showAlert("Error!", "All Field are Required")
+          return console.error("All Field are Required")
+      }
+      if(re.test(this.hpnumber)==false){
+          console.log(this.hpnumber)
+          this.showAlert("Error!", "Mobile Number not valid")
+          return console.error("Mobile Number not valid")
+      }
 
     this.buttonClicked = true;
 

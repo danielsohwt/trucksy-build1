@@ -8,6 +8,8 @@ import * as tf from '@tensorflow/tfjs';
 import { IMAGENET_CLASSES } from '../../assets/imagenet-classes';
 import * as moment from 'moment';
 
+import { LoadingController } from '@ionic/angular';
+
 
 const IMAGE_SIZE = 224;
 const TOPK_PREDICTIONS = 5;
@@ -43,6 +45,8 @@ export class UploaderPage implements OnInit {
     orderItemsPredicted;
 
     image1Classification: any;
+
+    loading: any;
 
 
 
@@ -80,10 +84,25 @@ export class UploaderPage implements OnInit {
         public afstore: AngularFirestore,
         public user:UserService,
         public route: Router,
+        public loadingController: LoadingController,
         ) { }
 
     ngOnInit() {
         this.loadModel();
+
+
+    }
+
+    //loading
+    async presentLoading() {
+        this.loading = await this.loadingController.create({
+            message: 'Please wait...',
+        });
+        await this.loading.present();
+    }
+
+    removeLoading() {
+        this.loading.dismiss();
     }
 
 
@@ -96,7 +115,7 @@ export class UploaderPage implements OnInit {
     }
 
     fileChangeEvent(event: any) {
-        this.busy = true
+        this.busy = true;
         //TODO: Fix async issue. need to load twice
         for(this.fileUploadCounter = 1; this.fileUploadCounter<3; this.fileUploadCounter++){
 
@@ -115,11 +134,12 @@ export class UploaderPage implements OnInit {
                 // console.log('Img.nativeElement: ',this.img.nativeElement)
                 this.predict(this.img.nativeElement,file);
                 // console.log('Predict: ',this.predict(this.img.nativeElement,file))
-                this.busy = false;
+
             };
             reader.readAsDataURL(file);
             console.log("No of times file was uploaded: " + this.fileUploadCounter)
         }
+        this.busy = false;
 
 
 
@@ -209,6 +229,7 @@ export class UploaderPage implements OnInit {
                 confidence= 'Low Confidence';
             }
             else {
+                this.busy = true;
                 //confidence is high -> upload to imagecare and show second upload page view
                 confidence= 'High Confidence';
 
@@ -228,6 +249,7 @@ export class UploaderPage implements OnInit {
                 this.showErrorMsg = false;
                 this.showFirstUploadPage = false;
                 this.showSecondUploadPage = true;
+                this.busy = false;
             }
             topClassesAndProbs.push({
                 className: IMAGENET_CLASSES[topkIndices[i]],
@@ -386,7 +408,7 @@ export class UploaderPage implements OnInit {
         this.busy = true
         const orderID = this.imageURL
         const activeEffect = this.activeEffect
-        const desc = this.desc
+        // const desc = this.desc
 
         // TODO: Upload multiple items
         // temporary single item
@@ -399,7 +421,7 @@ export class UploaderPage implements OnInit {
         })
 
         this.afstore.doc(`posts/${orderID}`).set({
-            desc,
+            // desc,
             author: this.user.getUsername(),
             likes: [],
             effect: activeEffect
@@ -423,7 +445,7 @@ export class UploaderPage implements OnInit {
         this.afstore.doc(`order/${orderID}`).set({
             image: orderID,
             user: this.user.getUsername(),
-            desc,
+            // desc,
 
             // Order flow Upload Image -> Price Estimate -> Booking Date -> Payment -> Confirmation
 
@@ -465,7 +487,7 @@ export class UploaderPage implements OnInit {
 
         this.busy = false;
         this.imageURL = "";
-        this.desc = "";
+        // this.desc = "";
 
         if (this.lowAccuracyCounter === 1) {
             this.route.navigate(['/estimateprice/'+ orderID])

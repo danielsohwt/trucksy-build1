@@ -1,16 +1,12 @@
+
 <ion-content>
     <ion-grid class="container">
         <h3>Quotation</h3>
         <!--<h5>Instruction</h5>-->
         <p>Upload an image of the furniture you would like to move by clicking the <strong>"Choose File"</strong> button </p>
+        <app-loading class="center" *ngIf="busy==true"></app-loading>
 
-        <app-loading class="center" *ngIf="busy"></app-loading>
 
-<!--        <input type="file" id="files" name="files[]" class="mobileNetUploadBtn" (change)="fileChangeEvent($event)" #mobileNetUploadBtn />-->
-
-<!--        <div>-->
-<!--            <ion-button shape="round" color="primary" (click)="uploadFileMNet()" fill="outline"> Upload Image to Get a Quote</ion-button>-->
-<!--        </div>-->
 
        <div *ngIf="showFirstUploadPage==true" class="center">
 
@@ -68,34 +64,31 @@
            
         </div>
 
-
-
-        <div class="center" *ngIf="!busy">
+       <div class="center" *ngIf="!busy">
 
             <input type="file" *ngIf="!imageURL" (change)="fileChanged($event)" class="filebtn" #fileButton />
 
             <div class="hide-div" *ngIf="!uploadFail" >
                 <ion-button shape="round" color="primary" (click)="uploadFile()" *ngIf="!imageURL" fill="outline"> Upload Image to Get a Quote</ion-button>
             </div>
+            <br>
 
-<!--            <div *ngIf="uploadFail" >-->
-<!--                Unable to accurately classify, please upload again <br>-->
-<!--                Here are some samples of good angles to try <br>-->
-<!--                <ion-button shape="round" color="primary" (click)="uploadFile()" *ngIf="!imageURL" fill="outline"> Please Upload Again</ion-button>-->
-<!--            </div>-->
+            <div *ngIf="showSecondUploadPage && !busy">
 
-            <div *ngIf="showSecondUploadPage==true" >
+                <ion-col class="upload-image" size="12">
+                    <ion-img src="https://ucarecdn.com/{{ imageURL }}/-/preview/{{ activeEffect }}"></ion-img>
+                    <ion-card-content>
+                        <div *ngIf="image1Classification" >Item: {{ image1Classification }}</div>
+<!--                        <ion-textarea placeholder="Enter shifting instructions, if not key in 'NA'" [(ngModel)]="desc"></ion-textarea>-->
+                        <ion-button shape="round" color="primary" (click)="createOrder()">Continue</ion-button>
+
+                    </ion-card-content>
+                </ion-col>
+
                 <ion-grid>
                     <ion-row>
-                        <ion-col size="12">
-                            <ion-img src="https://ucarecdn.com/{{ imageURL }}/-/preview/{{ activeEffect }}"></ion-img>
-                            <ion-card-content>
-                                <div *ngIf="image1Classification" >Item: {{ image1Classification }}</div>
-                                <ion-textarea placeholder="Enter shifting instructions, if not key in 'NA'" [(ngModel)]="desc"></ion-textarea>
-                                <ion-button shape="round" color="primary" (click)="createOrder()">Continue</ion-button>
 
-                            </ion-card-content>
-                        </ion-col>
+
                     </ion-row>
 
 
@@ -105,7 +98,7 @@
 
 
             </div>
-        </div>
+       </div>
     </ion-grid>
 
 

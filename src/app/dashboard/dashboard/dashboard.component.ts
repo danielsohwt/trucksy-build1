@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   items: Array<any>;
   order: any[] = [];
   now: any;
+  busy: boolean = false;
 
   public paid: number;
   public notconfirmed: number;
@@ -49,27 +50,30 @@ export class DashboardComponent implements OnInit {
 
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 1);
-    const firstDay = this.formatter.format(calendar.getNext(calendar.getToday(), 'd', -this.fromDate.day+1));
-    // Convert ngbDate to 2020-10-01 format
-    const nextDate = calendar.getNext(this.fromDate, 'm', 1);
-    const lastDay = this.formatter.format(calendar.getNext(nextDate, 'd', -nextDate.day+1));
+    // const firstDay = this.formatter.format(calendar.getNext(calendar.getToday(), 'd', -this.fromDate.day+1));
+    // // Convert ngbDate to 2020-10-01 format
+    // const nextDate = calendar.getNext(this.fromDate, 'm', 1);
+    // const lastDay = this.formatter.format(calendar.getNext(nextDate, 'd', -nextDate.day+1));
     const start = this.formatter.format(this.fromDate);
     const end = this.formatter.format(this.toDate);
-    // retrieveData based on the range date
+    // // retrieveData based on the range date
     this.retrieveData(start, end);
     // this.sales_over_time(firstDay, lastDay);
   }
   onDateSelection(date: NgbDate) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
+      console.log(this.fromDate)
     } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
       this.toDate = date;
+      console.log(this.fromDate)
+      console.log(this.toDate)
       const start = this.formatter.format(this.fromDate);
       const end = this.formatter.format(this.toDate);
-      const firstDay = this.formatter.format(this.calendar.getNext(this.fromDate, 'd', -this.fromDate.day+1));
-      // Convert ngbDate to 2020-10-01 format
-      const nextDate = this.calendar.getNext(this.toDate, 'm', 1);
-      const lastDay = this.formatter.format(this.calendar.getNext(nextDate, 'd', -nextDate.day+1));
+      // const firstDay = this.formatter.format(this.calendar.getNext(this.fromDate, 'd', -this.fromDate.day+1));
+      // // Convert ngbDate to 2020-10-01 format
+      // const nextDate = this.calendar.getNext(this.toDate, 'm', 1);
+      // const lastDay = this.formatter.format(this.calendar.getNext(nextDate, 'd', -nextDate.day+1));
       const startMonth = this.fromDate.month;
       const endMonth = this.toDate.month;
       this.retrieveData(start, end);
@@ -77,13 +81,15 @@ export class DashboardComponent implements OnInit {
     } else {
       this.toDate = null;
       this.fromDate = date;
-      var start = this.formatter.format(this.fromDate);
-      var end = this.formatter.format(this.calendar.getNext(this.fromDate, 'd', 1));
-      this.retrieveData(start,end);
+      console.log(this.fromDate)
+      // var start = this.formatter.format(this.fromDate);
+      // var end = this.formatter.format(this.calendar.getNext(this.fromDate, 'd', 1));
+      // this.retrieveData(start,end);
     }
   }
 
   retrieveData(start, end) {
+    this.busy = true
     var sum1 = 0;
     var sum2 = 0;
     var sum3 = 0;
@@ -188,7 +194,7 @@ export class DashboardComponent implements OnInit {
         tempcount.push(count1,count2,count3,count4);
         this.count_order=tempcount;
         this.basicChart1(Yarray, Xarray);
-        this.basicChart2(Yarray,tempcount);
+        // this.basicChart2(Yarray,tempcount);
         this.basicChart3(Xday,Yorder1);
        }
     });
@@ -354,6 +360,11 @@ export class DashboardComponent implements OnInit {
 
 
   basicChart1(key, value) {
+
+    if(this.barChart) {
+			this.barChart.destroy();
+    }
+    
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
       data: {
@@ -393,14 +404,19 @@ export class DashboardComponent implements OnInit {
   }
 
   basicChart3(key, value) {
+
+    if(this.bar1Chart) {
+			this.bar1Chart.destroy();
+    }
+		
     this.bar1Chart = new Chart(this.bar1Canvas.nativeElement, {
       type: 'bar',
       data: {
-        labels: ['Sun','Mon','Tues','Wedn','Thurs','Fri','Sat'],
+        labels: ['Sun','Mon','Tues','Wed','Thur','Fri','Sat'],
         datasets: [{
                 label: 'Number of Orders on a particular day',
                 data: value,
-                backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B"],
+                backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B",'##f707b7','#076964','#bf22a5'],
                 spanGaps: false,
         }]
       },
@@ -431,12 +447,15 @@ export class DashboardComponent implements OnInit {
   }
 
   basicChart(key, value) {
+    if(this.lineChart) {
+			this.lineChart.destroy();
+    }
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
       data: {
         labels: key,
         datasets: [{
-                label: 'Number of Order per day',
+                label: 'Number of Order Per Day',
                 fill: false,
                 pointRadius:0,
                 data: value,
@@ -474,12 +493,15 @@ export class DashboardComponent implements OnInit {
   }
 
   basicChart4(key, value) {
+    if(this.line1Chart) {
+			this.line1Chart.destroy();
+    }
     this.line1Chart = new Chart(this.line1Canvas.nativeElement, {
       type: 'line',
       data: {
         labels: key,
         datasets: [{
-                label: 'Number of Order per day',
+                label: 'Average Order Value Per Month',
                 data: value,
                 fillColor: "rgba(151,187,205,0.2)",
                 strokeColor: "rgba(151,187,205,1)",
@@ -514,29 +536,24 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  basicChart2(key, value) {
-    this.pieChart = new Chart(this.pieCanvas.nativeElement, {
-      type: 'polarArea',
-      data: {
-        labels: key,
-        datasets: [{
-                label: 'Total Number Of Orders per Payment Status',
-                fill: true,
-                lineTension:0.1,
-                backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B"],
-                borderCapStyle: 'butt',
-                data: value,
-                spanGaps: false,
-        }]
-      },
-      options : {
-        responsive: true,
-      }
-    });
-  }
-
-
-
-
-
+  // basicChart2(key, value) {
+  //   this.pieChart = new Chart(this.pieCanvas.nativeElement, {
+  //     type: 'polarArea',
+  //     data: {
+  //       labels: key,
+  //       datasets: [{
+  //               label: 'Total Number Of Orders per Payment Status',
+  //               fill: true,
+  //               lineTension:0.1,
+  //               backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B"],
+  //               borderCapStyle: 'butt',
+  //               data: value,
+  //               spanGaps: false,
+  //       }]
+  //     },
+  //     options : {
+  //       responsive: true,
+  //     }
+  //   });
+  // }
 }

@@ -3,10 +3,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+
+
+
 <form class="form-inline">
   <div class="form-group hidden">
     <div class="input-group">
-
       <input id="hide-this"
              name="datepicker"
              class="form-control"
@@ -31,9 +33,10 @@
     </div>
   </div>
 
-
+  <h6 style="padding: 5px">From</h6>
+  <br>
   <div class="form-group">
-    <div class="input-group">
+   <div class="input-group">
       <input #dpFromDate
              class="form-control" placeholder="From"
              name="dpFromDate"
@@ -45,7 +48,9 @@
     </div>
   </div>
   <div class="form-group ml-2">
-    <div class="input-group">
+  <h6 style="padding: 5px">To</h6>
+  <br>
+  <div class="input-group">
       <input #dpToDate
              class="form-control" placeholder="To"
              name="dpToDate"
@@ -57,6 +62,8 @@
     </div>
   </div>
 </form>
+<br>
+<br>
 <!-- <hr/>
 <pre>From date model: {{ fromDate | json }}</pre>
 <pre>To date model: {{ toDate | json }}</pre> -->
@@ -69,7 +76,7 @@
     <div class="col-4" >
       <!-- <div *ngIf="total"> -->
         <p  style="font-size: 30px">SGD {{total | number:'1.2-2'}}</p>
-        <i>Total Sales</i>
+        <i><strong>Total Sales</strong></i>
       <!-- </div> -->
 
     </div>
@@ -77,7 +84,7 @@
       <!-- <app-loading *ngIf="!total"></app-loading> -->
       <!-- <div *ngIf="total"> -->
         <p style="font-size: 30px">{{totalorder}}</p>
-        <i>Total Orders</i>
+        <i><strong>Orders</strong></i>
       <!-- </div> -->
 
     </div>
@@ -85,13 +92,12 @@
       <!-- <app-loading *ngIf="!total"></app-loading> -->
       <!-- <div *ngIf="total"> -->
         <p class="failed-orders" style="font-size: 30px">{{failed}}</p>
-        <i>Payment Failed Orders</i>
+        <i><strong>Payment Failed Orders</strong></i>
       <!-- </div> -->
     </div>
   </div>
 
 </nb-card>
-
 <div class="row">
 
   <!--  Left Panel-->
@@ -141,8 +147,7 @@
               <p class="dashboard-card-value text-right">↑76%</p>
             </div> -->
           </div>
-          <br>
-          <p class="graph-header">SALES OVER TIME</p>
+          <p class="graph-header">Payment Stauts</p>
           
           <div style="padding-top:-20px" >
             <canvas class="my-4 w-100 graph-layout" #barCanvas width="500" height="500"></canvas>
@@ -150,18 +155,17 @@
       </nb-card>  
     </div>
 
-
-    <!--Returning Customer Rate -->
+    <!-- Top 5 Locationss -->
     <nb-card [hidden]="!show" class="dashboard-card">
 
       <div class="row">
-        <div class="col-7"><p class="dashboard-card-header">Returning Customer Rate</p></div>
+        <div class="col-7"><p class="dashboard-card-header">Total Orders</p></div>
         <!-- <div class="col-5"><p class="dashboard-card-header text-right">View Report</p></div> -->
       </div>
 
       <div class="row">
         <div class="col-md-6">
-          <!-- <p class="dashboard-card-header-key-value">5%</p> -->
+          <p class="dashboard-card-header-key-value">{{totalorder}}</p>
         </div>
         <div class="col-md-6">
           <!-- <p class="dashboard-card-header-key-value trenddown text-right">↓20%</p> -->
@@ -169,69 +173,35 @@
       </div>
 
       <br>
-
-      <p class="graph-header">RETURN CUSTOMER RATE OVER TIME</p>
-      <div>
-        <!--        Insert Return Customer Rate Graph-->
-<!--        <canvas #lineCanvas width="500" height="500"></canvas>-->
-      </div>
-
-    </nb-card>
-
-    <!-- Top 5 Locationss -->
-    <nb-card [hidden]="!show" class="dashboard-card">
-
+      <!--      Order Details Block-->
       <div class="row">
-        <div class="col-7"><p class="dashboard-card-header">Top 5 Locations</p></div>
-        <!-- <div class="col-5"><p class="dashboard-card-header text-right">View Report</p></div> -->
-      </div>
-
-      <br>
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value">Sengkang</p>
-        </div>
         <div class="col-md-4">
-          <p class="dashboard-card-value text-right">20</p>
+          <p class="dashboard-card-value">Paid</p>
+        </div>
+        <div class="col-md-5">
+          <p class="dashboard-card-value">{{count_order[0]}}</p>
+        </div>
+        <div class="col-md-3">
+          <!-- <p class="dashboard-card-value text-right">↑76%</p> -->
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Tampines</p>
-        </div>
+      <div class="row second-row">
         <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">15</p>
+          <p class="dashboard-card-value">COD</p>
+        </div>
+        <div class="col-md-5">
+          <p class="dashboard-card-value">{{count_order[2]}}</p>
+        </div>
+        <div class="col-md-3">
+          <!-- <p class="dashboard-card-value text-right">↓76%</p> -->
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Punggol</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">12</p>
-        </div>
+      <p class="graph-header">TOTAL ORDERS OVER TIME</p>
+      <div style="padding-top:-20px">
+        <!--        Insert Total Orders-->
+        <canvas class="my-4 w-100 graph-layout" #bar1Canvas width="500" height="500"></canvas>
       </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Yishun</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">6</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Orchard</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">3</p>
-        </div>
-      </div>
-
 
     </nb-card>
 
@@ -295,57 +265,56 @@
     <nb-card [hidden]="!show" class="dashboard-card">
 
       <div class="row">
-        <div class="col-7"><p class="dashboard-card-header">Conversion Rate</p></div>
+        <div class="col-7"><p class="dashboard-card-header">Top 5 Locations</p></div>
         <!-- <div class="col-5"><p class="dashboard-card-header text-right">View Report</p></div> -->
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <p   class="dashboard-card-header-key-value">5%</p  >
-        </div>
-        <div class="col-md-6">
-          <p class="dashboard-card-header-key-value trenddown text-right">↓20%</p>
-        </div>
       </div>
 
       <br>
       <div class="row">
         <div class="col-md-8">
-          <p class="dashboard-card-value">Upload Picture Request</p>
+          <p class="dashboard-card-value">Sengkang</p>
         </div>
         <div class="col-md-4">
-          <p class="dashboard-card-value text-right">20%</p>
+          <p class="dashboard-card-value text-right">20</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Accept Quotation</p>
+          <p class="dashboard-card-value second-row">Tampines</p>
         </div>
         <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">30%</p>
+          <p class="dashboard-card-value text-right second-row">15</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Confirm Booking Time</p>
+          <p class="dashboard-card-value second-row">Punggol</p>
         </div>
         <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">30%</p>
+          <p class="dashboard-card-value text-right second-row">12</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Complete Payment</p>
+          <p class="dashboard-card-value second-row">Yishun</p>
         </div>
         <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">30%</p>
+          <p class="dashboard-card-value text-right second-row">6</p>
         </div>
       </div>
 
-
+      <div class="row">
+        <div class="col-md-8">
+          <p class="dashboard-card-value second-row">Orchard</p>
+        </div>
+        <div class="col-md-4">
+          <p class="dashboard-card-value text-right second-row">3</p>
+        </div>
+      </div>
+    
     </nb-card>
 
   </div>
@@ -395,10 +364,10 @@
           <!-- <p class="dashboard-card-value text-right">↓76%</p> -->
         </div>
       </div>
-      <p class="graph-header">Total ORDERS OVER TIME</p>
-      <div>
+      <p class="graph-header">TOTAL ORDERS OVER TIME</p>
+      <div style="padding-top:-20px">
         <!--        Insert Total Orders-->
-        <canvas #lineCanvas width="500" height="500"></canvas>
+        <canvas class="my-4 w-100 graph-layout" #lineCanvas width="500" height="500"></canvas>
       </div>
 
     </nb-card>

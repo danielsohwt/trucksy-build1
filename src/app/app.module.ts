@@ -38,7 +38,7 @@ import { AuthService } from './auth.service';
 import { ShareModule } from './share.module';
 
 //stripe
-import { Stripe } from '@ionic-native/stripe/ngx';
+// import { Stripe } from '@ionic-native/stripe/ngx';
 
 import * as tf from '@tensorflow/tfjs';
 import { IMAGENET_CLASSES } from '../assets/imagenet-classes';
@@ -166,7 +166,7 @@ import {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     UserService,
     AuthService,
-    Stripe,
+    // Stripe,
   ],
   bootstrap: [AppComponent]
 })

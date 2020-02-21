@@ -21,6 +21,7 @@ import {
 } from 'ng-pick-datetime';
 
 //Firebase
+import { environment } from '../environments/environment';
 import firebaseConfig from './firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -35,6 +36,9 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { ShareModule } from './share.module';
+
+//stripe
+import { Stripe } from '@ionic-native/stripe/ngx';
 
 import * as tf from '@tensorflow/tfjs';
 import { IMAGENET_CLASSES } from '../assets/imagenet-classes';
@@ -97,7 +101,7 @@ import {
   imports: [BrowserModule,
             IonicModule.forRoot(),
             AppRoutingModule,
-            AngularFireModule.initializeApp(firebaseConfig),
+            AngularFireModule.initializeApp(environment.firebase),
             AngularFireAuthModule,
             AngularFireDatabaseModule,
             AngularFirestoreModule,
@@ -161,7 +165,8 @@ import {
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     UserService,
-    AuthService
+    AuthService,
+    Stripe,
   ],
   bootstrap: [AppComponent]
 })

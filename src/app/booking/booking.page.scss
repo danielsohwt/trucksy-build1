@@ -1,3 +1,22 @@
+.ion-padding {
+  overflow: hidden;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-color:#2B3339;
+}
+
+h5 {
+  display: block;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #2B3339;
+}
+
+ion-input{
+  --placeholder-color:#2B3339;
+}
+
 ion-title img{
   display: flex;
   max-height: 50px;
@@ -5,7 +24,7 @@ ion-title img{
 }
 
 ion-content {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 /* Progress Bar */
@@ -71,17 +90,103 @@ ion-content {
 
 /* End of Progress Bar */
 
+//the "container"
 ion-card {
-  background-color: rgba(242, 242, 242, 0.2);
+  margin: auto;
+  border-radius: 15px;
+  background-color: #FCFCFC;
+  box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.51);
+  padding: 60px;
+  max-height: 1028px;
+  max-width:782px;
 }
 
-ion-datetime {
+@media (max-width: 450px) {
+  ion-card {
+    padding: 8px;
+  }
+}
+
+.field-input {
+  border-radius: 15px;
+  border: 1px solid #2B3339;
+  background: rgba(255, 255, 255);
+}
+
+.postal-input {
+  border-bottom: 1px solid #2B3339;
+}
+
+.postButton-container {
+  margin-right: 2px;
+}
+
+.postal-container {
+  width: 50%;
+  margin-bottom: 5px;
+}
+
+.row-container {
+  width: 98%;
+  margin: 10px auto 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.unit-number {
+  width: 20%;
+}
+
+.st-addr {
+  width: 70%;
+}
+
+.field-input-withIcon {
+  border-radius: 15px;
+  border: 1px solid #2B3339;
+  background: rgba(255, 255, 255);
+}
+
+.field-input-withIcon ion-input, ion-datetime {
+  padding-left: 45px;
+  --padding-start: 45px;
+}
+
+.field-input-withIcon ion-datetime {
+  --placeholder-color: #b0b0b0;
+
+}
+
+.field-input-withIcon ion-textarea {
+  padding-left: 33px;
+  height: 100px;
+  --placeholder-color: #2B3339;
+}
+
+.field-input-withIcon i {
   position: absolute;
-  top: -140px;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  left: 16px;
+  top: 9px;
+  padding: 9px 8px;
+  color: #F2561D;
+  transition: 0.3s;
+}
+
+#mobile-icon {
+  font-size: 1.5em;
+  left: 18px;
+  top: 6px;
+}
+
+#nextButtonContainer {
+  width: 100%;
+  text-align: center;
+}
+
+#nextButton {
+  min-width: 115px;
+  width: 30%;
   margin: auto;
-  border: solid gray 1px;
 }
 

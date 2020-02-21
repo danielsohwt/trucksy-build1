@@ -68,6 +68,10 @@ export class RegisterPage implements OnInit {
       this.showAlert("Error!", "Passwords don't match")
       return console.error("Password don't match")
     }
+    // if (username=="" || password=="" || cpassword== ""){
+    //     this.showAlert("Error!", "Required Field")
+    //     return console.error("Required Field")
+    // }
 
     this.buttonClicked = true;
 
@@ -103,10 +107,6 @@ export class RegisterPage implements OnInit {
             })
             .catch( error => console.log(error) );
 
-    }
-
-    login() {
-        this.route.navigate(['/login'])
     }
 
     verifyLoginCode() {

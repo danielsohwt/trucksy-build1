@@ -15,6 +15,7 @@ import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestor
 export class ConfirmationPage implements OnInit {
 
     orderID;
+    imageURL;
 
     constructor(
         public firebaseService: FirebaseService,

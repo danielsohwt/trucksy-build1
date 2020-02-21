@@ -4,13 +4,25 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content>   
-
-    <div class="center">
-
-        <ion-button shape="round" color="primary" (click)="toLogin()" >Login</ion-button>
-        <ion-button shape="round" color="primary" (click)="toRegister()" fill="outline">Register</ion-button>
-    </div>
-
-
+<ion-content class="splash-background">
+    <ion-grid style="height: 100%">
+        <ion-row justify-content-center align-items-center style="height: 100%">
+            <ion-col
+                    class="ion-align-self-center"
+                    size-xs="12"
+                    size-sm="8"
+                    size-md="6"
+                    size-lg="6"
+            >
+                <div class="transparentbox">
+                    <img class="logo" src="../../assets/img/logo/trucksy_logo.png">
+                    <div id="description">Smart moving company makes delivery <strong>easy</strong> and <strong>convenient</strong></div>
+                    <div class="spalsh-buttons">
+                        <button id= login class="orangeButton" type="submit" fill="solid" color="primary"  (click)="toLogin()" >Login</button>
+                        <button id= register class="orangeButton" type="submit" fill="solid" color="primary"  (click)="toRegister()">Register</button>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

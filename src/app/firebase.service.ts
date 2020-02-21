@@ -54,6 +54,8 @@ export class FirebaseService {
     searchOrdersByID(id){
         return this.db.collection('order',ref => ref.where('image', '==', id)).snapshotChanges();
     }
+
+
     //
     //
     // createUser(value, avatar){

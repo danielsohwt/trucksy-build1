@@ -8,7 +8,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { AdminOrderListingModule } from "./adminOrderListing/AdminOrderListing.module";
 import { UsersListingModule } from "./usersListing/usersListing.module";
 import {DriversListingModule} from "./driversListing/driversListing.module";
-
+import {SentimentModule} from "./sentiment/sentiment.module";
 @NgModule({
   imports: [
     PagesRoutingModule,
@@ -18,6 +18,7 @@ import {DriversListingModule} from "./driversListing/driversListing.module";
     AdminOrderListingModule,
     UsersListingModule,
     DriversListingModule,
+    SentimentModule,
   ],
   declarations: [
     PagesComponent,

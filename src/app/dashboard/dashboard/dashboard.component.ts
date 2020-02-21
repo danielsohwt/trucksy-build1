@@ -1,10 +1,10 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit} from '@angular/core';
 import {FirebaseService} from "../../firebase.service";
 import {Chart} from 'chart.js';
 import * as moment from 'moment';
 import {NgbDate, NgbCalendar,NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
-
-
+import { HttpClient } from '@angular/common/http';
+import  *  as  data  from  '../../../assets/afinn.json';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   items: Array<any>;
   order: any[] = [];
   now: any;
-
+  affin:  any  = (data  as  any).default;
   public paid: number;
   public notconfirmed: number;
   public cashOnDev: number;
@@ -45,8 +45,9 @@ export class DashboardComponent implements OnInit {
   @ViewChild('pieCanvas', { static: true }) pieCanvas;
   private pieChart: any;
 
-  constructor (public firebaseService: FirebaseService,private calendar: NgbCalendar,public formatter: NgbDateParserFormatter,) {
 
+  constructor (public firebaseService: FirebaseService,private calendar: NgbCalendar,
+    private http: HttpClient, public formatter: NgbDateParserFormatter) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 1);
     const firstDay = this.formatter.format(calendar.getNext(calendar.getToday(), 'd', -this.fromDate.day+1));
@@ -58,7 +59,16 @@ export class DashboardComponent implements OnInit {
     // retrieveData based on the range date
     this.retrieveData(start, end);
     // this.sales_over_time(firstDay, lastDay);
+    this.feedbacks()
   }
+
+  // loading_json() {
+  //   this.http.get('./affin.json')
+  //   .subscribe((data) => this.displaydata(data));
+  // }
+    displaydata(data) {this.affin = data;}
+
+
   onDateSelection(date: NgbDate) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
@@ -82,6 +92,62 @@ export class DashboardComponent implements OnInit {
       this.retrieveData(start,end);
     }
   }
+
+  feedbacks() {
+    var feedbacklist=[]
+    var users = []
+    var orderId = [];
+    this.firebaseService.getOrders().subscribe(result => {
+      this.items = result;
+      this.items.forEach(function(child) {
+        if (child.payload.doc.data().feedback != undefined) {
+          feedbacklist.push(child.payload.doc.data().feedback)
+          users.push(child.payload.doc.data().user)
+          orderId.push(child.payload.doc.data().image)
+        }
+      })
+      console.log(this.sentiment(feedbacklist))
+      console.log(users)
+      console.log(orderId)
+    })
+  }
+
+  sentiment(feedbacks) {
+    var emoji = [];
+    var comparative_list = [];
+    feedbacks.forEach(feedback => {
+      console.log(feedback)
+      var totalscore = 0;
+      var scorewords = [];
+      var comparative = 0;
+      var words = feedback.split(' ');
+      for (var i =0; i< words.length; i++) {
+        var word = words[i].toLowerCase();
+        if (this.affin.hasOwnProperty(word)){
+          totalscore += this.affin[word]
+          scorewords.push(word + ":" + this.affin[word]);
+        }
+      }
+      console.log(totalscore);
+      console.log(scorewords);
+      comparative = totalscore / words.length;
+      console.log(comparative);
+      comparative_list.push(comparative)
+      if (comparative >= 0.4) {
+        emoji.push("😃")
+      } else if (comparative > 0) {
+        emoji.push("🙂")
+      }else if(comparative == 0 ){
+        emoji.push("😐")
+      }else {
+        emoji.push("😕")
+      }
+      console.log(emoji)
+      console.log(comparative_list)
+    });
+  }
+
+
 
   retrieveData(start, end) {
     var sum1 = 0;

@@ -10,6 +10,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {NgDatepickerModule} from 'ng2-datepicker';
 
+import { FileUploadModule } from 'ng2-file-upload';
+import {MaterialModule} from './material-module';
+
+import { ImagePredictorComponent } from './image-predictor/image-predictor.component';
+
 import { 
   OwlDateTimeModule, 
   OwlNativeDateTimeModule 
@@ -47,6 +52,45 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {CoreModule} from "./@core/core.module";
 import {AdminOrderListingComponent} from "./dashboard/adminOrderListing/AdminOrderListing.component";
 
+
+import {
+  MatAutocompleteModule,
+  MatBadgeModule,
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  // MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  // MatSnackBarModule,
+  MatSortModule,
+  // MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  // MatTreeModule,
+} from '@angular/material';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -57,7 +101,43 @@ import {AdminOrderListingComponent} from "./dashboard/adminOrderListing/AdminOrd
             AngularFireAuthModule,
             AngularFireDatabaseModule,
             AngularFirestoreModule,
+            MatAutocompleteModule,
+            MatBadgeModule,
+            MatBottomSheetModule,
+            MatButtonModule,
+            MatButtonToggleModule,
+            MatCardModule,
+            MatCheckboxModule,
+            MatChipsModule,
+            MatDatepickerModule,
+            MatDialogModule,
+            MatDividerModule,
+            MatExpansionModule,
+            MatGridListModule,
+            MatIconModule,
+            MatInputModule,
+            MatListModule,
+            // MatMenuModule,
+            MatNativeDateModule,
+            MatPaginatorModule,
+            MatProgressBarModule,
+            MatProgressSpinnerModule,
+            MatRadioModule,
+            MatRippleModule,
+            MatSelectModule,
+            MatSidenavModule,
+            MatSliderModule,
+            MatSlideToggleModule,
+            // MatSnackBarModule,
+            MatSortModule,
+            // MatStepperModule,
+            MatTableModule,
+            MatTabsModule,
+            MatToolbarModule,
+            MatTooltipModule,
             HttpClientModule,
+            MaterialModule,
+            FileUploadModule,
             ShareModule,
             BrowserAnimationsModule,
             NbThemeModule.forRoot({ name: 'default' }),

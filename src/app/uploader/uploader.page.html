@@ -1,4 +1,4 @@
-<ion-content>
+<!-- <ion-content>
     <ion-grid class="container">
 
         <app-loading class="center" *ngIf="busy"></app-loading>
@@ -71,4 +71,43 @@
 
 
 
-</ion-content>
+</ion-content> -->
+
+  <div class="mat-app-background basic-container">
+      <strong> {{ title }} </strong>
+      <mat-tab-group>
+    
+        <mat-tab label="Predict">
+          <div>
+            <!--The content below is only a placeholder and can be replaced.-->
+            <br>
+    
+            <div *ngIf="!classifierReady">
+              Loading ... {{modelName}}
+            </div>
+    
+            <div *ngIf="classifierReady">
+              <div>
+                {{classifier.modelName}} model is ready for prediction
+              </div>
+    
+              <br>
+    
+              <div>
+                <label for="singleFile">Upload file(s) for prediction</label><br>
+                <input mat-stroked-button id="singleFile" type="file" ng2FileSelect [uploader]="uploader" multiple />
+              </div>
+            </div>
+            <br>
+            <br>
+            <mat-divider></mat-divider>
+    
+            <div [id]="i" *ngFor="let item of uploader.queue.reverse(); let i = index">
+              <app-image-predictor [classifier]="classifier" [image]="item?.file">
+              </app-image-predictor>
+            </div>
+          </div>
+    
+        </mat-tab>
+      </mat-tab-group>
+    </div>

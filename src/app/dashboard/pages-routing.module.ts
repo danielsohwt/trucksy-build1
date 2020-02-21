@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {AdminOrderListingComponent} from "./adminOrderListing/AdminOrderListing.component";
 import {UsersListingComponent} from "./usersListing/usersListing.component";
 import {DriversListingComponent} from "./driversListing/driversListing.component";
-
+import {SentimentComponent} from "./sentiment/sentiment.component";
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
@@ -31,6 +31,10 @@ const routes: Routes = [{
     {
       path: 'DriversListing',
       component: DriversListingComponent,
+    },
+    {
+      path: 'Sentiment',
+      component: SentimentComponent,
     },
   ],
 }];

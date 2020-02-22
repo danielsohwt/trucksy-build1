@@ -40,6 +40,7 @@ export class ConfirmationPage implements OnInit {
         this.afs.collection('order').doc(this.orderID).update({
 
             orderStatus: 'Order Confirmed',
+            fulfillmentStatus: 'Pending Delivery Date',
         });
 
 

@@ -57,7 +57,13 @@
 
         </ion-card>
     </ion-grid>
-    
+
+    <ion-grid *ngIf="post as postData" class="container">
+        <ion-img src="https://ucarecdn.com/{{ postID }}/-/preview/{{ effect }}"></ion-img>
+        <ion-card-content>
+            <p>{{ postData.desc }}</p>
+        </ion-card-content>
+    </ion-grid>
 
 
     <ion-grid *ngIf="orders" class="container">

@@ -30,9 +30,8 @@
 								<input id="cpassword" type="password" [(ngModel)]="cpassword"
 									   required #cPasswordCtrl="ngModel" name="cPassword" placeholder="Confirm Password"/>
 
-								<input id="hpnumber" type="text" [(ngModel)]="hpnumber"
-									   required #mobileNumberCtrl="ngModel" name="mobileNumber" placeholder="Mobile Number"/>
-
+								<input id="hpnumber" type="number" [(ngModel)]="hpnumber" ng-pattern="/^[8-9][0-9]{8}$/"
+									    #mobileNumberCtrl="ngModel" name="mobileNumber" placeholder="Mobile Number" required/>
 <!--								<ion-select id="userType" [(ngModel)]="userType" name="userType" placeholder="Select One">-->
 <!--&lt;!&ndash;									<select id="userType" name="userType">&ndash;&gt;-->
 <!--&lt;!&ndash;									<option value="" disabled hidden selected>Select One</option>&ndash;&gt;-->

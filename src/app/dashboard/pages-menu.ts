@@ -25,6 +25,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/DriversListing',
     home: true,
   },
+  {
+    title: 'Feedback',
+    icon: 'message-square-outline',
+    link: '/pages/Sentiment',
+    home: true,
+  },
   // {
   //   title: 'FEATURES',
   //   group: true,

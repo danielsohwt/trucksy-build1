@@ -59,6 +59,9 @@ export class DashboardComponent implements OnInit {
     // // retrieveData based on the range date
     this.retrieveData(start, end);
     // this.sales_over_time(firstDay, lastDay);
+
+ 
+
   }
   onDateSelection(date: NgbDate) {
     if (!this.fromDate && !this.toDate) {
@@ -416,7 +419,7 @@ export class DashboardComponent implements OnInit {
         datasets: [{
                 label: 'Number of Orders on a particular day',
                 data: value,
-                backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B",'##f707b7','#076964','#bf22a5'],
+                backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B",'#695382','#076964','#bf22a5'],
                 spanGaps: false,
         }]
       },

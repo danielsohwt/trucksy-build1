@@ -469,12 +469,8 @@ export class UploaderPage implements OnInit {
             paymentStatus: "Booking Date Not Confirmed",
 
 
-            //fulfillment Status:
-            // 0: "Order Not Confirmed" Order not confirmed
-            // 1: "Pending Delivery Date"
-            // 2: "En route Pickup"
-            // 3: "Pick Up Done"
-            // 4: "Delivered to Destination"
+
+
 
             // ** Only after orderStatus == "Confirmed" fulfillmentStatus == "Order Placed"
             fulfillmentStatus: "Order Not Confirmed",

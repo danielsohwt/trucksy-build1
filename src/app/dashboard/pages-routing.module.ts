@@ -7,6 +7,7 @@ import {AdminOrderListingComponent} from "./adminOrderListing/AdminOrderListing.
 import {UsersListingComponent} from "./usersListing/usersListing.component";
 import {DriversListingComponent} from "./driversListing/driversListing.component";
 import {SentimentComponent} from "./sentiment/sentiment.component";
+import {SalesComponent} from "./sales/sales.component";
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
@@ -35,6 +36,10 @@ const routes: Routes = [{
     {
       path: 'Sentiment',
       component: SentimentComponent,
+    },
+    {
+      path: 'Sales',
+      component: SalesComponent,
     },
   ],
 }];

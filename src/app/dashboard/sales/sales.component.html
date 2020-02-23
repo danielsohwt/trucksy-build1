@@ -1,0 +1,79 @@
+<!-- 
+<nb-card >
+
+  <h1 style="padding: 20px">Sales Analysis</h1>
+  <div id="monthly-container" class="row">
+
+    <div class="col-4" >
+
+        <p  style="font-size: 30px">SGD {{totalsales | number:'1.2-2'}}</p>
+        <i>Total Sales</i>
+
+
+    </div>
+    <div class="col-4">
+
+        <p style="font-size: 30px">{{sales17}}</p>
+        <i>Sales for 2017</i>
+
+
+    </div>
+    <div class="col-4">
+  
+        <p class="failed-orders" style="font-size: 30px">{{sales18}}</p>
+        <i>Sales for 2018</i>
+
+    </div>
+
+    <div class="col-4">
+
+        <p class="failed-orders" style="font-size: 30px">{{sales19}}</p>
+        <i>Sales for 2019</i>
+
+    </div>
+  </div>
+
+</nb-card> -->
+
+
+
+<nb-card style="padding: 30px">
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Please click here to see the Sales Analysis chart
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+      <div style="padding-top:-20px" >
+      <canvas class="my-4 w-100 graph-layout" #line6Canvas width="1000" height="400"></canvas>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</nb-card>
+
+
+<nb-card style="padding: 30px">
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Please click here to see Compare various forecasting approaches
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+      <canvas class="my-4 w-100 graph-layout" #line1Canvas width="1000" height="400"></canvas>
+      <button mat-raised-button color="primary" class='button' (click)="addData(linear_regression)">Predict</button>
+      <button mat-raised-button color="warn" class='button' (click)="removeData(linear_regression)">Reset</button>
+    </mat-expansion-panel>
+  </mat-accordion>  
+</nb-card>

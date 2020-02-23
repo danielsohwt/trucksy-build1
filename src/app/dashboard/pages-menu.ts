@@ -31,6 +31,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/Sentiment',
     home: true,
   },
+
+  {
+    title: 'Sales Analysis',
+    icon: 'bar-chart-2-outline',
+    link: '/pages/Sales',
+    home: true,
+  },
   // {
   //   title: 'FEATURES',
   //   group: true,

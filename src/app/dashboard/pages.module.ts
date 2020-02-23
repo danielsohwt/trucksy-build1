@@ -9,6 +9,7 @@ import { AdminOrderListingModule } from "./adminOrderListing/AdminOrderListing.m
 import { UsersListingModule } from "./usersListing/usersListing.module";
 import {DriversListingModule} from "./driversListing/driversListing.module";
 import {SentimentModule} from "./sentiment/sentiment.module";
+import { SalesModule } from "./sales/sales.module";
 @NgModule({
   imports: [
     PagesRoutingModule,
@@ -19,6 +20,7 @@ import {SentimentModule} from "./sentiment/sentiment.module";
     UsersListingModule,
     DriversListingModule,
     SentimentModule,
+    SalesModule
   ],
   declarations: [
     PagesComponent,

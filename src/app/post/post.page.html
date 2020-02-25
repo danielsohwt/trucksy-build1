@@ -1,20 +1,145 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Post</ion-title>
-  </ion-toolbar>
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/profile"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Order Details</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="padding">
     <app-loading *ngIf="!post"></app-loading>
 
-    <ion-card *ngIf="post as postData">
-        <ion-img src="https://ucarecdn.com/{{ postID }}/-/preview/{{ effect }}"></ion-img>
-        <ion-card-content>
-            <p>{{ postData.desc }}</p>
-        </ion-card-content>
-        <ion-item (click)="toggleHeart()">
-            <ion-icon [name]="heartType"></ion-icon>
-        </ion-item>
-    </ion-card>
+    <ion-grid class="container">
+        <ion-card class="order-card-parent">
+            <ion-grid class="card-parent">
+
+                <ion-row class="card-child">
+                    <ion-col class="main-left" size="8">
+                        <h4>{{image}}</h4>
+                        {{dateTimeOfOrder | date:'medium'}}<br><br>
+
+                        <span class="light-text">Driver Name</span><br>
+                        {{driverID}}<br><br>
+
+                        <span class="light-text">Remarks</span><br>
+                        {{note}}<br><br>
+
+                    </ion-col>
+                    <ion-col class="main-right" size="4">
+<!--                            //Order Status:-->
+<!--                            // 1: "Require Manual Verification"-->
+<!--                            // 2: "Created Order"-->
+<!--                            // 3: "Created Price Estimate"-->
+<!--                            // 4: "Created Booking Date"-->
+<!--                            // 5: "Completed Payment"-->
+<!--                            // 6: "Order Confirmed"-->
+                            <ion-chip *ngIf="orderStatus ==='Order Confirmed'" color="success">
+                                <ion-label>{{ orderStatus }}</ion-label>
+                            </ion-chip>
+
+                            <ion-chip *ngIf="orderStatus ==='Completed Payment'" color="success">
+                                <ion-label>{{ orderStatus }}</ion-label>
+                            </ion-chip>
+
+                            <ion-chip *ngIf="orderStatus ==='Created Booking Date'" color="warning">
+                                <ion-label>{{ orderStatus }}</ion-label>
+                            </ion-chip>
+
+                            <ion-chip *ngIf="orderStatus ==='Created Price Estimate'" color="warning">
+                                <ion-label>{{ orderStatus }}</ion-label>
+                            </ion-chip>
+
+                            <ion-chip *ngIf="orderStatus ==='Created Order'" color="warning">
+                                <ion-label>{{ orderStatus }}</ion-label>
+                            </ion-chip>
+
+                            <ion-chip *ngIf="orderStatus ==='Require Manual Verification'" color="danger">
+                                <ion-label>{{ orderStatus }}</ion-label>
+                            </ion-chip>
+
+                        <br>
+                        <h3>${{orderPrice | number : '1.2-2'}}</h3>
+                        {{paymentStatus}}
+                    </ion-col>
+
+                    <ion-col class="main-left" size="8">
+
+                        <span class="light-text">Pick Up Location</span><br>
+                        {{pickUpAddress}}<br>
+                        {{dateTimeOfPickup | date:'medium'}}<br><br>
+
+                        <span class="light-text">Drop Off Location</span><br>
+                        {{dropOffAddress}}<br><br>
+
+                        <span class="light-text">Recipient Name</span><br>
+                        {{recipientName}}<br><br>
+
+                        <span class="light-text">Recipient Number</span><br>
+                        {{recipientNumber}}<br><br>
+
+                    </ion-col>
+                    <ion-col class="main-right" size="4">
+<!--                        //fulfillment Status:-->
+<!--                        // 0: "Order Not Confirmed" Order not confirmed-->
+<!--                        // 1: "Pending Delivery Date"-->
+<!--                        // 2: "En route Pickup"-->
+<!--                        // 3: "Pick Up Done"-->
+<!--                        // 4: "Delivered to Destination"-->
+                        <ion-chip *ngIf="fulfillmentStatus ==='Order Not Confirmed'" color="danger">
+                            <ion-label>{{ fulfillmentStatus }}</ion-label>
+                        </ion-chip>
+
+                        <ion-chip *ngIf="fulfillmentStatus ==='Pending Delivery Date'" color="warning">
+                            <ion-label>{{ fulfillmentStatus }}</ion-label>
+                        </ion-chip>
+
+                        <ion-chip *ngIf="fulfillmentStatus ==='En route Pickup'" color="warning">
+                            <ion-label>{{ fulfillmentStatus }}</ion-label>
+                        </ion-chip>
+
+                        <ion-chip *ngIf="fulfillmentStatus ==='Pick Up Done'" color="warning">
+                            <ion-label>{{ fulfillmentStatus }}</ion-label>
+                        </ion-chip>
+
+                            <ion-chip *ngIf="fulfillmentStatus ==='Delivered to Destination'" color="success">
+                            <ion-label>{{ fulfillmentStatus }}</ion-label>
+                        </ion-chip>
+                    </ion-col>
+                </ion-row>
+
+
+
+            </ion-grid>
+        </ion-card>
+        <br>
+
+
+        <ion-card class="order-card-parent" *ngIf="post as postData">
+            <ion-row class="card-child">
+                <ion-col class="main-left" size="12">
+                    <h4>{{orderItemsPredicted | titlecase }}</h4>
+                </ion-col>
+            </ion-row>
+            <div class="image">
+                <ion-img src="https://ucarecdn.com/{{ postID }}/-/preview/{{ effect }}"></ion-img>
+            </div>
+            <ion-row class="card-child">
+                <ion-col class="main-left" size="6">
+                    Quantity<br>
+                    Rate<br>
+<!--                    Sub Total<br>-->
+                </ion-col>
+                <ion-col class="main-right" size="6">
+                    {{orderItemsPredictedQty}}<br>
+                    ${{itemPricing | number : '1.2-2'}}<br>
+<!--                    ${{subTotal}}<br>-->
+                </ion-col>
+            </ion-row>
+        </ion-card>
+
+
+
+    </ion-grid>
 
 </ion-content>

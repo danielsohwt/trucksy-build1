@@ -54,13 +54,13 @@
     <ion-row *ngFor="let item of productsArray, let i = index">
       <ion-col size="3">
         <div class="justify-content-center">
-          {{item}}
+          {{item | titlecase}}
         </div>
       </ion-col>
 
       <ion-col size="3" class="justify-content-center">
           <div class="quantity-container">
-            <ion-input class="quantity-input" (ionChange)="updateTotals()" [(ngModel)]="quantitiesArray[i]" type="number"></ion-input>
+            <ion-input class="quantity-input" (ionChange)="updateTotals()" [(ngModel)]="quantitiesArray[i]" type="number" min="1" oninput="validity.valid||(value='');"></ion-input>
           </div>
       </ion-col>
 

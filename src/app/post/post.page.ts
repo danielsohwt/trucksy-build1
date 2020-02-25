@@ -17,6 +17,25 @@ export class PostPage implements OnInit, OnDestroy {
     postReference: AngularFirestoreDocument
     sub
     effect: string = '';
+    pickUpAddress: any;
+    private dateTimeOfOrder: any;
+    dateTimeOfPickup;
+    desc;
+    driverID;
+    dropOffAddress;
+    fulfillmentStatus;
+    image;
+    note = '-';
+    orderPrice;
+    orderStatus;
+    paymentStatus;
+    recipientName;
+    recipientNumber;
+    private priceModel1: AngularFirestoreDocument<unknown>;
+    itemPricing;
+    orderItemsPredicted;
+    orderItemsPredictedQty;
+    subTotal;
 
     constructor(
         private route: ActivatedRoute, 
@@ -28,11 +47,38 @@ export class PostPage implements OnInit, OnDestroy {
 
     ngOnInit() {
 		this.postID = this.route.snapshot.paramMap.get('id')
-        this.postReference = this.post = this.afs.doc(`posts/${this.postID}`)
+        this.postReference = this.post = this.afs.doc(`order/${this.postID}`)
         this.sub = this.postReference.valueChanges().subscribe(val => {
-            this.post = val
-            this.effect = val.effect
-            this.heartType = val.likes.includes(this.user.getUID()) ? 'heart' : 'heart-empty'
+            this.post = val,
+            this.dateTimeOfOrder = val.dateTimeOfOrder,
+            this.dateTimeOfPickup = val.dateTimeOfPickup,
+            this.desc = val.desc,
+            this.driverID = val.driverID,
+            this.dropOffAddress = val.dropOffAddress,
+            this.pickUpAddress = val.pickUpAddress,
+            this.fulfillmentStatus = val.fulfillmentStatus,
+            this.image = val.image,
+            this.note = val.note,
+            this.orderPrice = val.orderPrice,
+            this.orderStatus = val.orderStatus,
+            this.paymentStatus = val.paymentStatus,
+            this.recipientName = val.recipientName,
+            this.recipientNumber = val.recipientNumber,
+            this.orderItemsPredicted = Object.keys(val.orderItemsPredicted)[0],
+            // console.log(this.orderItemsPredicted),
+            this.orderItemsPredictedQty =Object.values(val.orderItemsPredicted)[0]
+            // console.log(this.orderItemsPredictedQty)
+
+        })
+
+        this.priceModel1 = this.afs.doc(`priceModel/1`);
+        this.priceModel1.valueChanges().subscribe(val => {
+            // console.log(val.pricing[item]);
+            // @ts-ignore
+            this.itemPricing = val.pricing['bed'];
+            // return val.pricing[item];
+            // console.log(this.itemPricing);
+
         })
     }
 

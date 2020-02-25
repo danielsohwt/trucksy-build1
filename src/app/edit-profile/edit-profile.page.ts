@@ -54,7 +54,7 @@ export class EditProfilePage implements OnInit, OnDestroy {
         const data = new FormData()
         data.append('file', files[0])
         data.append('UPLOADCARE_STORE', '1')
-        data.append('UPLOADCARE_PUB_KEY', 'b9cc3f94e77d60a02f90')
+        data.append('UPLOADCARE_PUB_KEY', '3f6ba0e51f55fa947944')
 
         // post method
         this.http.post('https://upload.uploadcare.com/base/', data)

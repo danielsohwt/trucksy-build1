@@ -8,6 +8,8 @@ import * as tf from '@tensorflow/tfjs';
 import { IMAGENET_CLASSES } from '../../assets/imagenet-classes';
 import * as moment from 'moment';
 
+import { LoadingController } from '@ionic/angular';
+
 
 const IMAGE_SIZE = 224;
 const TOPK_PREDICTIONS = 5;
@@ -34,11 +36,17 @@ export class UploaderPage implements OnInit {
     uploadFail;
     lowAccuracyCounter = 0;
     fileUploadCounter = 1;
+    showUploadModule = true;
+    showErrorMsg = false;
+    showFirstUploadPage = true;
+    showSecondUploadPage = false;
 
     orderStatus;
     orderItemsPredicted;
 
     image1Classification: any;
+
+    loading: any;
 
 
 
@@ -76,10 +84,25 @@ export class UploaderPage implements OnInit {
         public afstore: AngularFirestore,
         public user:UserService,
         public route: Router,
+        public loadingController: LoadingController,
         ) { }
 
     ngOnInit() {
         this.loadModel();
+
+
+    }
+
+    //loading
+    async presentLoading() {
+        this.loading = await this.loadingController.create({
+            message: 'Please wait...',
+        });
+        await this.loading.present();
+    }
+
+    removeLoading() {
+        this.loading.dismiss();
     }
 
 
@@ -92,7 +115,7 @@ export class UploaderPage implements OnInit {
     }
 
     fileChangeEvent(event: any) {
-        this.busy = true
+        this.busy = true;
         //TODO: Fix async issue. need to load twice
         for(this.fileUploadCounter = 1; this.fileUploadCounter<3; this.fileUploadCounter++){
 
@@ -111,11 +134,12 @@ export class UploaderPage implements OnInit {
                 // console.log('Img.nativeElement: ',this.img.nativeElement)
                 this.predict(this.img.nativeElement,file);
                 // console.log('Predict: ',this.predict(this.img.nativeElement,file))
-                this.busy = false;
+
             };
             reader.readAsDataURL(file);
             console.log("No of times file was uploaded: " + this.fileUploadCounter)
         }
+        this.busy = false;
 
 
 
@@ -175,19 +199,39 @@ export class UploaderPage implements OnInit {
                 console.log('Low accuracy counter: ',this.lowAccuracyCounter);
                 //user uploaded twice with low accuracy
                 if (this.lowAccuracyCounter === 2 ) {
-                    //display message to indicate upload failed and ask for reupload
+                    //display message to indicate upload failed and ask for re-upload
                     this.uploadFail = true;
                 } else if (this.lowAccuracyCounter > 2 ) {
-                    // cancel workflow?
-                    console.log('End flow, either redirect or show error msg')
-                    // this.route.navigate(['/tabs/']);
+                    //show error msg and inform admin
+                    this.showUploadModule = false;
+                    this.showErrorMsg = true;
+
+
+                    //post to upload care so admin can see image
+                    this.data.append('file', file)
+                    this.data.append('UPLOADCARE_STORE', '1')
+                    this.data.append('UPLOADCARE_PUB_KEY', '3f6ba0e51f55fa947944')
+                    console.log(this.data)
+
+                    // post to uploadcare
+                    this.http.post('https://upload.uploadcare.com/base/', this.data)
+                        .subscribe(event => {
+                            console.log(event);
+                            this.imageURL = event['file'];
+                            console.log(this.imageURL);
+
+                        })
+
+                    // inform admin with the details
+
                 }
 
                 confidence= 'Low Confidence';
             }
             else {
+                this.busy = true;
+                //confidence is high -> upload to imagecare and show second upload page view
                 confidence= 'High Confidence';
-                            //prepare data
 
                 this.data.append('file', file)
                 this.data.append('UPLOADCARE_STORE', '1')
@@ -202,6 +246,10 @@ export class UploaderPage implements OnInit {
                         console.log(this.imageURL)
                         this.busy = false
                     })
+                this.showErrorMsg = false;
+                this.showFirstUploadPage = false;
+                this.showSecondUploadPage = true;
+                this.busy = false;
             }
             topClassesAndProbs.push({
                 className: IMAGENET_CLASSES[topkIndices[i]],
@@ -229,7 +277,7 @@ export class UploaderPage implements OnInit {
         this.activeEffect = this.effects[effect]
     }
 
-
+    //old function - do not use
     fileChanged(event: any) {
         this.busy = true
         const files = event.target.files
@@ -344,14 +392,23 @@ export class UploaderPage implements OnInit {
 
         //TODO:
         // Write AI function here
-}
+    }
+
+    backToHome() {
+        this.showUploadModule = true;
+        this.showErrorMsg = false;
+        this.showFirstUploadPage = true;
+        this.showSecondUploadPage = false;
+        this.uploadFail = false;
+        this.route.navigate(['/tabs/feed/'])
+    }
 
     createOrder() {
         let now = moment(); // add this 2 of 4
         this.busy = true
         const orderID = this.imageURL
         const activeEffect = this.activeEffect
-        const desc = this.desc
+        // const desc = this.desc
 
         // TODO: Upload multiple items
         // temporary single item
@@ -364,7 +421,7 @@ export class UploaderPage implements OnInit {
         })
 
         this.afstore.doc(`posts/${orderID}`).set({
-            desc,
+            // desc,
             author: this.user.getUsername(),
             likes: [],
             effect: activeEffect
@@ -388,7 +445,7 @@ export class UploaderPage implements OnInit {
         this.afstore.doc(`order/${orderID}`).set({
             image: orderID,
             user: this.user.getUsername(),
-            desc,
+            // desc,
 
             // Order flow Upload Image -> Price Estimate -> Booking Date -> Payment -> Confirmation
 
@@ -412,12 +469,9 @@ export class UploaderPage implements OnInit {
             paymentStatus: "Booking Date Not Confirmed",
 
 
-            //fulfillment Status:
-            // 0: "Order Not Confirmed" Order not confirmed
-            // 1: "Delivery Done"
-            // 2: "Pick Up Done"
-            // 3: "Enroute Pickup"
-            // 4: "Order Placed"
+
+
+
             // ** Only after orderStatus == "Confirmed" fulfillmentStatus == "Order Placed"
             fulfillmentStatus: "Order Not Confirmed",
             // orderItemsPredicted: this.classes[0]['className'],
@@ -430,7 +484,7 @@ export class UploaderPage implements OnInit {
 
         this.busy = false;
         this.imageURL = "";
-        this.desc = "";
+        // this.desc = "";
 
         if (this.lowAccuracyCounter === 1) {
             this.route.navigate(['/estimateprice/'+ orderID])

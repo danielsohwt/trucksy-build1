@@ -33,6 +33,13 @@ p{
 	transform: translate(-50%, -50%);
 }
 
+.center-left-right {
+	margin: 0;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+}
+
 .active {
 	border: 2px solid black;
 }
@@ -62,6 +69,10 @@ input[type=file],  {
 	cursor: pointer;
 }
 
+.error-msg {
+	padding: 20px;
+}
+
 #content{
 	//position: center;
 	text-align: center;
@@ -78,4 +89,9 @@ input[type=file],  {
 	width: auto;
 	margin: auto;
 	display: block;
+}
+
+.upload-image {
+	width:100%;
+	max-width:300px;
 }

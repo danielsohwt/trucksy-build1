@@ -42,6 +42,8 @@ export class ProfilePage implements OnInit, OnDestroy {
     post
 
     userOrders
+    private effect: any;
+    private heartType: string;
 
 
   constructor(
@@ -52,20 +54,20 @@ export class ProfilePage implements OnInit, OnDestroy {
   ) { 
       this.mainuser = afs.doc(`users/${this.user.getUID()}`)
       this.sub = this.userOrder = this.mainuser.valueChanges().subscribe(event => {
-          // this.orders = event.order,
-          // this.orderID = event.orderID,
-          // this.orderStatus = event.orderStatus,
-          // this.paymentStatus = event.paymentStatus,
-          // this.firstname = event.firstName,
-          // this.username = event.username,
-          // this.profilePic = event.profilePic,
-          // this.driver = "Micheal Tan",
-          // this.dateTimeOfPickup = event.dateTimeOfPickup,
-          // this.pickUpAddress = event.pickupAddress,
-          // this.dropOffAddress = event.dropOffAddress,
-          // this.orderItemsActual = event.orderItemsActual,
-          // this.orderPrice = event.orderPrice,
-          // this.lorryType = "10ft Lorry"
+          this.orders = event.order,
+          this.orderID = event.orderID,
+          this.orderStatus = event.orderStatus,
+          this.paymentStatus = event.paymentStatus,
+          this.firstname = event.firstName,
+          this.username = event.username,
+          this.profilePic = event.profilePic,
+          this.driver = "Micheal Tan",
+          this.dateTimeOfPickup = event.dateTimeOfPickup,
+          this.pickUpAddress = event.pickupAddress,
+          this.dropOffAddress = event.dropOffAddress,
+          this.orderItemsActual = event.orderItemsActual,
+          this.orderPrice = event.orderPrice,
+          this.lorryType = "10ft Lorry"
 
 
       })
@@ -75,20 +77,23 @@ export class ProfilePage implements OnInit, OnDestroy {
       this.userOrders = this.afs.collection('order',ref => ref.where('user', '==', 'test@test.com'));
 
       console.log(this.userOrders)
+      this.getOrderDetails('078db7dc-0851-49d1-a856-e1d0caaa0283');
+  }
 
+  getOrderDetails(postID) {
+        this.postID = postID;
+        // this.postID = '1d942a89-6838-4463-9e9a-8c6e892ed9ce'
+        this.postReference = this.post = this.afs.doc(`order/${postID}`)
+        this.sub = this.postReference.valueChanges().subscribe(val => {
+            this.post = val
+            this.effect = val.effect
+        })
+      console.log(this.post);
 
   }
 
 
-  getOrderDetails(orderID: string) {
-      this.postID = orderID;
-      this.postReference = this.post = this.afs.doc(`posts/${this.postID}`)
-      this.sub = this.postReference.valueChanges().subscribe(val => {
-          this.order = val
-          this.desc = val.desc
-          // this.heartType = val.likes.includes(this.user.getUID()) ? 'heart' : 'heart-empty'
-      })
-  }
+
 
   ngOnDestroy() {
         this.sub.unsubscribe()

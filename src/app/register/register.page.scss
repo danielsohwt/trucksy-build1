@@ -24,15 +24,60 @@
     border-radius: 15px;
     box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.51);
 }
-/* Login form container */
+/* Registration form container */
 #contents {
     height: 100%;
     display: grid;
-    grid-template-rows: 0.75fr 1.75fr;
+    grid-template-rows: 0.5fr 2fr;
     //grid-template-columns: 2fr;
     grid-template-areas:
             "header"
             "form"
+}
+
+@media (max-width: 450px) {
+    .transparentbox {
+        margin-top: 35px;
+        margin-bottom: 35px;
+    }
+
+    #form {
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+                "firstName firstName"
+                "lastName lastName"
+                "username username"
+                "password password"
+                "cpassword cpassword"
+                "hpnumber hpnumber"
+                "userType userType"
+                "login login"
+    }
+    #firstName {
+        grid-area: firstName;
+        float: left;
+        height: 80%;
+        margin: 10px 10%;
+        font-size: 18px;
+        color: rgb(0, 0, 0);
+        padding: 8px;
+        border-radius: 15px;
+        border: 1px solid #2B3339;
+        background: rgba(255, 255, 255);
+    }
+    #lastName {
+        grid-area: lastName;
+        float: left;
+        height: 80%;
+        margin: 10px 10%;
+        display: block;
+        font-size: 18px;
+        color: rgb(0, 0, 0);
+        padding: 8px;
+        border-radius: 15px;
+        border: 1px solid #2B3339;
+        background: rgba(255, 255, 255);
+    }
 }
 
 #form {
@@ -40,11 +85,10 @@
     //padding: 60px;
     height: 100%;
     display: grid;
-    grid-template-rows: 1fr 1fr 0.5fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-            "firstName firstName"
-            "lastName lastName"
+            "firstName lastName"
             "username username"
             "password password"
             "cpassword cpassword"
@@ -54,26 +98,19 @@
 }
 
 .logo {
-    height: 50%;
+    height: 60%;
     width: auto;
     grid-area: header;
     justify-self: center;
     align-self: center;
 }
 
-//#firstName, #lastName {
-//    display: block;
-//    float: left;
-//    margin: 10px 10%;
-//    padding: 8px;
-//    margin-right: 100px;
-//
-//}
+
 #firstName {
     grid-area: firstName;
     float: left;
-    height: 80%;
-    margin: 10px 10%;
+    height: 75%;
+    margin: 10px 5% 10px 20%;
     font-size: 18px;
     color: rgb(0, 0, 0);
     padding: 8px;
@@ -84,8 +121,8 @@
 #lastName {
     grid-area: lastName;
     float: left;
-    height: 80%;
-    margin: 10px 10%;
+    height: 75%;
+    margin: 10px 20% 10px 5%;
     display: block;
     font-size: 18px;
     color: rgb(0, 0, 0);
@@ -95,9 +132,53 @@
     background: rgba(255, 255, 255);
 }
 
+@media (max-width: 450px) {
+    #form {
+        grid-area: form;
+        height: 100%;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+                "firstName firstName"
+                "lastName lastName"
+                "username username"
+                "password password"
+                "cpassword cpassword"
+                "hpnumber hpnumber"
+                "userType userType"
+                "login login"
+    }
+    #firstName {
+        grid-area: firstName;
+        float: left;
+        height: 80%;
+        margin: 10px 10%;
+        font-size: 18px;
+        color: rgb(0, 0, 0);
+        padding: 8px;
+        border-radius: 15px;
+        border: 1px solid #2B3339;
+        background: rgba(255, 255, 255);
+    }
+    #lastName {
+        grid-area: lastName;
+        float: left;
+        height: 80%;
+        margin: 10px 10%;
+        display: block;
+        font-size: 18px;
+        color: rgb(0, 0, 0);
+        padding: 8px;
+        border-radius: 15px;
+        border: 1px solid #2B3339;
+        background: rgba(255, 255, 255);
+    }
+}
+
 #username {
     grid-area: username;
-    height: 80%;
+    height: 75%;
     margin: 10px 10%;
     display: block;
     font-size: 18px;
@@ -109,7 +190,7 @@
 }
 #password {
     grid-area: password;
-    height: 80%;
+    height: 75%;
     margin: 10px 10%;
     display: block;
     font-size: 18px;
@@ -122,7 +203,7 @@
 
 #cpassword {
     grid-area: cpassword;
-    height: 80%;
+    height: 75%;
     margin: 10px 10%;
     display: block;
     font-size: 18px;
@@ -135,7 +216,7 @@
 
 #hpnumber {
     grid-area: hpnumber;
-    height: 80%;
+    height: 75%;
     margin: 10px 10%;
     display: block;
     font-size: 18px;
@@ -148,10 +229,9 @@
 
 #userType {
     grid-area: userType;
-    height: 80%;
-    //margin-top: 30px;
+    height: 75%;
+    align-content: center;
     margin: 10px 10%;
-    //display: block;
     font-size: 18px;
     color: #2B3339;
     padding: 8px;
@@ -183,10 +263,9 @@
     border: 0px;
 }
 
-#login {
-    //     width: 500px;
+#register {
     margin-top:30px;
-    //     margin-bottom: auto;
+    margin-bottom: 30px;
     margin-left:auto;
     margin-right: auto;
     grid-area: login;

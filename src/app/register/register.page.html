@@ -3,7 +3,8 @@
 		<ion-row justify-content-center align-items-center style="height: 100%">
 			<ion-col
 					class="ion-align-self-center"
-					size-xs="12"
+					style="height:100%"
+					size-xs="10"
 					size-sm="8"
 					size-md="6"
 					size-lg="6"
@@ -13,24 +14,24 @@
 						<div id="contents">
 							<img class="logo" src="../../assets/img/logo/trucksy_logo.png">
 							<div id="form" [hidden]="buttonClicked">
-								<input id="firstName" type="text" [(ngModel)]="firstName"
+								<input class="input-field" id="firstName" type="text" [(ngModel)]="firstName"
 									   #firstNameCtrl="ngModel"
 									   name="firstName" placeholder="First Name" required
 									   />
 
-								<input id="lastName" type="text" [(ngModel)]="lastName"
+								<input class="input-field" id="lastName" type="text" [(ngModel)]="lastName"
 									   required #lastNameCtrl="ngModel" name="lastName" placeholder="Last Name"/>
 
-								<input id="username" type="text" [(ngModel)]="username"
+								<input class="input-field" id="username" type="text" [(ngModel)]="username"
 									   required #usernameCtrl="ngModel" name="username" placeholder="Email"/>
 
-								<input id="password" type="password" [(ngModel)]="password"
+								<input class="input-field" id="password" type="password" [(ngModel)]="password"
 									   required #passwordCtrl="ngModel" name="password" placeholder="Password"/>
 
-								<input id="cpassword" type="password" [(ngModel)]="cpassword"
+								<input class="input-field" id="cpassword" type="password" [(ngModel)]="cpassword"
 									   required #cPasswordCtrl="ngModel" name="cPassword" placeholder="Confirm Password"/>
 
-								<input id="hpnumber" type="number" [(ngModel)]="hpnumber" ng-pattern="/^[8-9][0-9]{8}$/"
+								<input class="input-field" id="hpnumber" type="number" [(ngModel)]="hpnumber" ng-pattern="/^[8-9][0-9]{8}$/"
 									    #mobileNumberCtrl="ngModel" name="mobileNumber" placeholder="Mobile Number" required/>
 <!--								<ion-select id="userType" [(ngModel)]="userType" name="userType" placeholder="Select One">-->
 <!--&lt;!&ndash;									<select id="userType" name="userType">&ndash;&gt;-->
@@ -39,13 +40,15 @@
 <!--									<ion-select-option value="driver">Driver</ion-select-option>-->
 <!--								</ion-select>-->
 
-								<ion-select id="userType" (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select User Type" name="userType">
+								<ion-select align-items-center class="input-field" id="userType" (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select User Type" name="userType">
 									<ion-select-option userType="user">User</ion-select-option>
 									<ion-select-option userType="driver">Driver</ion-select-option>
 								</ion-select>
 
-								<button class="orangeButton" id="login" type="submit" fill="solid" color="primary" (click)="register()">Sign Up</button>
+								<button class="orangeButton" id="register" type="submit" fill="solid" color="primary" (click)="register()">Sign Up</button>
 							</div>
+
+
 								<div *ngIf="buttonClicked" id="otp">
 										<p>A one-time password (OTP) will be sent to the following <br> mobile number for verification:</p>
 										<ion-list>{{hpnumber}}</ion-list>

@@ -488,7 +488,11 @@ export class UploaderPage implements OnInit {
 
         if (this.lowAccuracyCounter === 1) {
             this.route.navigate(['/estimateprice/'+ orderID])
-        } else if (this.lowAccuracyCounter > 1) {
+        } else if (this.lowAccuracyCounter === 3) {
+            //skip estimate price, go to booking page directly
+            this.route.navigate(['/estimateprice/'+ orderID])
+
+        } else if (this.lowAccuracyCounter > 3) {
             //skip estimate price, go to booking page directly
             this.route.navigate(['/booking/'+ orderID])
 

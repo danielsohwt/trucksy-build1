@@ -281,27 +281,29 @@ export class UploaderPage implements OnInit {
     fileChanged(event: any) {
         this.busy = true
         const files = event.target.files
-        console.log(files)
-
-        // Call classification API to determine class and confidence level
-
-        // Simulate Response from AI API
-        //Write post request to AI classifier here and map response to simulateResponse1
-
-        //prepare data
-                const data = new FormData()
+        const file = files[0]
+        console.log(file)
 
 
-                this.http.post('https://8080-dot-10558302-dot-devshell.appspot.com/predict/', data)
-                    .subscribe(event => {
-                        console.log(event)
-                        // this.imageURL = event['file']
-                        // console.log(this.imageURL)
-                        this.busy = false
-                    })
+        //so that if no file, the POST request won't happen
+        if (file) {
+
+            //prepare data
+            const data = new FormData()
+            data.append('image_file', file)
+
+            console.log('Posting image to our model ... wait around 20 secs for result ... BUT the model fails to return a result 1 in 2 times')
+            console.log('If >20secs, likely "failure case", will have some error showing up, dont be alarmed by CORS error cos it is due to "failure"')
+            this.http.post('https://furnitureclassifier.appspot.com/predict/', data)
+                .subscribe(event => {
+                    console.log(event)
+                    // this.imageURL = event['file']
+                    // console.log(this.imageURL)
+                    this.busy = false
+                })
 
 
-
+        }
 
 
         let simulateResponse1;

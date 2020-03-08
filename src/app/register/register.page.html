@@ -9,11 +9,11 @@
 					size-md="6"
 					size-lg="6"
 			>
-				<div class="transparentbox">
+				<div class="transparentbox"  [hidden]="buttonClicked">
 					<form #f="ngForm" validate (ngSubmit)="onSubmit(f)" style="height: 100%">
 						<div id="contents">
 							<img class="logo" src="../../assets/img/logo/trucksy_logo.png">
-							<div id="form" [hidden]="buttonClicked">
+							<div id="form">
 								<input class="input-field" id="firstName" type="text" [(ngModel)]="firstName"
 									   #firstNameCtrl="ngModel"
 									   name="firstName" placeholder="First Name" required
@@ -33,17 +33,14 @@
 
 								<input class="input-field" id="hpnumber" type="number" [(ngModel)]="hpnumber" ng-pattern="/^[8-9][0-9]{8}$/"
 									    #mobileNumberCtrl="ngModel" name="mobileNumber" placeholder="Mobile Number" required/>
-<!--								<ion-select id="userType" [(ngModel)]="userType" name="userType" placeholder="Select One">-->
-<!--&lt;!&ndash;									<select id="userType" name="userType">&ndash;&gt;-->
-<!--&lt;!&ndash;									<option value="" disabled hidden selected>Select One</option>&ndash;&gt;-->
-<!--									<ion-select-option value="user">User</ion-select-option>-->
-<!--									<ion-select-option value="driver">Driver</ion-select-option>-->
-<!--								</ion-select>-->
+
 
 								<ion-select align-items-center class="input-field" id="userType" (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select User Type" name="userType">
 									<ion-select-option userType="user">User</ion-select-option>
 									<ion-select-option userType="driver">Driver</ion-select-option>
 								</ion-select>
+
+								<div id="recaptcha-container"></div>
 
 								<button class="orangeButton" id="register" type="submit" fill="solid" color="primary" (click)="register()">Sign Up</button>
 							</div>
@@ -53,7 +50,7 @@
 										<p>A one-time password (OTP) will be sent to the following <br> mobile number for verification:</p>
 										<ion-list>{{hpnumber}}</ion-list>
 									</div>
-								<div id="recaptcha-container"></div>
+
 								<div *ngIf="buttonClicked">
 									<ion-row justify-content-around>
 										<ion-button fill="solid" color="primary" (click)="sendLoginCode()">Send Code</ion-button>

@@ -43,7 +43,7 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
       this.windowRef = this.win.windowRef;
       this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-
+      this.windowRef.recaptchaVerifier.render();
   }
 
   selectUserType() {
@@ -80,8 +80,6 @@ export class RegisterPage implements OnInit {
       }
 
     this.buttonClicked = true;
-
-    await this.windowRef.recaptchaVerifier.render();
 
   }
 

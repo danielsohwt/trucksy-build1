@@ -294,7 +294,7 @@ export class UploaderPage implements OnInit {
 
             console.log('Posting image to our model ... wait around 20 secs for result ... BUT the model fails to return a result 1 in 2 times')
             console.log('If >20secs, likely "failure case", will have some error showing up, dont be alarmed by CORS error cos it is due to "failure"')
-            this.http.post('https://furnitureclassifier.appspot.com/predict/', data)
+            this.http.post('https://furnitureclassifier1.appspot.com/predict/', data)
                 .subscribe(event => {
                     console.log(event)
                     // this.imageURL = event['file']

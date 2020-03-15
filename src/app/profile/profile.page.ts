@@ -5,6 +5,7 @@ import { UserService } from '../user.service';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore'
 import { firestore } from 'firebase/app';
 import { Router } from '@angular/router'
+import {AngularFireAuth} from "@angular/fire/auth";
 
 
 @Component({
@@ -51,6 +52,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     private afs: AngularFirestore,
     private user:UserService,
     private route: Router,
+    private afAuth: AngularFireAuth,
   ) { 
       this.mainuser = afs.doc(`users/${this.user.getUID()}`)
       this.sub = this.userOrder = this.mainuser.valueChanges().subscribe(event => {
@@ -101,6 +103,13 @@ export class ProfilePage implements OnInit, OnDestroy {
 
   goTo(postID: string) {
         this.route.navigate(['/tabs/post/' + postID.split('/')[0]])
+  }
+
+  logout(){
+      return this.afAuth.auth.signOut().then(() => {
+          this.route.navigate(['/login']);
+      })
+      console.log("Logout Successful");
   }
 
 

@@ -19,6 +19,15 @@
                 <ion-button shape="round" color="primary" routerLink="/tabs/edit-profile">Edit Profile</ion-button>
             </ion-card-content>
 
+            <div *ngIf="userType ==='Admin'">
+                <ion-item (click)="redirectToDashboard()" detail>
+                    <ion-label>
+                        Dashboard
+                    </ion-label>
+                </ion-item>
+            </div>
+
+
 <!--            <ion-item detail>-->
 <!--                <ion-label>-->
 <!--                    Pending Orders-->

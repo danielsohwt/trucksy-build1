@@ -36,6 +36,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     orderStatus: any;
     paymentStatus: any;
     lorryType: string;
+    userType: any;
 
     postReference: AngularFirestoreDocument
     order
@@ -53,7 +54,8 @@ export class ProfilePage implements OnInit, OnDestroy {
     private user:UserService,
     private route: Router,
     private afAuth: AngularFireAuth,
-  ) { 
+  )
+  {
       this.mainuser = afs.doc(`users/${this.user.getUID()}`)
       this.sub = this.userOrder = this.mainuser.valueChanges().subscribe(event => {
           this.orders = event.order,
@@ -69,12 +71,37 @@ export class ProfilePage implements OnInit, OnDestroy {
           this.dropOffAddress = event.dropOffAddress,
           this.orderItemsActual = event.orderItemsActual,
           this.orderPrice = event.orderPrice,
-          this.lorryType = "10ft Lorry"
+          this.lorryType = "10ft Lorry",
+          this.userType = event.userType,
 
+          console.log(this.userType)
 
       })
   }
   ngOnInit() {
+
+      this.mainuser = this.afs.doc(`users/${this.user.getUID()}`)
+      this.sub = this.userOrder = this.mainuser.valueChanges().subscribe(event => {
+          this.orders = event.order,
+              this.orderID = event.orderID,
+              this.orderStatus = event.orderStatus,
+              this.paymentStatus = event.paymentStatus,
+              this.firstname = event.firstName,
+              this.username = event.username,
+              this.profilePic = event.profilePic,
+              this.driver = "Micheal Tan",
+              this.dateTimeOfPickup = event.dateTimeOfPickup,
+              this.pickUpAddress = event.pickupAddress,
+              this.dropOffAddress = event.dropOffAddress,
+              this.orderItemsActual = event.orderItemsActual,
+              this.orderPrice = event.orderPrice,
+              this.lorryType = "10ft Lorry",
+              this.userType = event.userType
+
+
+      });
+
+      console.log(this.userType);
 
       this.userOrders = this.afs.collection('order',ref => ref.where('user', '==', 'test@test.com'));
 
@@ -95,6 +122,9 @@ export class ProfilePage implements OnInit, OnDestroy {
   }
 
 
+  redirectToDashboard() {
+      this.route.navigate(['/pages/dashboard/']);
+    }
 
 
   ngOnDestroy() {
@@ -107,7 +137,7 @@ export class ProfilePage implements OnInit, OnDestroy {
 
   logout(){
       return this.afAuth.auth.signOut().then(() => {
-          this.route.navigate(['/login']);
+          this.route.navigate(["/login"]);
       })
       console.log("Logout Successful");
   }

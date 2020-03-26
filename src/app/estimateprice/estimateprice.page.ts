@@ -20,9 +20,9 @@ export class EstimatepricePage implements OnInit {
     items: Array<any>;
     priceModel1
 
-    products: any;
     productsArray: Array<string>;
     quantitiesArray: Array<number>;
+    productList: any;
     priceList: any;
     subtotal: number;
     svc: number;
@@ -52,15 +52,17 @@ export class EstimatepricePage implements OnInit {
             let products;
             let productsArray = [];
             let quantitiesArray = [];
+            let productList = [];
             let priceList;
             let subtotal = 0;
 
             this.items = result;
+
+            // Not actually looping but needed
             this.items.forEach(function(child){
                 products = child.payload.doc.data().orderItemsPredicted;
             });
 
-            this.products=products;
 
             this.priceModel1 = this.afs.doc(`priceModel/1`)
             this.priceModel1.valueChanges().subscribe(val => {
@@ -74,6 +76,12 @@ export class EstimatepricePage implements OnInit {
                     quantitiesArray.push(quantity);
                     subtotal += priceList[key] * quantity
                 });
+
+                //FULL list of products (vs productsArray - ordered products)
+                Object.keys(priceList).forEach(function(key) {
+                    productList.push(key)
+                });
+                this.productList = productList;
 
                 // TODO: find a way to stop the endless updating of these arrays everytime Document is updated in Firestore
                 this.productsArray = productsArray;

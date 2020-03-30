@@ -52,9 +52,13 @@
     </ion-row>
 
     <ion-row *ngFor="let item of productsArray, let i = index">
-      <ion-col size="3">
-        <div class="justify-content-center">
-          {{item | titlecase}}
+      <ion-col size="3" class="justify-content-center">
+        <div>
+          <div class="product-container">
+          <ion-select class="product-input" (ionChange)="updateTotals()" [(ngModel)]="productsArray[i]">
+            <ion-select-option *ngFor="let product of productList" [selected]="productsArray[i] === product" [value]="product">{{product | titlecase}}</ion-select-option>
+          </ion-select>
+          </div>
         </div>
       </ion-col>
 

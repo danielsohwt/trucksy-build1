@@ -25,7 +25,7 @@
     box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.51);
 }
 /* Registration form container */
-#contents {
+.contents {
     height: 100%;
     display: grid;
     grid-template-rows: 0.5fr 2fr;
@@ -299,3 +299,16 @@ strong {
     justify-content: center;
 }
 
+.parent-center-container {
+    display: flex;
+    justify-content: center;
+}
+
+#rounded-text-input {
+    border-radius: 15px;
+}
+
+.card-otp {
+    background-color: white;
+    color: black;
+}

@@ -54,6 +54,7 @@ export class RegisterPage implements OnInit {
 
   clickRegister() {
       this.registerbtn.nativeElement.click()
+
     }
 
   async presentAlert(title: string, content: string) {
@@ -84,8 +85,9 @@ export class RegisterPage implements OnInit {
           this.showAlert("Error!", "Mobile Number not valid")
           return console.error("Mobile Number not valid")
       }
-
+    console.log(this.buttonClicked);
     this.buttonClicked = true;
+    console.log(this.buttonClicked);
 
   }
 

@@ -11,7 +11,7 @@
 			>
 				<div class="transparentbox"  [hidden]="buttonClicked">
 					<form #f="ngForm" validate (ngSubmit)="onSubmit(f)" style="height: 100%">
-						<div id="contents">
+						<div class="contents">
 							<img class="logo" src="../../assets/img/logo/trucksy_logo.png">
 							<div id="form">
 								<input class="input-field" id="firstName" type="text" [(ngModel)]="firstName"
@@ -55,133 +55,52 @@
 							<button class="orangeButton" id="click-register" type="submit" fill="solid" color="primary" (click)="clickRegister()">Sign Up</button>
 
 
-								<div *ngIf="buttonClicked" id="otp">
-										<p>A one-time password (OTP) will be sent to the following <br> mobile number for verification:</p>
-										<ion-list>{{hpnumber}}</ion-list>
-									</div>
 
-								<div *ngIf="buttonClicked">
-									<ion-row justify-content-around>
-										<ion-button fill="solid" color="primary" (click)="sendLoginCode()">Send Code</ion-button>
-									</ion-row>
-								</div>
-									<div *ngIf="this.windowRef.confirmationResult" id="code">
-										<ion-label>Enter your Verification Code Here</ion-label>
-										<ion-input type="text" name="code" [(ngModel)]="verificationCode"></ion-input>
-										<button (click)="verifyLoginCode()">Verify</button>
-									</div>
+
+
 						</div>
 					</form>
+
+					<ion-card class="card-otp">
+						<ion-card-content>
+							<div class="parent-center-container">
+								<div class="">
+									<div>
+										<p>A one-time password (OTP) will be sent to the following {{hpnumber}} number for verification:</p>
+										<br>
+										<div class="parent-center-container">
+											<div>
+												<button class="orangeButton" fill="solid" color="primary" (click)="sendLoginCode()">Send Code</button>
+											</div>
+										</div>
+
+									</div>
+									<br>
+
+									<div >
+										<ion-label>Enter your Verification Code Here</ion-label>
+										<ion-item id="rounded-text-input">
+											<ion-input type="text" name="code" [(ngModel)]="verificationCode" placeholder="Verification Code" required></ion-input>
+										</ion-item>
+										<br>
+										<div class="parent-center-container">
+											<div>
+												<button class="orangeButton" fill="solid" color="primary" (click)="verifyLoginCode()">Verify</button>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</ion-card-content>
+					</ion-card>
+
+
+
+
+
 				</div>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
 </ion-content>
-
-<!--orginal code-->
-<!--  <ion-content class= "home-background" padding>-->
-<!--	<ion-grid style="height: 100%">-->
-<!--		<ion-row justify-content-center align-items-center style="height: 100%">-->
-<!--			<ion-col-->
-<!--			class="ion-align-self-center"-->
-<!--			size-xs="12"-->
-<!--			size-sm="8"-->
-<!--			size-sm="8"-->
-<!--			size-md="6"-->
-<!--			size-lg="4"-->
-<!--			>-->
-<!--				<div class="transparentbox">-->
-<!--					<div [hidden]="buttonClicked">-->
-<!--						<ion-list>-->
-<!--							&lt;!&ndash;<img class="logo" src="../../assets/img/logo/trucksy_logo.png">&ndash;&gt;-->
-<!--							&lt;!&ndash;							<input class="rounded" type="text" [(ngModel)]="firstName"&ndash;&gt;-->
-<!--							&lt;!&ndash;								   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"&ndash;&gt;-->
-<!--							&lt;!&ndash;								   required #nameCtrl="ngModel" name="First Name" placeholder="First Name">&ndash;&gt;-->
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="First Name" type="text" [(ngModel)]="firstName"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="Last Name" type="text" [(ngModel)]="lastName"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="Username" type="text" [(ngModel)]="username"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="Confirm Password" type="password" [(ngModel)]="cpassword"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-input placeholder="Mobile Number" type="text" [(ngModel)]="hpnumber"></ion-input>-->
-<!--							</ion-item>-->
-
-<!--							<ion-item class="rounded">-->
-<!--								<ion-label>Account Type</ion-label>-->
-<!--								<ion-select (ionChange)="selectUserType()" [(ngModel)]="userType" placeholder="Select One">-->
-<!--									<ion-select-option  userType="user">User</ion-select-option>-->
-<!--									<ion-select-option userType="driver">Driver</ion-select-option>-->
-<!--								</ion-select>-->
-<!--							</ion-item>-->
-
-<!--							<ion-row justify-content-around>-->
-<!--								<ion-button fill="solid" color="primary" (click)="register()">Sign Up</ion-button>-->
-<!--							</ion-row>-->
-<!--							<br>-->
-<!--						</ion-list>-->
-<!--						<ion-list>-->
-<!--							<div *ngIf="buttonClicked">-->
-<!--								<h3>A one-time password (OTP) will be sent to the following mobile number for verification:</h3>-->
-<!--								<ion-list>{{hpnumber}}</ion-list>-->
-<!--							</div>-->
-
-
-<!--WTF is this?! Why if not there will fuck up the code??? -->
-<!--							<div id="recaptcha-container"></div>-->
-<!--							<div *ngIf="buttonClicked">-->
-<!--								<ion-row justify-content-around>-->
-<!--									<ion-button fill="solid" color="primary" (click)="sendLoginCode()">Send Code</ion-button>-->
-<!--								</ion-row>-->
-<!--							</div>-->
-
-<!--							<div *ngIf="this.windowRef.confirmationResult">-->
-<!--								<ion-label>Enter your Verification Code Here</ion-label>-->
-<!--								<ion-input type="text" name="code" [(ngModel)]="verificationCode"></ion-input>-->
-
-<!--								<button (click)="verifyLoginCode()">Verify</button>-->
-<!--							</div>-->
-<!--						</ion-list>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</ion-col>-->
-<!--		</ion-row>-->
-<!--	</ion-grid>-->
-<!--  </ion-content>-->
-
-<!--  <ion-content padding>-->
-<!--	  <ion-list>-->
-
-<!--		  <ion-item>-->
-<!--			<ion-label position="floating">Username</ion-label>-->
-<!--			<ion-input type="text" [(ngModel)]="username"></ion-input>-->
-<!--		  </ion-item>-->
-
-<!--		  <ion-item>-->
-<!--			<ion-label position="floating">Password</ion-label>-->
-<!--			<ion-input type="password" [(ngModel)]="password"></ion-input>-->
-<!--		  </ion-item>-->
-
-<!--		  <ion-item>-->
-<!--			<ion-label position="floating">Confirm Password</ion-label>-->
-<!--			<ion-input type="password" [(ngModel)]="cpassword"></ion-input>-->
-<!--		  </ion-item>-->
-
-<!--		</ion-list>-->
-
-<!--		<ion-button fill="solid" expand="block" color="dark" (click)="register()">Signup</ion-button>-->
-<!--  </ion-content>-->

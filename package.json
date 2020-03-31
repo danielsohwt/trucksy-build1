@@ -46,6 +46,7 @@
     "eva-icons": "^1.1.2",
     "express": "^4.17.1",
     "firebase": "^7.6.2",
+    "mathjs": "^6.6.1",
     "ml-sentiment": "^2.0.7",
     "mobiscroll-angular": "^4.0.0",
     "moment": "^2.24.0",

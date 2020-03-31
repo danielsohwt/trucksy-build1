@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import * as firebase from 'firebase';
 import { Router } from '@angular/router'
@@ -31,6 +31,8 @@ export class RegisterPage implements OnInit {
     buttonClicked: boolean = false;
     verificationCode: string;
 
+    @ViewChild('registerbtn', { static: false }) registerbtn;
+
   constructor(
     public afAuth: AngularFireAuth,
     public alert: AlertController,
@@ -49,6 +51,10 @@ export class RegisterPage implements OnInit {
   selectUserType() {
       console.log(this.userType)
   }
+
+  clickRegister() {
+      this.registerbtn.nativeElement.click()
+    }
 
   async presentAlert(title: string, content: string) {
 

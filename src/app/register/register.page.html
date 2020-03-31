@@ -40,10 +40,19 @@
 									<ion-select-option userType="driver">Driver</ion-select-option>
 								</ion-select>
 
-								<div id="recaptcha-container"></div>
 
-								<button class="orangeButton" id="register" type="submit" fill="solid" color="primary" (click)="register()">Sign Up</button>
+
+								<!--Hide this button due to form limitations-->
+								<button class="orangeButton" id="register" type="submit" fill="solid" color="primary" (click)="register()" hidden #registerbtn>Sign Up</button>
+
 							</div>
+
+							<div id="parent-recaptcha-container">
+								<div id="recaptcha-container"></div>
+							</div>
+
+							<!--Click button id=register -->
+							<button class="orangeButton" id="click-register" type="submit" fill="solid" color="primary" (click)="clickRegister()">Sign Up</button>
 
 
 								<div *ngIf="buttonClicked" id="otp">

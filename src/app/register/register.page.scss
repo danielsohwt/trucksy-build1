@@ -274,6 +274,13 @@
     align-self: start;
 }
 
+#click-register {
+    margin-top:30px;
+    margin-bottom: 30px;
+    margin-left:auto;
+    margin-right: auto;
+}
+
 .orangeButton:hover {
     background-color:#d96725;
 }
@@ -285,3 +292,10 @@ strong {
     display: block;
     text-align: center;
 }
+
+
+#parent-recaptcha-container {
+    display: flex;
+    justify-content: center;
+}
+

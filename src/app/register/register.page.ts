@@ -28,7 +28,8 @@ export class RegisterPage implements OnInit {
 
     windowRef: any;
     phoneNumber = new PhoneNumber();
-    buttonClicked: boolean = false;
+    submitUserData: boolean = false;
+    loginCodeSent: boolean = false;
     verificationCode: string;
 
     @ViewChild('registerbtn', { static: false }) registerbtn;
@@ -54,7 +55,7 @@ export class RegisterPage implements OnInit {
 
   clickRegister() {
       this.registerbtn.nativeElement.click()
-
+      this.submitUserData = true;
     }
 
   async presentAlert(title: string, content: string) {
@@ -85,9 +86,9 @@ export class RegisterPage implements OnInit {
           this.showAlert("Error!", "Mobile Number not valid")
           return console.error("Mobile Number not valid")
       }
-    console.log(this.buttonClicked);
-    this.buttonClicked = true;
-    console.log(this.buttonClicked);
+    console.log(this.submitUserData);
+    this.submitUserData = true;
+    console.log(this.submitUserData);
 
   }
 
@@ -115,7 +116,7 @@ export class RegisterPage implements OnInit {
             .then(result => {
 
                 this.windowRef.confirmationResult = result;
-
+                this.loginCodeSent = true;
             })
             .catch( error => console.log(error) );
 

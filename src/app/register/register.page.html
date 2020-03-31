@@ -9,7 +9,7 @@
 					size-md="6"
 					size-lg="6"
 			>
-				<div class="transparentbox"  [hidden]="buttonClicked">
+				<div class="transparentbox" [hidden]="submitUserData">
 					<form #f="ngForm" validate (ngSubmit)="onSubmit(f)" style="height: 100%">
 						<div class="contents">
 							<img class="logo" src="../../assets/img/logo/trucksy_logo.png">
@@ -60,12 +60,13 @@
 
 						</div>
 					</form>
+				</div>
 
-					<ion-card class="card-otp">
+					<ion-card *ngIf="submitUserData" class="card-otp">
 						<ion-card-content>
 							<div class="parent-center-container">
-								<div class="">
-									<div>
+								<div>
+									<div *ngIf="loginCodeSent==false">
 										<p>A one-time password (OTP) will be sent to the following {{hpnumber}} number for verification:</p>
 										<br>
 										<div class="parent-center-container">
@@ -77,10 +78,9 @@
 									</div>
 									<br>
 
-									<div >
-										<ion-label>Enter your Verification Code Here</ion-label>
+									<div *ngIf="loginCodeSent">
 										<ion-item id="rounded-text-input">
-											<ion-input type="text" name="code" [(ngModel)]="verificationCode" placeholder="Verification Code" required></ion-input>
+											<ion-input type="text" name="code" [(ngModel)]="verificationCode" placeholder="Enter Verification Code Here" required></ion-input>
 										</ion-item>
 										<br>
 										<div class="parent-center-container">
@@ -99,7 +99,7 @@
 
 
 
-				</div>
+
 			</ion-col>
 		</ion-row>
 	</ion-grid>

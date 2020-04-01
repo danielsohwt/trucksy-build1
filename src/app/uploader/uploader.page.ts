@@ -35,6 +35,7 @@ export class UploaderPage implements OnInit {
     getProductList() {
         let priceModel1 = this.afs.doc(`priceModel/1`)
         priceModel1.valueChanges().subscribe(val => {
+            // @ts-ignore
             let priceList = val.pricing;
             let productList = [];
             //FULL list of products (vs productsArray - ordered products)

@@ -38,6 +38,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/Sales',
     home: true,
   },
+
+  {
+    title: 'User Feed',
+    icon: 'home-outline',
+    link: '/tabs',
+    home: true,
+  },
   // {
   //   title: 'FEATURES',
   //   group: true,

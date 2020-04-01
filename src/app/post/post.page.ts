@@ -36,6 +36,7 @@ export class PostPage implements OnInit, OnDestroy {
     orderItemsPredicted;
     orderItemsPredictedQty;
     subTotal;
+    feedback;
 
     constructor(
         private route: ActivatedRoute, 
@@ -64,6 +65,7 @@ export class PostPage implements OnInit, OnDestroy {
             this.paymentStatus = val.paymentStatus,
             this.recipientName = val.recipientName,
             this.recipientNumber = val.recipientNumber,
+            this.feedback = val.feedback,
             this.orderItemsPredicted = Object.keys(val.orderItemsPredicted)[0],
             // console.log(this.orderItemsPredicted),
             this.orderItemsPredictedQty =Object.values(val.orderItemsPredicted)[0]
@@ -80,6 +82,13 @@ export class PostPage implements OnInit, OnDestroy {
             // console.log(this.itemPricing);
 
         })
+    }
+
+    submitFeedback(){
+        this.afs.collection('order').doc(this.postID).update({
+            feedback: this.feedback,
+        });
+        console.log('Pushed to DB: Updated feedback: ' + this.feedback);
     }
 
     ngOnDestroy():void {

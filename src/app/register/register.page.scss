@@ -25,7 +25,7 @@
     box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.51);
 }
 /* Registration form container */
-#contents {
+.contents {
     height: 100%;
     display: grid;
     grid-template-rows: 0.5fr 2fr;
@@ -274,6 +274,13 @@
     align-self: start;
 }
 
+#click-register {
+    margin-top:30px;
+    margin-bottom: 30px;
+    margin-left:auto;
+    margin-right: auto;
+}
+
 .orangeButton:hover {
     background-color:#d96725;
 }
@@ -284,4 +291,36 @@
 strong {
     display: block;
     text-align: center;
+}
+
+
+#parent-recaptcha-container {
+    display: flex;
+    justify-content: center;
+}
+
+.parent-center-container {
+    display: flex;
+    justify-content: center;
+}
+
+#rounded-text-input {
+    border-radius: 15px;
+}
+
+.card-otp {
+    background-color: white;
+    color: black;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: 834px;
+    height: 200px;
+    padding: 10px;
+    background-color: rgba(253, 253, 253, 0.51);
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.51);
 }

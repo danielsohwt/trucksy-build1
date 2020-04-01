@@ -26,6 +26,12 @@ export class AuthService implements CanActivate {
         return this.afAuth.auth;
     }
 
+    signOut(){
+        return this.afAuth.auth.signOut().then(() => {
+            this.router.navigate(['/login']);
+        })
+    }
+
     /**
      * Initiate the password reset process for this user
      * @param email email of the user

@@ -158,6 +158,7 @@ export class UploaderPage implements OnInit {
 //   styleUrls: ['./uploader.page.scss'],
 // })
 //
+// // changed something
 // export class UploaderPage implements OnInit {
 //     // private model
 //     model: tf.Model;

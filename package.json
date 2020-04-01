@@ -53,6 +53,7 @@
     "ng-pick-datetime": "^7.0.0",
     "ng2-date-picker": "^8.0.0",
     "ng2-datepicker": "^3.1.1",
+    "ng2-file-upload": "^1.4.0",
     "rxjs": "~6.5.1",
     "sentiment": "^5.0.2",
     "tslib": "^1.9.0",

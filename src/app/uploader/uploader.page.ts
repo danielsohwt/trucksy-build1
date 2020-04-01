@@ -61,8 +61,6 @@ export class UploaderPage implements OnInit {
         let now = moment(); // add this 2 of 4
         const orderID = imageURL;
 
-        // TODO: Upload multiple items
-        // temporary single item
         let predictedItems = this.createProductsObject();
 
         this.afs.doc(`users/${this.user.getUID()}`).update({
@@ -73,10 +71,6 @@ export class UploaderPage implements OnInit {
             author: this.user.getUsername(),
             likes: [],
         })
-
-        //TODO use server time
-        // require('firebase-admin').firestore.FieldValue;
-
 
         let orderStatus = "Created Order";
 

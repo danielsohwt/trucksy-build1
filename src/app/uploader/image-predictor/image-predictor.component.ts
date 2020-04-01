@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {FormControl} from "@angular/forms";
 
 
 @Component({
@@ -14,7 +13,6 @@ export class ImagePredictorComponent implements OnInit {
   @Input() orderList;
   @Input() i;
 
-  validation_item;
   src = '../../../assets/img/cat.jpg';
 
   results = [{
@@ -62,12 +60,4 @@ export class ImagePredictorComponent implements OnInit {
     return results;
   }
 
-
 }
-
-class ItemValidator {
-  static validItem(fc:FormControl) {
-    if (fc.value in productList)
-        }
-}
-

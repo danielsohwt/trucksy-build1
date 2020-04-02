@@ -110,7 +110,7 @@
 
 <!--                Only show if delivered to destination-->
                 <div *ngIf="fulfillmentStatus ==='Delivered to Destination'">
-                    <ion-input type="text" placeholder="Type feedback here.." [(ngModel)]="feedback"></ion-input>
+                    <ion-input text-wrap type="text" placeholder="Type feedback here.." [(ngModel)]="feedback"></ion-input>
                     <ion-button shape="round" color="primary" (click)="submitFeedback()">Submit Feedback</ion-button>
                 </div>
 

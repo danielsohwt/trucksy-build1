@@ -1,12 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import { Router } from '@angular/router'
-
-import { FileUploader } from 'ng2-file-upload';
 import {AngularFirestore} from "@angular/fire/firestore";
+
 import {firestore} from "firebase/app";
 import * as moment from 'moment';
+
+import { FileUploader } from 'ng2-file-upload';
+
 import {UserService} from "../user.service";
-import {HttpClient} from "@angular/common/http";
+
 
 const URL = '.';
 
@@ -20,6 +23,8 @@ export class UploaderPage implements OnInit {
     public uploader: FileUploader = new FileUploader({ url: URL });
     productList: any;
     orderList = [];
+    file: any;
+    uploadCount = 0;
 
     constructor(
         public route: Router,
@@ -46,10 +51,11 @@ export class UploaderPage implements OnInit {
         })
     }
 
-    async test() {
+    async createOrder() {
         console.log(this.orderList)
         let data = new FormData();
         let file = this.uploader.queue[0].file.rawFile;
+
         data.append('file', file)
         data.append('UPLOADCARE_STORE', '1')
         data.append('UPLOADCARE_PUB_KEY', '3f6ba0e51f55fa947944')

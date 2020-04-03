@@ -1,10 +1,9 @@
 <ion-content>
-
     <br>
 
     <div>
         <label for="singleFile">Upload file(s) for prediction</label><br>
-        <input mat-stroked-button id="singleFile" type="file" ng2FileSelect [uploader]="uploader" multiple />
+        <input id="singleFile" type="file" ng2FileSelect [uploader]="uploader" multiple accept="image/*"/>
     </div>
 
     <br>
@@ -15,116 +14,6 @@
         </image-predictor>
     </div>
 
-    <button class="orangeButton" id="bookingButton" type="submit" fill="solid" (click)="test()">Accept</button>
+    <button class="orangeButton" id="bookingButton" type="submit" fill="solid" (click)="createOrder()">Accept</button>
 
 </ion-content>
-<!--<ion-content>-->
-<!--    <ion-grid class="container">-->
-<!--        <h3>Quotation</h3>-->
-<!--        &lt;!&ndash;<h5>Instruction</h5>&ndash;&gt;-->
-<!--        <p>Upload an image of the furniture you would like to move by clicking the <strong>"Choose File"</strong> button </p>-->
-<!--        <app-loading class="center" *ngIf="busy==true"></app-loading>-->
-
-
-
-<!--       <div *ngIf="showFirstUploadPage==true" class="center">-->
-
-<!--           <div *ngIf="showUploadModule==true" class="upload" [hidden]="!model">-->
-<!--               <div *ngIf="!uploadFail" >-->
-<!--               Upload an image:<br>-->
-<!--               <input #fileUpload type="file" id="files" name="files[]" (change)="fileChangeEvent($event)" />-->
-<!--               </div>-->
-
-<!--               <div *ngIf="uploadFail" id="content">-->
-<!--                   Unable to accurately classify, please upload again <br>-->
-<!--                   Here is a set of good and bad example: <br>-->
-<!--                  <div id="image">-->
-<!--                      <img class="logo" src="../../assets/img/Correct.png">-->
-<!--                      <img class="logo" src="../../assets/img/Wrong.png">-->
-<!--                  </div>-->
-
-<!--                   <input #fileUpload type="file" id="files" name="files[]" (change)="fileChanged($event)" />-->
-<!--               </div>-->
-<!--           </div>-->
-
-<!--           <div class="hide-div">-->
-<!--               <img #chosenImage width="224" height="224" class="sample-image" />-->
-<!--               <div class="predictions">-->
-<!--                   <div *ngFor="let class of classes" class="row">-->
-<!--                       <div class="col-sm-6">-->
-<!--                           {{class.className}}-->
-<!--                       </div>-->
-<!--                       <div class="col-sm-6">-->
-<!--                           {{class.probability.toFixed(3)}}-->
-<!--                       </div>-->
-<!--                       <div class="col-sm-6">-->
-<!--                           {{class.confidence}}-->
-<!--                       </div>-->
-<!--                   </div>-->
-<!--               </div>-->
-<!--           </div>-->
-
-<!--           <div *ngIf="showErrorMsg==true">-->
-<!--               <ion-card class="error-msg">-->
-<!--                   Unable to determine the furniture from image. We have sent our team<br><br>-->
-
-<!--                   Sorry for any inconvenience caused, for immediate enquires please contact us at sales@rentalorry or 65898964.<br><br>-->
-
-<!--                   Have a great day!<br><br><br>-->
-
-<!--                   Error Code: 401<br><br>-->
-
-<!--                   <span *ngIf="imageURL">Order ID: {{ imageURL }}<br><br></span>-->
-<!--               </ion-card>-->
-
-<!--               <ion-button class="center-left-right" shape="round" color="primary" (click)="backToHome()" fill="outline"> Home</ion-button>-->
-<!--           </div>-->
-
-<!--           -->
-<!--        </div>-->
-
-<!--       <div class="center" *ngIf="!busy">-->
-
-<!--            <input type="file" *ngIf="!imageURL" (change)="fileChanged($event)" class="filebtn" #fileButton />-->
-
-<!--            <div class="hide-div" *ngIf="!uploadFail" >-->
-<!--                <ion-button shape="round" color="primary" (click)="uploadFile()" *ngIf="!imageURL" fill="outline"> Upload Image to Get a Quote</ion-button>-->
-<!--            </div>-->
-<!--            <br>-->
-
-<!--            <div *ngIf="showSecondUploadPage && !busy">-->
-
-<!--                <ion-col size="12">-->
-<!--                    <div class="upload-image">-->
-<!--                        <ion-img src="https://ucarecdn.com/{{ imageURL }}/-/preview/{{ activeEffect }}"></ion-img>-->
-<!--                    </div>-->
-
-<!--                    <ion-card-content>-->
-<!--                        <div *ngIf="image1Classification" >Item: {{ image1Classification }}</div>-->
-<!--&lt;!&ndash;                        <ion-textarea placeholder="Enter shifting instructions, if not key in 'NA'" [(ngModel)]="desc"></ion-textarea>&ndash;&gt;-->
-<!--                        <ion-button shape="round" color="primary" (click)="createOrder()">Continue</ion-button>-->
-
-<!--                    </ion-card-content>-->
-<!--                </ion-col>-->
-
-<!--                <ion-grid>-->
-<!--                    <ion-row>-->
-
-
-<!--                    </ion-row>-->
-
-
-
-
-<!--                </ion-grid>-->
-
-
-<!--            </div>-->
-<!--       </div>-->
-<!--    </ion-grid>-->
-
-
-
-
-
-<!--</ion-content>-->

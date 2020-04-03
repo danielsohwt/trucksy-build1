@@ -13,6 +13,7 @@ export class ImagePredictorComponent implements OnInit {
   @Input() orderList;
   @Input() i;
 
+  busy = false;
   src = '../../../assets/img/cat.jpg';
 
   results = [{
@@ -50,11 +51,13 @@ export class ImagePredictorComponent implements OnInit {
   }
 
   async sendImage(image) {
+    this.busy = true;
     const data = new FormData();
     data.append('image_file', image)
 
     let results = [];
     let postResult = await this.http.post('https://furnitureclassifier1.appspot.com/predict/', data).toPromise();
+    this.busy = false;
     results.push({className : postResult["Classification"], probability: postResult["Probabilty"]})
     console.log(postResult)
     return results;

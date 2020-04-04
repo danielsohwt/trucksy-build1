@@ -58,7 +58,7 @@ export class UploaderPage implements OnInit {
 
         data.append('file', file)
         data.append('UPLOADCARE_STORE', '1')
-        data.append('UPLOADCARE_PUB_KEY', '3f6ba0e51f55fa947944')
+        data.append('UPLOADCARE_PUB_KEY', '408edb3f01d67ae0afe0')
         console.log(data)
 
         // post to uploadcare just to get orderID

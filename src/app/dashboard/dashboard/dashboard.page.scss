@@ -7,13 +7,13 @@
 }
 
 .dashboard-card-header {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .dashboard-card-header-key-value {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 
@@ -31,7 +31,7 @@
 
 .dashboard-card-value {
   font-weight: 300;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .second-row {
@@ -44,8 +44,8 @@
 
 .graph-header {
   margin-bottom: -5px;
-  font-weight: 500;
-  font-size: 12px;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 #hide-this {
@@ -78,7 +78,13 @@
   width: 0;
   margin: 0;
   border: none;
-  padding: 0;
+  padding:10px;
+}
+
+.form-control {
+  padding:20px;
+  height:40px;
+  font-size:16pt;
 }
 
 button.calendar, button.calendar:active {

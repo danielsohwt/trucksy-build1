@@ -3,9 +3,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-
-
-
+<nb-card>
 <form class="form-inline">
   <div class="form-group hidden">
     <div class="input-group">
@@ -33,7 +31,7 @@
     </div>
   </div>
 
-  <h6 style="padding: 5px">From</h6>
+  <h5 style="padding: 10px">From </h5>
   <br>
   <div class="form-group">
    <div class="input-group">
@@ -48,7 +46,7 @@
     </div>
   </div>
   <div class="form-group ml-2">
-  <h6 style="padding: 5px">To</h6>
+  <h5 style="padding: 10px">To</h5>
   <br>
   <div class="input-group">
       <input #dpToDate
@@ -62,6 +60,7 @@
     </div>
   </div>
 </form>
+</nb-card>
 <br>
 <br>
 <!-- <hr/>
@@ -197,7 +196,7 @@
           <!-- <p class="dashboard-card-value text-right">↓76%</p> -->
         </div>
       </div>
-      <p class="graph-header">TOTAL ORDERS OVER TIME</p>
+      <p class="graph-header">Week</p>
       <div style="padding-top:-20px">
         <!--        Insert Total Orders-->
         <canvas class="my-4 w-100 graph-layout" #bar1Canvas width="500" height="500"></canvas>
@@ -261,62 +260,6 @@
 
     </nb-card>
 
-    <!-- Conversion Rate -->
-    <nb-card [hidden]="!show" class="dashboard-card">
-
-      <div class="row">
-        <div class="col-7"><p class="dashboard-card-header">Top 5 Locations</p></div>
-        <!-- <div class="col-5"><p class="dashboard-card-header text-right">View Report</p></div> -->
-      </div>
-
-      <br>
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value">Sengkang</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right">20</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Tampines</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">15</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Punggol</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">12</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Yishun</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">6</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Orchard</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">3</p>
-        </div>
-      </div>
-    
-    </nb-card>
-
   </div>
 
   <!--  Right Panel-->
@@ -369,63 +312,6 @@
         <!--        Insert Total Orders-->
         <canvas class="my-4 w-100 graph-layout" #lineCanvas width="500" height="500"></canvas>
       </div>
-
-    </nb-card>
-
-    <!-- Top 5 Items -->
-    <nb-card [hidden]="!show" class="dashboard-card">
-
-      <div class="row">
-        <div class="col-7"><p class="dashboard-card-header">Top 5 Items</p></div>
-        <!-- <div class="col-5"><p class="dashboard-card-header text-right">View Report</p></div> -->
-      </div>
-
-      <br>
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value">Bed</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right">20</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Chair</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">15</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Sofa</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">12</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Washing Machine</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">6</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <p class="dashboard-card-value second-row">Piano</p>
-        </div>
-        <div class="col-md-4">
-          <p class="dashboard-card-value text-right second-row">3</p>
-        </div>
-      </div>
-
 
     </nb-card>
 

@@ -109,6 +109,7 @@
         var Xday = [];
         var Yorder1 = [];
         var occurrences = [];
+        var occurrences1 = [];
         var temp_order_date= [];
         var temp_order_day= [];
         var total_order = 0;
@@ -116,7 +117,9 @@
         var tempcount= [];
         var day_list=[];
         var day_occurrences = [];
-        var itemsList = [];
+        var order_month_array1=[]
+        var aveList = [];
+        var dict_today = {};
         this.firebaseService.searchOrdersByDate(start, end).subscribe(result => {
           this.items = result;
           if (this.items.length === 0) {
@@ -126,6 +129,8 @@
             this.paid = 0;
             this.cashOnDev = 0;
             this.show = false;
+            this.avg_paid = 0;
+            this.avg_cod = 0;
           } else {
             this.show = true;
             this.items.forEach(function(child){
@@ -137,6 +142,7 @@
                 count1+=1
                 day_list.push(moment(child.payload.doc.data().dateTimeOfOrder).day());
                 order_date_array.push(moment(child.payload.doc.data().dateTimeOfOrder).date());
+                order_month_array1.push(moment(child.payload.doc.data().dateTimeOfOrder).month());
                 // console.log(Xarray);
                 // console.log(sum1);
               } else if (child.payload.doc.data().paymentStatus == 'Booking Date Not Confirmed') {
@@ -150,6 +156,7 @@
                 order_date_array.push(moment(child.payload.doc.data().dateTimeOfOrder).date());
                 sum3 += (child.payload.doc.data().orderPrice);
                 day_list.push(moment(child.payload.doc.data().dateTimeOfOrder).day());
+                order_month_array1.push(moment(child.payload.doc.data().dateTimeOfOrder).month());
                 // console.log(sum3);
               } else if (child.payload.doc.data().paymentStatus == 'Payment Failed' || 'Failed Payment') {
                 sum4 += (child.payload.doc.data().orderPrice);
@@ -166,8 +173,17 @@
             this.totalorder = total_order;
             this.failed = failedToPaid;
             this.avg_order= this.total / this.totalorder;
-            this.avg_paid = sum1 / count1;
-            this.avg_cod = sum3 / count3;
+            if (sum1 == 0){
+              this.avg_paid =0;
+            }else{
+              this.avg_paid = sum1 / count1;
+            }
+            
+            if (sum3 == 0){
+              this.avg_cod = 0;
+            }else{
+              this.avg_cod = sum3 / count3;
+            }
             // console.log(order_date_array);
             // Counting the occurrences / frequency of array elements
             occurrences = this.frequency(order_date_array);
@@ -180,6 +196,15 @@
             // });
             // console.log(this.frequency(sales_per_order));
             // console.log(this.sales_over_time());
+            occurrences1 = this.frequency(order_month_array1);
+            dict_today[this.fromDate.month-1] = this.total;
+            aveList=this.avg_order_value(dict_today,occurrences1);
+            // console.log(sales_list);
+            Xdate = aveList[1];
+            Yorder = aveList[0];
+            // // console.log(Xdate);
+            // // console.log(Yorder);
+            this.basicChart4(Xdate,Yorder);
 
             // console.log(occurrences);
             temp_order_date = this.order_per_date(occurrences, start, end);
@@ -196,7 +221,7 @@
             // console.log(Yarray)
             tempcount.push(count1,count2,count3,count4);
             this.count_order=tempcount;
-            this.basicChart1(Yarray, Xarray);
+            this.basicChart1(Yarray, Xarray); 
             // this.basicChart2(Yarray,tempcount);
             this.basicChart3(Xday,Yorder1);
           }
@@ -255,6 +280,7 @@
         return [c, d];
       }
       avg_order_value(arr,count){
+        console.log(arr)
         var month = {0:'Jan',1:'Feb',2:'March',3:'April',4:'May',5:'Jun',6:'Jul',7:'Aug',
         8:'Sept',9:'Oct',10:'Nov',11:'Dec'};
         this.key= Object.keys(arr);
@@ -330,14 +356,15 @@
               }else{
                 dict1[moment(child.payload.doc.data().dateTimeOfOrder).month()] = 
                 dict1[moment(child.payload.doc.data().dateTimeOfOrder).month()] +
-              (child.payload.doc.data().orderPrice);} ``
+              (child.payload.doc.data().orderPrice);}
               console.log(dict1);
               if(dict[moment(child.payload.doc.data().dateTimeOfOrder).date()] == undefined){
                 dict[moment(child.payload.doc.data().dateTimeOfOrder).date()] = child.payload.doc.data().orderPrice;
                 // dict[moment(child.payload.doc.data().dateTimeOfOrder).date()].push(child.payload.doc.data().orderPrice);
 
               }else{
-              dict[moment(child.payload.doc.data().dateTimeOfOrder).date()] = dict[moment(child.payload.doc.data().dateTimeOfOrder).date()] +
+              dict[moment(child.payload.doc.data().dateTimeOfOrder).date()] 
+              = dict[moment(child.payload.doc.data().dateTimeOfOrder).date()] +
               (child.payload.doc.data().orderPrice);}
 
             }
@@ -351,6 +378,7 @@
           console.log(occurrences)
 
           this.key = Object.keys(dict1);
+          console.log(dict1)
           sales_list=this.avg_order_value(dict1,occurrences);
           console.log(sales_list);
           Xdate = sales_list[1];

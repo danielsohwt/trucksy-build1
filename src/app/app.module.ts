@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms'
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -136,6 +137,8 @@ import {AdminOrderListingComponent} from "./dashboard/adminOrderListing/AdminOrd
             MatToolbarModule,
             MatTooltipModule,
             // MatTreeModule,
+            ReactiveFormsModule,
+            FormsModule,
             NbThemeModule.forRoot({ name: 'default' }),
             NbLayoutModule,
             NbEvaIconsModule,

@@ -6,10 +6,13 @@ import {NgbDate, NgbCalendar,NgbDateParserFormatter} from '@ng-bootstrap/ng-boot
 import { HttpClient } from '@angular/common/http';
 import  *  as  data  from  '../../../assets/afinn.json';
 import { Router } from '@angular/router'
+import { MatTableDataSource } from '@angular/material';
+import {MatSort,MatPaginator} from '@angular/material';
 
 @Component({
   selector: 'ngx-dashboard',
   templateUrl: './sentiment.component.html',
+  styleUrls: ['./sentiment.page.scss'],
 })
 export class SentimentComponent implements OnInit {
 
@@ -20,7 +23,13 @@ export class SentimentComponent implements OnInit {
   customer: any[] = [];
   messages:any[] = [];
   final_list:any[] = [];
+  sentimentData: MatTableDataSource<any>;
   @ViewChild('barCanvas', { static: true }) barCanvas;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  searchKey: string;
+  displayColumns: string[] = ['feel','score',
+  'user','feedback','id','actions'];
   private barChart: any;
 
 
@@ -90,20 +99,24 @@ export class SentimentComponent implements OnInit {
         }
       })
 
+      this.sentimentData = new MatTableDataSource(all);
+      console.log(this.sentimentData)
+      this.sentimentData.sort = this.sort;
+      this.sentimentData.paginator = this.paginator;
+
       this.messages = feedbacklist
-      console.log(this.messages)
-      console.log(users)
       this.customer = users
-      console.log(orderId)
-      console.log(all)
       this.final_list = all
-      value.push(postive, negative , neutral)
+      value.push(postive,neutral, negative)
       this.basicChart3(value)
     })
   }
+
+  applyFilter(){
+    this.sentimentData.filter = this.searchKey.trim().toLocaleLowerCase();
+  }
+
   ngOnInit() {
-    // this.feedbacks(this.affin);
-    // }
   } 
 
   viewOrder(item){
@@ -111,11 +124,10 @@ export class SentimentComponent implements OnInit {
   }
 
   basicChart3(value) {
-    console.log(value)
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
       data: {
-        labels: ['Positive','Negative','Neutral'],
+        labels: ['Positive','Neutral','Negative'],
         datasets: [{
                 label: 'Sentiment analysis',
                 data: value,
@@ -124,7 +136,7 @@ export class SentimentComponent implements OnInit {
         }]
       },
       options : {
-        responsive: true,
+        responsive: false,
         scales: {
           xAxes: [{
               display: true,

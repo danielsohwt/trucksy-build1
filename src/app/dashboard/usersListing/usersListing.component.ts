@@ -1,5 +1,5 @@
 import { Platform } from '@ionic/angular';
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit} from '@angular/core';
 import { NbCardModule } from '@nebular/theme';
 
 
@@ -9,10 +9,14 @@ import { ThemeModule } from '../../@theme/theme.module';
 import {FirebaseService} from "../../firebase.service";
 import { Router } from '@angular/router'
 import { UserService } from "../../user.service";
+import { MatTableDataSource } from '@angular/material';
+import {MatSort,MatPaginator} from '@angular/material';
+
 
 @Component({
   selector: 'ngx-dashboard',
   templateUrl: './usersListing.component.html',
+  styleUrls: ['./usersListing.page.scss'],
 })
 export class UsersListingComponent {
   items: Array<any>;
@@ -21,6 +25,12 @@ export class UsersListingComponent {
   searchPaymentStatus: string = "";
   email_filtered_items: Array<any>;
   paymentStatus_filtered_items: Array<any>;
+  userData: MatTableDataSource<any>;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  searchKey: string;
+  displayColumns: string[] = ['firstName','lastName',
+  'username','userRegisteredDateTime'];
 
   constructor(
       public firebaseService: FirebaseService,
@@ -32,43 +42,23 @@ export class UsersListingComponent {
   ngOnInit() {
     this.firebaseService.getUsers()
         .subscribe(result => {
+          let array = result.map(item => {
+            const data = item.payload.doc.data() as Account;
+            const id = item.payload.doc.id;
+            return { id, 
+                    ...data };
+        })
           this.items = result;
-        })
+          this.userData = new MatTableDataSource(array);
+          console.log(this.userData)
+          this.userData.sort = this.sort;
+          this.userData.paginator = this.paginator;
+      }
+      )
   }
 
-  searchByName(){
-    let value = this.searchEmail.toLowerCase();
-    this.firebaseService.searchUsers(value)
-        .subscribe(result => {
-          this.email_filtered_items = result;
-          this.items = this.combineLists(result, this.email_filtered_items);
-          //temp over ride
-          // this.items = this.name_filtered_items;
-        })
-  }
-
-  searchByPaymentStatus(){
-    let value = this.searchPaymentStatus.toLowerCase();
-    this.firebaseService.searchPaymentStatus(value)
-        .subscribe(result => {
-          this.paymentStatus_filtered_items = result;
-          this.items = this.combineLists(result, this.paymentStatus_filtered_items);
-          //temp over ride
-          // this.items = this.name_filtered_items;
-        })
-  }
-
-  combineLists(a, b){
-    let result = [];
-
-    a.filter(x => {
-      return b.filter(x2 =>{
-        if(x2.payload.doc.id == x.payload.doc.id){
-          result.push(x2);
-        }
-      });
-    });
-    return result;
+  applyFilter(){
+    this.userData.filter = this.searchKey.trim().toLocaleLowerCase();
   }
 
   viewOrder(item){

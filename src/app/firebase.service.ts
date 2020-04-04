@@ -33,6 +33,10 @@ export class FirebaseService {
         return this.db.collection('users').snapshotChanges();
     }
 
+    getDrivers(){
+        return this.db.collection('users',ref => ref.where('userType', '==', 'Driver')).snapshotChanges();
+    }
+
     searchUsers(searchValue){
         return this.db.collection('order',ref => ref.where('user', '>=', searchValue)
             .where('user', '<=', searchValue + '\uf8ff'))

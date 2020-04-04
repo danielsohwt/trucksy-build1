@@ -1,5 +1,5 @@
 import { Platform } from '@ionic/angular';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { NbCardModule } from '@nebular/theme';
 
 
@@ -9,10 +9,13 @@ import { ThemeModule } from '../../@theme/theme.module';
 import {FirebaseService} from "../../firebase.service";
 import { Router } from '@angular/router'
 import { UserService } from "../../user.service";
+import { MatTableDataSource } from '@angular/material';
+import {MatSort,MatPaginator} from '@angular/material';
 
 @Component({
   selector: 'ngx-dashboard',
   templateUrl: './driversListing.component.html',
+  styleUrls: ['./driversListing.page.scss'],
 })
 export class DriversListingComponent {
   items: Array<any>;
@@ -21,6 +24,12 @@ export class DriversListingComponent {
   searchPaymentStatus: string = "";
   email_filtered_items: Array<any>;
   paymentStatus_filtered_items: Array<any>;
+  driverData: MatTableDataSource<any>;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  searchKey: string;
+  displayColumns: string[] = ['firstName','lastName',
+  'username','userRegisteredDateTime'];
 
   constructor(
       public firebaseService: FirebaseService,
@@ -30,48 +39,25 @@ export class DriversListingComponent {
 
 
   ngOnInit() {
-    this.firebaseService.getUsers()
+    this.firebaseService.getDrivers()
         .subscribe(result => {
+          let array = result.map(item => {
+            const data = item.payload.doc.data() as Account;
+            const id = item.payload.doc.id;
+            return { id, 
+                    ...data };
+        })
           this.items = result;
-        })
+          this.driverData = new MatTableDataSource(array);
+          console.log(this.driverData)
+          this.driverData.sort = this.sort;
+          this.driverData.paginator = this.paginator;
+      }
+      )
   }
 
-  searchByName(){
-    let value = this.searchEmail.toLowerCase();
-    this.firebaseService.searchUsers(value)
-        .subscribe(result => {
-          this.email_filtered_items = result;
-          this.items = this.combineLists(result, this.email_filtered_items);
-          //temp over ride
-          // this.items = this.name_filtered_items;
-        })
+  applyFilter(){
+    this.driverData.filter = this.searchKey.trim().toLocaleLowerCase();
   }
 
-  searchByPaymentStatus(){
-    let value = this.searchPaymentStatus.toLowerCase();
-    this.firebaseService.searchPaymentStatus(value)
-        .subscribe(result => {
-          this.paymentStatus_filtered_items = result;
-          this.items = this.combineLists(result, this.paymentStatus_filtered_items);
-          //temp over ride
-          // this.items = this.name_filtered_items;
-        })
-  }
-
-  combineLists(a, b){
-    let result = [];
-
-    a.filter(x => {
-      return b.filter(x2 =>{
-        if(x2.payload.doc.id == x.payload.doc.id){
-          result.push(x2);
-        }
-      });
-    });
-    return result;
-  }
-
-  viewOrder(item){
-    this.route.navigate(['/admin-order-detail/'+ item.payload.doc.id]);
-  }
 }

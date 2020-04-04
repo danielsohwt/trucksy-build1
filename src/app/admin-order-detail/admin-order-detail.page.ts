@@ -39,6 +39,7 @@ export class AdminOrderDetailPage implements OnInit {
   key
   value
   priceModel1
+  priceList=[]
 
   constructor(
       public firebaseService: FirebaseService,
@@ -103,12 +104,14 @@ export class AdminOrderDetailPage implements OnInit {
   }
 
   unitPrice(item) {
+    console.log(item)
     var item_price = {};
     var count = 0;
     this.priceModel1 = this.afs.doc(`priceModel/1`);
     this.priceModel1.valueChanges().subscribe(val => {
-      // console.log(val.pricing[item]);
-        return val.pricing[item];
+      console.log(val.pricing[item]);
+      this.priceList.push(val.pricing[item])
+      console.log(this.priceList);
       // return val.pricing[item];
       });
   }

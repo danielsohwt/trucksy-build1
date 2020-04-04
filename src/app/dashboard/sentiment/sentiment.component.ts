@@ -106,7 +106,9 @@ export class SentimentComponent implements OnInit {
     // }
   } 
 
-
+  viewOrder(item){
+    this.route.navigate(['/admin-order-detail/'+ item.id]);
+  }
 
   basicChart3(value) {
     console.log(value)

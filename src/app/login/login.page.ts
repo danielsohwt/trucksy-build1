@@ -71,10 +71,10 @@ export class LoginPage implements OnInit {
         } catch (err) {
             if (username =='' || password =='') {
                 this.showAlert("Please fill in your Username or Password")
+            }else{
+            console.log(username)
+            this.showAlert(err.code)
             }
-            // console.log(username)
-            // console.dir(err)
-            // this.showAlert("Error", err.code)
         }
     }
 

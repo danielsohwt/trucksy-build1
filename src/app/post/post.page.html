@@ -120,30 +120,81 @@
         <br>
 
 
-        <ion-card class="order-card-parent" *ngIf="post as postData">
+<!--        <ion-card class="order-card-parent" *ngIf="post as postData">-->
+<!--            <ion-row class="card-child">-->
+<!--                <ion-col class="main-left" size="12">-->
+<!--                    <h4>{{orderItemsPredicted | titlecase }}</h4>-->
+<!--                </ion-col>-->
+<!--            </ion-row>-->
+<!--            <div class="image">-->
+<!--                <ion-img src="https://ucarecdn.com/{{ postID }}/-/preview/{{ effect }}"></ion-img>-->
+<!--            </div>-->
+<!--            <ion-row class="card-child">-->
+<!--                <ion-col class="main-left" size="6">-->
+<!--                    Quantity<br>-->
+<!--                    Rate<br>-->
+<!--&lt;!&ndash;                    Sub Total<br>&ndash;&gt;-->
+<!--                </ion-col>-->
+<!--                <ion-col class="main-right" size="6">-->
+<!--                    {{orderItemsPredictedQty}}<br>-->
+<!--                    ${{itemPricing | number : '1.2-2'}}<br>-->
+<!--&lt;!&ndash;                    ${{subTotal}}<br>&ndash;&gt;-->
+<!--                </ion-col>-->
+<!--            </ion-row>-->
+<!--        </ion-card>-->
+
+
+        <br>
+        <br>
+        <ion-card class="order-card-parent" *ngFor="let item of orderItemsPredictedObj | keyvalue">
             <ion-row class="card-child">
                 <ion-col class="main-left" size="12">
-                    <h4>{{orderItemsPredicted | titlecase }}</h4>
+                    <h4>{{ item.key | titlecase }}</h4>
                 </ion-col>
             </ion-row>
-            <div class="image">
-                <ion-img src="https://ucarecdn.com/{{ postID }}/-/preview/{{ effect }}"></ion-img>
-            </div>
+<!--            Todo: Image-->
+<!--            <div class="image">-->
+<!--                <ion-img src="https://ucarecdn.com/{{ postID }}/-/preview/{{ effect }}"></ion-img>-->
+<!--            </div>-->
+
             <ion-row class="card-child">
                 <ion-col class="main-left" size="6">
                     Quantity<br>
-                    Rate<br>
-<!--                    Sub Total<br>-->
+<!--                    Rate<br>-->
+                    <!--                    Sub Total<br>-->
                 </ion-col>
                 <ion-col class="main-right" size="6">
-                    {{orderItemsPredictedQty}}<br>
-                    ${{itemPricing | number : '1.2-2'}}<br>
-<!--                    ${{subTotal}}<br>-->
+                    {{item.value}}<br>
+<!--                    ${{itemPricing | number : '1.2-2'}}<br>-->
+                    <!--                    ${{subTotal}}<br>-->
                 </ion-col>
             </ion-row>
+
+<!--            {{ item.key }} - {{ item.value }}-->
         </ion-card>
 
-
+        <!--        <ion-card class="order-card-parent" *ngFor="orderItem as orderItemsPredictedObj">-->
+<!--            <ion-row class="card-child">-->
+<!--                <ion-col class="main-left" size="12">-->
+<!--                    <h4>{{orderItemsPredicted | titlecase }}</h4>-->
+<!--                </ion-col>-->
+<!--            </ion-row>-->
+<!--            <div class="image">-->
+<!--                <ion-img src="https://ucarecdn.com/{{ postID }}/-/preview/{{ effect }}"></ion-img>-->
+<!--            </div>-->
+<!--            <ion-row class="card-child">-->
+<!--                <ion-col class="main-left" size="6">-->
+<!--                    Quantity<br>-->
+<!--                    Rate<br>-->
+<!--                    &lt;!&ndash;                    Sub Total<br>&ndash;&gt;-->
+<!--                </ion-col>-->
+<!--                <ion-col class="main-right" size="6">-->
+<!--                    {{orderItemsPredictedQty}}<br>-->
+<!--                    ${{itemPricing | number : '1.2-2'}}<br>-->
+<!--                    &lt;!&ndash;                    ${{subTotal}}<br>&ndash;&gt;-->
+<!--                </ion-col>-->
+<!--            </ion-row>-->
+<!--        </ion-card>-->
 
     </ion-grid>
 

@@ -39,6 +39,9 @@ export class PostPage implements OnInit, OnDestroy {
     subTotal;
     feedback;
 
+
+    orderItemsPredictedObj;
+
     constructor(
         private route: ActivatedRoute, 
         private afs: AngularFirestore,
@@ -69,6 +72,7 @@ export class PostPage implements OnInit, OnDestroy {
             this.recipientNumber = val.recipientNumber,
             this.feedback = val.feedback,
             this.orderItemsPredicted = Object.keys(val.orderItemsPredicted)[0],
+            this.orderItemsPredictedObj = val.orderItemsPredicted,
             // console.log(this.orderItemsPredicted),
             this.orderItemsPredictedQty =Object.values(val.orderItemsPredicted)[0]
             // console.log(this.orderItemsPredictedQty)

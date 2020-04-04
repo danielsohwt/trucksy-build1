@@ -10,7 +10,6 @@ import { FileUploader } from 'ng2-file-upload';
 
 import {UserService} from "../user.service";
 
-
 const URL = '.';
 
 @Component({
@@ -23,8 +22,6 @@ export class UploaderPage implements OnInit {
     public uploader: FileUploader = new FileUploader({ url: URL });
     productList: any;
     orderList = [];
-    file: any;
-    uploadCount = 0;
 
     constructor(
         public route: Router,
@@ -85,7 +82,6 @@ export class UploaderPage implements OnInit {
         this.afs.doc(`order/${orderID}`).set({
             image: orderID,
             user: this.user.getUsername(),
-            // desc,
 
             // Order flow Upload Image -> Price Estimate -> Booking Date -> Payment -> Confirmation
 

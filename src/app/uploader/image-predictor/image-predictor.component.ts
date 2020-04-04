@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {timeout} from "rxjs/operators";
 
 
 @Component({
@@ -13,15 +14,14 @@ export class ImagePredictorComponent implements OnInit {
   @Input() orderList;
   @Input() i;
 
-  busy = false;
+  busy = [];
+  timedout = [];
   src = '../../../assets/img/cat.jpg';
 
   results = [{
     className : null,
     probability: null,
   }];
-
-  IMAGE_SIZE = 224;
 
   constructor(
       public http: HttpClient,
@@ -32,10 +32,7 @@ export class ImagePredictorComponent implements OnInit {
   }
 
   async classifyImage(image, i) {
-    image.width = this.IMAGE_SIZE;
-    image.height = this.IMAGE_SIZE;
-
-    this.results = await this.sendImage(image.rawFile);
+    this.results = await this.sendImage(image.rawFile, i);
     this.orderList[i] = this.results[0].className
   }
 
@@ -50,17 +47,30 @@ export class ImagePredictorComponent implements OnInit {
 
   }
 
-  async sendImage(image) {
-    this.busy = true;
+  async sendImage(image, i) {
+    this.busy[i] = true;
     const data = new FormData();
     data.append('image_file', image)
 
-    let results = [];
-    let postResult = await this.http.post('https://furnitureclassifier1.appspot.com/predict/', data).toPromise();
-    this.busy = false;
-    results.push({className : postResult["Classification"], probability: postResult["Probabilty"]})
-    console.log(postResult)
+    let results;
+    try {
+      results = [];
+      let postResult = await this.http.post('https://furnitureclassifier1.appspot.com/predict/', data).pipe(
+          timeout(15000)
+      ).toPromise();
+      this.timedout[i] = false;
+      results.push({className: postResult["Classification"], probability: postResult["Probabilty"]})
+      console.log(postResult)
+    } catch {
+      console.log("Timed out");
+      results="Timed out";
+      this.timedout[i] = true;
+    }
+    this.busy[i] = false;
     return results;
   }
 
+  onChange(event, i) {
+    this.timedout[i] = false;
+  }
 }

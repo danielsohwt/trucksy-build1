@@ -1,9 +1,12 @@
 <ion-card>
   <img [src]="src" alt="Photo to predict" (load)="classifyImage(image, i)" >
-  <ion-select *ngIf="!busy" class="product-input" [(ngModel)]="orderList[i]">
+  <ion-select *ngIf="!busy[i]" class="product-input" [(ngModel)]="orderList[i]" (ionChange)="onChange($event, i)">
     <ion-select-option *ngFor="let product of productList" [selected]="results[0]?.className === product" [value]="product">{{product | titlecase}}</ion-select-option>
   </ion-select>
-  <ion-spinner *ngIf="busy"></ion-spinner>
+  <ion-spinner *ngIf="busy[i]"></ion-spinner>
+  <div class="error-message" *ngIf="timedout[i]">
+    <ion-icon name="information-circle-outline"></ion-icon> Please input item type manually.
+  </div>
   <ion-card-content *ngIf="results[0]?.probability">
     <div>
       model labeled this image as {{results[0]?.className }} with a confidence of {{results[0]?.probability | number}}

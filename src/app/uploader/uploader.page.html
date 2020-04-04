@@ -1,19 +1,28 @@
 <ion-content>
-    <br>
+    <ion-grid class="container">
+        <h3>Quotation</h3>
 
-    <div>
-        <label for="singleFile">Upload file(s) for prediction</label><br>
-        <input id="singleFile" type="file" ng2FileSelect [uploader]="uploader" multiple accept="image/*"/>
-    </div>
+        <p>Upload an image of the furniture you would like to move by clicking the <strong>"Choose File"</strong> button </p>
+        <br>
 
-    <br>
-    <br>
 
-    <div [id]="i" *ngFor="let item of uploader.queue; let i = index">
-        <image-predictor [image]="item?.file" [productList]="productList" [orderList]="orderList" [i]="i">
-        </image-predictor>
-    </div>
 
-    <button class="orangeButton" id="bookingButton" type="submit" fill="solid" (click)="createOrder()">Accept</button>
+
+
+        <div [id]="i" *ngFor="let item of uploader.queue; let i = index">
+            <image-predictor [image]="item?.file" [productList]="productList" [orderList]="orderList" [i]="i">
+            </image-predictor>
+        </div>
+        <br>
+        <br>
+        <div>
+            <label for="singleFile">Upload file(s) for prediction</label><br>
+            <input id="singleFile" type="file" ng2FileSelect [uploader]="uploader" multiple accept="image/*"/>
+        </div>
+        <br>
+
+        <ion-button shape="round" color="primary" class="orangeButton" id="bookingButton" type="submit" (click)="createOrder()">Accept</ion-button>
+    </ion-grid>
+
 
 </ion-content>

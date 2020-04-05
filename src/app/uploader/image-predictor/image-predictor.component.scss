@@ -1,11 +1,12 @@
 img{
-  max-height: 200px;
-  max-width: 200px;
+  object-fit: contain;
+  height: 200px;
 }
 
 ion-card{
   height: auto;
-  width: 60%
+  width: 100%;
+  padding: 20px;
 }
 
 ion-select{

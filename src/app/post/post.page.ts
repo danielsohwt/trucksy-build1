@@ -2,7 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {UserService} from "../user.service";
-import { firestore } from 'firebase/app'
+import { firestore } from 'firebase/app';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-post',
@@ -38,10 +39,14 @@ export class PostPage implements OnInit, OnDestroy {
     subTotal;
     feedback;
 
+
+    orderItemsPredictedObj;
+
     constructor(
         private route: ActivatedRoute, 
         private afs: AngularFirestore,
         private user: UserService,
+        public alert: AlertController,
     ) { 
 
     }
@@ -67,6 +72,7 @@ export class PostPage implements OnInit, OnDestroy {
             this.recipientNumber = val.recipientNumber,
             this.feedback = val.feedback,
             this.orderItemsPredicted = Object.keys(val.orderItemsPredicted)[0],
+            this.orderItemsPredictedObj = val.orderItemsPredicted,
             // console.log(this.orderItemsPredicted),
             this.orderItemsPredictedQty =Object.values(val.orderItemsPredicted)[0]
             // console.log(this.orderItemsPredictedQty)
@@ -84,11 +90,22 @@ export class PostPage implements OnInit, OnDestroy {
         })
     }
 
+    async showAlert(header: string, message: string) {
+        const alert = await this.alert.create({
+            header,
+            message,
+            buttons: ["Ok"]
+        })
+
+        await alert.present()
+
+    }
+
     submitFeedback(){
         this.afs.collection('order').doc(this.postID).update({
             feedback: this.feedback,
         });
-        console.log('Pushed to DB: Updated feedback: ' + this.feedback);
+        this.showAlert("Feedback Submitted", this.feedback)
     }
 
     ngOnDestroy():void {

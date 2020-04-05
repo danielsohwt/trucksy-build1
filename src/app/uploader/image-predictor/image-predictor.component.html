@@ -1,11 +1,27 @@
 <ion-card>
-  <img [src]="src" alt="Photo to predict" (load)="classifyImage(image, i)" >
-  <ion-select class="product-input" [(ngModel)]="orderList[i]">
-    <ion-select-option *ngFor="let product of productList" [selected]="results[0]?.className === product" [value]="product">{{product | titlecase}}</ion-select-option>
-  </ion-select>
-  <ion-card-content *ngIf="results[0]?.probability">
-    <div>
-      model labeled this image as {{results[0]?.className }} with a confidence of {{results[0]?.probability | number}}
+    <div id="removeButton_container">
+      <ion-button type="button" class="removeButton" fill="outline" color="danger" *ngIf="!(busy.indexOf(true) > -1)"
+              (click)="item.remove(); onDelete(i)">
+        <i class="fa fa-times"></i> Remove
+      </ion-button>
     </div>
-  </ion-card-content>
+    <img [src]="src" alt="Photo to predict" (load)="classifyImage(image, i)" >
+    <br>
+    <div id="itemType_container" *ngIf="!busy[i]">
+      <ion-select class="product-input" [(ngModel)]="orderList[i]" (ionChange)="onChange($event, i)">
+          <ion-select-option *ngFor="let product of productList" [selected]="results[0]?.className === product" [value]="product">{{product | titlecase}}</ion-select-option>
+      </ion-select>
+        <p *ngIf="!timedout[i]"><strong><a>*</a> Edit if required</strong></p>
+    </div>
+
+    <ion-spinner *ngIf="busy[i]"></ion-spinner>
+
+    <div class="error-message" *ngIf="timedout[i]">
+        <ion-icon name="information-circle-outline"></ion-icon> Please input item type manually.
+    </div>
+    <ion-card-content *ngIf="results[0]?.probability">
+        <div>
+          Model labeled this image as {{results[0]?.className }} with a confidence of {{results[0]?.probability | number}}
+        </div>
+    </ion-card-content>
 </ion-card>

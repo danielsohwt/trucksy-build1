@@ -1,11 +1,27 @@
+#removeButton_container{
+  height: 0;
+  text-align: right;
+}
+
 img{
-  max-height: 200px;
-  max-width: 200px;
+  object-fit: contain;
+  height: 200px;
 }
 
 ion-card{
   height: auto;
-  width: 60%
+  width: 100%;
+  padding: 20px;
+}
+
+#itemType_container{
+  display: flex;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+
+p{
+  margin-left: 10px;
 }
 
 ion-select{
@@ -13,4 +29,12 @@ ion-select{
   border-radius: 15px;
   border: 1px solid #2B3339;
   background: rgba(255, 255, 255);
+}
+
+.error-message
+{
+  color: red;
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 10px;
 }

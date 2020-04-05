@@ -46,6 +46,7 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
       this.windowRef = this.win.windowRef;
       this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+      this.windowRef.recaptchaVerifier.render();
 
   }
 
@@ -119,6 +120,7 @@ export class RegisterPage implements OnInit {
 
                 this.windowRef.confirmationResult = result;
                 this.loginCodeSent = true;
+                console.log('Login code sent!')
             })
             .catch( error => console.log(error) );
 

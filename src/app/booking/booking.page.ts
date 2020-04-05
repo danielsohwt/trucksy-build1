@@ -9,8 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import * as moment from 'moment';
 
-// TODO: add error handling for unfound/invalid postal codes
-
 @Component({
     selector: 'app-booking',
     templateUrl: './booking.page.html',

@@ -1,18 +1,20 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
 <ion-content>
     <ion-grid class="container">
         <h3>Quotation</h3>
 
-        <p>Upload an image of the furniture you would like to move by clicking the <strong>"Choose File"</strong> button </p>
+        <p>Upload <strong>one or more images</strong> of the furniture you would like to move by clicking the <strong>"Choose File"</strong> button </p>
         <br>
 
         <div [id]="i" *ngFor="let item of uploader.queue; let i = index">
-            <image-predictor [image]="item?.file" [productList]="productList" [orderList]="orderList" [i]="i" [last_i]="uploader.queue.length-2" [timedout]="timedout">
+            <image-predictor [item]="item" [image]="item?.file" [productList]="productList" [orderList]="orderList" [i]="i" [last_i]="uploader.queue.length-2" [timedout]="timedout" [busy]="busy">
             </image-predictor>
         </div>
         <br>
         <br>
         <div>
-            <label for="singleFile">Upload file(s) for prediction</label><br>
+            <label for="singleFile">Upload <strong>one or more files</strong> for prediction</label><br>
             <input id="singleFile" type="file" ng2FileSelect [uploader]="uploader" multiple accept="image/*"/>
         </div>
 
@@ -20,6 +22,13 @@
         <div class="error-message" *ngIf="timedout.indexOf(true) > -1">
             <ion-icon name="information-circle-outline"></ion-icon> There are one or more item types above that require manual input.
         </div>
-        <ion-button shape="round" color="primary" class="orangeButton" id="bookingButton" type="submit" (click)="createOrder()" [disabled]="timedout.indexOf(true) > -1 || !uploader.queue.length">Accept</ion-button>
+
+        <br>
+        <div id="checkbox_container">
+            <ion-checkbox required [(ngModel)]="checked"></ion-checkbox>
+            <ion-label> &nbsp; I confirm that all item types have been accurately selected *</ion-label>
+        </div>
+        <br>
+        <ion-button shape="round" color="primary" class="orangeButton" id="bookingButton" type="submit" (click)="createOrder()" [disabled]="timedout.indexOf(true) > -1 || !uploader.queue.length || !checked">Accept</ion-button>
     </ion-grid>
 </ion-content>

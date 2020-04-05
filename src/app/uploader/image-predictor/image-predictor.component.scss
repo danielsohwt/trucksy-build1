@@ -1,3 +1,8 @@
+#removeButton_container{
+  height: 0;
+  text-align: right;
+}
+
 img{
   object-fit: contain;
   height: 200px;
@@ -7,6 +12,16 @@ ion-card{
   height: auto;
   width: 100%;
   padding: 20px;
+}
+
+#itemType_container{
+  display: flex;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+
+p{
+  margin-left: 10px;
 }
 
 ion-select{

@@ -11,14 +11,16 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
   styleUrls: ['./image-predictor.component.scss'],
 })
 export class ImagePredictorComponent implements OnInit {
+  @Input() item;
   @Input() image;
   @Input() productList;
   @Input() orderList;
   @Input() i;
   @Input() last_i;
+  @Input() busy;
   @Input() timedout;
 
-  busy = [];
+
   src = '../../../assets/img/cat.jpg';
 
   results = [{
@@ -76,8 +78,16 @@ export class ImagePredictorComponent implements OnInit {
     return results;
   }
 
-
   onChange(event, i) {
     this.timedout[i] = false;
+  }
+
+  onDelete(i) {
+    this.busy.splice(i, 1);
+    this.orderList.splice(i, 1);
+    this.timedout.splice(i, 1);
+    console.log(this.busy);
+    console.log(this.orderList);
+    console.log(this.timedout);
   }
 }

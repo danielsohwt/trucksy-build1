@@ -21,8 +21,10 @@ const URL = '.';
 export class UploaderPage implements OnInit {
     public uploader: FileUploader = new FileUploader({ url: URL });
     productList: any;
+    busy = [];
     orderList = [];
     timedout = [];
+    checked:boolean;
 
     constructor(
         public route: Router,
@@ -130,5 +132,4 @@ export class UploaderPage implements OnInit {
         }
         return predictedProducts;
     }
-
 }

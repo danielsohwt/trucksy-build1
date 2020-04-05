@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {timeout} from "rxjs/operators";
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
 
 @Component({
   selector: 'image-predictor',
@@ -13,6 +15,7 @@ export class ImagePredictorComponent implements OnInit {
   @Input() productList;
   @Input() orderList;
   @Input() i;
+  @Input() last_i;
   @Input() timedout;
 
   busy = [];
@@ -55,6 +58,9 @@ export class ImagePredictorComponent implements OnInit {
     let results;
     try {
       results = [];
+      //Set delay to space out requests
+      await delay(2500*(this.last_i-i));
+
       let postResult = await this.http.post('https://furnitureclassifier1.appspot.com/predict/', data).pipe(
           timeout(15000)
       ).toPromise();
@@ -69,6 +75,7 @@ export class ImagePredictorComponent implements OnInit {
     this.busy[i] = false;
     return results;
   }
+
 
   onChange(event, i) {
     this.timedout[i] = false;

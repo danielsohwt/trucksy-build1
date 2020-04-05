@@ -6,7 +6,7 @@
         <br>
 
         <div [id]="i" *ngFor="let item of uploader.queue; let i = index">
-            <image-predictor [image]="item?.file" [productList]="productList" [orderList]="orderList" [i]="i" [timedout]="timedout">
+            <image-predictor [image]="item?.file" [productList]="productList" [orderList]="orderList" [i]="i" [last_i]="uploader.queue.length-2" [timedout]="timedout">
             </image-predictor>
         </div>
         <br>

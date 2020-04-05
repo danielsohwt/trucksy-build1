@@ -22,6 +22,7 @@ export class UploaderPage implements OnInit {
     public uploader: FileUploader = new FileUploader({ url: URL });
     productList: any;
     orderList = [];
+    timedout = [];
 
     constructor(
         public route: Router,
@@ -129,4 +130,5 @@ export class UploaderPage implements OnInit {
         }
         return predictedProducts;
     }
+
 }

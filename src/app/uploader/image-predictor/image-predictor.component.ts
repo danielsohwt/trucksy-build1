@@ -13,9 +13,9 @@ export class ImagePredictorComponent implements OnInit {
   @Input() productList;
   @Input() orderList;
   @Input() i;
+  @Input() timedout;
 
   busy = [];
-  timedout = [];
   src = '../../../assets/img/cat.jpg';
 
   results = [{

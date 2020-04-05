@@ -10,10 +10,13 @@
     <br>
 
     <div [id]="i" *ngFor="let item of uploader.queue; let i = index">
-        <image-predictor [image]="item?.file" [productList]="productList" [orderList]="orderList" [i]="i">
+        <image-predictor [image]="item?.file" [productList]="productList" [orderList]="orderList" [i]="i" [timedout]="timedout">
         </image-predictor>
     </div>
 
-    <button class="orangeButton" id="bookingButton" type="submit" fill="solid" (click)="createOrder()">Accept</button>
+    <div class="error-message" *ngIf="timedout.indexOf(true) > -1">
+        <ion-icon name="information-circle-outline"></ion-icon> There are one or more item types above that require manual input.
+    </div>
+    <button class="orangeButton" id="bookingButton" type="submit" fill="solid" (click)="createOrder()" [disabled]="timedout.indexOf(true) > -1">Accept</button>
 
 </ion-content>

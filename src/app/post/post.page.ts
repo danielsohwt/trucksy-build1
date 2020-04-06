@@ -40,7 +40,7 @@ export class PostPage implements OnInit, OnDestroy {
     feedback;
 
 
-    orderItemsPredictedObj;
+    orderItemsActualObj;
 
     constructor(
         private route: ActivatedRoute, 
@@ -72,7 +72,7 @@ export class PostPage implements OnInit, OnDestroy {
             this.recipientNumber = val.recipientNumber,
             this.feedback = val.feedback,
             this.orderItemsPredicted = Object.keys(val.orderItemsPredicted)[0],
-            this.orderItemsPredictedObj = val.orderItemsPredicted,
+            this.orderItemsActualObj = val.orderItemsActual,
             // console.log(this.orderItemsPredicted),
             this.orderItemsPredictedQty =Object.values(val.orderItemsPredicted)[0]
             // console.log(this.orderItemsPredictedQty)

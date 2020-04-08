@@ -11,17 +11,19 @@
                          (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title>
-         Sentiment Analysis chart
+         Sentiment Analysis Chart
         </mat-panel-title>
         <mat-panel-description>
-          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          <div style="text-align: right">
+            {{panelOpenState ? 'Hide chart' : 'Show Chart'}}
+          </div>
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>I'm visible because I am open</p>
+<!--      <p>I'm visible because I am open</p>-->
       <!-- <canvas  #barCanvas width="100" height="100"></canvas> -->
       <div style="padding-top:-20px" >
         <!--        Insert AOV Graph-->
-                <canvas class="my-4 w-100 graph-layout" #barCanvas width="1000" height="600"></canvas>
+                <canvas class="my-4 graph-layout" #barCanvas width="500" height="300"></canvas>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
@@ -31,10 +33,12 @@
 <nb-card>
   <div class="hero is-success">
     <div class="hero-body">
+<!--      <div class="container">-->
+<!--        <h1 class="title">How was your day?</h1>-->
+<!--      </div>-->
       <div class="container">
-        <h1 class="title">How was your day?</h1>
+        <input type="text" class="form-control" [(ngModel)]="searchKey" [ngModelOptions]="{standalone: true}" placeholder="Search Feedback" (keyup)="applyFilter()">
       </div>
-      <input type="text" class="form-control" [(ngModel)]="searchKey" [ngModelOptions]="{standalone: true}" placeholder="Search" (keyup)="applyFilter()">
     </div>
   </div>
   <div class='main'>

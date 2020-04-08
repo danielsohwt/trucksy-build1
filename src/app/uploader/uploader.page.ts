@@ -34,6 +34,7 @@ export class UploaderPage implements OnInit {
     ) {}
 
     ngOnInit() {
+        // this.route.reload();
         this.getProductList();
     }
 

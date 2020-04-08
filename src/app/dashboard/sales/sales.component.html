@@ -43,13 +43,12 @@
                          (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Please click here to see the Sales Analysis chart
+          Sales Data
         </mat-panel-title>
         <mat-panel-description>
-          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          {{panelOpenState ? 'Hide chart' : 'Show chart'}}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>I'm visible because I am open</p>
       <div style="padding-top:-20px" >
       <canvas class="my-4 w-100 graph-layout" #line6Canvas width="1000" height="400"></canvas>
       </div>
@@ -64,15 +63,14 @@
                          (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Please click here to see Compare various forecasting approaches
+          Sales Forecasting
         </mat-panel-title>
         <mat-panel-description>
-          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          {{panelOpenState ? 'Hide chart' : 'Show chart'}}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>I'm visible because I am open</p>
       <canvas class="my-4 w-100 graph-layout" #line1Canvas width="1000" height="400"></canvas>
-      <button mat-raised-button color="primary" class='button' (click)="addData(linear_regression)">Predict</button>
+      <button  mat-raised-button color="primary" class='button button-predict' (click)="addData(linear_regression)">Predict</button>
       <button mat-raised-button color="warn" class='button' (click)="removeData(linear_regression)">Reset</button>
     </mat-expansion-panel>
   </mat-accordion>  
